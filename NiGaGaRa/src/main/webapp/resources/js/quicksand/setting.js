@@ -17,11 +17,13 @@ if (jQuery().quicksand) {
 		} else {
 			var $filteredData = $data.find('.item-thumbs[data-type=' + filterClass + ']');
 		}
+		
 		$(".portfolio-area").quicksand($filteredData, {
 			duration: 600,
 			adjustHeight: 'auto'
-		}	
-		$(this).addClass("active"); 			
+		});
+		
+		$(this).addClass("active");			
 		return false;
 	});
 	
