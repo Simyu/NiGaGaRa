@@ -9,18 +9,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <!-- css -->
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/resources/css/fancybox/jquery.fancybox.css" rel="stylesheet">
-<link href="/resources/css/jcarousel.css" rel="stylesheet" />
-<link href="/resources/css/flexslider.css" rel="stylesheet" />
-<link href="/resources/css/style.css" rel="stylesheet" />
+<link href="NiGaGaRa/resources/css/bootstrap.min.css" rel="stylesheet" />
+<link href="NiGaGaRa/resources/css/fancybox/jquery.fancybox.css" rel="stylesheet">
+<link href="NiGaGaRa/resources/css/jcarousel.css" rel="stylesheet" />
+<link href="NiGaGaRa/resources/css/flexslider.css" rel="stylesheet" />
+<link href="NiGaGaRa/resources/css/style.css" rel="stylesheet" />
 
 <!-- Theme skin -->
 <link href="/resources/skins/default.css" rel="stylesheet" />
 </head>
 <body>
 	<div id="outer">
-		<div id="top">
+		<div class="header">
 			<tiles:insertAttribute name="top" />
 		</div>
 		<div class="container">
@@ -34,16 +34,16 @@
 	</div>
 	<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 
-	<script src="/resources/js/jquery.js"></script>
-	<script src="/resources/js/jquery.easing.1.3.js"></script>
-	<script src="/resources/js/bootstrap.min.js"></script>
-	<script src="/resources/js/jquery.fancybox.pack.js"></script>
-	<script src="/resources/js/jquery.fancybox-media.js"></script>
-	<script src="/resources/js/google-code-prettify/prettify.js"></script>
-	<script src="/resources/js/portfolio/jquery.quicksand.js"></script>
-	<script src="/resources/js/portfolio/setting.js"></script>
-	<script src="/resources/js/jquery.flexslider.js"></script>
-	<script src="/resources/js/animate.js"></script>
-	<script src="/resources/js/custom.js"></script>
+	<script src="NiGaGaRa/resources/js/jquery.js"></script>
+	<script src="NiGaGaRa/resources/js/jquery.easing.1.3.js"></script>
+	<script src="NiGaGaRa/resources/js/bootstrap.min.js"></script>
+	<script src="NiGaGaRa/resources/js/jquery.fancybox.pack.js"></script>
+	<script src="NiGaGaRa/resources/js/jquery.fancybox-media.js"></script>
+	<script src="NiGaGaRa/resources/js/google-code-prettify/prettify.js"></script>
+	<script src="NiGaGaRa/resources/js/portfolio/jquery.quicksand.js"></script>
+	<script src="NiGaGaRa/resources/js/portfolio/setting.js"></script>
+	<script src="NiGaGaRa/resources/js/jquery.flexslider.js"></script>
+	<script src="NiGaGaRa/resources/js/animate.js"></script>
+	<script src="NiGaGaRa/resources/js/custom.js"></script>
 </body>
 </html>
