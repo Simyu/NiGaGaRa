@@ -9,4 +9,11 @@
 		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
 	</definition>
 	<definition name="index" extends="mainTemplate"></definition>
+	
+	<definition name="requestTemplate" template="/WEB-INF/request/requestLayout.jsp">
+		<put-attribute name="top" value="/WEB-INF/layout/top.jsp"/>
+		<put-attribute name="request" value="/WEB-INF/request/request.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
+	</definition>
+	<definition name="request" extends="requestTemplate"></definition>
 </tiles-definitions>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,37 +7,52 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- start header -->
-		<header>
-			<div class="navbar navbar-default navbar-static-top">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-						<a class="navbar-brand" href="index.html"><span>M</span>oderna</a>
-					</div>
-					<div class="navbar-collapse collapse ">
-						<ul class="nav navbar-nav">
-							<li class="active"><a href="index.html">Home</a></li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Features <b class=" icon-angle-down"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="typography.html">Typography</a></li>
-									<li><a href="components.html">Components</a></li>
-									<li><a href="pricingbox.html">Pricing box</a></li>
-								</ul>
-							</li>
-							<li><a href="portfolio.html">Portfolio</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="contact.html">Contact</a></li>
-						</ul>
-					</div>
+	<!-- start header -->
+	<header>
+		<div class="navbar navbar-default navbar-static-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target=".navbar-collapse">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html"><span>니</span>가가라(부탁~해요)</a>
+				</div>
+				<div class="navbar-collapse collapse ">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="index.html">Home</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle "
+							data-toggle="dropdown" data-hover="dropdown" data-delay="0"
+							data-close-others="false">부탁하기 <b class=" icon-angle-down"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/NiGaGaRa/request.do">시작하기</a></li>
+								<li><a href="#">조회하기</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle "
+							data-toggle="dropdown" data-hover="dropdown" data-delay="0"
+							data-close-others="false">배달하기 <b class=" icon-angle-down"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">시작하기</a></li>
+								<li><a href="#">조회하기</a></li>
+								<li><a href="#">이용방법</a></li>
+								<li><a href="#">예상요금계산</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle "
+							data-toggle="dropdown" data-hover="dropdown" data-delay="0"
+							data-close-others="false">마이페이지 <b class=" icon-angle-down"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">신청이력</a></li>
+								<li><a href="#">배달이력</a></li>
+								<li><a href="#">내 정보</a></li>
+								<li><a href="#">탈퇴</a></li>
+								<li><a href="#">포인트 환전</a></li>
+							</ul></li>
+					</ul>
 				</div>
 			</div>
-		</header>
-		<!-- end header -->
+		</div>
+	</header>
+	<!-- end header -->
 </body>
 </html>
