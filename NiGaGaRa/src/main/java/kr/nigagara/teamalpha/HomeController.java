@@ -17,9 +17,16 @@ public class HomeController {
 	@RequestMapping(value = "/index.do", method = RequestMethod.GET)
 	public String home() {
 		
-		System.out.println("ÀÎµ¦½º¶ó¿À");
+		System.out.println("ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		
 		return "index";
+	}
+	@RequestMapping(value = "/request.do", method = RequestMethod.GET)
+	public String request() {
+		
+		System.out.println("request view");
+		
+		return "request";
 	}
 	
 }
