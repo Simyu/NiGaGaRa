@@ -51,6 +51,7 @@
 		<beans:property name="definitions">
 			<beans:list>
 				<beans:value>/WEB-INF/config/tiles-config.xml</beans:value>
+				<beans:value>/WEB-INF/config/tiles-sujin-config.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

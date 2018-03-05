@@ -19,6 +19,18 @@
 <link href="/NiGaGaRa/resources/skins/default.css" rel="stylesheet" />
 </head>
 <body>
+
+	<script src="/NiGaGaRa/resources/js/jquery.js"></script>
+	<script src="/NiGaGaRa/resources/js/jquery.easing.1.3.js"></script>
+	<script src="/NiGaGaRa/resources/js/bootstrap.min.js"></script>
+	<script src="/NiGaGaRa/resources/js/jquery.fancybox.pack.js"></script>
+	<script src="/NiGaGaRa/resources/js/jquery.fancybox-media.js"></script>
+	<script src="/NiGaGaRa/resources/js/google-code-prettify/prettify.js"></script>
+	<script src="/NiGaGaRa/resources/js/portfolio/jquery.quicksand.js"></script>
+	<script src="/NiGaGaRa/resources/js/portfolio/setting.js"></script>
+	<script src="/NiGaGaRa/resources/js/jquery.flexslider.js"></script>
+	<script src="/NiGaGaRa/resources/js/animate.js"></script>
+	<script src="/NiGaGaRa/resources/js/custom.js"></script>
 	
 	<div id="outer">
 		<div class="header">
@@ -35,17 +47,5 @@
 	</div>
 	
 	<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
-
-	<script src="/NiGaGaRa/resources/js/jquery.js"></script>
-	<script src="/NiGaGaRa/resources/js/jquery.easing.1.3.js"></script>
-	<script src="/NiGaGaRa/resources/js/bootstrap.min.js"></script>
-	<script src="/NiGaGaRa/resources/js/jquery.fancybox.pack.js"></script>
-	<script src="/NiGaGaRa/resources/js/jquery.fancybox-media.js"></script>
-	<script src="/NiGaGaRa/resources/js/google-code-prettify/prettify.js"></script>
-	<script src="/NiGaGaRa/resources/js/portfolio/jquery.quicksand.js"></script>
-	<script src="/NiGaGaRa/resources/js/portfolio/setting.js"></script>
-	<script src="/NiGaGaRa/resources/js/jquery.flexslider.js"></script>
-	<script src="/NiGaGaRa/resources/js/animate.js"></script>
-	<script src="/NiGaGaRa/resources/js/custom.js"></script>
 </body>
 </html>
