@@ -18,6 +18,7 @@ public class HomeController {
 	public String home() {
 		
 		System.out.println("¤·");
+		//Å×½ºÆ®
 		
 		return "index";
 	}
