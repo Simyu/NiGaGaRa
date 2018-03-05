@@ -16,21 +16,21 @@
 						<!-- Slider -->
 						<div id="main-slider" class="flexslider">
 							<ul class="slides">
-								<li><img src="img/slides/1.jpg" alt="" />
+								<li><img src="/NiGaGaRa/resources/img/slides/1.jpg" alt="" />
 									<div class="flex-caption">
 										<h3>Modern Design</h3>
 										<p>Duis fermentum auctor ligula ac malesuada. Mauris et
 											metus odio, in pulvinar urna</p>
 										<a href="#" class="btn btn-theme">Learn More</a>
 									</div></li>
-								<li><img src="img/slides/2.jpg" alt="" />
+								<li><img src="/NiGaGaRa/resources/img/slides/2.jpg" alt="" />
 									<div class="flex-caption">
 										<h3>Fully Responsive</h3>
 										<p>Sodales neque vitae justo sollicitudin aliquet sit amet
 											diam curabitur sed fermentum.</p>
 										<a href="#" class="btn btn-theme">Learn More</a>
 									</div></li>
-								<li><img src="img/slides/3.jpg" alt="" />
+								<li><img src="/NiGaGaRa/resources/img/slides/3.jpg" alt="" />
 									<div class="flex-caption">
 										<h3>Clean & Fast</h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit
@@ -153,12 +153,12 @@
 										<div class="item-thumbs">
 											<!-- Fancybox - Gallery Enabled - Title - Full Image -->
 											<a class="hover-wrap fancybox" data-fancybox-group="gallery"
-												title="Work 1" href="img/works/1.jpg"> <span
+												title="Work 1" href="/NiGaGaRa/resources/img/works/1.jpg"> <span
 												class="overlay-img"></span> <span
 												class="overlay-img-thumb font-icon-plus"></span>
 											</a>
 											<!-- Thumb Image and Description -->
-											<img src="img/works/1.jpg"
+											<img src="/NiGaGaRa/resources/img/works/1.jpg"
 												alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
 										</div>
 									</li>
@@ -168,11 +168,11 @@
 										data-type="icon">
 										<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 										class="hover-wrap fancybox" data-fancybox-group="gallery"
-										title="Work 2" href="img/works/2.jpg"> <span
+										title="Work 2" href="/NiGaGaRa/resources/img/works/2.jpg"> <span
 											class="overlay-img"></span> <span
 											class="overlay-img-thumb font-icon-plus"></span>
 									</a> <!-- Thumb Image and Description --> <img
-										src="img/works/2.jpg"
+										src="/NiGaGaRa/resources/img/works/2.jpg"
 										alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
 									</li>
 									<!-- End Item Project -->
@@ -181,11 +181,11 @@
 										data-type="illustrator">
 										<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 										class="hover-wrap fancybox" data-fancybox-group="gallery"
-										title="Work 3" href="img/works/3.jpg"> <span
+										title="Work 3" href="/NiGaGaRa/resources/img/works/3.jpg"> <span
 											class="overlay-img"></span> <span
 											class="overlay-img-thumb font-icon-plus"></span>
 									</a> <!-- Thumb Image and Description --> <img
-										src="img/works/3.jpg"
+										src="/NiGaGaRa/resources/img/works/3.jpg"
 										alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
 									</li>
 									<!-- End Item Project -->
@@ -194,11 +194,11 @@
 										data-type="illustrator">
 										<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 										class="hover-wrap fancybox" data-fancybox-group="gallery"
-										title="Work 4" href="img/works/4.jpg"> <span
+										title="Work 4" href="/NiGaGaRa/resources/img/works/4.jpg"> <span
 											class="overlay-img"></span> <span
 											class="overlay-img-thumb font-icon-plus"></span>
 									</a> <!-- Thumb Image and Description --> <img
-										src="img/works/4.jpg"
+										src="/NiGaGaRa/resources/img/works/4.jpg"
 										alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
 									</li>
 									<!-- End Item Project -->
