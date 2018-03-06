@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<!-- 이수진이 만들었음 필요 없을지도 ㅠ -->
+<!-- 이수진이 만들었음 필요 없을지도 -->
 <head>
 <meta charset="utf-8">
 <title>Moderna - Bootstrap 3 flat corporate template</title>
