@@ -38,7 +38,7 @@
 				"id" : $("#id").val()
 			}
 			$.ajax({
-				url : "/danim/emp/idDuplicateCheck.do",  //아이디 인증하는 곳 수정요
+				url : "/danim/emp/idDuplicateCheck.do", //아이디 인증하는 곳 수정요
 				type : "get",
 				data : querydata,
 				dataType : "text",
@@ -207,54 +207,82 @@ input {
 			<h4>회원가입</h4>
 			<div>
 				<ul class="list-group">
-					<li class="list-group-item"><input id="id" name="id"
-						type="text" placeholder="아이디" class="form-control input-md"
-						required="required">
-						<button type="button" id="idcheck">중복체크</button> <span id="result"></span></li>
-					<li class="list-group-item"><input id="pass" name="pass"
-						type="password" placeholder="패스워드" class="form-control input-md"
-						required="required"></li>
-					<li class="list-group-item"><input id="passchk" name="passchk"
-						type="password" placeholder="패스워드 확인"
-						class="form-control input-md" required="required"></li>
-					<li class="list-group-item"><input id="name" name="name"
-						type="text" placeholder="이름" class="form-control input-md"
-						required="required"></li>
-					<li class="list-group-item"><input type="radio" name="gender"
-						value="남자" checked="checked">남자 <span> </span> <input
-						type="radio" name="gender" value="여자">여자</li>
-					<li class="list-group-item"><input id="birth" name="birth"
-						type="text" placeholder="생년월일 " class="form-control input-md"
-						required="required"></li>
-					<li class="list-group-item"><input id="phone" name="phone"
-						type="text" placeholder="전화번호" class="form-control input-md"
-						required="required"></li>
+					<li class="list-group-item">
+						<input id="id" name="id" type="text" placeholder="아이디"
+							class="form-control input-md" required="required">
+						<button type="button" id="idcheck">중복체크</button>
+						<span id="result"></span>
+					</li>
+					<li class="list-group-item">
+						<input id="pass" name="pass" type="password" placeholder="패스워드"
+							class="form-control input-md" required="required">
+					</li>
+					<li class="list-group-item">
+						<input id="passchk" name="passchk" type="password"
+							placeholder="패스워드 확인" class="form-control input-md"
+							required="required">
+					</li>
+					<li class="list-group-item">
+						<input id="name" name="name" type="text" placeholder="이름"
+							class="form-control input-md" required="required">
+					</li>
+					<li class="list-group-item">
+						<input type="radio" name="gender" value="남자" checked="checked">
+						남자
+						<span> </span>
+						<input type="radio" name="gender" value="여자">
+						여자
+					</li>
+					<li class="list-group-item">
+						<input id="birth" name="birth" type="text" placeholder="생년월일 "
+							class="form-control input-md" required="required">
+					</li>
+					<li class="list-group-item">
+						<input id="phone" name="phone" type="text" placeholder="전화번호"
+							class="form-control input-md" required="required">
+					</li>
 
 
-					<li class="list-group-item"><input id="sample6_postcode"
-						name="postno" type="text" placeholder="우편번호"
-						class="form-control input-md"><input type="button"
-						onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></li>
-					<li class="list-group-item"><input id="sample6_address"
-						name="address" type="text" placeholder="주소"
-						class="form-control input-md"> <input id="sample6_address"
-						name="address_detail" type="text" placeholder="상세주소"
-						class="form-control input-md"></li>
-					<li class="list-group-item">프로필 사진<input id="Uploadphoto"
-						name="Upload photo" class="form-control input-md input-file"
-						type="file"></li>
+					<li class="list-group-item">
+						<input id="sample6_postcode" name="postno" type="text"
+							placeholder="우편번호" class="form-control input-md">
+						<input type="button" onclick="sample6_execDaumPostcode()"
+							value="우편번호 찾기">
+					</li>
+					<li class="list-group-item">
+						<input id="sample6_address" name="address" type="text"
+							placeholder="주소" class="form-control input-md">
+						<input id="sample6_address" name="address_detail" type="text"
+							placeholder="상세주소" class="form-control input-md">
+					</li>
+					<li class="list-group-item">
+						프로필 사진
+						<input id="Uploadphoto" name="Upload photo"
+							class="form-control input-md input-file" type="file">
+					</li>
 
-					<li class="list-group-item"><input type="checkbox" id="agree1">이용약관동의<span>
-					</span> <input type="button" value="내용보기" /></li>
-					<li class="list-group-item"><input type="checkbox" id="agree2">개인정보
-						수집 및 이용동의<span> </span> </span> <input type="button" value="내용보기" /></li>
-					<li class="list-group-item"><input type="checkbox" id="agree3">우편번호와
-						주소 수집 및 이용 동의<span></span></li>
-						<input class="btn btn-lg btn-primary btn-block btn-signin"
-					type="submit" value="Sign in" /> <input type="text"
-					id="idDuplicateCheck" value="false" hidden="" />
+					<li class="list-group-item">
+						<input type="checkbox" id="agree1">
+						이용약관동의
+						<span> </span>
+						<input type="button" value="내용보기" />
+					</li>
+					<li class="list-group-item">
+						<input type="checkbox" id="agree2">
+						개인정보 수집 및 이용동의
+						<span> </span>
+						<input type="button" value="내용보기" />
+					</li>
+					<li class="list-group-item">
+						<input type="checkbox" id="agree3">
+						우편번호와 주소 수집 및 이용 동의
+						<span></span>
+					</li>
+					<input class="btn btn-lg btn-primary btn-block btn-signin"
+						type="submit" value="Sign in" />
+					<input type="text" id="idDuplicateCheck" value="false" hidden="" />
 				</ul>
-				
+
 			</div>
 		</div>
 		<div class="col-md-2"></div>

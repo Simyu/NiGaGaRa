@@ -16,6 +16,7 @@ CREATE TABLE member
     point_total        NUMBER          NULL, 
     mem_type           VARCHAR2(20)    NULL, 
     mem_account        VARCHAR2(20)    NULL, 
+    mem_img            VARCHAR2(20)    NULL, 
     CONSTRAINT MEMBER_PK PRIMARY KEY (mem_id)
 );
 
