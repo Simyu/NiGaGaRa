@@ -19,6 +19,7 @@ public class HomeController {
 		
 		System.out.println("��");
 		//�׽�Ʈ
+		//test입니다.
 		
 		return "index";
 	}
