@@ -3,7 +3,10 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="nigagara.member">
 	<insert id="insert" parameterType="member">
-	
+		insert into member values
+		(#{memId}, #{memPw}, #{memName}, #{memBirth}, #{memZipcode},
+		#{memAddr}, #{memAddrDetail}, '활성', #{memGender}, #{memPhone},
+		#{memEmail}, 0, '일반회원', #{memAccount}, #{memImg})
 	</insert>
-	
+
 </mapper>

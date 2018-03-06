@@ -199,7 +199,7 @@ input {
 
 </head>
 <body>
-	<form action="/danim/emp/register.do" method="post"
+	<form action="/NiGaGaRa/member/register.do" method="post"
 		enctype="multipart/form-data" onsubmit="return Check()">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
@@ -208,13 +208,13 @@ input {
 			<div>
 				<ul class="list-group">
 					<li class="list-group-item">
-						<input id="id" name="id" type="text" placeholder="아이디"
+						<input id="id" name="memId" type="text" placeholder="아이디"
 							class="form-control input-md" required="required">
 						<button type="button" id="idcheck">중복체크</button>
 						<span id="result"></span>
 					</li>
 					<li class="list-group-item">
-						<input id="pass" name="pass" type="password" placeholder="패스워드"
+						<input id="pass" name="memPw" type="password" placeholder="패스워드"
 							class="form-control input-md" required="required">
 					</li>
 					<li class="list-group-item">
@@ -223,42 +223,52 @@ input {
 							required="required">
 					</li>
 					<li class="list-group-item">
-						<input id="name" name="name" type="text" placeholder="이름"
+						<input id="name" name="memName" type="text" placeholder="이름"
 							class="form-control input-md" required="required">
 					</li>
 					<li class="list-group-item">
-						<input type="radio" name="gender" value="남자" checked="checked">
+						<input type="radio" name="memGender" value="남자" checked="checked">
 						남자
 						<span> </span>
-						<input type="radio" name="gender" value="여자">
+						<input type="radio" name="memGender" value="여자">
 						여자
 					</li>
 					<li class="list-group-item">
-						<input id="birth" name="birth" type="text" placeholder="생년월일 "
+						<input id="birth" name="memBirth" type="text" placeholder="생년월일 "
 							class="form-control input-md" required="required">
 					</li>
 					<li class="list-group-item">
-						<input id="phone" name="phone" type="text" placeholder="전화번호"
+						<input id="phone" name="memPhone" type="text" placeholder="전화번호"
 							class="form-control input-md" required="required">
 					</li>
 
+					<li class="list-group-item">
+						<input id="mail" name="memEmail" type="text" placeholder="이메일"
+							class="form-control input-md" required="required">
+					</li>
 
 					<li class="list-group-item">
-						<input id="sample6_postcode" name="postno" type="text"
+						<input id="sample6_postcode" name="memZipcode" type="text"
 							placeholder="우편번호" class="form-control input-md">
 						<input type="button" onclick="sample6_execDaumPostcode()"
 							value="우편번호 찾기">
 					</li>
 					<li class="list-group-item">
-						<input id="sample6_address" name="address" type="text"
+						<input id="sample6_address" name="memAddr" type="text"
 							placeholder="주소" class="form-control input-md">
-						<input id="sample6_address" name="address_detail" type="text"
+						<input id="sample6_address" name="memAddrDetail" type="text"
 							placeholder="상세주소" class="form-control input-md">
 					</li>
 					<li class="list-group-item">
 						프로필 사진
-						<input id="Uploadphoto" name="Upload photo"
+						<input id="Uploadphoto" name="file"
 							class="form-control input-md input-file" type="file">
+					</li>
+					<li class="list-group-item">
+						계좌
+						<input id="account" name="memAccount" type="text"
+							placeholder="계좌번호" class="form-control input-md"
+							required="required">
 					</li>
 
 					<li class="list-group-item">

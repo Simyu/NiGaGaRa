@@ -1,11 +1,20 @@
 package kr.nigagara.teamalpha.member;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.WebUtils;
 
 @Controller
 public class MemberController {
+	@Autowired
+	MemberService service;
+	@Autowired
+	FileUploadLogic uploadservice;
 	
 	@RequestMapping(value = "/member/login.do", method = RequestMethod.GET)
 	public String login_view() {
@@ -29,10 +38,17 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/member/register.do", method = RequestMethod.POST)
-	public String register() {
+	public String register(MemberVO member, HttpServletRequest request) throws Exception {
 		System.out.println("register_post");
+		MultipartFile file = member.getFile();
+		String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/img/upload");
 		
-		return "redirect: /member/login.do";
+		uploadservice.upload(file, path, file.getOriginalFilename());
+		member.setMemImg(file.getOriginalFilename());
+		System.out.println("MemberController : "+member+"\n");
+		service.insert(member);
+		
+		return "redirect:/member/login.do";
 	}
 	
 	@RequestMapping(value ="/member/profile.do", method = RequestMethod.GET)
