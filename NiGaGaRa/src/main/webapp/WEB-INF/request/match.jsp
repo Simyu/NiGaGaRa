@@ -29,7 +29,7 @@
 						<ul class="breadcrumb">
 							<li><a href="#"><i class="fa fa-home"></i></a><i
 								class="icon-angle-right"></i></li>
-							<li class="active">배송등록</li>
+							<li class="active">부탁매칭</li>
 						</ul>
 					</div>
 				</div>
@@ -37,83 +37,26 @@
 		</section>
 		<section id="content">
 			<div class="col-md-3"></div>
-			<div class="col-md-6 panel-body container">
-				<div class="row">
-					<h4>배송정보 입력</h4>
 
-					<div id="sendmessage">Your message has been sent. Thank you!</div>
-					<div id="errormessage"></div>
-					<form action="/NiGaGaRa/match.do" method="post" role="form"
-						class="contactForm">
-						<div class="form-group">
-							<input type="text" name="name" class="form-control" id="getter"
-								placeholder="받는사람 이름" data-rule="minlen:4"
-								data-msg="Please enter at least 4 chars" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="text" name="name" class="form-control" id="getter"
-								placeholder="받는사람 우편번호" data-rule="minlen:4"
-								data-msg="Please enter at least 4 chars" />
-							<button class="btn btn-theme mb-2">검색</button>
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="text" name="name" class="form-control" id="getter"
-								placeholder="받는사람 주소" data-rule="minlen:4"
-								data-msg="Please enter at least 4 chars" />
-							<button type="#" class="btn btn-theme">검색</button>
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="text" name="name" class="form-control"
-								id="getterPhoneNum" placeholder="받는사람 전화번호" data-rule="minlen:4"
-								data-msg="Please enter at least 4 chars" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="email" class="form-control" name="email" id="email"
-								placeholder="수령인 이메일" data-rule="email"
-								data-msg="이메일 형식으로 입력해주세요." />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="text" name="name" class="form-control"
-								id="goodsName" placeholder="상품 이름" data-rule="minlen:4"
-								data-msg="Please enter at least 4 chars" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<select name="name" class="form-control" id="weight"
-								data-msg="Please enter at least 4 chars">
-								<option value="">소 (5kg 이하)</option>
-								<option value="">중 (5~10kg)</option>
-								<option value="">대 (10kg 이상)</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<input type="text" name="name" class="form-control" id="quantity"
-								placeholder="수량" data-rule="minlen:4"
-								data-msg="Please enter at least 4 chars" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="text" name="name" class="form-control" id="price"
-								placeholder="배송비" data-rule="minlen:4"
-								data-msg="Please enter at least 4 chars" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<textarea class="form-control" name="msg" rows="5"
-								data-rule="required" data-msg="배송메세지는 필수입력입니다."
-								placeholder="배송 메세지"></textarea>
-							<div class="validation"></div>
-						</div>
-						<div class="text-center">
-							<button type="submit" class="btn btn-theme">부탁해요</button>
-						</div>
-					</form>
+			<div class="col-md-6 panel-body container">
+			<form action="/NiGaGaRa/payment.do" method="post" role="form" class="contactForm">
+				<div class="form-group">
+				<h4 id="gps" onclick="getLocation()">경로확인</h4>
+					<input type="text" name="name" class="form-control" id="start"
+						placeholder="출발지" readonly />
+					<div class="validation"></div>
 				</div>
+				<div class="form-group">
+					<input type="text" name="name" class="form-control" id="end"
+						placeholder="도착지" readonly />
+					<div class="validation"></div>
+				</div>
+				<p id="demo" type="hidden"></p>
+				<div class="form-group" id="mapholder"></div>
+				<div class="text-center">
+					<button type="submit" class="btn btn-theme">매칭시작</button>
+				</div>
+				</form>
 			</div>
 			<div class="col-md-3"></div>
 
@@ -124,7 +67,6 @@
 	<!-- javascript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.easing.1.3.js"></script>
 	<script src="js/bootstrap.min.js"></script>

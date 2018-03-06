@@ -38,6 +38,26 @@
 	</definition>
 
 	<definition name="request" extends="requestTemplate"></definition>
+
+	<definition name="match" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/request/match.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
+	<definition name="payment" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/request/payment.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
+	
+	<!-- <definition name="match" extends="mainTemplate"></definition> <definition 
+		name="matchTemplate" template="/WEB-INF/request/matchLayout.jsp"> <put-attribute 
+		name="top" value="/WEB-INF/layout/top.jsp" /> <put-attribute name="match" 
+		value="/WEB-INF/request/match.jsp" /> <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" 
+		/> </definition> <definition name="payment" extends="mainTemplate"></definition> 
+		<definition name="paymentTemplate" template="/WEB-INF/request/paymentLayout.jsp"> 
+		<put-attribute name="top" value="/WEB-INF/layout/top.jsp" /> <put-attribute 
+		name="payment" value="/WEB-INF/request/payment.jsp" /> <put-attribute name="footer" 
+		value="/WEB-INF/layout/footer.jsp" /> </definition> -->
+
 </tiles-definitions>
 
 
