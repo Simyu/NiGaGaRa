@@ -31,6 +31,39 @@
 		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
 	</definition>
 
+	<definition name="resetpass" extends="mainTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/member/member_resetPass.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+	</definition>
+
+	<definition name="searchid" extends="mainTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/member/member_searchID.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+	</definition>
+
+	<definition name="searchid_result" extends="mainTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/member/member_searchID_Result.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+	</definition>
+
+	<definition name="searchpass" extends="mainTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/member/member_searchPass.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+	</definition>
+
+	<definition name="drop" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/member/member_drop.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+	</definition>
+
+
+
+
+
 	<definition name="requestTemplate" template="/WEB-INF/request/requestLayout.jsp">
 		<put-attribute name="top" value="/WEB-INF/layout/top.jsp" />
 		<put-attribute name="request" value="/WEB-INF/request/request.jsp" />

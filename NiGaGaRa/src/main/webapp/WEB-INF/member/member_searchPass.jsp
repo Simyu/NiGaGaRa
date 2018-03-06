@@ -159,6 +159,7 @@ $(document).ready(function(){
         <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <form class="form-signin" method = "post" action ="/danim/sendEmail.do")>
+             	<h3>패스워드 찾기</h3>
                 <span id="reauth-email" class="reauth-email"></span>
                  <input type="text" id="id" name = "id" class="form-control" placeholder="아이디" required autofocus>
                 <input type="text" id="name" name = "name" class="form-control" placeholder="이름" required autofocus>

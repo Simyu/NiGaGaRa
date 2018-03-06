@@ -160,13 +160,11 @@ $(document).ready(function(){
         <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <form class="form-signin" action="/NiGaGaRa/member/Searchid_result.do" method = "POST">
-                <h3>아이디 찾기</h3>
+                <h3>회원 탈퇴</h3>
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="text" name = "name" id="name" class="form-control" placeholder="이름" required autofocus>
-                <input type="text" name = "birth" id="birth" class="form-control" placeholder="생년월일" required autofocus>
-                <input type="text" name = "email" id="email" class="form-control" placeholder="이메일주소" required autofocus>
+                <input type="text" name = "email" id="email" class="form-control" placeholder="패스워드" required autofocus>
                 
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">아이디 찾기</button>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">탈퇴</button>
             </form><!-- /form -->
             <!-- <a href="#" class="forgot-password">
                 Forgot the password?

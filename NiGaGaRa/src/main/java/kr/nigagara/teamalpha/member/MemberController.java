@@ -49,4 +49,46 @@ public class MemberController {
 		return "modify";
 	}
 	
+	@RequestMapping(value ="/member/resetpass.do", method = RequestMethod.GET)
+	public String resetpass() {
+		System.out.println("resetpass_get");
+		
+		return "resetpass";
+	}
+	
+	@RequestMapping(value ="/member/searchid.do", method = RequestMethod.GET)
+	public String searchid() {
+		System.out.println("searchid_get");
+		
+		return "searchid";
+	}
+	
+	@RequestMapping(value ="/member/searchid_result.do", method = RequestMethod.POST)
+	public String searchid_result() {
+		System.out.println("searchid_result_post");
+		
+		return "searchid_result";
+	}
+	
+	@RequestMapping(value ="/member/searchpass.do", method = RequestMethod.POST)
+	public String searchpass_result() {
+		System.out.println("searchpass_post");
+		
+		return "#";
+	}
+	
+	@RequestMapping(value ="/member/searchpass.do", method = RequestMethod.GET)
+	public String searchpass() {
+		System.out.println("searchpass_get");
+		
+		return "searchpass";
+	}
+	
+	@RequestMapping(value ="/member/drop.do", method = RequestMethod.GET)
+	public String drop() {
+		System.out.println("drop_get");
+		
+		return "drop";
+	}
+	
 }

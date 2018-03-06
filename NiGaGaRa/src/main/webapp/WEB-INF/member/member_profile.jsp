@@ -23,23 +23,7 @@
  -->
 <!-- Custom CSS -->
 <style>
-.button {
-   border: 1px solid;
-   background: #68a4c4;
-   color: #06416c;
- 
-   vertical-align: middle;
-   }
-.button:hover {
-   border: 1px solid;
-   background: #1f4c69;
-   color: #ffffff;
-   }
-.button:active {
-  
-   border: 1px solid;
-   background: #0e4061;
-   color: #06416c;
+
 body {
 	
 	
@@ -49,7 +33,15 @@ body {
 	margin-top: 10px;
 }
 </style>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+	function modify(str){
+		location.replace(str);
+		
+	}
+	
+</script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -138,8 +130,18 @@ body {
 							<label class="col-md-4 control-label col-xs-12"
 								for="Permanent Address">주소</label>
 							<div class="col-md-4  col-xs-4">
-								<textarea class="form-control" rows="3"
-									id="Overview (max 200 words)" name="Overview (max 200 words)"
+								<textarea class="form-control" rows="2"
+									id="Overview (max 100 words)" name="Overview (max 100 words)"
+									disabled="disabled"><%-- <%=dto.getAddr()+" "+dto.getAddr_detail()%> --%></textarea>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-md-4 control-label col-xs-12"
+								for="Permanent Address">상세주소</label>
+							<div class="col-md-4  col-xs-4">
+								<textarea class="form-control" rows="2"
+									id="Overview (max 100 words)" name="Overview (max 100 words)"
 									disabled="disabled"><%-- <%=dto.getAddr()+" "+dto.getAddr_detail()%> --%></textarea>
 							</div>
 						</div>
@@ -184,8 +186,7 @@ body {
 							<div class="col-md-4">
 								<div class="input-group">
 
-									<a href="/NiGaGaRa/member/modify.do" class="button">     프로필 수정     </a>
-									
+									<div class="text-center"><input type="button" class="btn btn-theme" onclick="modify('/NiGaGaRa/member/modify.do')" value="프로필 수정"/></div>
 
 								</div>
 

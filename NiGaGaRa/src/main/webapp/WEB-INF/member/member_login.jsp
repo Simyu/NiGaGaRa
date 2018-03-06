@@ -138,6 +138,13 @@
     color: rgb(12, 97, 33);
 }
 </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+	function move(str) {
+		location.replace(str);
+	}
+</script>
 </head>
 <body>		
 	 <div class="container">
@@ -154,7 +161,10 @@
                         <input type="checkbox" value="remember-me" name = "member_id_save"> Remember me
                     </label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button><br/>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="button" onclick="move('/NiGaGaRa/member/searchid.do')">아이디 찾기</button>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="button" onclick="move('/NiGaGaRa/member/searchpass.do')">비밀번호 찾기</button>
+               
             </form><!-- /form -->
             <!-- <a href="#" class="forgot-password">
                 Forgot the password?
