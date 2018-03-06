@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="kr.nigagara.teamalpha.delivery.DeliveryVO"
+			alias="delivery" />
+		<typeAlias type="kr.nigagara.teamalpha.exchange.CashExchangeVO"
+			alias="exchange" />
+		<typeAlias type="kr.nigagara.teamalpha.goods.GoodsVO" alias="goods" />
+		<typeAlias type="kr.nigagara.teamalpha.grade.GradeVO" alias="grade" />
+		<typeAlias type="kr.nigagara.teamalpha.member.MemberVO"
+			alias="member" />
+		<typeAlias type="kr.nigagara.teamalpha.payment.PaymentVO"
+			alias="payment" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="mapper/delivery.xml" />
+		<mapper resource="mapper/exchange.xml" />
+		<mapper resource="mapper/goods.xml" />
+		<mapper resource="mapper/grade.xml" />
+		<mapper resource="mapper/member.xml" />
+		<mapper resource="mapper/payment.xml" />
+	</mappers>
+</configuration>
