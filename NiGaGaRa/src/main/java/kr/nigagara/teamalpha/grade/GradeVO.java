@@ -6,7 +6,7 @@ public class GradeVO {
 
     private Integer gradeNum;
 
-    private String deliveryNum;
+    private Integer deliveryNum;
 
     private Integer grade;
 
@@ -18,7 +18,7 @@ public class GradeVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public GradeVO(Integer gradeNum, String deliveryNum, Integer grade, String gradeContent, Date gradeDate) {
+	public GradeVO(Integer gradeNum, Integer deliveryNum, Integer grade, String gradeContent, Date gradeDate) {
 		super();
 		this.gradeNum = gradeNum;
 		this.deliveryNum = deliveryNum;
@@ -35,11 +35,11 @@ public class GradeVO {
 		this.gradeNum = gradeNum;
 	}
 
-	public String getDeliveryNum() {
+	public Integer getDeliveryNum() {
 		return deliveryNum;
 	}
 
-	public void setDeliveryNum(String deliveryNum) {
+	public void setDeliveryNum(Integer deliveryNum) {
 		this.deliveryNum = deliveryNum;
 	}
 

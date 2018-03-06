@@ -86,6 +86,7 @@
 									<a href="/NiGaGaRa/member/profile.do">내 정보</a>
 								</li>
 								<li>
+
 									<a href="/NiGaGaRa/member/drop.do">탈퇴</a>
 								</li>
 								<li>
@@ -97,6 +98,7 @@
 							</ul>
 						</li>
 						
+
 						<%-- <%else{ %> --%>
 						<li>
 							<a href="/NiGaGaRa/member/register.do">회원가입</a>

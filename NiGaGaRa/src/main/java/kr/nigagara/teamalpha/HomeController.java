@@ -17,8 +17,9 @@ public class HomeController {
 	@RequestMapping(value = "/index.do", method = RequestMethod.GET)
 	public String home() {
 		
-		System.out.println("¤·");
-		//Å×½ºÆ®
+		System.out.println("ï¿½ï¿½");
+		//ï¿½×½ï¿½Æ®
+		//testìž…ë‹ˆë‹¤.
 		
 		return "index";
 	}
@@ -29,5 +30,20 @@ public class HomeController {
 		
 		return "request";
 	}
+	@RequestMapping(value = "/match.do", method = RequestMethod.POST)
+	public String match() {
+		
+		System.out.println("match view");
+		
+		return "match";
+	}
+	@RequestMapping(value = "/payment.do", method = RequestMethod.POST)
+	public String payment() {
+		
+		System.out.println("payment view");
+		
+		return "payment";
+	}
+
 	
 }
