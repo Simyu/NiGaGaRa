@@ -17,7 +17,7 @@
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<!-- ==============뷰리졸버에 대한 등록================================= -->
-	
+
 
 	<!-- =====================db관련 작업============================== -->
 	<beans:bean id="ds"
@@ -33,7 +33,7 @@
 		<beans:property name="configLocation"
 			value="/WEB-INF/config/mybatis-config.xml" />
 	</beans:bean>
-	
+
 	<!-- mybatis의 핵심클래스 -->
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg ref="sqlSessionFactory" />
@@ -46,15 +46,13 @@
 
 
 	<!-- ======================tiles를 사용하기 위한 설정================== -->
-	<!-- <beans:bean id="ds" class="org.springframework.jndi.JndiObjectFactoryBean"> 
-		<beans:property name="jndiName" value="jdbc/myspring"/> <beans:property name="resourceRef" 
-		value="true"/> </beans:bean> -->
+
 	<!-- 1. tiles설정파일 등록하기 -->
 	<beans:bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<beans:property name="definitions">
 			<beans:list>
-				<beans:value>/WEB-INF/config/tiles-config.xml</beans:value>
+				<beans:value>/WEB-INF/config/tiles-jinwoo-config.xml</beans:value>
 				<beans:value>/WEB-INF/config/tiles-sujin-config.xml</beans:value>
 			</beans:list>
 		</beans:property>
@@ -66,5 +64,11 @@
 		<beans:property name="viewClass"
 			value="org.springframework.web.servlet.view.tiles2.TilesView" />
 		<beans:property name="order" value="1" />
+	</beans:bean>
+
+	<!-- ========================파일업로드============================= -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="4000000" />
 	</beans:bean>
 </beans:beans>

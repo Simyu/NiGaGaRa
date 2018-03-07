@@ -55,7 +55,7 @@
 									<a href="#">시작하기</a>
 								</li>
 								<li>
-									<a href="">조회하기</a>
+									<a href="/NiGaGaRa/delivery.do">조회하기</a>
 								</li>
 								<li>
 									<a href="#">이용방법</a>
