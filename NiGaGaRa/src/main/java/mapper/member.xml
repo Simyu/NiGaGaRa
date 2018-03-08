@@ -6,7 +6,62 @@
 		insert into member values
 		(#{memId}, #{memPw}, #{memName}, #{memBirth}, #{memZipcode},
 		#{memAddr}, #{memAddrDetail}, '활성', #{memGender}, #{memPhone},
-		#{memEmail}, 0, '일반회원', #{memAccount}, #{memImg})
+		#{memEmail}, 0, '일반회원', #{memAccount}, #{memImg},0,0)
 	</insert>
+
+	<select id="read" parameterType="java.lang.String" resultType="member">
+		select *
+		from member
+		where mem_id=#{memId}
+	</select>
+
+	<select id="login" parameterType="java.util.Map" resultType="member">
+		select *
+		from member
+		where mem_id=#{id} and mem_pw=#{pass}
+	</select>
+
+	<update id="update" parameterType="member">
+		update member
+		set
+		mem_name=#{memName},
+		mem_birth=#{memBirth},
+		mem_zipcode=#{memZipcode},
+		mem_addr=#{memAddr},
+		mem_addr_detail=#{memAddrDetail},
+		mem_gender=#{memGender},
+		mem_phone=#{memPhone},
+		mem_email=#{memEmail},
+		mem_account=#{memAccount},
+		mem_img=#{memImg}
+		where mem_id=#{memId}
+	</update>
+
+	<update id="drop" parameterType="java.lang.String">
+		update member
+		set
+		mem_state='비활성',
+		mem_type='탈퇴회원'
+		where mem_id=#{memId}
+	</update>
+
+	<update id="resetpass" parameterType="java.util.Map">
+		update member
+		set mem_pw=#{memPw}
+		where mem_id=#{memId}
+	</update>
+
+	<update id="updatepoint" parameterType="java.util.Map">
+		update member
+		set point_total=#{pointTotal}
+		where mem_id=#{memId}
+	</update>
+
+	<select id="searchid" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		select substr(mem_id,1,length(mem_id)-3)||lpad('*',3,'*')
+		from member
+		where mem_email=#{memEmail}
+	</select>
 
 </mapper>

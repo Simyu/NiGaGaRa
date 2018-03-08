@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<c:if test="${!empty loginUser}">
+		<h1>${loginUser.memName }님환영합니다</h1>
+	</c:if>
 	<div id="wrapper">
 		<section id="featured">
 			<!-- start slider -->
@@ -16,27 +20,33 @@
 						<!-- Slider -->
 						<div id="main-slider" class="flexslider">
 							<ul class="slides">
-								<li><img src="/NiGaGaRa/resources/img/slides/1.jpg" alt="" />
+								<li>
+									<img src="/NiGaGaRa/resources/img/slides/1.jpg" alt="" />
 									<div class="flex-caption">
 										<h3>Modern Design</h3>
 										<p>Duis fermentum auctor ligula ac malesuada. Mauris et
 											metus odio, in pulvinar urna</p>
 										<a href="#" class="btn btn-theme">Learn More</a>
-									</div></li>
-								<li><img src="/NiGaGaRa/resources/img/slides/2.jpg" alt="" />
+									</div>
+								</li>
+								<li>
+									<img src="/NiGaGaRa/resources/img/slides/2.jpg" alt="" />
 									<div class="flex-caption">
 										<h3>Fully Responsive</h3>
 										<p>Sodales neque vitae justo sollicitudin aliquet sit amet
 											diam curabitur sed fermentum.</p>
 										<a href="#" class="btn btn-theme">Learn More</a>
-									</div></li>
-								<li><img src="/NiGaGaRa/resources/img/slides/3.jpg" alt="" />
+									</div>
+								</li>
+								<li>
+									<img src="/NiGaGaRa/resources/img/slides/3.jpg" alt="" />
 									<div class="flex-caption">
 										<h3>Clean & Fast</h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit
 											donec mer lacinia.</p>
 										<a href="#" class="btn btn-theme">Learn More</a>
-									</div></li>
+									</div>
+								</li>
 							</ul>
 						</div>
 						<!-- end slider -->
@@ -54,7 +64,8 @@
 						<div class="big-cta">
 							<div class="cta-text">
 								<h2>
-									<span>Moderna</span> HTML Business Template
+									<span>Moderna</span>
+									HTML Business Template
 								</h2>
 							</div>
 						</div>
@@ -153,9 +164,9 @@
 										<div class="item-thumbs">
 											<!-- Fancybox - Gallery Enabled - Title - Full Image -->
 											<a class="hover-wrap fancybox" data-fancybox-group="gallery"
-												title="Work 1" href="/NiGaGaRa/resources/img/works/1.jpg"> <span
-												class="overlay-img"></span> <span
-												class="overlay-img-thumb font-icon-plus"></span>
+												title="Work 1" href="/NiGaGaRa/resources/img/works/1.jpg">
+												<span class="overlay-img"></span>
+												<span class="overlay-img-thumb font-icon-plus"></span>
 											</a>
 											<!-- Thumb Image and Description -->
 											<img src="/NiGaGaRa/resources/img/works/1.jpg"
@@ -166,40 +177,43 @@
 									<!-- Item Project and Filter Name -->
 									<li class="item-thumbs col-lg-3 design" data-id="id-1"
 										data-type="icon">
-										<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
-										class="hover-wrap fancybox" data-fancybox-group="gallery"
-										title="Work 2" href="/NiGaGaRa/resources/img/works/2.jpg"> <span
-											class="overlay-img"></span> <span
-											class="overlay-img-thumb font-icon-plus"></span>
-									</a> <!-- Thumb Image and Description --> <img
-										src="/NiGaGaRa/resources/img/works/2.jpg"
-										alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
+										<!-- Fancybox - Gallery Enabled - Title - Full Image -->
+										<a class="hover-wrap fancybox" data-fancybox-group="gallery"
+											title="Work 2" href="/NiGaGaRa/resources/img/works/2.jpg">
+											<span class="overlay-img"></span>
+											<span class="overlay-img-thumb font-icon-plus"></span>
+										</a>
+										<!-- Thumb Image and Description -->
+										<img src="/NiGaGaRa/resources/img/works/2.jpg"
+											alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
 									</li>
 									<!-- End Item Project -->
 									<!-- Item Project and Filter Name -->
 									<li class="item-thumbs col-lg-3 photography" data-id="id-2"
 										data-type="illustrator">
-										<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
-										class="hover-wrap fancybox" data-fancybox-group="gallery"
-										title="Work 3" href="/NiGaGaRa/resources/img/works/3.jpg"> <span
-											class="overlay-img"></span> <span
-											class="overlay-img-thumb font-icon-plus"></span>
-									</a> <!-- Thumb Image and Description --> <img
-										src="/NiGaGaRa/resources/img/works/3.jpg"
-										alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
+										<!-- Fancybox - Gallery Enabled - Title - Full Image -->
+										<a class="hover-wrap fancybox" data-fancybox-group="gallery"
+											title="Work 3" href="/NiGaGaRa/resources/img/works/3.jpg">
+											<span class="overlay-img"></span>
+											<span class="overlay-img-thumb font-icon-plus"></span>
+										</a>
+										<!-- Thumb Image and Description -->
+										<img src="/NiGaGaRa/resources/img/works/3.jpg"
+											alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
 									</li>
 									<!-- End Item Project -->
 									<!-- Item Project and Filter Name -->
 									<li class="item-thumbs col-lg-3 photography" data-id="id-2"
 										data-type="illustrator">
-										<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
-										class="hover-wrap fancybox" data-fancybox-group="gallery"
-										title="Work 4" href="/NiGaGaRa/resources/img/works/4.jpg"> <span
-											class="overlay-img"></span> <span
-											class="overlay-img-thumb font-icon-plus"></span>
-									</a> <!-- Thumb Image and Description --> <img
-										src="/NiGaGaRa/resources/img/works/4.jpg"
-										alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
+										<!-- Fancybox - Gallery Enabled - Title - Full Image -->
+										<a class="hover-wrap fancybox" data-fancybox-group="gallery"
+											title="Work 4" href="/NiGaGaRa/resources/img/works/4.jpg">
+											<span class="overlay-img"></span>
+											<span class="overlay-img-thumb font-icon-plus"></span>
+										</a>
+										<!-- Thumb Image and Description -->
+										<img src="/NiGaGaRa/resources/img/works/4.jpg"
+											alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
 									</li>
 									<!-- End Item Project -->
 								</ul>

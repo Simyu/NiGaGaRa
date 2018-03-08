@@ -2,21 +2,23 @@ drop table member CASCADE CONSTRAINT;
 
 CREATE TABLE member
 (
-    mem_id             VARCHAR2(20)    NOT NULL, 
-    mem_pw             VARCHAR2(20)    NULL, 
-    mem_name           VARCHAR2(20)    NULL, 
-    mem_birth          VARCHAR2(20)    NULL, 
-    mem_zipcode        VARCHAR2(20)    NULL, 
-    mem_addr           VARCHAR2(20)    NULL, 
-    mem_addr_detail    VARCHAR2(20)    NULL, 
-    mem_state          VARCHAR2(20)    NULL, 
-    mem_gender         VARCHAR2(20)    NULL, 
-    mem_phone          VARCHAR2(20)    NULL, 
-    mem_email          VARCHAR2(20)    NULL, 
-    point_total        NUMBER          NULL, 
-    mem_type           VARCHAR2(20)    NULL, 
-    mem_account        VARCHAR2(20)    NULL, 
-    mem_img            VARCHAR2(20)    NULL, 
+    mem_id             VARCHAR2(20)     NOT NULL, 
+    mem_pw             VARCHAR2(20)     NULL, 
+    mem_name           VARCHAR2(20)     NULL, 
+    mem_birth          VARCHAR2(20)     NULL, 
+    mem_zipcode        VARCHAR2(5)      NULL, 
+    mem_addr           VARCHAR2(90)     NULL, 
+    mem_addr_detail    VARCHAR2(90)     NULL, 
+    mem_state          VARCHAR2(20)     NULL, 
+    mem_gender         VARCHAR2(20)     NULL, 
+    mem_phone          VARCHAR2(20)     NULL, 
+    mem_email          VARCHAR2(20)     NULL, 
+    point_total        NUMBER           NULL, 
+    mem_type           VARCHAR2(20)     NULL, 
+    mem_account        VARCHAR2(20)     NULL, 
+    mem_img            VARCHAR2(100)    NULL, 
+    mem_lati           NUMBER           NULL, 
+    mem_longi          NUMBER           NULL, 
     CONSTRAINT MEMBER_PK PRIMARY KEY (mem_id)
 );
 

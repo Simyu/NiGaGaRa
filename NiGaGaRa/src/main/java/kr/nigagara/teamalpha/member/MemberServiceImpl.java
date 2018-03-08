@@ -12,9 +12,16 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int insert(MemberVO member) {
-		System.out.println("MemberServiceImpl : "+member+"\n");
-		
+
 		return dao.insert(member);
+	}
+
+	@Override
+	public MemberVO login(String id, String pass) {
+		MemberVO vo = dao.login(id, pass);
+		System.out.println("MemberServiceImpl = >"+vo);
+//		return dao.login(id, pass);
+		return vo;
 	}
 
 }
