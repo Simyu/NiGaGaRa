@@ -4,74 +4,71 @@ import java.sql.Date;
 
 public class GradeVO {
 
-    private Integer gradeNum;
-
-    private Integer deliveryNum;
-
-    private Integer grade;
-
-    private String gradeContent;
-
-    private Date gradeDate;
-    
-    public GradeVO() {
+	private int grade_num;
+	private int delivery_Num;
+	private int grade;
+	private String grade_content;
+	private Date grade_date;
+	
+	public GradeVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public GradeVO(Integer gradeNum, Integer deliveryNum, Integer grade, String gradeContent, Date gradeDate) {
+	public GradeVO(int grade_num, int delivery_Num, int grade, String grade_content, Date grade_date) {
 		super();
-		this.gradeNum = gradeNum;
-		this.deliveryNum = deliveryNum;
+		this.grade_num = grade_num;
+		this.delivery_Num = delivery_Num;
 		this.grade = grade;
-		this.gradeContent = gradeContent;
-		this.gradeDate = gradeDate;
+		this.grade_content = grade_content;
+		this.grade_date = grade_date;
 	}
 
-	public Integer getGradeNum() {
-		return gradeNum;
+	public int getGrade_num() {
+		return grade_num;
 	}
 
-	public void setGradeNum(Integer gradeNum) {
-		this.gradeNum = gradeNum;
+	public void setGrade_num(int grade_num) {
+		this.grade_num = grade_num;
 	}
 
-	public Integer getDeliveryNum() {
-		return deliveryNum;
+	public int getDelivery_Num() {
+		return delivery_Num;
 	}
 
-	public void setDeliveryNum(Integer deliveryNum) {
-		this.deliveryNum = deliveryNum;
+	public void setDelivery_Num(int delivery_Num) {
+		this.delivery_Num = delivery_Num;
 	}
 
-	public Integer getGrade() {
+	public int getGrade() {
 		return grade;
 	}
 
-	public void setGrade(Integer grade) {
+	public void setGrade(int grade) {
 		this.grade = grade;
 	}
 
-	public String getGradeContent() {
-		return gradeContent;
+	public String getGrade_content() {
+		return grade_content;
 	}
 
-	public void setGradeContent(String gradeContent) {
-		this.gradeContent = gradeContent;
+	public void setGrade_content(String grade_content) {
+		this.grade_content = grade_content;
 	}
 
-	public Date getGradeDate() {
-		return gradeDate;
+	public Date getGrade_date() {
+		return grade_date;
 	}
 
-	public void setGradeDate(Date gradeDate) {
-		this.gradeDate = gradeDate;
+	public void setGrade_date(Date grade_date) {
+		this.grade_date = grade_date;
 	}
 
 	@Override
 	public String toString() {
-		return "GradeVO [gradeNum=" + gradeNum + ", deliveryNum=" + deliveryNum + ", grade=" + grade + ", gradeContent="
-				+ gradeContent + ", gradeDate=" + gradeDate + "]";
+		return "GradeVO [grade_num=" + grade_num + ", delivery_Num=" + delivery_Num + ", grade=" + grade
+				+ ", grade_content=" + grade_content + ", grade_date=" + grade_date + "]";
 	}
-    
-    
+	
+	
+
 }
