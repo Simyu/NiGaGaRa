@@ -4,182 +4,160 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class MemberVO {
 
-	private String memId;
+	private String mem_id;
 
-	private String memPw;
+	private String mem_pw;
 
-	private String memName;
+	private String mem_name;
 
-	private String memBirth;
+	private String mem_birth;
 
-	private String memZipcode;
+	private String mem_zipcode;
 
-	private String memAddr;
+	private String mem_addr;
 
-	private String memAddrDetail;
+	private String mem_addr_detail;
 
-	private String memState;
+	private String mem_state;
 
-	private String memGender;
+	private String mem_gender;
 
-	private String memPhone;
+	private String mem_phone;
 
-	private String memEmail;
+	private String mem_email;
 
-	private Integer pointTotal;
+	private Integer point_total;
 
-	private String memType;
+	private String mem_type;
 
-	private String memAccount;
+	private String mem_account;
 
-	private String memImg;
+	private String mem_img;
 	
 	private MultipartFile file;
+	
+	private String mem_lati;
+	
+	private String mem_longi;
 
-	public MemberVO() {
-		// TODO Auto-generated constructor stub
+	public String getMem_id() {
+		return mem_id;
 	}
 
-	public MemberVO(String memId, String memPw, String memName, String memBirth, String memZipcode, String memAddr,
-			String memAddrDetail, String memState, String memGender, String memPhone, String memEmail,
-			Integer pointTotal, String memType, String memAccount, String memImg, MultipartFile file) {
-		super();
-		this.memId = memId;
-		this.memPw = memPw;
-		this.memName = memName;
-		this.memBirth = memBirth;
-		this.memZipcode = memZipcode;
-		this.memAddr = memAddr;
-		this.memAddrDetail = memAddrDetail;
-		this.memState = memState;
-		this.memGender = memGender;
-		this.memPhone = memPhone;
-		this.memEmail = memEmail;
-		this.pointTotal = pointTotal;
-		this.memType = memType;
-		this.memAccount = memAccount;
-		this.memImg = memImg;
-		this.file = file;
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
 	}
 
-	public String getMemId() {
-		return memId;
+	public String getMem_pw() {
+		return mem_pw;
 	}
 
-	public void setMemId(String memId) {
-		this.memId = memId;
+	public void setMem_pw(String mem_pw) {
+		this.mem_pw = mem_pw;
 	}
 
-	public String getMemPw() {
-		return memPw;
+	public String getMem_name() {
+		return mem_name;
 	}
 
-	public void setMemPw(String memPw) {
-		this.memPw = memPw;
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
 	}
 
-	public String getMemName() {
-		return memName;
+	public String getMem_birth() {
+		return mem_birth;
 	}
 
-	public void setMemName(String memName) {
-		this.memName = memName;
+	public void setMem_birth(String mem_birth) {
+		this.mem_birth = mem_birth;
 	}
 
-	public String getMemBirth() {
-		return memBirth;
+	public String getMem_zipcode() {
+		return mem_zipcode;
 	}
 
-	public void setMemBirth(String memBirth) {
-		this.memBirth = memBirth;
+	public void setMem_zipcode(String mem_zipcode) {
+		this.mem_zipcode = mem_zipcode;
 	}
 
-	public String getMemZipcode() {
-		return memZipcode;
+	public String getMem_addr() {
+		return mem_addr;
 	}
 
-	public void setMemZipcode(String memZipcode) {
-		this.memZipcode = memZipcode;
+	public void setMem_addr(String mem_addr) {
+		this.mem_addr = mem_addr;
 	}
 
-	public String getMemAddr() {
-		return memAddr;
+	public String getMem_addr_detail() {
+		return mem_addr_detail;
 	}
 
-	public void setMemAddr(String memAddr) {
-		this.memAddr = memAddr;
+	public void setMem_addr_detail(String mem_addr_detail) {
+		this.mem_addr_detail = mem_addr_detail;
 	}
 
-	public String getMemAddrDetail() {
-		return memAddrDetail;
+	public String getMem_state() {
+		return mem_state;
 	}
 
-	public void setMemAddrDetail(String memAddrDetail) {
-		this.memAddrDetail = memAddrDetail;
+	public void setMem_state(String mem_state) {
+		this.mem_state = mem_state;
 	}
 
-	public String getMemState() {
-		return memState;
+	public String getMem_gender() {
+		return mem_gender;
 	}
 
-	public void setMemState(String memState) {
-		this.memState = memState;
+	public void setMem_gender(String mem_gender) {
+		this.mem_gender = mem_gender;
 	}
 
-	public String getMemGender() {
-		return memGender;
+	public String getMem_phone() {
+		return mem_phone;
 	}
 
-	public void setMemGender(String memGender) {
-		this.memGender = memGender;
+	public void setMem_phone(String mem_phone) {
+		this.mem_phone = mem_phone;
 	}
 
-	public String getMemPhone() {
-		return memPhone;
+	public String getMem_email() {
+		return mem_email;
 	}
 
-	public void setMemPhone(String memPhone) {
-		this.memPhone = memPhone;
+	public void setMem_email(String mem_email) {
+		this.mem_email = mem_email;
 	}
 
-	public String getMemEmail() {
-		return memEmail;
+	public Integer getPoint_total() {
+		return point_total;
 	}
 
-	public void setMemEmail(String memEmail) {
-		this.memEmail = memEmail;
+	public void setPoint_total(Integer point_total) {
+		this.point_total = point_total;
 	}
 
-	public Integer getPointTotal() {
-		return pointTotal;
+	public String getMem_type() {
+		return mem_type;
 	}
 
-	public void setPointTotal(Integer pointTotal) {
-		this.pointTotal = pointTotal;
+	public void setMem_type(String mem_type) {
+		this.mem_type = mem_type;
 	}
 
-	public String getMemType() {
-		return memType;
+	public String getMem_account() {
+		return mem_account;
 	}
 
-	public void setMemType(String memType) {
-		this.memType = memType;
+	public void setMem_account(String mem_account) {
+		this.mem_account = mem_account;
 	}
 
-	public String getMemAccount() {
-		return memAccount;
+	public String getMem_img() {
+		return mem_img;
 	}
 
-	public void setMemAccount(String memAccount) {
-		this.memAccount = memAccount;
-	}
-
-	public String getMemImg() {
-		return memImg;
-	}
-
-	public void setMemImg(String memImg) {
-		this.memImg = memImg;
+	public void setMem_img(String mem_img) {
+		this.mem_img = mem_img;
 	}
 
 	public MultipartFile getFile() {
@@ -190,14 +168,30 @@ public class MemberVO {
 		this.file = file;
 	}
 
-	@Override
-	public String toString() {
-		return "MemberVO [memId=" + memId + ", memPw=" + memPw + ", memName=" + memName + ", memBirth=" + memBirth
-				+ ", memZipcode=" + memZipcode + ", memAddr=" + memAddr + ", memAddrDetail=" + memAddrDetail
-				+ ", memState=" + memState + ", memGender=" + memGender + ", memPhone=" + memPhone + ", memEmail="
-				+ memEmail + ", pointTotal=" + pointTotal + ", memType=" + memType + ", memAccount=" + memAccount
-				+ ", memImg=" + memImg + ", file=" + file + "]";
+	public String getMem_lati() {
+		return mem_lati;
 	}
 
+	public void setMem_lati(String mem_lati) {
+		this.mem_lati = mem_lati;
+	}
 
-}
+	public String getMem_longi() {
+		return mem_longi;
+	}
+
+	public void setMem_longi(String mem_longi) {
+		this.mem_longi = mem_longi;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberVO [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_birth="
+				+ mem_birth + ", mem_zipcode=" + mem_zipcode + ", mem_addr=" + mem_addr + ", mem_addr_detail="
+				+ mem_addr_detail + ", mem_state=" + mem_state + ", mem_gender=" + mem_gender + ", mem_phone="
+				+ mem_phone + ", mem_email=" + mem_email + ", point_total=" + point_total + ", mem_type=" + mem_type
+				+ ", mem_account=" + mem_account + ", mem_img=" + mem_img + ", file=" + file + ", mem_lati=" + mem_lati
+				+ ", mem_longi=" + mem_longi + "]";
+	}
+
+	}

@@ -25,7 +25,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 		map.put("id", id);
 		map.put("pass", pass);
-
+		
 //		return sqlsession.selectOne("nigagara.member.login", map);
 		MemberVO vo = sqlsession.selectOne("nigagara.member.login", map);
 		System.out.println("MemberDAOImpl = >"+vo);

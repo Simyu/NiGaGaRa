@@ -48,7 +48,7 @@ public class MemberController {
 		String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/img/upload");
 
 		uploadservice.upload(file, path, file.getOriginalFilename());
-		member.setMemImg(file.getOriginalFilename());
+		member.setMem_img(file.getOriginalFilename());
 		service.insert(member);
 
 		return "redirect:/member/login.do";
