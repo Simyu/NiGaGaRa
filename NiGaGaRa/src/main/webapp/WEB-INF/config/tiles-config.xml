@@ -14,6 +14,13 @@
 		<put-attribute name="content" value="/WEB-INF/member/member_login.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="deliveryTemplate" template="/WEB-INF/Delivery/DeliveryLayout.jsp">
+		<put-attribute name="top" value="/WEB-INF/layout/top.jsp" />
+		<put-attribute name="content" value="/WEB-INF/Delivery/Delivery_board.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+	</definition>
+	<definition name="delivery" extends="deliveryTemplate"></definition>
 
 	<definition name="register" extends="mainTemplate">
 		<put-attribute name="content"
