@@ -40,77 +40,94 @@
 			<div class="col-md-6 panel-body container">
 				<div class="row">
 					<h4>배송정보 입력</h4>
-
 					<div id="sendmessage">Your message has been sent. Thank you!</div>
 					<div id="errormessage"></div>
-					<form action="/NiGaGaRa/match.do" method="post" role="form"
+					<form action="/NiGaGaRa/goods/insert.do" method="post" role="form"
 						class="contactForm">
 						<div class="form-group">
-							<input type="text" name="name" class="form-control" id="getter"
+						<div class="form-group">
+							<input type="text" name="sender_zipcode" class="form-control" id="senderZipcode"
+								placeholder="보내는사람우편번호" data-rule="minlen:4"
+								data-msg="Please enter at least 4 chars" />
+							<button class="btn btn-theme mb-2">검색</button>
+							<div class="validation"></div>
+						</div>
+						<div class="form-group">
+							<input type="text" name="sender_Addr" class="form-control" id="senderAddr"
+								placeholder="보내는사람 주소" data-rule="minlen:4"
+								data-msg="Please enter at least 4 chars" />
+							<button type="#" class="btn btn-theme">검색</button>
+							<div class="validation"></div>
+						</div>
+							<select name="delivery_Tool" class="form-control" id=deliveryTool
+								data-msg="Please enter at least 4 chars">
+								<option value="1">자동차</option>
+								<option value="2">대중교통</option>
+								<option value="3">자전거</option>
+								<option value="4">도보</option>
+							</select>
+						</div>
+						 
+						<div class="form-group">
+							<input type="text" name="receiver_Name" class="form-control" id="receiverName"
 								placeholder="받는사람 이름" data-rule="minlen:4"
 								data-msg="Please enter at least 4 chars" />
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<input type="text" name="name" class="form-control" id="getter"
+							<input type="text" name="receiver_zipcode" class="form-control" id="receiverZipcode"
 								placeholder="받는사람 우편번호" data-rule="minlen:4"
 								data-msg="Please enter at least 4 chars" />
 							<button class="btn btn-theme mb-2">검색</button>
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<input type="text" name="name" class="form-control" id="getter"
+							<input type="text" name="receiver_Addr" class="form-control" id="receiverAddr"
 								placeholder="받는사람 주소" data-rule="minlen:4"
 								data-msg="Please enter at least 4 chars" />
 							<button type="#" class="btn btn-theme">검색</button>
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<input type="text" name="name" class="form-control"
-								id="getterPhoneNum" placeholder="받는사람 전화번호" data-rule="minlen:4"
+							<input type="text" name="receiver_Tel" class="form-control"
+								id="receiverTel" placeholder="받는사람 전화번호" data-rule="minlen:4"
 								data-msg="Please enter at least 4 chars" />
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<input type="email" class="form-control" name="email" id="email"
-								placeholder="수령인 이메일" data-rule="email"
-								data-msg="이메일 형식으로 입력해주세요." />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="text" name="name" class="form-control"
+							<input type="text" name="goods_Name" class="form-control"
 								id="goodsName" placeholder="상품 이름" data-rule="minlen:4"
 								data-msg="Please enter at least 4 chars" />
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<select name="name" class="form-control" id="weight"
+							<select name="weight" class="form-control" id="weight"
 								data-msg="Please enter at least 4 chars">
-								<option value="">소 (5kg 이하)</option>
-								<option value="">중 (5~10kg)</option>
-								<option value="">대 (10kg 이상)</option>
+								<option value="1">소 (5kg 이하)</option>
+								<option value="2">중 (5~10kg)</option>
+								<option value="3">대 (10kg 이상)</option>
 							</select>
 						</div>
 						<div class="form-group">
-							<input type="text" name="name" class="form-control" id="quantity"
+							<input type="text" name="quantity" class="form-control" id="quantity"
 								placeholder="수량" data-rule="minlen:4"
 								data-msg="Please enter at least 4 chars" />
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<input type="text" name="name" class="form-control" id="price"
+							<input type="text" name="estimated_Price" class="form-control" id="estimatedPrice"
 								placeholder="배송비" data-rule="minlen:4"
 								data-msg="Please enter at least 4 chars" />
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<textarea class="form-control" name="msg" rows="5"
+							<textarea class="form-control" name="goods_Msg" rows="5"
 								data-rule="required" data-msg="배송메세지는 필수입력입니다."
 								placeholder="배송 메세지"></textarea>
 							<div class="validation"></div>
 						</div>
 						<div class="text-center">
-							<button type="submit" class="btn btn-theme">부탁해요</button>
+							<button type="submit" class="btn btn-theme">상품등록</button>
 						</div>
 					</form>
 				</div>
@@ -138,80 +155,6 @@
 	<script src="js/custom.js"></script>
 	<script
 		src="https://maps.google.com/maps/api/js?key=AIzaSyC52np6oOXYzo7qPWLSnfCgupiYtuRW8ts"></script>
-	<script>
-		var x = document.getElementById("demo");
-		function getLocation() {
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(showPosition,
-						showError);
-			} else {
-				x.innerHTML = "이 브라우저에서는 지도를 지원하지 않습니다.";
-			}
-		}
-
-		function showPosition(position) {
-			var lat = position.coords.latitude;
-			var lon = position.coords.longitude;
-			var latlon = new google.maps.LatLng(lat, lon)
-			var mapholder = document.getElementById('mapholder')
-			mapholder.style.height = '400px';
-			mapholder.style.width = '100%';
-			var myOptions = {
-				center : latlon,
-				zoom : 14,
-				mapTypeId : google.maps.MapTypeId.ROADMAP,
-				mapTypeControl : true,
-				mapTypeControlOptions : {
-					style : google.maps.MapTypeControlStyle.DROPDOWN_MENU
-				}
-			}
-
-			var map = new google.maps.Map(document.getElementById("mapholder"),
-					myOptions);
-			var populationOptions = {
-				strokeColor : '#000000',
-				strokeOpacity : 0.8,
-				strokeWeight : 2,
-				fillColor : '#808080',
-				fillOpacity : 0.5,
-				map : map,
-				center : latlon,
-				radius : $("#radius").val() * 1000
-			};
-			cityCircle = new google.maps.Circle(populationOptions);
-			var infowindow = new google.maps.InfoWindow();
-
-			marker = new google.maps.Marker({
-				position : new google.maps.LatLng(lat, lon),
-				map : map,
-				title : "나임"
-			});
-
-			google.maps.event.addListener(marker, 'click',
-					(function(marker, i) {
-						return function() {
-						}
-					})(marker, i));
-
-		}
-
-		function showError(error) {
-			switch (error.code) {
-			case error.PERMISSION_DENIED:
-				x.innerHTML = "User denied the request for Geolocation."
-				break;
-			case error.POSITION_UNAVAILABLE:
-				x.innerHTML = "Location information is unavailable."
-				break;
-			case error.TIMEOUT:
-				x.innerHTML = "The request to get user location timed out."
-				break;
-			case error.UNKNOWN_ERROR:
-				x.innerHTML = "An unknown error occurred."
-				break;
-			}
-		}
-	</script>
 	<script src="contactform/contactform.js"></script>
 
 </body>

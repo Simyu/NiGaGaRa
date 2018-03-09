@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="mainTemplate" template="/WEB-INF/layout/mainLayout.jsp">
+		<put-attribute name="top" value="/WEB-INF/layout/top.jsp" />
+		<put-attribute name="content" value="/WEB-INF/layout/content.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+	</definition>
+	<definition name="index" extends="mainTemplate"></definition>
+
+	<definition name="login" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/member/member_login.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+	</definition>
+
+	<definition name="register" extends="mainTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/member/member_register.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+	</definition>
+
+	<definition name="profile" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/member/member_profile.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+	</definition>
+
+	<definition name="modify" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/member/member_modify.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+	</definition>
+
+	<definition name="resetpass" extends="mainTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/member/member_resetPass.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+	</definition>
+
+	<definition name="searchid" extends="mainTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/member/member_searchID.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+	</definition>
+
+	<definition name="searchid_result" extends="mainTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/member/member_searchID_Result.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+	</definition>
+
+	<definition name="searchpass" extends="mainTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/member/member_searchPass.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+	</definition>
+
+	<definition name="drop" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/member/member_drop.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+	</definition>
+	<definition name="request" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/request/request.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
+	<definition name="match" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/request/match.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
+	<definition name="payment" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/request/payment.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
+
+</tiles-definitions>
+
+
+
+
