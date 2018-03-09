@@ -93,7 +93,7 @@
 	}
 
 	function Check() {
-		var idDuplicateCheck = document.getElementById("idDuplicateCheck").value;
+		var idDuplicateCheck = document.getElementById("id_duplicate_check").value;
 		var pass = document.getElementById("pass").value;
 		var passchk = document.getElementById("passchk").value;
 
@@ -208,55 +208,55 @@ input {
 			<div>
 				<ul class="list-group">
 					<li class="list-group-item">
-						<input id="id" name="memId" type="text" placeholder="아이디"
+						<input id="id" name="mem_id" type="text" placeholder="아이디"
 							class="form-control input-md" required="required">
 						<button type="button" id="idcheck">중복체크</button>
 						<span id="result"></span>
 					</li>
 					<li class="list-group-item">
-						<input id="pass" name="memPw" type="password" placeholder="패스워드"
+						<input id="pass" name="mem_pw" type="password" placeholder="패스워드"
 							class="form-control input-md" required="required">
 					</li>
 					<li class="list-group-item">
-						<input id="passchk" name="passchk" type="password"
+						<input id="passchk" name="mem_pw_chk" type="password"
 							placeholder="패스워드 확인" class="form-control input-md"
 							required="required">
 					</li>
 					<li class="list-group-item">
-						<input id="name" name="memName" type="text" placeholder="이름"
+						<input id="name" name="mem_name" type="text" placeholder="이름"
 							class="form-control input-md" required="required">
 					</li>
 					<li class="list-group-item">
-						<input type="radio" name="memGender" value="남자" checked="checked">
+						<input type="radio" name="mem_gender" value="남자" checked="checked">
 						남자
 						<span> </span>
-						<input type="radio" name="memGender" value="여자">
+						<input type="radio" name="mem_gender" value="여자">
 						여자
 					</li>
 					<li class="list-group-item">
-						<input id="birth" name="memBirth" type="text" placeholder="생년월일 "
+						<input id="birth" name="mem_birth" type="text" placeholder="생년월일 "
 							class="form-control input-md" required="required">
 					</li>
 					<li class="list-group-item">
-						<input id="phone" name="memPhone" type="text" placeholder="전화번호"
-							class="form-control input-md" required="required">
-					</li>
-
-					<li class="list-group-item">
-						<input id="mail" name="memEmail" type="text" placeholder="이메일"
+						<input id="phone" name="mem_phone" type="text" placeholder="전화번호"
 							class="form-control input-md" required="required">
 					</li>
 
 					<li class="list-group-item">
-						<input id="sample6_postcode" name="memZipcode" type="text"
+						<input id="mail" name="mem_email" type="text" placeholder="이메일"
+							class="form-control input-md" required="required">
+					</li>
+
+					<li class="list-group-item">
+						<input id="sample6_postcode" name="mem_zipcode" type="text"
 							placeholder="우편번호" class="form-control input-md">
 						<input type="button" onclick="sample6_execDaumPostcode()"
 							value="우편번호 찾기">
 					</li>
 					<li class="list-group-item">
-						<input id="sample6_address" name="memAddr" type="text"
+						<input id="sample6_address" name="mem_addr" type="text"
 							placeholder="주소" class="form-control input-md">
-						<input id="sample6_address" name="memAddrDetail" type="text"
+						<input id="sample6_address" name="mem_addr_detail" type="text"
 							placeholder="상세주소" class="form-control input-md">
 					</li>
 					<li class="list-group-item">
@@ -266,7 +266,7 @@ input {
 					</li>
 					<li class="list-group-item">
 						계좌
-						<input id="account" name="memAccount" type="text"
+						<input id="account" name="mem_account" type="text"
 							placeholder="계좌번호" class="form-control input-md"
 							required="required">
 					</li>
@@ -290,7 +290,7 @@ input {
 					</li>
 					<input class="btn btn-lg btn-primary btn-block btn-signin"
 						type="submit" value="Sign in" />
-					<input type="text" id="idDuplicateCheck" value="false" hidden="" />
+					<input type="text" id="id_duplicate_check" value="false" hidden="" />
 				</ul>
 
 			</div>

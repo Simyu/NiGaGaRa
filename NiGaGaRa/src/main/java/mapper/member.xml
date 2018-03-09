@@ -12,7 +12,7 @@
 	<select id="read" parameterType="java.lang.String" resultType="member">
 		select *
 		from member
-		where mem_id=#{memId}
+		where mem_id=#{mem_id}
 	</select>
 
 	<select id="login" parameterType="java.util.Map" resultType="member">
