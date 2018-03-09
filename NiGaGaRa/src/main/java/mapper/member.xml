@@ -4,9 +4,9 @@
 <mapper namespace="nigagara.member">
 	<insert id="insert" parameterType="member">
 		insert into member values
-		(#{memId}, #{memPw}, #{memName}, #{memBirth}, #{memZipcode},
-		#{memAddr}, #{memAddrDetail}, '활성', #{memGender}, #{memPhone},
-		#{memEmail}, 0, '일반회원', #{memAccount}, #{memImg},0,0)
+		(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_birth}, #{mem_zipcode},
+		#{mem_addr}, #{mem_addr_detail}, '활성', #{mem_gender}, #{mem_phone},
+		#{mem_email}, 0, '일반회원', #{mem_account}, #{mem_img},0,0)
 	</insert>
 
 	<select id="read" parameterType="java.lang.String" resultType="member">
