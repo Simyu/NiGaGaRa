@@ -4,85 +4,80 @@ import java.sql.Date;
 
 public class CashExchangeVO {
 
-    private Integer exchangeNum;
+	private int exchange_num;
+	private String mem_id;
+	private String exchange_type;
+	private Date exchange_date;
+	private int point;
+	private int cash;
 
-    private String memId;
-
-    private String exchangeType;
-
-    private Date exchangeDate;
-
-    private Integer point;
-
-    private Integer cash;
-    
-    public CashExchangeVO() {
+	public CashExchangeVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CashExchangeVO(Integer exchangeNum, String memId, String exchangeType, Date exchangeDate, Integer point,
-			Integer cash) {
+	public CashExchangeVO(int exchange_num, String mem_id, String exchange_type, Date exchange_date, int point,
+			int cash) {
 		super();
-		this.exchangeNum = exchangeNum;
-		this.memId = memId;
-		this.exchangeType = exchangeType;
-		this.exchangeDate = exchangeDate;
+		this.exchange_num = exchange_num;
+		this.mem_id = mem_id;
+		this.exchange_type = exchange_type;
+		this.exchange_date = exchange_date;
 		this.point = point;
 		this.cash = cash;
 	}
 
-	public Integer getExchangeNum() {
-		return exchangeNum;
+	public int getExchange_num() {
+		return exchange_num;
 	}
 
-	public void setExchangeNum(Integer exchangeNum) {
-		this.exchangeNum = exchangeNum;
+	public void setExchange_num(int exchange_num) {
+		this.exchange_num = exchange_num;
 	}
 
-	public String getMemId() {
-		return memId;
+	public String getMem_id() {
+		return mem_id;
 	}
 
-	public void setMemId(String memId) {
-		this.memId = memId;
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
 	}
 
-	public String getExchangeType() {
-		return exchangeType;
+	public String getExchange_type() {
+		return exchange_type;
 	}
 
-	public void setExchangeType(String exchangeType) {
-		this.exchangeType = exchangeType;
+	public void setExchange_type(String exchange_type) {
+		this.exchange_type = exchange_type;
 	}
 
-	public Date getExchangeDate() {
-		return exchangeDate;
+	public Date getExchange_date() {
+		return exchange_date;
 	}
 
-	public void setExchangeDate(Date exchangeDate) {
-		this.exchangeDate = exchangeDate;
+	public void setExchange_date(Date exchange_date) {
+		this.exchange_date = exchange_date;
 	}
 
-	public Integer getPoint() {
+	public int getPoint() {
 		return point;
 	}
 
-	public void setPoint(Integer point) {
+	public void setPoint(int point) {
 		this.point = point;
 	}
 
-	public Integer getCash() {
+	public int getCash() {
 		return cash;
 	}
 
-	public void setCash(Integer cash) {
+	public void setCash(int cash) {
 		this.cash = cash;
 	}
 
 	@Override
 	public String toString() {
-		return "CashExchangeVO [exchangeNum=" + exchangeNum + ", memId=" + memId + ", exchangeType=" + exchangeType
-				+ ", exchangeDate=" + exchangeDate + ", point=" + point + ", cash=" + cash + "]";
+		return "CashExchangeVO [exchange_num=" + exchange_num + ", mem_id=" + mem_id + ", exchange_type="
+				+ exchange_type + ", exchange_date=" + exchange_date + ", point=" + point + ", cash=" + cash + "]";
 	}
-    
+
 }

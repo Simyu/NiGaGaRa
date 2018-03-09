@@ -2,20 +2,23 @@ drop table member CASCADE CONSTRAINT;
 
 CREATE TABLE member
 (
-    mem_id             VARCHAR2(20)    NOT NULL, 
-    mem_pw             VARCHAR2(20)    NULL, 
-    mem_name           VARCHAR2(20)    NULL, 
-    mem_birth          VARCHAR2(20)    NULL, 
-    mem_zipcode        VARCHAR2(20)    NULL, 
-    mem_addr           VARCHAR2(20)    NULL, 
-    mem_addr_detail    VARCHAR2(20)    NULL, 
-    mem_state          VARCHAR2(20)    NULL, 
-    mem_gender         VARCHAR2(20)    NULL, 
-    mem_phone          VARCHAR2(20)    NULL, 
-    mem_email          VARCHAR2(20)    NULL, 
-    point_total        NUMBER          NULL, 
-    mem_type           VARCHAR2(20)    NULL, 
-    mem_account        VARCHAR2(20)    NULL, 
+    mem_id             VARCHAR2(20)     NOT NULL, 
+    mem_pw             VARCHAR2(20)     NULL, 
+    mem_name           VARCHAR2(20)     NULL, 
+    mem_birth          VARCHAR2(20)     NULL, 
+    mem_zipcode        VARCHAR2(5)      NULL, 
+    mem_addr           VARCHAR2(90)     NULL, 
+    mem_addr_detail    VARCHAR2(90)     NULL, 
+    mem_state          VARCHAR2(20)     NULL, 
+    mem_gender         VARCHAR2(20)     NULL, 
+    mem_phone          VARCHAR2(20)     NULL, 
+    mem_email          VARCHAR2(20)     NULL, 
+    point_total        NUMBER           NULL, 
+    mem_type           VARCHAR2(20)     NULL, 
+    mem_account        VARCHAR2(20)     NULL, 
+    mem_img            VARCHAR2(100)    NULL, 
+    mem_lati           NUMBER           NULL, 
+    mem_longi          NUMBER           NULL, 
     CONSTRAINT MEMBER_PK PRIMARY KEY (mem_id)
 );
 
@@ -52,12 +55,12 @@ CREATE TABLE goods
     estimated_Price     NUMBER          NULL, 
     receiver_Name       VARCHAR2(20)    NULL, 
     receiver_zipcode    VARCHAR2(20)    NULL, 
-    receiver_Addr       VARCHAR2(20)    NULL, 
+    receiver_Addr       VARCHAR2(200)    NULL, 
     receiver_Tel        VARCHAR2(20)    NULL, 
     sender_zipcode      VARCHAR2(20)    NULL, 
-    sender_Addr         VARCHAR2(20)    NULL, 
+    sender_Addr         VARCHAR2(200)    NULL, 
     delivery_Tool       VARCHAR2(20)    NULL, 
-    goods_Msg           VARCHAR2(20)    NULL, 
+    goods_Msg           VARCHAR2(2000)    NULL, 
     Match_State         VARCHAR2(20)    NULL, 
     sender_id           VARCHAR2(20)    NULL, 
     CONSTRAINT GOODS_PK PRIMARY KEY (goods_Num)
@@ -115,7 +118,7 @@ CREATE TABLE grade
     grade_num        NUMBER          NOT NULL, 
     delivery_Num     NUMBER		     NULL, 
     grade            NUMBER          NULL, 
-    grade_content    VARCHAR2(20)    NULL, 
+    grade_content    VARCHAR2(2000)    NULL, 
     grade_date       DATE            NULL, 
     CONSTRAINT GRADE_PK PRIMARY KEY (grade_num)
 );

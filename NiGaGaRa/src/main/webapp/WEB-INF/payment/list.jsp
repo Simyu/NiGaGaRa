@@ -100,7 +100,6 @@
 				</div>
 			</div>
 		</section>
-
 	</div>
 	<a href="#" class="scrollup">
 		<i class="fa fa-angle-up active"></i>
