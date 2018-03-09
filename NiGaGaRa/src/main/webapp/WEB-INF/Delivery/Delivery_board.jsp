@@ -40,9 +40,6 @@
 									<th>NO</th>
 									<th>발신인</th>
 									<th>배달기사</th>
-									<th>인수시간</th>
-									<th>인계시간</th>
-									<th>이동수단</th>
 									<th>상품번호</th>
 									<th>QR코드</th>
 								</tr>
@@ -52,11 +49,8 @@
 									<td>1</td>
 									<td>김진우</td>
 									<td>김진우</td>
-									<td>12:00</td>
-									<td>13:00</td>
-									<td>자동차</td>
 									<td>0000000000</td>
-									<td>QR</td>
+									<td><button value="QR버튼확인">버튼</button></td>
 								</tr>
 							</tbody>
 						</table>
