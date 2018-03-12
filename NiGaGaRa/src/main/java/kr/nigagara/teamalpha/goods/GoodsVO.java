@@ -17,7 +17,8 @@ public class GoodsVO {
 	private String goods_Msg;
 	private String match_State;
 	private String sender_id;
-
+	private String receiver_Addr_detail;
+	private String sender_Addr_detail;
 	public GoodsVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -25,7 +26,7 @@ public class GoodsVO {
 	public GoodsVO(int goods_Num, String goods_Name, String weight, int quantity, int estimated_Price,
 			String receiver_Name, String receiver_zipcode, String receiver_Addr, String receiver_Tel,
 			String sender_zipcode, String sender_Addr, String delivery_Tool, String goods_Msg, String match_State,
-			String sender_id) {
+			String sender_id, String receiver_Addr_detail, String sender_Addr_detail) {
 		super();
 		this.goods_Num = goods_Num;
 		this.goods_Name = goods_Name;
@@ -42,6 +43,24 @@ public class GoodsVO {
 		this.goods_Msg = goods_Msg;
 		this.match_State = match_State;
 		this.sender_id = sender_id;
+		this.receiver_Addr_detail = receiver_Addr_detail;
+		this.sender_Addr_detail = sender_Addr_detail;
+	}
+
+	public String getReceiver_Addr_detail() {
+		return receiver_Addr_detail;
+	}
+
+	public void setReceiver_Addr_detail(String receiver_Addr_detail) {
+		this.receiver_Addr_detail = receiver_Addr_detail;
+	}
+
+	public String getSender_Addr_detail() {
+		return sender_Addr_detail;
+	}
+
+	public void setSender_Addr_detail(String sender_Addr_detail) {
+		this.sender_Addr_detail = sender_Addr_detail;
 	}
 
 	public int getGoods_Num() {
@@ -171,7 +190,8 @@ public class GoodsVO {
 				+ ", receiver_zipcode=" + receiver_zipcode + ", receiver_Addr=" + receiver_Addr + ", receiver_Tel="
 				+ receiver_Tel + ", sender_zipcode=" + sender_zipcode + ", sender_Addr=" + sender_Addr
 				+ ", delivery_Tool=" + delivery_Tool + ", goods_Msg=" + goods_Msg + ", match_State=" + match_State
-				+ ", sender_id=" + sender_id + "]";
+				+ ", sender_id=" + sender_id + ", receiver_Addr_detail=" + receiver_Addr_detail
+				+ ", sender_Addr_detail=" + sender_Addr_detail + "]";
 	}
-
+	
 }

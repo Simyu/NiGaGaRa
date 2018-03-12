@@ -16,4 +16,20 @@ public class GoodsServiceImpl implements GoodsService {
 		dao.goodsInsert(GoodsVO);
 	}
 
+	@Override
+	public List<GoodsVO> requestlist() {
+		return dao.requestlist();
+	}
+
+	@Override
+	public List<GoodsVO> requestdetail(String goods_Num) {
+		return dao.requestdetail(goods_Num);
+	}
+
+	@Override
+	public int requestedit(GoodsVO GoodsVO) {
+		return dao.requestedit(GoodsVO);
+
+	}
+
 }

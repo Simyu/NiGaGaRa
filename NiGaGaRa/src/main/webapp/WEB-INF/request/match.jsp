@@ -43,12 +43,12 @@
 				<div class="form-group">
 				<h4 id="gps" onclick="getLocation()">경로확인</h4>
 					<input type="text" name="name" class="form-control" id="start"
-						placeholder="${GoodsVO.sender_Addr}" readonly />
+						value="${GoodsVO.sender_Addr} ${GoodsVO.sender_Addr_detail}" readonly />
 					<div class="validation"></div>
 				</div>
 				<div class="form-group">
 					<input type="text" name="name" class="form-control" id="end"
-						placeholder="${GoodsVO.receiver_Addr}" readonly />
+						value="${GoodsVO.receiver_Addr} ${GoodsVO.receiver_Addr_detail}" readonly />
 					<div class="validation"></div>
 				</div>
 				<p id="demo" type="hidden"></p>

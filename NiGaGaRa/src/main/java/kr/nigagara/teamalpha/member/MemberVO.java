@@ -33,12 +33,16 @@ public class MemberVO {
 	private String mem_account;
 
 	private String mem_img;
-	
+
 	private MultipartFile file;
-	
+
 	private String mem_lati;
-	
+
 	private String mem_longi;
+
+	public MemberVO() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public String getMem_id() {
 		return mem_id;
@@ -194,4 +198,4 @@ public class MemberVO {
 				+ ", mem_longi=" + mem_longi + "]";
 	}
 
-	}
+}

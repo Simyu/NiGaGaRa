@@ -75,6 +75,19 @@
 		<put-attribute name="content" value="/WEB-INF/request/payment.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
 	</definition>
+	<definition name="request_list" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/request/request_list.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
+	<definition name="request_detail" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/request/request_detail.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
+	<definition name="request_qr" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/request/request_qr.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
+	
 
 </tiles-definitions>
 

@@ -16,4 +16,22 @@ public class GoodsDAOImpl implements GoodsDAO {
 		sqlSession.insert("nigagara.goods.insert", GoodsVO);
 	}
 
+	@Override
+	public List<GoodsVO> requestlist() {
+		List<GoodsVO> requestlist = sqlSession.selectList("nigagara.goods.requestlist");
+		return requestlist;
+	}
+
+	@Override
+	public List<GoodsVO> requestdetail(String goods_Num) {
+		List<GoodsVO> requestdetail = sqlSession.selectList("nigagara.goods.requestdetail", goods_Num);
+		return requestdetail;
+	}
+
+	@Override
+	public int requestedit(GoodsVO GoodsVO) {
+		int requestedit = sqlSession.update("nigagara.goods.requestedit", GoodsVO);
+		return requestedit;
+	}
+
 }
