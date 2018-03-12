@@ -155,3 +155,5 @@ INCREMENT BY 1;
 ALTER TABLE payment
     ADD CONSTRAINT FK_payment_delivery_num_delive FOREIGN KEY (delivery_num)
         REFERENCES delivery (delivery_num);
+
+select * from goods

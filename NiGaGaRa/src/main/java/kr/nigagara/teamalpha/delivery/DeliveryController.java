@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import kr.nigagara.teamalpha.member.MemberVO;
 
@@ -15,20 +16,16 @@ public class DeliveryController {
 	@Autowired
 	DeliveryService service;
 	
-	@RequestMapping("/delivery/list.do")
-	public ModelAndView list(MemberVO memId) {
+	@RequestMapping(value="delivery/list.do", method=RequestMethod.GET)
+	public ModelAndView list(String delivery_Man) {
 		ModelAndView mav = new ModelAndView();
-		List<DeliveryVO> list = service.list(memId);
-		mav.addObject("dellist",list);
+		System.out.println(delivery_Man);
+		List<DeliveryVO> deliverylist = service.list(delivery_Man);
+		System.out.println();
+		mav.addObject("deliverylist",deliverylist);
 		mav.setViewName("delivery/list");
 		return mav;
 	}
-	@RequestMapping("/delivery/select.do")
-	public ModelAndView selecy(Integer deliveryNum) {
-		ModelAndView mav = new ModelAndView();
-		DeliveryVO vo = service.select(deliveryNum);
-		mav.addObject("delivery",vo);
-		mav.setViewName("delivery/select");
-		return mav;
-	}
+
+	
 }

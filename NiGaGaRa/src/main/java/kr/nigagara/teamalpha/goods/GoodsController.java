@@ -1,10 +1,13 @@
 package kr.nigagara.teamalpha.goods;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class GoodsController {
@@ -20,4 +23,5 @@ public class GoodsController {
 		mav.setViewName("match");
 		return mav;
 	}
+	
 }

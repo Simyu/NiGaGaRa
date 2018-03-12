@@ -6,4 +6,5 @@
 		insert into goods values
 		(goods_SEQ.nextval,#{goods_Name},#{weight},#{quantity},#{estimated_Price},#{receiver_Name},#{receiver_zipcode},#{receiver_Addr},#{receiver_Tel},#{sender_zipcode},#{sender_Addr},#{delivery_Tool},#{goods_Msg},'11','test')
 	</insert>
+
 </mapper>

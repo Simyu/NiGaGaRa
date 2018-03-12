@@ -48,6 +48,13 @@ public class HomeController {
 		
 		return "delivery";
 	}
+	@RequestMapping(value = "/application.do", method = RequestMethod.GET)
+	public String application() {
+		
+		System.out.println("application view");
+		
+		return "application";
+	}
 
 	
 }

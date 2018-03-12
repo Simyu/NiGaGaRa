@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import kr.nigagara.teamalpha.goods.GoodsVO;
 import kr.nigagara.teamalpha.member.MemberVO;
 @Service
 public class DeliveryServiceimpl implements DeliveryService {
@@ -14,15 +15,9 @@ public class DeliveryServiceimpl implements DeliveryService {
 DeliveryDAO dao;
 	
 	@Override
-	public List<DeliveryVO> list(MemberVO memId) {
+	public List<DeliveryVO> list(String delivery_Man) {
 
-		return dao.list(memId);
-	}
-
-	@Override
-	public DeliveryVO select(Integer deliveryNum) {
-
-		return dao.select(deliveryNum);
+		return dao.list(delivery_Man);
 	}
 
 }

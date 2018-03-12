@@ -2,15 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="nigagara.delivery">
-	<select id="select" resultType="delivery" parameterType="Integer">		
-		select * from delivery where deliveryNum=#{deliveryNum}
-	</select>
+
 	<select id="list" resultType="delivery" parameterType="String">
-		<![CDATA[
+		
 			select * 
 			from delivery 
-			where 
-			memId=#{sender},#{deliveryMan},sysdate,sysdate,#{deliveryState},#{goodsNum},#{deliveryQr}
-		]]>
+			where delivery_Man = #{delivery_Man}
+	
 	</select>
+
 </mapper>
