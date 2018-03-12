@@ -18,4 +18,6 @@ public interface MemberService {
 
 	List<String> searchid(String email);
 
+	int updatePass(String id, String email, String temppass);
+
 }

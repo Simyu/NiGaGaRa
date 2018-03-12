@@ -50,8 +50,8 @@
 	<update id="resetpass" parameterType="java.util.Map">
 		update member
 		set
-		mem_pw=#{memPw}
-		where mem_id=#{memId}
+		mem_pw=#{temppass}
+		where mem_id=#{id} and mem_email=#{email}
 	</update>
 
 	<update id="updatepoint" parameterType="java.util.Map">

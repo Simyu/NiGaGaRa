@@ -55,4 +55,9 @@ public class MemberServiceImpl implements MemberService {
 		return dao.searchid(mem_email);
 	}
 
+	@Override
+	public int updatePass(String id, String email, String temppass) {
+		return dao.updatePass(id,email,temppass);
+	}
+
 }

@@ -56,10 +56,20 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public List<String> searchid(String mem_email) {
-		
+
 		List<String> list = sqlsession.selectList("nigagara.member.searchid", mem_email);
 		System.out.println(list);
 		return list;
+	}
+
+	@Override
+	public int updatePass(String id, String email, String temppass) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("temppass", temppass);
+		map.put("email", email);
+		System.out.println("MemberDAOImpl=>"+map);
+		return sqlsession.update("nigagara.member.resetpass", map);
 	}
 
 }

@@ -16,4 +16,6 @@ public interface MemberDAO {
 
 	List<String> searchid(String email);
 
+	int updatePass(String id, String email, String temppass);
+
 }

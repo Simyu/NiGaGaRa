@@ -1,5 +1,10 @@
 package kr.nigagara.teamalpha.member;
 
+import java.util.Date;
+import java.util.Random;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +36,7 @@ public class MemberController {
 	public String login(String id, String pass, Model model) {
 		System.out.println("login_post");
 		MemberVO vo = service.login(id, pass);
-		if (vo != null && !vo.getMem_state().equals("��Ȱ��")) {
+		if (vo != null && !vo.getMem_state().equals("��Ȱ��")) {
 			model.addAttribute("loginUser", vo);
 			return "index";
 		} else {
@@ -106,10 +111,19 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/searchpass.do", method = RequestMethod.POST)
-	public String searchpass_result() {
+	public String searchpass_result(String id, String email) throws AddressException, MessagingException {
 		System.out.println("searchpass_post");
+		String temppass = MemberController.generateNumber(6) + "";
+		
+		if (service.updatePass(id, email, temppass) != 0) {
+			String subject = "[NiGaGaRa] 임시 비밀번호가 발급 되었습니다.";
+			String body = " 안녕하세요 [NiGaGaRa] 입니다. \n발급된 임시 비밀번호는 [" + temppass + "]입니다.\n감사합니다!";
+			
+			Mail mail = new Mail(email, subject, body);
+			Mailsender.sendMail(mail);
+		}
 
-		return "#";
+		return "redirect:/member/login.do";
 	}
 
 	@RequestMapping(value = "/member/searchpass.do", method = RequestMethod.GET)
@@ -141,6 +155,29 @@ public class MemberController {
 			return "0";
 		}
 
+	}
+
+	public static int generateNumber(int length) {
+
+		String numStr = "1";
+		String plusNumStr = "1";
+
+		for (int i = 0; i < length; i++) {
+			numStr += "0";
+
+			if (i != length - 1) {
+				plusNumStr += "0";
+			}
+		}
+
+		Random random = new Random(new Date().getTime());
+		int result = random.nextInt(Integer.parseInt(numStr)) + Integer.parseInt(plusNumStr);
+
+		if (result > Integer.parseInt(numStr)) {
+			result = result - Integer.parseInt(plusNumStr);
+		}
+
+		return result;
 	}
 
 }

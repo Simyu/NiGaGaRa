@@ -132,24 +132,12 @@
 	color: rgb(12, 97, 33);
 }
 </style>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$(function() {
-			$("#birth").datepicker({
-				dateFormat : 'yy/dd/mm',
-				changeMonth : true,
-				changeYear : true,
-				yearRange : '-100y:c+nn',
-				maxDate : '-1d'
-			});
-		});
-	});
-</script>
+
 </head>
 <body>
 	<div class="container">
 		<div class="card card-container">
-			<form class="form-signin" method="post" action="/danim/sendEmail.do")>
+			<form class="form-signin" method="post" action="/NiGaGaRa/member/searchpass.do")>
 				<h3>패스워드 찾기</h3>
 				<span id="reauth-email" class="reauth-email"></span>
 				<input type="text" id="id" name="id" class="form-control"
