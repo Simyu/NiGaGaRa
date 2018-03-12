@@ -14,7 +14,11 @@
 		<put-attribute name="content" value="/WEB-INF/member/member_login.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
 	</definition>
-
+	
+	<definition name="delivery/list" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/Delivery/Mypage_Delivery_board.jsp" />
+	</definition>
+	
 	<definition name="register" extends="mainTemplate">
 		<put-attribute name="content"
 			value="/WEB-INF/member/member_register.jsp"></put-attribute>
@@ -59,19 +63,10 @@
 		<put-attribute name="content" value="/WEB-INF/member/member_drop.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
 	</definition>
-
-
-
-
-
-	<definition name="requestTemplate" template="/WEB-INF/request/requestLayout.jsp">
-		<put-attribute name="top" value="/WEB-INF/layout/top.jsp" />
-		<put-attribute name="request" value="/WEB-INF/request/request.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+	<definition name="request" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/request/request.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
 	</definition>
-
-	<definition name="request" extends="requestTemplate"></definition>
-
 	<definition name="match" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/request/match.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
@@ -80,16 +75,19 @@
 		<put-attribute name="content" value="/WEB-INF/request/payment.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
 	</definition>
+	<definition name="request_list" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/request/request_list.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
+	<definition name="request_detail" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/request/request_detail.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
+	<definition name="request_qr" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/request/request_qr.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
 	
-	<!-- <definition name="match" extends="mainTemplate"></definition> <definition 
-		name="matchTemplate" template="/WEB-INF/request/matchLayout.jsp"> <put-attribute 
-		name="top" value="/WEB-INF/layout/top.jsp" /> <put-attribute name="match" 
-		value="/WEB-INF/request/match.jsp" /> <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" 
-		/> </definition> <definition name="payment" extends="mainTemplate"></definition> 
-		<definition name="paymentTemplate" template="/WEB-INF/request/paymentLayout.jsp"> 
-		<put-attribute name="top" value="/WEB-INF/layout/top.jsp" /> <put-attribute 
-		name="payment" value="/WEB-INF/request/payment.jsp" /> <put-attribute name="footer" 
-		value="/WEB-INF/layout/footer.jsp" /> </definition> -->
 
 </tiles-definitions>
 

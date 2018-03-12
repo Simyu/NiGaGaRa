@@ -4,15 +4,15 @@
 <mapper namespace="nigagara.member">
 	<insert id="insert" parameterType="member">
 		insert into member values
-		(#{memId}, #{memPw}, #{memName}, #{memBirth}, #{memZipcode},
-		#{memAddr}, #{memAddrDetail}, '활성', #{memGender}, #{memPhone},
-		#{memEmail}, 0, '일반회원', #{memAccount}, #{memImg},0,0)
+		(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_birth}, #{mem_zipcode},
+		#{mem_addr}, #{mem_addr_detail}, '활성', #{mem_gender}, #{mem_phone},
+		#{mem_email}, 0, '일반회원', #{mem_account}, #{mem_img},0,0)
 	</insert>
 
 	<select id="read" parameterType="java.lang.String" resultType="member">
 		select *
 		from member
-		where mem_id=#{memId}
+		where mem_id=#{mem_id}
 	</select>
 
 	<select id="login" parameterType="java.util.Map" resultType="member">
@@ -21,20 +21,22 @@
 		where mem_id=#{id} and mem_pw=#{pass}
 	</select>
 
-	<update id="update" parameterType="member">
+	<update id="update" parameterType="java.util.Map">
 		update member
 		set
-		mem_name=#{memName},
-		mem_birth=#{memBirth},
-		mem_zipcode=#{memZipcode},
-		mem_addr=#{memAddr},
-		mem_addr_detail=#{memAddrDetail},
-		mem_gender=#{memGender},
-		mem_phone=#{memPhone},
-		mem_email=#{memEmail},
-		mem_account=#{memAccount},
-		mem_img=#{memImg}
-		where mem_id=#{memId}
+		mem_name=#{member.mem_name},
+		mem_birth=#{member.mem_birth},
+		mem_zipcode=#{member.mem_zipcode},
+		mem_addr=#{member.mem_addr},
+		mem_addr_detail=#{member.mem_addr_detail},
+		mem_gender=#{member.mem_gender},
+		mem_phone=#{member.mem_phone},
+		mem_email=#{member.mem_email},
+		<if test="fileflag.equals('T')">
+			mem_img=#{member.mem_img},
+		</if>
+		mem_account=#{member.mem_account}
+		where mem_id=#{member.mem_id}
 	</update>
 
 	<update id="drop" parameterType="java.lang.String">
@@ -47,13 +49,15 @@
 
 	<update id="resetpass" parameterType="java.util.Map">
 		update member
-		set mem_pw=#{memPw}
-		where mem_id=#{memId}
+		set
+		mem_pw=#{temppass}
+		where mem_id=#{id} and mem_email=#{email}
 	</update>
 
 	<update id="updatepoint" parameterType="java.util.Map">
 		update member
-		set point_total=#{pointTotal}
+		set
+		point_total=#{pointTotal}
 		where mem_id=#{memId}
 	</update>
 
@@ -61,7 +65,7 @@
 		resultType="java.lang.String">
 		select substr(mem_id,1,length(mem_id)-3)||lpad('*',3,'*')
 		from member
-		where mem_email=#{memEmail}
+		where mem_email=#{mem_email}
 	</select>
 
 </mapper>

@@ -9,7 +9,7 @@
 </head>
 <body>
 	<c:if test="${!empty loginUser}">
-		<h1>${loginUser.memName }님환영합니다</h1>
+		<h1>${loginUser.mem_name }님환영합니다</h1>
 	</c:if>
 	<div id="wrapper">
 		<section id="featured">

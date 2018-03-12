@@ -2,13 +2,13 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
+<!--  -->
 <head>
 <meta charset="utf-8">
 <title>Moderna - Bootstrap 3 flat corporate template</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
-<!-- css -->
+<!-- css  -->
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 <link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
 <link href="css/jcarousel.css" rel="stylesheet" />
@@ -19,7 +19,7 @@
 <!-- Theme skin -->
 <link href="skins/default.css" rel="stylesheet" />
 </head>
-
+  
 <body>
 	<div id="wrapper">
 		<section id="inner-headline">
@@ -43,12 +43,12 @@
 				<div class="form-group">
 				<h4 id="gps" onclick="getLocation()">경로확인</h4>
 					<input type="text" name="name" class="form-control" id="start"
-						placeholder="출발지" readonly />
+						value="${GoodsVO.sender_Addr} ${GoodsVO.sender_Addr_detail}" readonly />
 					<div class="validation"></div>
 				</div>
 				<div class="form-group">
 					<input type="text" name="name" class="form-control" id="end"
-						placeholder="도착지" readonly />
+						value="${GoodsVO.receiver_Addr} ${GoodsVO.receiver_Addr_detail}" readonly />
 					<div class="validation"></div>
 				</div>
 				<p id="demo" type="hidden"></p>

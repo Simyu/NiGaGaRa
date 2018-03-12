@@ -5,21 +5,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="/NiGaGaRa/resources/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/NiGaGaRa/resources/css/fancybox/jquery.fancybox.css"
-	rel="stylesheet">
-<link href="/NiGaGaRa/resources/css/jcarousel.css" rel="stylesheet" />
-<link href="/NiGaGaRa/resources/css/flexslider.css" rel="stylesheet" />
-<link href="/NiGaGaRa/resources/css/style.css" rel="stylesheet" />
-<!-- <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-<!-- <link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
-<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -38,7 +23,7 @@
 				"id" : $("#id").val()
 			}
 			$.ajax({
-				url : "/danim/emp/idDuplicateCheck.do", //아이디 인증하는 곳 수정요
+				url : "/NiGaGaRa/member/idDuplicateCheck.do", //아이디 인증하는 곳 수정요
 				type : "get",
 				data : querydata,
 				dataType : "text",
@@ -68,7 +53,7 @@
 
 	function success_run(txt) {
 
-		if (txt == 1) {
+		if (txt == "1") {
 			alert("사용가능한 아이디입니다.");
 			$("#result").text("사용가능한 아이디입니다.");
 			document.getElementById("idDuplicateCheck").setAttribute("value",
@@ -93,7 +78,7 @@
 	}
 
 	function Check() {
-		var idDuplicateCheck = document.getElementById("idDuplicateCheck").value;
+		var idDuplicateCheck = document.getElementById("id_duplicate_check").value;
 		var pass = document.getElementById("pass").value;
 		var passchk = document.getElementById("passchk").value;
 
@@ -122,7 +107,7 @@
 		}
 	}
 
-	function sample6_execDaumPostcode() {
+	function execDaumPostcode() {
 		new daum.Postcode(
 				{
 					oncomplete : function(data) {
@@ -158,11 +143,11 @@
 						}
 
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
-						document.getElementById('sample6_address').value = fullAddr;
+						document.getElementById('mem_zipcode').value = data.zonecode; //5자리 새우편번호 사용
+						document.getElementById('mem_addr').value = fullAddr;
 
 						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById('sample6_address2').focus();
+						document.getElementById('mem_addr_detail').focus();
 					}
 				}).open();
 	}
@@ -208,65 +193,60 @@ input {
 			<div>
 				<ul class="list-group">
 					<li class="list-group-item">
-						<input id="id" name="memId" type="text" placeholder="아이디"
+						<input id="id" name="mem_id" type="text" placeholder="아이디"
 							class="form-control input-md" required="required">
 						<button type="button" id="idcheck">중복체크</button>
 						<span id="result"></span>
 					</li>
 					<li class="list-group-item">
-						<input id="pass" name="memPw" type="password" placeholder="패스워드"
+						<input id="pass" name="mem_pw" type="password" placeholder="패스워드"
 							class="form-control input-md" required="required">
 					</li>
 					<li class="list-group-item">
-						<input id="passchk" name="passchk" type="password"
+						<input id="passchk" name="mem_pw_chk" type="password"
 							placeholder="패스워드 확인" class="form-control input-md"
 							required="required">
 					</li>
 					<li class="list-group-item">
-						<input id="name" name="memName" type="text" placeholder="이름"
+						<input id="name" name="mem_name" type="text" placeholder="이름"
 							class="form-control input-md" required="required">
 					</li>
 					<li class="list-group-item">
-						<input type="radio" name="memGender" value="남자" checked="checked">
+						<input type="radio" name="mem_gender" value="남자" checked="checked">
 						남자
 						<span> </span>
-						<input type="radio" name="memGender" value="여자">
+						<input type="radio" name="mem_gender" value="여자">
 						여자
 					</li>
 					<li class="list-group-item">
-						<input id="birth" name="memBirth" type="text" placeholder="생년월일 "
+						<input id="birth" name="mem_birth" type="text" placeholder="생년월일 "
 							class="form-control input-md" required="required">
 					</li>
 					<li class="list-group-item">
-						<input id="phone" name="memPhone" type="text" placeholder="전화번호"
-							class="form-control input-md" required="required">
-					</li>
-
-					<li class="list-group-item">
-						<input id="mail" name="memEmail" type="text" placeholder="이메일"
+						<input id="phone" name="mem_phone" type="text" placeholder="전화번호"
 							class="form-control input-md" required="required">
 					</li>
 
 					<li class="list-group-item">
-						<input id="sample6_postcode" name="memZipcode" type="text"
-							placeholder="우편번호" class="form-control input-md">
-						<input type="button" onclick="sample6_execDaumPostcode()"
-							value="우편번호 찾기">
+						<input id="mail" name="mem_email" type="text" placeholder="이메일"
+							class="form-control input-md" required="required">
 					</li>
+
 					<li class="list-group-item">
-						<input id="sample6_address" name="memAddr" type="text"
-							placeholder="주소" class="form-control input-md">
-						<input id="sample6_address" name="memAddrDetail" type="text"
+						<input id="mem_zipcode" name="mem_zipcode" type="text"
+							placeholder="우편번호" class="form-control input-md"
+							onclick="execDaumPostcode()">
+						<input id="mem_addr" name="mem_addr" type="text" placeholder="주소"
+							class="form-control input-md">
+						<input id="mem_addr_detail" name="mem_addr_detail" type="text"
 							placeholder="상세주소" class="form-control input-md">
 					</li>
 					<li class="list-group-item">
-						프로필 사진
 						<input id="Uploadphoto" name="file"
 							class="form-control input-md input-file" type="file">
 					</li>
 					<li class="list-group-item">
-						계좌
-						<input id="account" name="memAccount" type="text"
+						<input id="account" name="mem_account" type="text"
 							placeholder="계좌번호" class="form-control input-md"
 							required="required">
 					</li>
@@ -290,12 +270,11 @@ input {
 					</li>
 					<input class="btn btn-lg btn-primary btn-block btn-signin"
 						type="submit" value="Sign in" />
-					<input type="text" id="idDuplicateCheck" value="false" hidden="" />
+					<input type="text" id="id_duplicate_check" value="false" hidden="" />
 				</ul>
 
 			</div>
 		</div>
-		<div class="col-md-2"></div>
 
 	</form>
 </body>

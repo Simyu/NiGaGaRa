@@ -147,7 +147,8 @@
 			<img id="profile-img" class="profile-img-card"
 				src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
 			<p id="profile-name" class="profile-name-card"></p>
-			<form class="form-signin" action="/NiGaGaRa/member/login.do" method="POST">
+			<form class="form-signin" action="/NiGaGaRa/member/login.do"
+				method="POST">
 				<span id="reauth-email" class="reauth-email"></span>
 				<input type="text" id="inputId" class="form-control"
 					placeholder="Id" name="id" required autofocus>

@@ -2,75 +2,81 @@ package kr.nigagara.teamalpha.goods;
 
 public class GoodsVO {
 
-	private Integer goodsNum;
-
-	private String goodsName;
-
+	private int goods_Num;
+	private String goods_Name;
 	private String weight;
-
-	private Integer quantity;
-
-	private Integer estimatedPrice;
-
-	private String receiverName;
-
-	private String receiverZipcode;
-
-	private String receiverAddr;
-
-	private String receiverTel;
-
-	private String senderZipcode;
-
-	private String senderAddr;
-
-	private String deliveryTool;
-
-	private String goodsMsg;
-
-	private String matchState;
-
-	private String senderId;
-
+	private int quantity;
+	private int estimated_Price;
+	private String receiver_Name;
+	private String receiver_zipcode;
+	private String receiver_Addr;
+	private String receiver_Tel;
+	private String sender_zipcode;
+	private String sender_Addr;
+	private String delivery_Tool;
+	private String goods_Msg;
+	private String match_State;
+	private String sender_id;
+	private String receiver_Addr_detail;
+	private String sender_Addr_detail;
 	public GoodsVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public GoodsVO(Integer goodsNum, String goodsName, String weight, Integer quantity, Integer estimatedPrice,
-			String receiverName, String receiverZipcode, String receiverAddr, String receiverTel, String senderZipcode,
-			String senderAddr, String deliveryTool, String goodsMsg, String matchState, String senderId) {
+	public GoodsVO(int goods_Num, String goods_Name, String weight, int quantity, int estimated_Price,
+			String receiver_Name, String receiver_zipcode, String receiver_Addr, String receiver_Tel,
+			String sender_zipcode, String sender_Addr, String delivery_Tool, String goods_Msg, String match_State,
+			String sender_id, String receiver_Addr_detail, String sender_Addr_detail) {
 		super();
-		this.goodsNum = goodsNum;
-		this.goodsName = goodsName;
+		this.goods_Num = goods_Num;
+		this.goods_Name = goods_Name;
 		this.weight = weight;
 		this.quantity = quantity;
-		this.estimatedPrice = estimatedPrice;
-		this.receiverName = receiverName;
-		this.receiverZipcode = receiverZipcode;
-		this.receiverAddr = receiverAddr;
-		this.receiverTel = receiverTel;
-		this.senderZipcode = senderZipcode;
-		this.senderAddr = senderAddr;
-		this.deliveryTool = deliveryTool;
-		this.goodsMsg = goodsMsg;
-		this.matchState = matchState;
-		this.senderId = senderId;
+		this.estimated_Price = estimated_Price;
+		this.receiver_Name = receiver_Name;
+		this.receiver_zipcode = receiver_zipcode;
+		this.receiver_Addr = receiver_Addr;
+		this.receiver_Tel = receiver_Tel;
+		this.sender_zipcode = sender_zipcode;
+		this.sender_Addr = sender_Addr;
+		this.delivery_Tool = delivery_Tool;
+		this.goods_Msg = goods_Msg;
+		this.match_State = match_State;
+		this.sender_id = sender_id;
+		this.receiver_Addr_detail = receiver_Addr_detail;
+		this.sender_Addr_detail = sender_Addr_detail;
 	}
 
-	public Integer getGoodsNum() {
-		return goodsNum;
+	public String getReceiver_Addr_detail() {
+		return receiver_Addr_detail;
 	}
 
-	public void setGoodsNum(Integer goodsNum) {
-		this.goodsNum = goodsNum;
+	public void setReceiver_Addr_detail(String receiver_Addr_detail) {
+		this.receiver_Addr_detail = receiver_Addr_detail;
 	}
 
-	public String getGoodsName() {
-		return goodsName;
+	public String getSender_Addr_detail() {
+		return sender_Addr_detail;
 	}
 
-	public void setGoodsName(String goodsName) {
-		this.goodsName = goodsName;
+	public void setSender_Addr_detail(String sender_Addr_detail) {
+		this.sender_Addr_detail = sender_Addr_detail;
+	}
+
+	public int getGoods_Num() {
+		return goods_Num;
+	}
+
+	public void setGoods_Num(int goods_Num) {
+		this.goods_Num = goods_Num;
+	}
+
+	public String getGoods_Name() {
+		return goods_Name;
+	}
+
+	public void setGoods_Name(String goods_Name) {
+		this.goods_Name = goods_Name;
 	}
 
 	public String getWeight() {
@@ -81,111 +87,111 @@ public class GoodsVO {
 		this.weight = weight;
 	}
 
-	public Integer getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-	public Integer getEstimatedPrice() {
-		return estimatedPrice;
+	public int getEstimated_Price() {
+		return estimated_Price;
 	}
 
-	public void setEstimatedPrice(Integer estimatedPrice) {
-		this.estimatedPrice = estimatedPrice;
+	public void setEstimated_Price(int estimated_Price) {
+		this.estimated_Price = estimated_Price;
 	}
 
-	public String getReceiverName() {
-		return receiverName;
+	public String getReceiver_Name() {
+		return receiver_Name;
 	}
 
-	public void setReceiverName(String receiverName) {
-		this.receiverName = receiverName;
+	public void setReceiver_Name(String receiver_Name) {
+		this.receiver_Name = receiver_Name;
 	}
 
-	public String getReceiverZipcode() {
-		return receiverZipcode;
+	public String getReceiver_zipcode() {
+		return receiver_zipcode;
 	}
 
-	public void setReceiverZipcode(String receiverZipcode) {
-		this.receiverZipcode = receiverZipcode;
+	public void setReceiver_zipcode(String receiver_zipcode) {
+		this.receiver_zipcode = receiver_zipcode;
 	}
 
-	public String getReceiverAddr() {
-		return receiverAddr;
+	public String getReceiver_Addr() {
+		return receiver_Addr;
 	}
 
-	public void setReceiverAddr(String receiverAddr) {
-		this.receiverAddr = receiverAddr;
+	public void setReceiver_Addr(String receiver_Addr) {
+		this.receiver_Addr = receiver_Addr;
 	}
 
-	public String getReceiverTel() {
-		return receiverTel;
+	public String getReceiver_Tel() {
+		return receiver_Tel;
 	}
 
-	public void setReceiverTel(String receiverTel) {
-		this.receiverTel = receiverTel;
+	public void setReceiver_Tel(String receiver_Tel) {
+		this.receiver_Tel = receiver_Tel;
 	}
 
-	public String getSenderZipcode() {
-		return senderZipcode;
+	public String getSender_zipcode() {
+		return sender_zipcode;
 	}
 
-	public void setSenderZipcode(String senderZipcode) {
-		this.senderZipcode = senderZipcode;
+	public void setSender_zipcode(String sender_zipcode) {
+		this.sender_zipcode = sender_zipcode;
 	}
 
-	public String getSenderAddr() {
-		return senderAddr;
+	public String getSender_Addr() {
+		return sender_Addr;
 	}
 
-	public void setSenderAddr(String senderAddr) {
-		this.senderAddr = senderAddr;
+	public void setSender_Addr(String sender_Addr) {
+		this.sender_Addr = sender_Addr;
 	}
 
-	public String getDeliveryTool() {
-		return deliveryTool;
+	public String getDelivery_Tool() {
+		return delivery_Tool;
 	}
 
-	public void setDeliveryTool(String deliveryTool) {
-		this.deliveryTool = deliveryTool;
+	public void setDelivery_Tool(String delivery_Tool) {
+		this.delivery_Tool = delivery_Tool;
 	}
 
-	public String getGoodsMsg() {
-		return goodsMsg;
+	public String getGoods_Msg() {
+		return goods_Msg;
 	}
 
-	public void setGoodsMsg(String goodsMsg) {
-		this.goodsMsg = goodsMsg;
+	public void setGoods_Msg(String goods_Msg) {
+		this.goods_Msg = goods_Msg;
 	}
 
-	public String getMatchState() {
-		return matchState;
+	public String getMatch_State() {
+		return match_State;
 	}
 
-	public void setMatchState(String matchState) {
-		this.matchState = matchState;
+	public void setMatch_State(String match_State) {
+		this.match_State = match_State;
 	}
 
-	public String getSenderId() {
-		return senderId;
+	public String getSender_id() {
+		return sender_id;
 	}
 
-	public void setSenderId(String senderId) {
-		this.senderId = senderId;
+	public void setSender_id(String sender_id) {
+		this.sender_id = sender_id;
 	}
 
 	@Override
 	public String toString() {
-		return "GoodsVO [goodsNum=" + goodsNum + ", goodsName=" + goodsName + ", weight=" + weight + ", quantity="
-				+ quantity + ", estimatedPrice=" + estimatedPrice + ", receiverName=" + receiverName
-				+ ", receiverZipcode=" + receiverZipcode + ", receiverAddr=" + receiverAddr + ", receiverTel="
-				+ receiverTel + ", senderZipcode=" + senderZipcode + ", senderAddr=" + senderAddr + ", deliveryTool="
-				+ deliveryTool + ", goodsMsg=" + goodsMsg + ", matchState=" + matchState + ", senderId=" + senderId
-				+ "]";
+		return "GoodsVO [goods_Num=" + goods_Num + ", goods_Name=" + goods_Name + ", weight=" + weight + ", quantity="
+				+ quantity + ", estimated_Price=" + estimated_Price + ", receiver_Name=" + receiver_Name
+				+ ", receiver_zipcode=" + receiver_zipcode + ", receiver_Addr=" + receiver_Addr + ", receiver_Tel="
+				+ receiver_Tel + ", sender_zipcode=" + sender_zipcode + ", sender_Addr=" + sender_Addr
+				+ ", delivery_Tool=" + delivery_Tool + ", goods_Msg=" + goods_Msg + ", match_State=" + match_State
+				+ ", sender_id=" + sender_id + ", receiver_Addr_detail=" + receiver_Addr_detail
+				+ ", sender_Addr_detail=" + sender_Addr_detail + "]";
 	}
-	
 	
 }

@@ -2,5 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="nigagara.goods">
-	
+	<insert id="insert" parameterType="goods">
+		insert into goods values
+		(goods_SEQ.nextval,#{goods_Name},#{weight},#{quantity},#{estimated_Price},#{receiver_Name},#{receiver_zipcode},	#{receiver_Addr},#{receiver_Tel},#{sender_zipcode},#{sender_Addr},#{delivery_Tool},#{goods_Msg},'11','test',#{receiver_Addr_detail},#{sender_Addr_detail})
+	</insert>
+
+	<select id="requestlist" resultType="goods" parameterType="String">
+		select *
+		from goods
+		<!--where sender_id = #{} -->
+	</select>
+	<select id="requestdetail" resultType="goods" parameterType="String">
+		select *
+		from goods
+		where goods_Num = #{goods_Num}
+	</select>
+	<update id="requestedit" parameterType="String">
+		update goods set
+		goods_Name = #{goods_Name},
+		weight = #{weight},
+		quantity = #{quantity},
+		estimated_Price = #{estimated_Price},
+		receiver_Name = #{receiver_Name},
+		receiver_zipcode = #{receiver_zipcode},
+		receiver_Addr = #{receiver_Addr},
+		receiver_Tel = #{receiver_Tel},
+		sender_zipcode = #{sender_zipcode},
+		sender_Addr = #{sender_Addr},
+		delivery_Tool = #{delivery_Tool},
+		goods_Msg = #{goods_Msg}
+		where goods_Num = #{goods_Num}
+	</update>
+
 </mapper>

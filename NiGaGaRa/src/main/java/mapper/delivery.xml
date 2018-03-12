@@ -2,5 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="nigagara.delivery">
+
+	<select id="list" resultType="delivery" parameterType="String">
+		
+			select * 
+			from delivery 
+			where delivery_Man = #{delivery_Man}
 	
+	</select>
+
 </mapper>

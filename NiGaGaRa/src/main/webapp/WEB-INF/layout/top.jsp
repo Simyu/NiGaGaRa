@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +56,7 @@
 									<a href="/NiGaGaRa/delivery/start.do">시작하기</a>
 								</li>
 								<li>
-									<a href="">조회하기</a>
+									<a href="#">조회하기</a>
 								</li>
 								<li>
 									<a href="#">이용방법</a>
@@ -80,10 +81,10 @@
 									<a href="#">신청이력</a>
 								</li>
 								<li>
-									<a href="#">배달이력</a>
+									<a href="/NiGaGaRa/delivery/list.do?delivery_Man=<%-- ${deliverylist.delivery_Man } --%>">배달이력</a>
 								</li>
 								<li>
-									<a href="/NiGaGaRa/member/profile.do">내 정보</a>
+									<a href="/NiGaGaRa/member/profile.do?mem_id=${loginUser.mem_id }">내 정보</a>
 								</li>
 								<li>
 

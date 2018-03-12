@@ -3,46 +3,38 @@ package kr.nigagara.teamalpha.delivery;
 import java.sql.Date;
 
 public class DeliveryVO {
+	private int delivery_num;
+	private String sender;
+	private String delivery_Man;
+	private Date departure_Time;
+	private Date arrival_Time;
+	private String delivery_State;
+	private int goods_Num;
+	private String delivery_qr;
 
-    private Integer deliveryNum;
-
-    private String sender;
-
-    private String deliveryMan;
-
-    private Date departureTime;
-
-    private Date arrivalTime;
-
-    private String deliveryState;
-
-    private Integer goodsNum;
-
-    private String deliveryQr;
-    
-    public DeliveryVO() {
+	public DeliveryVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DeliveryVO(Integer deliveryNum, String sender, String deliveryMan, Date departureTime, Date arrivalTime,
-			String deliveryState, Integer goodsNum, String deliveryQr) {
+	public DeliveryVO(int delivery_num, String sender, String delivery_Man, Date departure_Time, Date arrival_Time,
+			String delivery_State, int goods_Num, String delivery_qr) {
 		super();
-		this.deliveryNum = deliveryNum;
+		this.delivery_num = delivery_num;
 		this.sender = sender;
-		this.deliveryMan = deliveryMan;
-		this.departureTime = departureTime;
-		this.arrivalTime = arrivalTime;
-		this.deliveryState = deliveryState;
-		this.goodsNum = goodsNum;
-		this.deliveryQr = deliveryQr;
+		this.delivery_Man = delivery_Man;
+		this.departure_Time = departure_Time;
+		this.arrival_Time = arrival_Time;
+		this.delivery_State = delivery_State;
+		this.goods_Num = goods_Num;
+		this.delivery_qr = delivery_qr;
 	}
 
-	public Integer getDeliveryNum() {
-		return deliveryNum;
+	public int getDelivery_num() {
+		return delivery_num;
 	}
 
-	public void setDeliveryNum(Integer deliveryNum) {
-		this.deliveryNum = deliveryNum;
+	public void setDelivery_num(int delivery_num) {
+		this.delivery_num = delivery_num;
 	}
 
 	public String getSender() {
@@ -53,60 +45,59 @@ public class DeliveryVO {
 		this.sender = sender;
 	}
 
-	public String getDeliveryMan() {
-		return deliveryMan;
+	public String getDelivery_Man() {
+		return delivery_Man;
 	}
 
-	public void setDeliveryMan(String deliveryMan) {
-		this.deliveryMan = deliveryMan;
+	public void setDelivery_Man(String delivery_Man) {
+		this.delivery_Man = delivery_Man;
 	}
 
-	public Date getDepartureTime() {
-		return departureTime;
+	public Date getDeparture_Time() {
+		return departure_Time;
 	}
 
-	public void setDepartureTime(Date departureTime) {
-		this.departureTime = departureTime;
+	public void setDeparture_Time(Date departure_Time) {
+		this.departure_Time = departure_Time;
 	}
 
-	public Date getArrivalTime() {
-		return arrivalTime;
+	public Date getArrival_Time() {
+		return arrival_Time;
 	}
 
-	public void setArrivalTime(Date arrivalTime) {
-		this.arrivalTime = arrivalTime;
+	public void setArrival_Time(Date arrival_Time) {
+		this.arrival_Time = arrival_Time;
 	}
 
-	public String getDeliveryState() {
-		return deliveryState;
+	public String getDelivery_State() {
+		return delivery_State;
 	}
 
-	public void setDeliveryState(String deliveryState) {
-		this.deliveryState = deliveryState;
+	public void setDelivery_State(String delivery_State) {
+		this.delivery_State = delivery_State;
 	}
 
-	public Integer getGoodsNum() {
-		return goodsNum;
+	public int getGoods_Num() {
+		return goods_Num;
 	}
 
-	public void setGoodsNum(Integer goodsNum) {
-		this.goodsNum = goodsNum;
+	public void setGoods_Num(int goods_Num) {
+		this.goods_Num = goods_Num;
 	}
 
-	public String getDeliveryQr() {
-		return deliveryQr;
+	public String getDelivery_qr() {
+		return delivery_qr;
 	}
 
-	public void setDeliveryQr(String deliveryQr) {
-		this.deliveryQr = deliveryQr;
+	public void setDelivery_qr(String delivery_qr) {
+		this.delivery_qr = delivery_qr;
 	}
 
 	@Override
 	public String toString() {
-		return "DeliveryVO [deliveryNum=" + deliveryNum + ", sender=" + sender + ", deliveryMan=" + deliveryMan
-				+ ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", deliveryState="
-				+ deliveryState + ", goodsNum=" + goodsNum + ", deliveryQr=" + deliveryQr + "]";
+		return "DeliveryVO [delivery_num=" + delivery_num + ", sender=" + sender + ", delivery_Man=" + delivery_Man
+				+ ", departure_Time=" + departure_Time + ", arrival_Time=" + arrival_Time + ", delivery_State="
+				+ delivery_State + ", goods_Num=" + goods_Num + ", delivery_qr=" + delivery_qr + "]";
 	}
-    
-    
+
 }

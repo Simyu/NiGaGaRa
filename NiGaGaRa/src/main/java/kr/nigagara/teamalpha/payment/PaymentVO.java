@@ -2,73 +2,69 @@ package kr.nigagara.teamalpha.payment;
 
 public class PaymentVO {
 
-	private Integer paymentNum;
-
-	private Integer deliveryNum;
-
-	private String paymentDate;
-
-	private String paymentType;
-
-	private Integer point;
+	private int payment_num;
+	private int delivery_num;
+	private String payment_date;
+	private String payment_type;
+	private int point;
 
 	public PaymentVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PaymentVO(Integer paymentNum, Integer deliveryNum, String paymentDate, String paymentType, Integer point) {
+	public PaymentVO(int payment_num, int delivery_num, String payment_date, String payment_type, int point) {
 		super();
-		this.paymentNum = paymentNum;
-		this.deliveryNum = deliveryNum;
-		this.paymentDate = paymentDate;
-		this.paymentType = paymentType;
+		this.payment_num = payment_num;
+		this.delivery_num = delivery_num;
+		this.payment_date = payment_date;
+		this.payment_type = payment_type;
 		this.point = point;
 	}
 
-	public Integer getPaymentNum() {
-		return paymentNum;
+	public int getPayment_num() {
+		return payment_num;
 	}
 
-	public void setPaymentNum(Integer paymentNum) {
-		this.paymentNum = paymentNum;
+	public void setPayment_num(int payment_num) {
+		this.payment_num = payment_num;
 	}
 
-	public Integer getDeliveryNum() {
-		return deliveryNum;
+	public int getDelivery_num() {
+		return delivery_num;
 	}
 
-	public void setDeliveryNum(Integer deliveryNum) {
-		this.deliveryNum = deliveryNum;
+	public void setDelivery_num(int delivery_num) {
+		this.delivery_num = delivery_num;
 	}
 
-	public String getPaymentDate() {
-		return paymentDate;
+	public String getPayment_date() {
+		return payment_date;
 	}
 
-	public void setPaymentDate(String paymentDate) {
-		this.paymentDate = paymentDate;
+	public void setPayment_date(String payment_date) {
+		this.payment_date = payment_date;
 	}
 
-	public String getPaymentType() {
-		return paymentType;
+	public String getPayment_type() {
+		return payment_type;
 	}
 
-	public void setPaymentType(String paymentType) {
-		this.paymentType = paymentType;
+	public void setPayment_type(String payment_type) {
+		this.payment_type = payment_type;
 	}
 
-	public Integer getPoint() {
+	public int getPoint() {
 		return point;
 	}
 
-	public void setPoint(Integer point) {
+	public void setPoint(int point) {
 		this.point = point;
 	}
 
 	@Override
 	public String toString() {
-		return "PaymentVO [paymentNum=" + paymentNum + ", deliveryNum=" + deliveryNum + ", paymentDate=" + paymentDate
-				+ ", paymentType=" + paymentType + ", point=" + point + "]";
+		return "PaymentVO [payment_num=" + payment_num + ", delivery_num=" + delivery_num + ", payment_date="
+				+ payment_date + ", payment_type=" + payment_type + ", point=" + point + "]";
 	}
 
 }

@@ -10,14 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 	
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+
 	@RequestMapping(value = "/index.do", method = RequestMethod.GET)
 	public String home() {
 		
-		System.out.println("��");
+		System.out.println("test");
 		//�׽�Ʈ
 		//test입니다.
 		
@@ -43,6 +40,20 @@ public class HomeController {
 		System.out.println("payment view");
 		
 		return "payment";
+	}
+	@RequestMapping(value = "/delivery.do", method = RequestMethod.GET)
+	public String delivery() {
+		
+		System.out.println("delivery view");
+		
+		return "delivery";
+	}
+	@RequestMapping(value = "/application.do", method = RequestMethod.GET)
+	public String application() {
+		
+		System.out.println("application view");
+		
+		return "application";
 	}
 
 	

@@ -10,18 +10,22 @@
 <meta name="description" content="" />
 <!-- css -->
 <link href="/NiGaGaRa/resources/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/NiGaGaRa/resources/css/fancybox/jquery.fancybox.css" rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+	rel="stylesheet">
 <link href="/NiGaGaRa/resources/css/jcarousel.css" rel="stylesheet" />
 <link href="/NiGaGaRa/resources/css/flexslider.css" rel="stylesheet" />
 <link href="/NiGaGaRa/resources/css/style.css" rel="stylesheet" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <!-- Theme skin -->
 <link href="/NiGaGaRa/resources/skins/default.css" rel="stylesheet" />
 </head>
 <body>
 
-	<script src="/NiGaGaRa/resources/js/jquery.js"></script>
-	<script src="/NiGaGaRa/resources/js/jquery.easing.1.3.js"></script>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="/NiGaGaRa/resources/js/bootstrap.min.js"></script>
 	<script src="/NiGaGaRa/resources/js/jquery.fancybox.pack.js"></script>
 	<script src="/NiGaGaRa/resources/js/jquery.fancybox-media.js"></script>
@@ -31,7 +35,7 @@
 	<script src="/NiGaGaRa/resources/js/jquery.flexslider.js"></script>
 	<script src="/NiGaGaRa/resources/js/animate.js"></script>
 	<script src="/NiGaGaRa/resources/js/custom.js"></script>
-	
+
 	<div id="outer">
 		<div class="header">
 			<tiles:insertAttribute name="top" />
@@ -39,13 +43,14 @@
 		<div class="container">
 			<tiles:insertAttribute name="content" />
 		</div>
-
 		<div id="footer">
 			<tiles:insertAttribute name="footer" />
 		</div>
 
 	</div>
-	
-	<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+
+	<a href="#" class="scrollup">
+		<i class="fa fa-angle-up active"></i>
+	</a>
 </body>
 </html>

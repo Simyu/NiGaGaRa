@@ -55,12 +55,12 @@ CREATE TABLE goods
     estimated_Price     NUMBER          NULL, 
     receiver_Name       VARCHAR2(20)    NULL, 
     receiver_zipcode    VARCHAR2(20)    NULL, 
-    receiver_Addr       VARCHAR2(20)    NULL, 
+    receiver_Addr       VARCHAR2(200)    NULL, 
     receiver_Tel        VARCHAR2(20)    NULL, 
     sender_zipcode      VARCHAR2(20)    NULL, 
-    sender_Addr         VARCHAR2(20)    NULL, 
+    sender_Addr         VARCHAR2(200)    NULL, 
     delivery_Tool       VARCHAR2(20)    NULL, 
-    goods_Msg           VARCHAR2(20)    NULL, 
+    goods_Msg           VARCHAR2(2000)    NULL, 
     Match_State         VARCHAR2(20)    NULL, 
     sender_id           VARCHAR2(20)    NULL, 
     CONSTRAINT GOODS_PK PRIMARY KEY (goods_Num)
@@ -118,7 +118,7 @@ CREATE TABLE grade
     grade_num        NUMBER          NOT NULL, 
     delivery_Num     NUMBER		     NULL, 
     grade            NUMBER          NULL, 
-    grade_content    VARCHAR2(20)    NULL, 
+    grade_content    VARCHAR2(2000)    NULL, 
     grade_date       DATE            NULL, 
     CONSTRAINT GRADE_PK PRIMARY KEY (grade_num)
 );
@@ -155,3 +155,5 @@ INCREMENT BY 1;
 ALTER TABLE payment
     ADD CONSTRAINT FK_payment_delivery_num_delive FOREIGN KEY (delivery_num)
         REFERENCES delivery (delivery_num);
+
+select * from goods
