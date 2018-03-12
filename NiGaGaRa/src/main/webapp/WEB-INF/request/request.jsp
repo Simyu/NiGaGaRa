@@ -45,48 +45,49 @@
 					<form action="/NiGaGaRa/goods/insert.do" method="post" role="form"
 						class="contactForm">
 						<div class="form-group">
-						<div class="form-group">
-							<input type="text" name="sender_zipcode" class="form-control" id="senderZipcode"
-								placeholder="보내는사람우편번호" data-rule="minlen:4"
-								data-msg="Please enter at least 4 chars" />
-							<button class="btn btn-theme mb-2">검색</button>
+							<input id="sender_zipcode" name="sender_zipcode" type="text"
+								placeholder="보내는 사람 우편번호" class="form-control input-md" readonly>
+							<input class="btn btn-theme mb-2" type="button"
+								onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<input type="text" name="sender_Addr" class="form-control" id="senderAddr"
-								placeholder="보내는사람 주소" data-rule="minlen:4"
-								data-msg="Please enter at least 4 chars" />
-							<button type="#" class="btn btn-theme">검색</button>
-							<div class="validation"></div>
+							<input id="sender_Addr" name="sender_Addr" type="text"
+								placeholder="보내는 사람 주소" class="form-control" readonly>
 						</div>
+						<div class="form-group">
+							<input id="sender_Addr_detail" name="sender_Addr_detail" type="text"
+								placeholder="보내는 사람 상세주소" class="form-control">
+						</div>
+						<div class="form-group">
 							<select name="delivery_Tool" class="form-control" id=deliveryTool
 								data-msg="Please enter at least 4 chars">
-								<option value="1">자동차</option>
-								<option value="2">대중교통</option>
-								<option value="3">자전거</option>
-								<option value="4">도보</option>
+								<option value="자동차">자동차</option>
+								<option value="대중교통">대중교통</option>
+								<option value="자전거">자전거</option>
+								<option value="도보">도보</option>
 							</select>
 						</div>
-						 
 						<div class="form-group">
-							<input type="text" name="receiver_Name" class="form-control" id="receiverName"
-								placeholder="받는사람 이름" data-rule="minlen:4"
+							<input type="text" name="receiver_Name" class="form-control"
+								id="receiverName" placeholder="받는사람 이름" data-rule="minlen:4"
 								data-msg="Please enter at least 4 chars" />
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<input type="text" name="receiver_zipcode" class="form-control" id="receiverZipcode"
-								placeholder="받는사람 우편번호" data-rule="minlen:4"
-								data-msg="Please enter at least 4 chars" />
-							<button class="btn btn-theme mb-2">검색</button>
+							<input id="receiver_zipcode" name="receiver_zipcode" type="text"
+								placeholder="받는사람 우편번호" class="form-control input-md" readonly>
+							<input class="btn btn-theme mb-2" type="button"
+								onclick="sample5_execDaumPostcode()" value="우편번호 찾기">
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<input type="text" name="receiver_Addr" class="form-control" id="receiverAddr"
-								placeholder="받는사람 주소" data-rule="minlen:4"
-								data-msg="Please enter at least 4 chars" />
-							<button type="#" class="btn btn-theme">검색</button>
-							<div class="validation"></div>
+							<input id="receiver_Addr" name="receiver_Addr" type="text"
+								placeholder="받는사람 주소" class="form-control" readonly>
+						</div>
+						<div class="form-group">
+							<input id="receiver_Addr_detail" name="receiver_Addr_detail" type="text"
+								placeholder="받는사람 상세주소" class="form-control">
 						</div>
 						<div class="form-group">
 							<input type="text" name="receiver_Tel" class="form-control"
@@ -103,20 +104,20 @@
 						<div class="form-group">
 							<select name="weight" class="form-control" id="weight"
 								data-msg="Please enter at least 4 chars">
-								<option value="1">소 (5kg 이하)</option>
-								<option value="2">중 (5~10kg)</option>
-								<option value="3">대 (10kg 이상)</option>
+								<option value="소">소 (5kg 이하)</option>
+								<option value="중">중 (5~10kg)</option>
+								<option value="대">대 (10kg 이상)</option>
 							</select>
 						</div>
 						<div class="form-group">
-							<input type="text" name="quantity" class="form-control" id="quantity"
-								placeholder="수량" data-rule="minlen:4"
+							<input type="text" name="quantity" class="form-control"
+								id="quantity" placeholder="수량" data-rule="minlen:4"
 								data-msg="Please enter at least 4 chars" />
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<input type="text" name="estimated_Price" class="form-control" id="estimatedPrice"
-								placeholder="배송비" data-rule="minlen:4"
+							<input type="text" name="estimated_Price" class="form-control"
+								id="estimatedPrice" placeholder="배송비" data-rule="minlen:4"
 								data-msg="Please enter at least 4 chars" />
 							<div class="validation"></div>
 						</div>
@@ -141,7 +142,7 @@
 	<!-- javascript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	
+
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.easing.1.3.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -156,7 +157,99 @@
 	<script
 		src="https://maps.google.com/maps/api/js?key=AIzaSyC52np6oOXYzo7qPWLSnfCgupiYtuRW8ts"></script>
 	<script src="contactform/contactform.js"></script>
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script><!--우편API  -->
+	<script type="text/javascript">
+	function sample6_execDaumPostcode() {
+		new daum.Postcode(
+				{
+					oncomplete : function(data) {
+						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						var fullAddr = ''; // 최종 주소 변수
+						var extraAddr = ''; // 조합형 주소 변수
+
+						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+							fullAddr = data.roadAddress;
+
+						} else { // 사용자가 지번 주소를 선택했을 경우(J)
+							fullAddr = data.jibunAddress;
+						}
+
+						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+						if (data.userSelectedType === 'R') {
+							//법정동명이 있을 경우 추가한다.
+							if (data.bname !== '') {
+								extraAddr += data.bname;
+							}
+							// 건물명이 있을 경우 추가한다.
+							if (data.buildingName !== '') {
+								extraAddr += (extraAddr !== '' ? ', '
+										+ data.buildingName
+										: data.buildingName);
+							}
+							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+							fullAddr += (extraAddr !== '' ? ' ('
+									+ extraAddr + ')' : '');
+						}
+
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+						document.getElementById('sender_zipcode').value = data.zonecode; //5자리 새우편번호 사용
+						document.getElementById('sender_Addr').value = fullAddr;
+
+						// 커서를 상세주소 필드로 이동한다.
+						document.getElementById('sender_Addr_detail').focus();
+					}
+				}).open();
+	}
+		function sample5_execDaumPostcode() {
+			new daum.Postcode(
+					{
+						oncomplete : function(data) {
+							// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+							// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+							var fullAddr = ''; // 최종 주소 변수
+							var extraAddr = ''; // 조합형 주소 변수
+
+							// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+								fullAddr = data.roadAddress;
+
+							} else { // 사용자가 지번 주소를 선택했을 경우(J)
+								fullAddr = data.jibunAddress;
+							}
+
+							// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+							if (data.userSelectedType === 'R') {
+								//법정동명이 있을 경우 추가한다.
+								if (data.bname !== '') {
+									extraAddr += data.bname;
+								}
+								// 건물명이 있을 경우 추가한다.
+								if (data.buildingName !== '') {
+									extraAddr += (extraAddr !== '' ? ', '
+											+ data.buildingName
+											: data.buildingName);
+								}
+								// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+								fullAddr += (extraAddr !== '' ? ' ('
+										+ extraAddr + ')' : '');
+							}
+
+							// 우편번호와 주소 정보를 해당 필드에 넣는다.
+							document.getElementById('receiver_zipcode').value = data.zonecode; //5자리 새우편번호 사용
+							document.getElementById('receiver_Addr').value = fullAddr;
+
+							// 커서를 상세주소 필드로 이동한다.
+							document.getElementById('receiver_Addr_detail').focus();
+						}
+					}).open();
+		}
+	</script>
 </body>
 
 </html>

@@ -46,8 +46,9 @@ dden; width:1px; height:1px; opacity:0}
 		src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script><!-- QR리더API -->
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-	 <script type="text/javascript"
-		src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script><!-- 결제API  -->
+	<!--  <script type="text/javascript"
+		src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script> -->
+		<!-- 결제API  -->
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.easing.1.3.js"></script>
 	<script src="js/bootstrap.min.js"></script>
