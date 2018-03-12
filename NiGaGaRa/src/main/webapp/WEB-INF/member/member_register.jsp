@@ -32,6 +32,7 @@
 
 			});
 		});
+		
 
 		$("#btnConfirm").on("click", function() {
 			var text1 = $("#confirm").val();
@@ -49,7 +50,110 @@
 			}
 
 		});
+		$("#mail").on("keyup",function(){
+			var pattern = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+			var mail = $("#mail").val();
+			if(!pattern.test(mail)){
+				$("#emailresult").text("이메일 형식이 맞지 않습니다.");
+				return false;
+			}
+			$("#emailresult").text("이메일 형식이 맞습니다.");
+			return true;
+		});
+		$("#phone").on("keyup",function(){
+			var pattern = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+			var phone = $("#phone").val();
+			if(!pattern.test(phone)){
+				$("#phoneresult").text("전화번호 형식이 맞지 않습니다.");
+				return false;
+			}
+			$("#phoneresult").text("전화번호 형식이 맞습니다.");
+			return true;
+		});
+		$("#pass").on("keyup",function(){
+			passVerify();
+			
+		});
+		$("#passchk").on("keyup",function(){
+			passchk();
+		})
+		$("#id").on("keyup",function(){
+			idcheck();
+		})
+		
 	});
+	function passVerify() {
+
+		var id = $("#id").val();
+
+		var password = $("#pass").val();
+
+		if (!/^[a-zA-Z0-9]{10,15}$/.test(password)) {
+
+			$("#passresult").html('숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.');
+
+			return false;
+
+		}
+
+		var checkNumber = password.search(/[0-9]/g);
+
+		var checkEnglish = password.search(/[a-z]/ig);
+
+		if (checkNumber < 0 || checkEnglish < 0) {
+
+			$("#passresult").html("숫자와 영문자를 혼용하여야 합니다.");
+
+			return false;
+
+		}
+
+		if (/(\w)\1\1\1/.test(password)) {
+
+			$("#passresult").html('같은 문자를 4번 이상 사용하실 수 없습니다.');
+
+			return false;
+
+		}
+
+		if (password.search(id) > -1) {
+
+			$("#passresult").html("비밀번호에 아이디가 포함되었습니다.");
+
+			return false;
+
+		}
+
+		$("#passresult").html("");
+
+		return true;
+
+	}
+	function passchk(){
+		var pass = $("#pass").val();
+		var passchk = $("#passchk").val();
+		if(pass != passchk){
+			$("#passchkresult").text("비밀번호가 일치하지 않습니다.");
+			return false;
+		}
+		$("#passchkresult").text("비밀번호가 동일합니다.");
+		return true
+	}
+	function idcheck(){
+		var retVal = false;
+		var id = $("#id").val();
+		if(id.length< 6||id.length>10){
+			$("#result").text("아이디는 6자이상 10자이하여야합니다.");
+		}
+		else if(/[^a-z0-9]+|^([a-z]+|[0-9]+)$/i.test(id)){
+			$("#result").text("아이디는 영문,숫자 조합으로 구성하여야 합니다.");
+		}
+		else{
+			$("#result").text("");
+			retVal = true;
+		}
+		return retVal;
+	}
 
 	function success_run(txt) {
 
@@ -151,6 +255,7 @@
 					}
 				}).open();
 	}
+	
 </script>
 
 
@@ -201,11 +306,13 @@ input {
 					<li class="list-group-item">
 						<input id="pass" name="mem_pw" type="password" placeholder="패스워드"
 							class="form-control input-md" required="required">
+							<span id="passresult"></span>
 					</li>
 					<li class="list-group-item">
 						<input id="passchk" name="mem_pw_chk" type="password"
 							placeholder="패스워드 확인" class="form-control input-md"
 							required="required">
+							<span id="passchkresult"></span>
 					</li>
 					<li class="list-group-item">
 						<input id="name" name="mem_name" type="text" placeholder="이름"
@@ -225,11 +332,13 @@ input {
 					<li class="list-group-item">
 						<input id="phone" name="mem_phone" type="text" placeholder="전화번호"
 							class="form-control input-md" required="required">
+							<span id=phoneresult></span>
 					</li>
 
 					<li class="list-group-item">
 						<input id="mail" name="mem_email" type="text" placeholder="이메일"
 							class="form-control input-md" required="required">
+							<span id="emailresult"></span>
 					</li>
 
 					<li class="list-group-item">
