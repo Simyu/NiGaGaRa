@@ -83,7 +83,7 @@
 									<a href="#">배달이력</a>
 								</li>
 								<li>
-									<a href="/NiGaGaRa/member/profile.do">내 정보</a>
+									<a href="/NiGaGaRa/member/profile.do?mem_id=${loginUser.mem_id }">내 정보</a>
 								</li>
 								<li>
 

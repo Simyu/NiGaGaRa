@@ -1,5 +1,7 @@
 package kr.nigagara.teamalpha.member;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -19,9 +21,38 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO login(String id, String pass) {
 		MemberVO vo = dao.login(id, pass);
-		System.out.println("MemberServiceImpl = >"+vo);
-//		return dao.login(id, pass);
+		System.out.println("MemberServiceImpl = >" + vo);
+		// return dao.login(id, pass);
 		return vo;
+	}
+
+	@Override
+	public MemberVO read(String mem_id) {
+
+		return dao.read(mem_id);
+	}
+
+	@Override
+	public int update(String fileflag, MemberVO member) {
+		return dao.update(fileflag, member);
+	}
+
+	@Override
+	public boolean idCheck(String id) {
+		if (dao.read(id) != null)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public int drop(String id) {
+		return dao.drop(id);
+	}
+
+	@Override
+	public List<String> searchid(String mem_email) {
+		return dao.searchid(mem_email);
 	}
 
 }

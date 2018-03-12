@@ -58,7 +58,6 @@ body {
 
 						<!-- Form Name -->
 						<legend>회원 프로필</legend>
-						<%-- <%empDTO dto = (empDTO)session.getAttribute("loginUser");%> --%>
 						<!-- Text input-->
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="id">아이디</label>
@@ -67,9 +66,9 @@ body {
 									<div class="input-group-addon">
 										<i class="fa fa-user"> </i>
 									</div>
-									<input id="id" name="id" type="text"
-										value="<%-- <%=dto.getId() %> --%>"
-										class="form-control input-md">
+									<input id="id" name="mem_id" type="text"
+										value="${user.mem_id }" class="form-control input-md"
+										disabled="disabled">
 								</div>
 							</div>
 						</div>
@@ -82,9 +81,8 @@ body {
 									<div class="input-group-addon">
 										<i class="fa fa-user"> </i>
 									</div>
-									<input id="name" name="name" type="text"
-										value="<%-- <%=dto.getName() %> --%>"
-										class="form-control input-md">
+									<input id="name" name="mem_name" type="text"
+										value="${user.mem_name }" class="form-control input-md">
 								</div>
 							</div>
 						</div>
@@ -99,9 +97,8 @@ body {
 										<i class="fa fa-birthday-cake"></i>
 
 									</div>
-									<input id="Date Of Birth" name="Date Of Birth" type="text"
-										value="<%-- <%=dto.getBirth() %> --%>"
-										class="form-control input-md">
+									<input id="Date Of Birth" name="mem_birth" type="text"
+										value="${user.mem_birth }" class="form-control input-md">
 								</div>
 
 
@@ -115,31 +112,11 @@ body {
 									<div class="input-group-addon">
 										<i class="fa fa-user"> </i>
 									</div>
-									<input id="Gender" name="Gender" type="text"
-										value="<%-- <%=dto.getGender() %> --%>"
-										class="form-control input-md">
+									<input id="Gender" name="mem_gender" type="text"
+										value="${user.mem_gender }" class="form-control input-md">
 								</div>
 							</div>
 						</div>
-
-
-						<!-- Text input-->
-						<!-- <div class="form-group">
-  <label class="col-md-4 control-label" for="Temporary Address">Temporary Address</label>  
-  <div class="col-md-4">
-
-  <div class="input-group">
-       <div class="input-group-addon">
-     <i class="fa fa-home" style="font-size:20px;"></i>
-        
-       </div>
- <input id="Temporary Address" name="Temporary Address" type="text" placeholder="Temporary Address" class="form-control input-md">
-      </div>
- 
-    
-  </div>
-</div>
- -->
 
 
 						<div class="form-group">
@@ -147,7 +124,7 @@ body {
 								for="Permanent Address">주소</label>
 							<div class="col-md-4  col-xs-4">
 								<textarea class="form-control" rows="2"
-									id="Overview (max 200 words)" name="Overview (max 200 words)"><%-- <%=dto.getAddr()+" "+dto.getAddr_detail()%> --%></textarea>
+									id="Overview (max 100 words)" name="mem_addr">${user.mem_addr }</textarea>
 							</div>
 						</div>
 
@@ -156,22 +133,22 @@ body {
 								for="Permanent Address">상세주소</label>
 							<div class="col-md-4  col-xs-4">
 								<textarea class="form-control" rows="2"
-									id="Overview (max 100 words)" name="Overview (max 100 words)"
-									><%-- <%=dto.getAddr()+" "+dto.getAddr_detail()%> --%></textarea>
+									id="Overview (max 100 words)" name="mem_addr_detail">${user.mem_addr_detail }</textarea>
 							</div>
 						</div>
+
+
 						<!-- Text input-->
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="Phone number ">전화번호</label>
+							<label class="col-md-4 control-label" for="Phone number">전화번호</label>
 							<div class="col-md-4">
 								<div class="input-group">
 									<div class="input-group-addon">
 										<i class="fa fa-phone"></i>
 
 									</div>
-									<input id="Phone number " name="Phone number " type="text"
-										value="<%-- <%=dto.getPhone()%> --%>"
-										class="form-control input-md">
+									<input id="Phone number " name="mem_phone" type="text"
+										value="${user.mem_phone }" class="form-control input-md">
 
 								</div>
 							</div>
@@ -186,9 +163,8 @@ body {
 										<i class="fa fa-envelope-o"></i>
 
 									</div>
-									<input id="Email Address" name="Email Address" type="text"
-										value="<%-- <%=dto.getEmail() %> --%>"
-										class="form-control input-md">
+									<input id="Email Address" name="mem_email" type="text"
+										value="${user.mem_email }" class="form-control input-md">
 
 								</div>
 
@@ -201,10 +177,8 @@ body {
 
 									<div class="text-center">
 										<input type="button" class="btn btn-theme"
-											onclick="profile('/NiGaGaRa/member/profile.do')"
-											value="프로필 수정완료" />
+											onclick="modify('/NiGaGaRa/member/modify.do')" value="프로필 수정" />
 									</div>
-
 
 								</div>
 
@@ -217,7 +191,7 @@ body {
 				</form>
 			</div>
 			<div class="col-md-2 hidden-xs">
-				<img src="<%-- <%=dto.getProfileimg() %> --%>"
+				<img src="/NiGaGaRa/resources/img/upload/${user.mem_img }"
 					class="img-responsive img-thumbnail ">
 			</div>
 
@@ -233,7 +207,4 @@ body {
 
 </body>
 
-</html>
-
-</body>
 </html>
