@@ -25,7 +25,7 @@
 						<ul class="breadcrumb">
 							<li><a href="#"> <i class="fa fa-home"></i>
 							</a> <i class="icon-angle-right"></i></li>
-							<li class="active">마이페이지</li>
+							<li class="active">마이페이지 </li>
 						</ul>
 					</div>
 				</div>
