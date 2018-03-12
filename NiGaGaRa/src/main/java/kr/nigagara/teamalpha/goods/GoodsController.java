@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class GoodsController {
-	@Autowired // �옄�룞�쑝濡� 媛앹껜 留ㅽ븨!
+	@Autowired // 자동으로 객체 매핑!
 	GoodsService service;
 
 	@RequestMapping(value = "goods/insert.do", method = RequestMethod.POST)
@@ -23,18 +23,17 @@ public class GoodsController {
 		return mav;
 	}
 
-	// �떊泥� 紐⑸줉 由ъ뒪�듃
+	// 신청 목록 리스트
 	@RequestMapping("/goods/list.do")
-	public ModelAndView list() {
+	public ModelAndView list(){
 		ModelAndView mav = new ModelAndView();
 		List<GoodsVO> requestlist = service.requestlist();
 		System.out.println(requestlist);
 		mav.addObject("requestlist", requestlist);
 		mav.setViewName("request_list");
 		return mav;
-	}
-
-	// �꽑�깮 �긽�뭹 �긽�꽭�젙蹂�
+	}	
+	//선택 상품 상세정보
 	@RequestMapping("/goods/detail.do")
 	public ModelAndView detail(String goods_Num) {
 		ModelAndView mav = new ModelAndView();
@@ -44,18 +43,16 @@ public class GoodsController {
 		mav.setViewName("request_detail");
 		return mav;
 	}
-
-	// �긽�뭹 �닔�젙
+	//상품 수정
 	@RequestMapping(value = "goods/edit.do", method = RequestMethod.POST)
-	public ModelAndView edit(GoodsVO GoodsVO) {
-		ModelAndView mav = new ModelAndView();
-		int requestedit = service.requestedit(GoodsVO);
-		System.out.println(requestedit);
-		mav.setViewName("index");
-		return mav;
-	}
-
-	// qr肄붾뱶 蹂닿린
+		public ModelAndView edit(GoodsVO GoodsVO) {
+			ModelAndView mav = new ModelAndView();
+			int requestedit = service.requestedit(GoodsVO);
+			System.out.println(requestedit);
+			mav.setViewName("index");
+			return mav;
+		}
+	//qr코드 보기
 	@RequestMapping(value = "/goods/qrcode.do", method = RequestMethod.GET)
 	public ModelAndView qrcode(String goods_Num) {
 		ModelAndView mav = new ModelAndView();

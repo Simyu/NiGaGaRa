@@ -19,7 +19,6 @@ public class GoodsVO {
 	private String sender_id;
 	private String receiver_Addr_detail;
 	private String sender_Addr_detail;
-
 	public GoodsVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -194,5 +193,5 @@ public class GoodsVO {
 				+ ", sender_id=" + sender_id + ", receiver_Addr_detail=" + receiver_Addr_detail
 				+ ", sender_Addr_detail=" + sender_Addr_detail + "]";
 	}
-
+	
 }
