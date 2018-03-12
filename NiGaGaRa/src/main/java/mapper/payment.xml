@@ -2,5 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="nigagara.payment">
-	
+	<insert id = "insert" parameterType="payment">
+	insert into payment values
+	(payment_SEQ.nextval,sysdate,#{payment_type},#{point})
+	</insert>
 </mapper>
+	
+
+<!-- 
+ payment_num     NUMBER          NOT NULL, 
+    delivery_num    NUMBER          NULL, 
+    payment_date    VARCHAR2(20)    NULL, 
+    payment_type    VARCHAR2(20)    NULL, 
+    point           NUMBER          NULL, 
+    CONSTRAINT PAYMENT_PK PRIMARY KEY (payment_num)
+);
+CREATE SEQUENCE payment_SEQ
+START WITH 1
+INCREMENT BY 1;
+ALTER TABLE payment
+    ADD CONSTRAINT FK_payment_delivery_num_delive FOREIGN KEY (delivery_num)
+        REFERENCES delivery (delivery_num); -->
