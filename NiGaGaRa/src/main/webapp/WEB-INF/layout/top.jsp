@@ -94,7 +94,7 @@
 									<a href="#">포인트 환전</a>
 								</li>
 								<li>
-									<a href="/NiGaGaRa/payment/list.do">거래내역</a>
+									<a href="/NiGaGaRa/payment/list.do?mem_id=${loginUser.mem_id }">거래내역</a>
 								</li>
 							</ul>
 						</li>

@@ -5,6 +5,6 @@ import java.util.List;
 public interface PaymentDAO {
 	
 	int insert(PaymentVO payment);
-	List<PaymentVO> paymentlist(int payment_num);
+	List<PaymentVO> paymentlist(String mem_id);
 	
 }

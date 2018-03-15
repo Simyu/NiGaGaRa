@@ -14,9 +14,9 @@ public class PaymentController {
 	PaymentService service;
 
 	@RequestMapping(value = "/payment/list.do", method = RequestMethod.GET)
-	public String showList(int payment_num) {
+	public String showList(String mem_id) {
 		ModelAndView mav = new ModelAndView();
-		List<PaymentVO> paymentlist = service.paymentlist(payment_num);
+		List<PaymentVO> paymentlist = service.paymentlist(mem_id);
 		mav.addObject("paymentlist", paymentlist);
 		mav.setViewName("payment/list");
 		return "payment/list";
@@ -26,4 +26,5 @@ public class PaymentController {
 	public String showPage() {
 		return "payment/insert";
 	}
+	
 }

@@ -19,7 +19,7 @@ public class PaymentDAOImpl implements PaymentDAO {
 	}
 
 	@Override
-	public List<PaymentVO> paymentlist(int payment_num) {
+	public List<PaymentVO> paymentlist(String mem_id) {
 		List<PaymentVO> paymentlist = sqlSession.selectList("NiGaGaRa.payment.list");
 		return paymentlist;
 	}

@@ -17,7 +17,6 @@ public class MemberServiceImpl implements MemberService {
 
 		return dao.insert(member);
 	}
-
 	@Override
 	public MemberVO login(String id, String pass) {
 		MemberVO vo = dao.login(id, pass);

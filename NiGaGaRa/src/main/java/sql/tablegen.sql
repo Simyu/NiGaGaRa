@@ -137,6 +137,7 @@ drop table payment CASCADE CONSTRAINT;
 
 CREATE TABLE payment
 (
+    mem_id			VARCHAR2(20)    NULL,
     payment_num     NUMBER          NOT NULL, 
     delivery_num    NUMBER          NULL, 
     payment_date    VARCHAR2(20)    NULL, 
@@ -144,7 +145,9 @@ CREATE TABLE payment
     point           NUMBER          NULL, 
     CONSTRAINT PAYMENT_PK PRIMARY KEY (payment_num)
 );
-
+ALTER TABLE payment
+	ADD CONSTRAINT FK_payment_member FOREIGN KEY (mem_id)
+		REFERENCES member (mem_id);
 
 CREATE SEQUENCE payment_SEQ
 START WITH 1
