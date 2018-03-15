@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTFr-8"
+	session="true" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <!-- 이수진이 만들었음 필요 없을지도 -->
@@ -18,13 +23,9 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<ul class="breadcrumb">
-							<li>
-								<a href="#">
-									<i class="fa fa-home"></i>
-								</a>
-								<i class="icon-angle-right"></i>
-							</li>
-							<li class="active">마이페이지</li>
+							<li><a href="#"> <i class="fa fa-home"></i>
+							</a> <i class="icon-angle-right"></i></li>
+							<li class="active">마이페이지 </li>
 						</ul>
 					</div>
 				</div>
@@ -47,17 +48,10 @@
 						<tbody>
 							<tr>
 								<td>****</td>
-								<td>모월 모일</td>
-								<td>충전</td>
-								<td>10000원</td>
-								<td>10100</td>
-							</tr>
-							<tr>
-								<td>****</td>
-								<td>모월 모일</td>
-								<td>환전</td>
-								<td>5000원</td>
-								<td>5100</td>
+								<td>$"{PaymentVo.payment_date}"</td>
+								<td>$"{PaymentVo.payment_type}"</td>
+								<td>$"{PaymentVo.point}"원</td>
+								<td>$"{PaymentVo.point}"원</td>
 							</tr>
 						</tbody>
 					</table>
@@ -80,20 +74,12 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>****</td>
-								<td>모월 모일</td>
-								<td>1268</td>
-								<td></td>
-								<td>5000</td>
-								<td>6500</td>
-							</tr>
-							<tr>
-								<td>****</td>
-								<td>모월 모일</td>
-								<td>95561</td>
-								<td>2500</td>
-								<td></td>
-								<td>4500</td>
+								<td>$"{PaymentVo.payment_num}"</td>
+								<td>$"{PaymentVo.payment_date}"</td>
+								<td>$"{DeliverVO.delivery_num}</td>
+								<td>$"{PaymentVo.point}"</td>
+								<td>$"{PaymentVo.point}"</td>
+								<td>$"{PaymentVo.point}"</td>
 							</tr>
 						</tbody>
 					</table>
@@ -101,8 +87,7 @@
 			</div>
 		</section>
 	</div>
-	<a href="#" class="scrollup">
-		<i class="fa fa-angle-up active"></i>
+	<a href="#" class="scrollup"> <i class="fa fa-angle-up active"></i>
 	</a>
 
 

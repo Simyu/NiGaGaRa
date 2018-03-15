@@ -46,14 +46,14 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle " data-toggle="dropdown"
+							<a href="?" class="dropdown-toggle " data-toggle="dropdown"
 								data-hover="dropdown" data-delay="0" data-close-others="false">
 								배달하기
 								<b class=" icon-angle-down"></b>
 							</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="#">시작하기</a>
+									<a href="/NiGaGaRa/delivery/start.do">시작하기</a>
 								</li>
 								<li>
 									<a href="#">조회하기</a>
@@ -94,7 +94,7 @@
 									<a href="#">포인트 환전</a>
 								</li>
 								<li>
-									<a href="/NiGaGaRa/payment/list.do">거래내역</a>
+									<a href="/NiGaGaRa/payment/list.do?mem_id=${loginUser.mem_id }">거래내역</a>
 								</li>
 							</ul>
 						</li>
