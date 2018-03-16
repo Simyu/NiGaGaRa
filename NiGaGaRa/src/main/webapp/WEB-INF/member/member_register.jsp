@@ -44,10 +44,10 @@
 		$("#numberchk").on("click", function() {
 			alert("인증번호가 발송되었습니다.")
 		})
-		$("#account").on("click",function(){
+		$("#account").on("click", function() {
 			getTokenByClientCredentials();
 		})
-		
+
 	});
 	function phone() {
 		var pattern = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -223,51 +223,53 @@
 	function inputVerify() {
 		if (phone() && mail() && id() && idcheckRet && write() && passchk()
 				&& pass()) {
+			alert("회원가입 성공");
 			return true;
 		} else {
-			alert("제대로 입력해 주세요.")
+			alert("제대로 입력해 주세요.");
 			return false;
-
 		}
 	}
-	function getTokenByClientCredentials(){
+	function getTokenByClientCredentials() {
 
 		$.ajax({
-			url: getSvrProps('base_api_uri') + '/oauth/2.0/token',
-			type: 'post',
-			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-			data: {
-				'client_id': $('#client_id').val(),
-				'client_secret': $('#client_secret').val(),
-				'grant_type': 'client_credentials',
-				'scope': 'oob'
+			url : getSvrProps('base_api_uri') + '/oauth/2.0/token',
+			type : 'post',
+			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+			data : {
+				'client_id' : $('#client_id').val(),
+				'client_secret' : $('#client_secret').val(),
+				'grant_type' : 'client_credentials',
+				'scope' : 'oob'
 			}
-		})
-		.done(function(data, textStatus, jqXHR){
-			if(isGatewayException(data)){ return; }
+		}).done(function(data, textStatus, jqXHR) {
+			if (isGatewayException(data)) {
+				return;
+			}
 			$('#token').val(data.access_token);
 		});
 	}
-	function inquiryRealName(){
+	function inquiryRealName() {
 
-		if(isEmptyElem('token')){
+		if (isEmptyElem('token')) {
 			showMsg('Access Token을 먼저 획득해 주십시오.');
 			return;
 		}
-		
+
 		$.ajax({
-			url: getSvrProps('base_api_uri') + '/inquiry/real_name',
-			type: 'post',
-			headers: {
-				'Authorization': ('Bearer ' + $('#token').val())
+			url : getSvrProps('base_api_uri') + '/inquiry/real_name',
+			type : 'post',
+			headers : {
+				'Authorization' : ('Bearer ' + $('#token').val())
 			},
-			data: js($.extend({}, getFormParamObj('real_nameFrm'), {
-				// additional parameters
+			data : js($.extend({}, getFormParamObj('real_nameFrm'), {
+			// additional parameters
 			}))
-		})
-		.done(function(data, textStatus, jqXHR){
-			if(isGatewayException(data)){ return; } // ajax 응답이 Gateway Exception일 경우 이후 처리를 종료한다.		
-			
+		}).done(function(data, textStatus, jqXHR) {
+			if (isGatewayException(data)) {
+				return;
+			} // ajax 응답이 Gateway Exception일 경우 이후 처리를 종료한다.		
+
 			// UI에 결과값 바인딩
 			$('#resultTextArea').val(js(data));
 		});
@@ -313,98 +315,69 @@ input {
 			<h4>회원가입</h4>
 			<div>
 				<ul class="list-group">
-					<li class="list-group-item">
-						<input id="id" name="mem_id" type="text" placeholder="아이디"
-							class="form-control input-md" required="required">
-						<button type="button" id="idcheck">중복체크</button>
-						<span id="result"></span>
+					<li class="list-group-item"><input id="id" name="mem_id"
+						type="text" placeholder="아이디" class="form-control input-md"
+						required="required">
+						<button type="button" id="idcheck">중복체크</button> <span id="result"></span>
 					</li>
+					<li class="list-group-item"><input id="pass" name="mem_pw"
+						type="password" placeholder="패스워드" class="form-control input-md"
+						required="required"> <span id="passresult"></span></li>
 					<li class="list-group-item">
-						<input id="pass" name="mem_pw" type="password" placeholder="패스워드"
-							class="form-control input-md" required="required">
-						<span id="passresult"></span>
-					</li>
-					<li class="list-group-item">
-						<input id="passchk" name="mem_pw_chk" type="password"
-							placeholder="패스워드 확인" class="form-control input-md"
-							required="required">
-						<span id="passchkresult"></span>
-					</li>
-					<li class="list-group-item">
-						<input id="name" name="mem_name" type="text" placeholder="이름"
-							class="form-control input-md" required="required">
-					</li>
-					<li class="list-group-item">
-						<input type="radio" name="mem_gender" value="남자" checked="checked">
-						남자
-						<span> </span>
-						<input type="radio" name="mem_gender" value="여자">
-						여자
-					</li>
-					<li class="list-group-item">
-						<input id="birth" name="mem_birth" type="text" placeholder="생년월일 "
-							class="form-control input-md" required="required">
-					</li>
-					<li class="list-group-item">
-						<input id="phone" name="mem_phone" type="text" placeholder="전화번호"
-							class="form-control input-md" required="required">
-						<span id=phoneresult></span>
-					</li>
+					<input id="passchk"	name="mem_pw_chk" type="password" placeholder="패스워드 확인"
+						class="form-control input-md" required="required"> 
+						<span id="passchkresult"></span></li>
+					<li class="list-group-item"><input id="name" name="mem_name"
+						type="text" placeholder="이름" class="form-control input-md"
+						required="required"></li>
+					<li class="list-group-item"><input type="radio"
+						name="mem_gender" value="남자" checked="checked"> 남자 <span>
+					</span> <input type="radio" name="mem_gender" value="여자"> 여자</li>
+					<li class="list-group-item"><input id="birth" name="mem_birth"
+						type="text" placeholder="생년월일 " class="form-control input-md"
+						required="required"></li>
+					<li class="list-group-item"><input id="phone" name="mem_phone"
+						type="text" placeholder="전화번호" class="form-control input-md"
+						required="required"> <span id=phoneresult></span></li>
 
-					<li class="list-group-item">
-						<input id="mail" name="mem_email" type="text" placeholder="이메일"
-							class="form-control input-md" required="required">
-						<span id="emailresult"></span>
-						<input id="mailchk" name="mem_email" type="text"
-							placeholder="인증번호" class="form-control input-md"
-							required="required">
-						<span id="mailchkresult"></span>
-						<input type="button" class="" id="numberchk" value="인증번호받기">
-						<input type="button" class="" id="write" value="입력하기">
-					</li>
+					<li class="list-group-item"><input id="mail" name="mem_email"
+						type="text" placeholder="이메일" class="form-control input-md"
+						required="required"> <span id="emailresult"></span> <input
+						id="mailchk" name="mem_email" type="text" placeholder="인증번호"
+						class="form-control input-md" required="required"> 
+						<input type="button" class=""id="numberchk" value="인증번호받기"> 
+						<input type="button" class="" id="write" value="입력하기"></li>
 
 
-					<li class="list-group-item">
-						<input id="mem_zipcode" name="mem_zipcode" type="text"
-							placeholder="우편번호" class="form-control input-md"
-							onclick="execDaumPostcode()">
+					<li class="list-group-item"><input id="mem_zipcode"
+						name="mem_zipcode" type="text" placeholder="우편번호"
+						class="form-control input-md" onclick="execDaumPostcode()">
 						<input id="mem_addr" name="mem_addr" type="text" placeholder="주소"
-							class="form-control input-md">
-						<input id="mem_addr_detail" name="mem_addr_detail" type="text"
-							placeholder="상세주소" class="form-control input-md">
-					</li>
-					<li class="list-group-item">
-						<input id="Uploadphoto" name="file"
-							class="form-control input-md input-file" type="file">
-					</li>
-					<li class="list-group-item">
-						<input id="account" name="mem_account" type="text"
-							placeholder="계좌번호" class="form-control input-md"
-							required="required">
+						class="form-control input-md"> <input id="mem_addr_detail"
+						name="mem_addr_detail" type="text" placeholder="상세주소"
+						class="form-control input-md"></li>
+					<li class="list-group-item"><input id="Uploadphoto"
+						name="file" class="form-control input-md input-file" type="file">
 					</li>
 					<li class="list-group-item"><input id="account"
 						name="mem_account" type="text" placeholder="계좌번호"
-						class="form-control input-md" required="required"> <input
-						type="button" id="account" value="인증조회"></li>
+						class="form-control input-md" required="required">
+						<input type="button" id="account" value="인증조회">></li>
+						
 
-
-					<li class="list-group-item">
-						<input type="checkbox" id="agree1">
-						이용약관동의
-						<span> </span>
-						<input type="button" value="내용보기" />
+					<li class="list-group-item"><input id="Uploadphoto"
+						name="file" class="form-control input-md input-file" type="file">
 					</li>
-					<li class="list-group-item">
-						<input type="checkbox" id="agree2">
-						개인정보 수집 및 이용동의
-						<span> </span>
-						<input type="button" value="내용보기" />
+					<li class="list-group-item"><input id="account"
+						name="mem_account" type="text" placeholder="계좌번호"
+						class="form-control input-md" required="required"></li>
+					<li class="list-group-item"><input type="checkbox" id="agree1">
+						이용약관동의 <span> </span> <input type="button" value="내용보기" /></li>
+					<li class="list-group-item"><input type="checkbox" id="agree2">
+						개인정보 수집 및 이용동의 <span> </span> <input type="button" value="내용보기" />
 					</li>
-					<li class="list-group-item">
-						<input type="checkbox" id="agree3">
-						우편번호와 주소 수집 및 이용 동의
-						<span></span>
-					</li>
+					<li class="list-group-item"><input type="checkbox" id="agree3">
+						우편번호와 주소 수집 및 이용 동의 <span></span></li>
 					<input class="btn btn-lg btn-primary btn-block btn-signin"
 						type="submit" value="Sign in" />
 					<input type="text" id="id_duplicate_check" value="false" hidden="" />

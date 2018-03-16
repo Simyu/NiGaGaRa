@@ -36,7 +36,7 @@ body {
 					<!-- Form Name -->
 					<legend>회원 프로필</legend>
 					<div class="col-md-2 hidden-xs text-center">
-						<div class="row">
+						<div class="row" id="imgholder">
 							<img src="/NiGaGaRa/resources/img/upload/${user.mem_img }"
 								class="img-responsive img-thumbnail " id="img">
 						</div>
@@ -234,10 +234,24 @@ body {
 			$("#fackfileupbtn").on("click", function() {
 				$("#fileinput").click();
 			});
-			
-			$("#file").on( "change", function() {
-				$("#img").attr("src", "window.URL.createObjectURL(this.files[0])");
+			var upload = document.getElementById('fileinput'),
+		    holder = document.getElementById('imgholder');
+			$("#fileinput").on( "change", function(e) {
+				 e.preventDefault();
+
+				  var file = upload.files[0],
+				      reader = new FileReader();
+				  reader.onload = function (event) {
+				    var img = new Image();
+				    img.src = event.target.result;
+				    holder.innerHTML = '';
+				    holder.appendChild(img);
+				    holder.firstChild.className ="img-responsive img-thumbnail";
+				  };
+				  reader.readAsDataURL(file);
+
 				$("#fileflag").val("T");
+				  return false;
 			} );
 
 			$("#mem_birth").datepicker({

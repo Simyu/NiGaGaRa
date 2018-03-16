@@ -83,11 +83,9 @@
 								<li>
 									<a 
 										href="/NiGaGaRa/delivery/list.do<%-- delivery_Man=${deliverylist.delivery_Man } --%>">배달이력</a>
-								</li>
 								<li>
 									<a
-										href="/NiGaGaRa/member/profile.do?mem_id=${loginUser.mem_id }">내
-										정보</a>
+										href="/NiGaGaRa/member/profile.do?mem_id=${loginUser.mem_id }">내정보</a>
 								</li>
 								<li>
 

@@ -31,5 +31,4 @@ public class GoodsServiceImpl implements GoodsService {
 		return dao.requestedit(GoodsVO);
 
 	}
-
 }

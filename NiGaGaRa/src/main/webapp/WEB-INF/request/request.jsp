@@ -46,9 +46,7 @@
 						class="contactForm">
 						<div class="form-group">
 							<input id="sender_zipcode" name="sender_zipcode" type="text"
-								placeholder="보내는 사람 우편번호" class="form-control input-md" readonly>
-							<input class="btn btn-theme mb-2" type="button"
-								onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+								placeholder="보내는 사람 우편번호" class="form-control input-md" onclick="sample6_execDaumPostcode()" readonly>
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
@@ -76,9 +74,7 @@
 						</div>
 						<div class="form-group">
 							<input id="receiver_zipcode" name="receiver_zipcode" type="text"
-								placeholder="받는사람 우편번호" class="form-control input-md" readonly>
-							<input class="btn btn-theme mb-2" type="button"
-								onclick="sample5_execDaumPostcode()" value="우편번호 찾기">
+								placeholder="받는사람 우편번호" class="form-control input-md" onclick="sample5_execDaumPostcode()" readonly>
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
@@ -130,6 +126,7 @@
 						<div class="text-center">
 							<button type="submit" class="btn btn-theme">상품등록</button>
 						</div>
+						<input type="hidden" name ="sender_id" value="${loginUser.mem_id }">
 					</form>
 				</div>
 			</div>

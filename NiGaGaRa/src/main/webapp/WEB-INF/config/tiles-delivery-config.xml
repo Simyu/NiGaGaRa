@@ -13,6 +13,10 @@
 		<put-attribute name="content" value="/WEB-INF/delivery/matching.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="delivery_qrread" extends="deliveryTemplate">
+		<put-attribute name="content" value="/WEB-INF/delivery/delivery_qrread.jsp"></put-attribute>
+	</definition>
+	
 	
 </tiles-definitions>
 
