@@ -310,9 +310,8 @@ input {
 						<input id="mail" name="mem_email" type="text" placeholder="이메일"
 							class="form-control input-md" required="required">
 						<span id="emailresult"></span>
-						<input id="mailchk" name="mem_email" type="text"
-							placeholder="인증번호" class="form-control input-md"
-							required="required">
+						<input id="mailchk" type="text" placeholder="인증번호"
+							class="form-control input-md" required="required">
 						<span id="mailchkresult"></span>
 						<input type="button" class="" id="numberchk" value="인증번호받기">
 						<input type="button" class="" id="write" value="입력하기">

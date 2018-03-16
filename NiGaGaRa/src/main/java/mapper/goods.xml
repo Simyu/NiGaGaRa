@@ -4,7 +4,8 @@
 <mapper namespace="nigagara.goods">
 	<insert id="insert" parameterType="goods">
 		insert into goods values
-		(goods_SEQ.nextval,#{goods_Name},#{weight},#{quantity},#{estimated_Price},#{receiver_Name},#{receiver_zipcode},	#{receiver_Addr},#{receiver_Tel},#{sender_zipcode},#{sender_Addr},#{delivery_Tool},#{goods_Msg},'11','test',#{receiver_Addr_detail},#{sender_Addr_detail})
+		(goods_SEQ.nextval,#{goods_Name},#{weight},#{quantity},#{estimated_Price},#{receiver_Name},#{receiver_zipcode},	#{receiver_Addr},#{receiver_Tel},#{sender_zipcode},#{sender_Addr},#{delivery_Tool},#{goods_Msg},'11',#{sender_id},#{receiver_Addr_detail},#{sender_Addr_detail})
+		
 	</insert>
 	<select id="requestlist" resultType="goods" parameterType="String">
 		select *

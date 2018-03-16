@@ -126,6 +126,7 @@
 						<div class="text-center">
 							<button type="submit" class="btn btn-theme">상품등록</button>
 						</div>
+						<input type="hidden" name ="sender_id" value="${loginUser.mem_id }">
 					</form>
 				</div>
 			</div>

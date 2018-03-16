@@ -53,8 +53,7 @@
         		startY : "<%=send_loccode.get(0)%>",
         		//목적지 위경도 좌표입니다.
         		endX : "<%=receive_loccode.get(1)%>",
-        		endY : "<%=receive_loccode.get(0)%>
-	",
+        		endY : "<%=receive_loccode.get(0)%>",
 						//출발지, 경유지, 목적지 좌표계 유형을 지정합니다.
 						reqCoordType : "WGS84GEO",
 						resCoordType : "EPSG3857",
