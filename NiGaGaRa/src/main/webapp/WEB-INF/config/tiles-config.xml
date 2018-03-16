@@ -16,7 +16,7 @@
 	</definition>
 	
 	<definition name="delivery/list" extends="mainTemplate">
-		<put-attribute name="content" value="/WEB-INF/Delivery/Mypage_Delivery_board.jsp" />
+		<put-attribute name="content" value="/WEB-INF/member/member_delivery_list.jsp" />
 	</definition>
 	
 	<definition name="register" extends="mainTemplate">
