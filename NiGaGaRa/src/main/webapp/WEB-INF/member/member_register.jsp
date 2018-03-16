@@ -223,7 +223,6 @@
 	function inputVerify() {
 		if (phone() && mail() && id() && idcheckRet && write() && passchk()
 				&& pass()) {
-			alert("회원가입 성공");
 			return true;
 		} else {
 			alert("제대로 입력해 주세요.");
@@ -343,7 +342,7 @@ input {
 					<li class="list-group-item"><input id="mail" name="mem_email"
 						type="text" placeholder="이메일" class="form-control input-md"
 						required="required"> <span id="emailresult"></span> <input
-						id="mailchk" name="mem_email" type="text" placeholder="인증번호"
+						id="mailchk" type="text" placeholder="인증번호"
 						class="form-control input-md" required="required"> 
 						<input type="button" class=""id="numberchk" value="인증번호받기"> 
 						<input type="button" class="" id="write" value="입력하기"></li>
@@ -363,14 +362,7 @@ input {
 						name="mem_account" type="text" placeholder="계좌번호"
 						class="form-control input-md" required="required">
 						<input type="button" id="account" value="인증조회">></li>
-						
-
-					<li class="list-group-item"><input id="Uploadphoto"
-						name="file" class="form-control input-md input-file" type="file">
-					</li>
-					<li class="list-group-item"><input id="account"
-						name="mem_account" type="text" placeholder="계좌번호"
-						class="form-control input-md" required="required"></li>
+					
 					<li class="list-group-item"><input type="checkbox" id="agree1">
 						이용약관동의 <span> </span> <input type="button" value="내용보기" /></li>
 					<li class="list-group-item"><input type="checkbox" id="agree2">
@@ -378,6 +370,7 @@ input {
 					</li>
 					<li class="list-group-item"><input type="checkbox" id="agree3">
 						우편번호와 주소 수집 및 이용 동의 <span></span></li>
+					
 					<input class="btn btn-lg btn-primary btn-block btn-signin"
 						type="submit" value="Sign in" />
 					<input type="text" id="id_duplicate_check" value="false" hidden="" />
