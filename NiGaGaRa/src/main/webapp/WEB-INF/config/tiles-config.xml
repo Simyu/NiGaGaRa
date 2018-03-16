@@ -19,6 +19,10 @@
 		<put-attribute name="content" value="/WEB-INF/Delivery/Mypage_Delivery_board.jsp" />
 	</definition>
 	
+	<definition name="delivery" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/Delivery/Delivery_board.jsp" />
+	</definition>
+	
 	<definition name="register" extends="mainTemplate">
 		<put-attribute name="content"
 			value="/WEB-INF/member/member_register.jsp"></put-attribute>

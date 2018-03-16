@@ -46,7 +46,7 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="?" class="dropdown-toggle " data-toggle="dropdown"
+							<a href="#" class="dropdown-toggle " data-toggle="dropdown"
 								data-hover="dropdown" data-delay="0" data-close-others="false">
 								배달하기
 								<b class=" icon-angle-down"></b>
@@ -56,7 +56,10 @@
 									<a href="/NiGaGaRa/delivery/start.do">시작하기</a>
 								</li>
 								<li>
-									<a href="#">조회하기</a>
+									<a href="/NiGaGaRa/delivery.do">조회하기</a>
+								</li>
+								<li>
+									<a href="/NiGaGaRa/delivery/qrread.do">QR리더기</a>
 								</li>
 								<li>
 									<a href="#">이용방법</a>
@@ -78,7 +81,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="#">신청이력</a>
+									<a href="/NiGaGaRa/goods/list.do">신청이력</a>
 								</li>
 								<li>
 									<a href="/NiGaGaRa/delivery/list.do?delivery_Man=<%-- ${deliverylist.delivery_Man } --%>">배달이력</a>

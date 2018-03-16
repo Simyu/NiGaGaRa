@@ -1,350 +1,253 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-	<meta charset="utf-8">
-	<title>Moderna - Bootstrap 3 flat corporate template</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="" />
-	<!-- css -->
-	<link href="css/bootstrap.min.css" rel="stylesheet" />
-	<link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
-	<link href="css/jcarousel.css" rel="stylesheet" />
-	<link href="css/flexslider.css" rel="stylesheet" />
-	<link href="css/style.css" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>simpleMap</title>
+<script
+	src="https://api2.sktelecom.com/tmap/js?version=1&format=javascript&appKey=7d6bb7b7-15c4-4781-8cc6-671ae6b0f25d"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+        // map 생성
+        // Tmap.map을 이용하여, 지도가 들어갈 div, 넓이, 높이를 설정합니다.		
+        function initTmap(){
+        	// 1. 지도 띄우기
+        	// map 생성
+        	// Tmap.map을 이용하여, 지도가 들어갈 div, 넓이, 높이를 설정합니다.
+        	map = new Tmap.Map({
+        		div : 'map_div',// map을 표시해줄 div
+        		width : "100%",// map의 width 설정
+        		height : "400px",// map의 height 설정
+        	});
+        map.setCenter(new Tmap.LonLat("126.986072", "37.570028").transform("EPSG:4326", "EPSG:3857"), 15);//설정한 좌표를 "EPSG:3857"로 좌표변환한 좌표값으로 즁심점을 설정합니다.	
 
+        // 2. API 사용요청
+        $.ajax({
+        	method:"GET",
+        	url:"https://api2.sktelecom.com/tmap/geo/fullAddrGeo?version=1&format=xml&callback=result", //FullTextGeocoding api 요청 url입니다.
+        	async:false,
+        	data:{
+        		"coordType" : "WGS84GEO",//지구 위의 위치를 나타내는 좌표 타입입니다.
+        		"fullAddr" : "서울시 마포구 와우산로29가길 69", //주소 정보 입니다, 도로명 주소 표준 표기 방법을 지원합니다.  
+        		"page" : "1",//페이지 번호 입니다.
+        		"count" : "20",//페이지당 출력 갯수 입니다.
+        		"appKey" : "7d6bb7b7-15c4-4781-8cc6-671ae6b0f25d",//실행을 위한 키 입니다. 발급받으신 AppKey를 입력하세요.
+        	},
+        	//데이터 로드가 성공적으로 완료되었을 때 발생하는 함수입니다.
+        	success:function(response){
+        		prtcl = response;
+        		
+        		// 3. 마커 찍기
+        		var prtclString = new XMLSerializer().serializeToString(prtcl);//xml to String	
+        		xmlDoc = $.parseXML( prtclString ),
+        		$xml = $( xmlDoc ),
+        		$intRate = $xml.find("coordinate");
 
-	<!-- Theme skin -->
-	<link href="skins/default.css" rel="stylesheet" />
+        		//검색 결과 정보가 없을 때 처리
+        		if($intRate.length==0){
+        			//예외처리를 위한 파싱 데이터
+        			$intError = $xml.find("error");
+        					
+        			// 주소가 올바르지 않을 경우 예외처리
+        			if($intError.context.all[0].nodeName == "error"){
+        				$("#result").text("요청 데이터가 올바르지 않습니다.");
+        			}
+        		}	
+        			  		    
+        		var lon, lat;
+        		if($intRate[0].getElementsByTagName("lon").length>0){//구주소
+        			lon = $intRate[0].getElementsByTagName("lon")[0].childNodes[0].nodeValue;
+        		   	lat = $intRate[0].getElementsByTagName("lat")[0].childNodes[0].nodeValue;
+        		}else{//신주소
+        			lon = $intRate[0].getElementsByTagName("newLon")[0].childNodes[0].nodeValue;
+        			lat = $intRate[0].getElementsByTagName("newLat")[0].childNodes[0].nodeValue;
+        		}
+        		  	
+        		var markerStartLayer = new Tmap.Layer.Markers("marker");//마커 레이어 생성
+        		map.addLayer(markerStartLayer);//map에 마커 레이어 추가
+        		  	
+        	  	var size = new Tmap.Size(24, 38);//아이콘 크기 설정
+        		var offset = new Tmap.Pixel(-(size.w / 2), -size.h);//아이콘 중심점 설정
+        		var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_a.png' />", size, offset);//마커 아이콘 설정
+        		var marker_s = new Tmap.Marker(new Tmap.LonLat(lon, lat).transform("EPSG:4326", "EPSG:3857"), icon);//설정한 좌표를 "EPSG:3857"로 좌표변환한 좌표값으로 설정합니다.
+        		markerStartLayer.addMarker(marker_s);//마커 레이어에 마커 추가
+        		
+        		map.setCenter(new Tmap.LonLat(lon, lat).transform("EPSG:4326", "EPSG:3857"), 15);//설정한 좌표를 "EPSG:3857"로 좌표변환한 좌표값으로 즁심점을 설정합니다.
+        		
+        		//검색 결과 표출
+        		var matchFlag, newMatchFlag;
+        	  	//검색 결과 주소를 담을 변수
+        	  	var address = '', newAddress = '';
+        	  	var city, gu_gun, eup_myun, legalDong, adminDong, ri, bunji;
+        	  	var buildingName, buildingDong, newRoadName, newBuildingIndex, newBuildingName, newBuildingDong;
+        		//새주소일 때 검색 결과 표출
+        		//새주소인 경우 newMatchFlag가 응닶값으로 온다
+        		if($intRate[0].getElementsByTagName("newMatchFlag").length>0){
+        			// 새(도로명) 주소 좌표 매칭 구분 코드
+        			newMatchFlag = $intRate[0].getElementsByTagName("newMatchFlag")[0].childNodes[0].nodeValue;
+        			
+        			// 시/도 명칭
+        			if($intRate[0].getElementsByTagName("city_do").length>0){
+        				city = $intRate[0].getElementsByTagName("city_do")[0].childNodes[0].nodeValue;
+        				newAddress += city+"\n";
+        			}
+        			// 군/구 명칭
+        			if($intRate[0].getElementsByTagName("gu_gun").length>0){
+        				gu_gun = $intRate[0].getElementsByTagName("gu_gun")[0].childNodes[0].nodeValue;
+        				newAddress += gu_gun+"\n";
+        			}
+        			// 읍면동 명칭
+        			if($intRate[0].getElementsByTagName("eup_myun").length>0){
+        				eup_myun = $intRate[0].getElementsByTagName("eup_myun")[0].childNodes[0].nodeValue;
+        				newAddress += eup_myun+"\n";
+        			}
+        			// 출력 좌표에 해당하는 법정동 명칭
+        			if($intRate[0].getElementsByTagName("legalDong").length>0){
+        				legalDong = $intRate[0].getElementsByTagName("legalDong")[0].childNodes[0].nodeValue;
+        				newAddress += legalDong+"\n";
+        			}
+        			// 출력 좌표에 해당하는 법정동 명칭
+        			if($intRate[0].getElementsByTagName("adminDong").length>0){
+        				adminDong = $intRate[0].getElementsByTagName("adminDong")[0].childNodes[0].nodeValue;
+        				newAddress += adminDong+"\n";
+        			}
+        			// 출력 좌표에 해당하는 리 명칭
+        			if($intRate[0].getElementsByTagName("ri").length>0){
+        				ri = $intRate[0].getElementsByTagName("ri")[0].childNodes[0].nodeValue;
+        				newAddress += ri+"\n";
+        			}
+        			// 출력 좌표에 해당하는 지번 명칭
+        			if($intRate[0].getElementsByTagName("bunji").length>0){
+        				bunji = $intRate[0].getElementsByTagName("bunji")[0].childNodes[0].nodeValue;
+        				newAddress += bunji+"\n";
+        			}
+        			// 새(도로명) 주소 매칭을 한 경우, 길 이름을 반환
+        			if($intRate[0].getElementsByTagName("newRoadName").length>0){
+        				newRoadName = $intRate[0].getElementsByTagName("newRoadName")[0].childNodes[0].nodeValue;
+        				newAddress += newRoadName+"\n";
+        			}
+        			// 새(도로명) 주소 매칭을 한 경우, 건물 번호를 반환
+        			if($intRate[0].getElementsByTagName("newBuildingIndex").length>0){
+        				newBuildingIndex = $intRate[0].getElementsByTagName("newBuildingIndex")[0].childNodes[0].nodeValue;
+        				newAddress += newBuildingIndex+"\n";
+        			}
+        			// 새(도로명) 주소 건물명 매칭을 한 경우, 건물 이름을 반환
+        			if($intRate[0].getElementsByTagName("newBuildingName").length>0){
+        				newBuildingName = $intRate[0].getElementsByTagName("newBuildingName")[0].childNodes[0].nodeValue;
+        				newAddress += newBuildingName+"\n";
+        			}
+        			// 새주소 건물을 매칭한 경우 새주소 건물 동을 반환
+        			if($intRate[0].getElementsByTagName("newBuildingDong").length>0){
+        				newBuildingDong = $intRate[0].getElementsByTagName("newBuildingDong")[0].childNodes[0].nodeValue;
+        				newAddress += newBuildingDong+"\n";
+        			}
+        			
+        			// 검색 결과 표출
+        			var docs = "< a style='color:orange' href='#webservice/docs/fullTextGeocoding' >Docs< /a >"
+        			$("#result").html("검색결과(새주소) : "+newAddress+","+"\n"+"응답코드:"+newMatchFlag+"(상세 코드 내역은 "+docs+"에서 확인)");
+        		}
+        		
+        		//구주소일 때 검색 결과 표출
+        		//구주소인 경우 MatchFlag가 응닶값으로 온다
+        		if($intRate[0].getElementsByTagName("matchFlag").length>0){
+        			// 매칭 구분 코드
+        			matchFlag = $intRate[0].getElementsByTagName("matchFlag")[0].childNodes[0].nodeValue;
+        			
+        			// 시/도 명칭
+        			if($intRate[0].getElementsByTagName("city_do").length>0){
+        				city = $intRate[0].getElementsByTagName("city_do")[0].childNodes[0].nodeValue;
+        				address += city+"\n";
+        			}
+        			// 군/구 명칭
+        			if($intRate[0].getElementsByTagName("gu_gun").length>0){
+        				gu_gun = $intRate[0].getElementsByTagName("gu_gun")[0].childNodes[0].nodeValue;
+        				address += gu_gun+"\n";
+        			}
+        			// 읍면동 명칭
+        			if($intRate[0].getElementsByTagName("eup_myun").length>0){
+        				eup_myun = $intRate[0].getElementsByTagName("eup_myun")[0].childNodes[0].nodeValue;
+        				address += eup_myun+"\n";
+        			}
+        			// 출력 좌표에 해당하는 법정동 명칭
+        			if($intRate[0].getElementsByTagName("legalDong").length>0){
+        				legalDong = $intRate[0].getElementsByTagName("legalDong")[0].childNodes[0].nodeValue;
+        				address += legalDong+"\n";
+        			}
+        			// 출력 좌표에 해당하는 법정동 명칭
+        			if($intRate[0].getElementsByTagName("adminDong").length>0){
+        				adminDong = $intRate[0].getElementsByTagName("adminDong")[0].childNodes[0].nodeValue;
+        				address += adminDong+"\n";
+        			}
+        			// 출력 좌표에 해당하는 리 명칭
+        			if($intRate[0].getElementsByTagName("ri").length>0){
+        				ri = $intRate[0].getElementsByTagName("ri")[0].childNodes[0].nodeValue;
+        				address += ri+"\n";
+        			}
+        			// 출력 좌표에 해당하는 지번 명칭
+        			if($intRate[0].getElementsByTagName("bunji").length>0){
+        				bunji = $intRate[0].getElementsByTagName("bunji")[0].childNodes[0].nodeValue;
+        				address += bunji+"\n";
+        			}
+        			// 출력 좌표에 해당하는 지번 명칭
+        			if($intRate[0].getElementsByTagName("buildingName").length>0){
+        				buildingName = $intRate[0].getElementsByTagName("buildingName")[0].childNodes[0].nodeValue;
+        				address += buildingName+"\n";
+        			}
+        			// 출력 좌표에 해당하는 지번 명칭
+        			if($intRate[0].getElementsByTagName("buildingDong").length>0){
+        				buildingDong = $intRate[0].getElementsByTagName("buildingDong")[0].childNodes[0].nodeValue;
+        				address += buildingDong+"\n";
+        			}
+        			
+        			// 검색 결과 표출
+        			var docs = "< a style='color:orange' href='#webservice/docs/fullTextGeocoding' >Docs< /a >"
+        			$("#result").html("검색결과(지번주소) : "+address+","+"\n"+"응답코드:"+matchFlag+"(상세 코드 내역은 "+docs+"에서 확인)");
+        			
+        		}
+        	},
+        	//요청 실패시 콘솔창에서 에러 내용을 확인할 수 있습니다.
+        	error:function(request,status,error){
+        		console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        	}
+        });
 
-	<!-- =======================================================
-    Theme Name: Moderna
-    Theme URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
-    Author: BootstrapMade
-    Author URL: https://bootstrapmade.com
-	======================================================= -->
-
+        }
+        </script>
 </head>
-
-<body>
-	<div id="wrapper">
-		<!-- start header -->
-		<header>
-			<div class="navbar navbar-default navbar-static-top">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-						<a class="navbar-brand" href="index.html"><span>M</span>oderna</a>
-					</div>
-					<div class="navbar-collapse collapse ">
-						<ul class="nav navbar-nav">
-							<li><a href="index.html">Home</a></li>
-							<li class="dropdown active">
-								<a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Features <b class=" icon-angle-down"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="typography.html">Typography</a></li>
-									<li><a href="components.html">Components</a></li>
-									<li><a href="pricingbox.html">Pricing box</a></li>
-								</ul>
-							</li>
-							<li><a href="portfolio.html">Portfolio</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="contact.html">Contact</a></li>
-						</ul>
-					</div>
+<body onload="initTmap()">
+	<section id="inner-headline">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<ul class="breadcrumb">
+						<li><a href="#"><i class="fa fa-home"></i></a><i
+							class="icon-angle-right"></i></li>
+						<li class="active">경로확인</li>
+					</ul>
 				</div>
 			</div>
-		</header>
-		<!-- end header -->
-		<section id="inner-headline">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<ul class="breadcrumb">
-							<li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
-							<li><a href="#">Features</a><i class="icon-angle-right"></i></li>
-							<li class="active">Pricing box</li>
-						</ul>
-					</div>
-				</div>
+		</div>
+	</section>
+	<form action="/NiGaGaRa/payment.do" method="post" role="form"
+		class="contactForm">
+		<div class="form-group">
+			<h4>출발지 :</h4>
+			<input type="text" name="name" class="form-control" id="start"
+				value="경기 고양시 일산서구 고양대로 633 (일산동, 동양아파트) 102동"
+				readonly />
+			<div class="validation"></div>
+			<div class="form-group">
+				<h4>도착지 :</h4>
+				<input type="text" name="name" class="form-control" id="end"
+					value="경기 고양시 일산동구 고봉로 424 (중산동, 중산마을1단지아파트) 104동"
+					readonly />
+				<div class="validation"></div>
 			</div>
-			<section id="content">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-12">
-							<h4>Example on <strong>3 columns</strong></h4>
-						</div>
-						<div class="col-lg-4">
-							<div class="pricing-box-alt">
-								<div class="pricing-heading">
-									<h3>Very <strong>Basic</strong></h3>
-								</div>
-								<div class="pricing-terms">
-									<h6>&#36;15.00 / Month</h6>
-								</div>
-								<div class="pricing-content">
-									<ul>
-										<li><i class="icon-ok"></i> 100 applications</li>
-										<li><i class="icon-ok"></i> 24x7 support available</li>
-										<li><i class="icon-ok"></i> No hidden fees</li>
-										<li><i class="icon-ok"></i> Free 30-days trial</li>
-										<li><i class="icon-ok"></i> Stop anytime easily</li>
-									</ul>
-								</div>
-								<div class="pricing-action">
-									<a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Register now</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="pricing-box-alt special">
-								<div class="pricing-heading">
-									<h3>Good <strong>Choice</strong></h3>
-								</div>
-								<div class="pricing-terms">
-									<h6>&#36;25.00 / Month</h6>
-								</div>
-								<div class="pricing-content">
-									<ul>
-										<li><i class="icon-ok"></i> 100 applications</li>
-										<li><i class="icon-ok"></i> 24x7 support available</li>
-										<li><i class="icon-ok"></i> No hidden fees</li>
-										<li><i class="icon-ok"></i> Free 30-days trial</li>
-										<li><i class="icon-ok"></i> Stop anytime easily</li>
-									</ul>
-								</div>
-								<div class="pricing-action">
-									<a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Register now</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="pricing-box-alt">
-								<div class="pricing-heading">
-									<h3>Just <strong>Happy</strong></h3>
-								</div>
-								<div class="pricing-terms">
-									<h6>&#36;35.00 / Month</h6>
-								</div>
-								<div class="pricing-content">
-									<ul>
-										<li><i class="icon-ok"></i> 100 applications</li>
-										<li><i class="icon-ok"></i> 24x7 support available</li>
-										<li><i class="icon-ok"></i> No hidden fees</li>
-										<li><i class="icon-ok"></i> Free 30-days trial</li>
-										<li><i class="icon-ok"></i> Stop anytime easily</li>
-									</ul>
-								</div>
-								<div class="pricing-action">
-									<a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Register now</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- divider -->
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="solidline">
-							</div>
-						</div>
-					</div>
-					<!-- end divider -->
-					<div class="row">
-						<div class="col-lg-12">
-							<h4>Example on <strong>4 columns</strong></h4>
-						</div>
-						<div class="col-lg-3">
-							<div class="pricing-box-alt">
-								<div class="pricing-heading">
-									<h3>Very <strong>Basic</strong></h3>
-								</div>
-								<div class="pricing-terms">
-									<h6>&#36;15.00 / Month</h6>
-								</div>
-								<div class="pricing-content">
-									<ul>
-										<li><i class="icon-ok"></i> 100 applications</li>
-										<li><i class="icon-ok"></i> 24x7 support available</li>
-										<li><i class="icon-ok"></i> No hidden fees</li>
-										<li><i class="icon-ok"></i> Free 30-days trial</li>
-										<li><i class="icon-ok"></i> Stop anytime easily</li>
-									</ul>
-								</div>
-								<div class="pricing-action">
-									<a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Register now</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3">
-							<div class="pricing-box-alt">
-								<div class="pricing-heading">
-									<h3>Simple <strong>Choice</strong></h3>
-								</div>
-								<div class="pricing-terms">
-									<h6>&#36;20.00 / Month</h6>
-								</div>
-								<div class="pricing-content">
-									<ul>
-										<li><i class="icon-ok"></i> 100 applications</li>
-										<li><i class="icon-ok"></i> 24x7 support available</li>
-										<li><i class="icon-ok"></i> No hidden fees</li>
-										<li><i class="icon-ok"></i> Free 30-days trial</li>
-										<li><i class="icon-ok"></i> Stop anytime easily</li>
-									</ul>
-								</div>
-								<div class="pricing-action">
-									<a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Register now</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3">
-							<div class="pricing-box-alt special">
-								<div class="pricing-heading">
-									<h3>Special <strong>Choice</strong></h3>
-								</div>
-								<div class="pricing-terms">
-									<h6>&#36;15.00 / Month</h6>
-								</div>
-								<div class="pricing-content">
-									<ul>
-										<li><i class="icon-ok"></i> 100 applications</li>
-										<li><i class="icon-ok"></i> 24x7 support available</li>
-										<li><i class="icon-ok"></i> No hidden fees</li>
-										<li><i class="icon-ok"></i> Free 30-days trial</li>
-										<li><i class="icon-ok"></i> Stop anytime easily</li>
-									</ul>
-								</div>
-								<div class="pricing-action">
-									<a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Register now</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3">
-							<div class="pricing-box-alt">
-								<div class="pricing-heading">
-									<h3>Just <strong>Happy</strong></h3>
-								</div>
-								<div class="pricing-terms">
-									<h6>&#36;15.00 / Month</h6>
-								</div>
-								<div class="pricing-content">
-									<ul>
-										<li><i class="icon-ok"></i> 100 applications</li>
-										<li><i class="icon-ok"></i> 24x7 support available</li>
-										<li><i class="icon-ok"></i> No hidden fees</li>
-										<li><i class="icon-ok"></i> Free 30-days trial</li>
-										<li><i class="icon-ok"></i> Stop anytime easily</li>
-									</ul>
-								</div>
-								<div class="pricing-action">
-									<a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Register now</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<footer>
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-3">
-							<div class="widget">
-								<h5 class="widgetheading">Get in touch with us</h5>
-								<address>
-					<strong>Moderna company Inc</strong><br>
-					 Modernbuilding suite V124, AB 01<br>
-					 Someplace 16425 Earth </address>
-								<p>
-									<i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891 <br>
-									<i class="icon-envelope-alt"></i> email@domainname.com
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-3">
-							<div class="widget">
-								<h5 class="widgetheading">Pages</h5>
-								<ul class="link-list">
-									<li><a href="#">Press release</a></li>
-									<li><a href="#">Terms and conditions</a></li>
-									<li><a href="#">Privacy policy</a></li>
-									<li><a href="#">Career center</a></li>
-									<li><a href="#">Contact us</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-3">
-							<div class="widget">
-								<h5 class="widgetheading">Latest posts</h5>
-								<ul class="link-list">
-									<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-									<li><a href="#">Pellentesque et pulvinar enim. Quisque at tempor ligula</a></li>
-									<li><a href="#">Natus error sit voluptatem accusantium doloremque</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-3">
-							<div class="widget">
-								<h5 class="widgetheading">Flickr photostream</h5>
-								<div class="flickr_badge">
-									<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=8&amp;display=random&amp;size=s&amp;layout=x&amp;source=user&amp;user=34178660@N03"></script>
-								</div>
-								<div class="clear">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="sub-footer">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-6">
-								<div class="copyright">
-									<p>&copy; Moderna Theme. All right reserved.</p>
-									<div class="credits">
-									<!--
-                    All the links in the footer should remain intact.
-                    You can delete the links only if you purchased the pro version.
-                    Licensing information: https://bootstrapmade.com/license/
-                    Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Moderna
-                  -->
-									<a href="https://bootstrapmade.com/">Free Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-								</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<ul class="social-network">
-									<li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-									<li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
-									<li><a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</footer>
-	</div>
-	<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
-	<!-- javascript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="js/jquery.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.fancybox.pack.js"></script>
-	<script src="js/jquery.fancybox-media.js"></script>
-	<script src="js/google-code-prettify/prettify.js"></script>
-	<script src="js/portfolio/jquery.quicksand.js"></script>
-	<script src="js/portfolio/setting.js"></script>
-	<script src="js/jquery.flexslider.js"></script>
-	<script src="js/animate.js"></script>
-	<script src="js/custom.js"></script>
-
+		</div>
+		<div id="map_div"></div>
+		<h4 id="result"></h4>
+		<div class="text-center">
+			<button type="submit" class="btn btn-theme">매칭시작</button>
+		</div>
+	</form>
 </body>
-
 </html>

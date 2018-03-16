@@ -1,5 +1,6 @@
 package kr.nigagara.teamalpha.goods;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,18 +9,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
 @Controller
 public class GoodsController {
 	@Autowired // 자동으로 객체 매핑!
 	GoodsService service;
-
+	@Autowired 
+	StartLoc loc;
+	
 	@RequestMapping(value = "goods/insert.do", method = RequestMethod.POST)
 	public ModelAndView goodsInsert(GoodsVO GoodsVO) {
 		ModelAndView mav = new ModelAndView();
+		ArrayList<Double> sendlist;
+		ArrayList<Double> receiverlist;
+		sendlist = loc.sendlocation(GoodsVO);
+		receiverlist = loc.receivelocation(GoodsVO);
+		System.out.println("보내는사람 위도 경도 = "+sendlist.get(0)+sendlist.get(1));
+		System.out.println("받는사람 위도 경도 = "+receiverlist.get(0)+receiverlist.get(1));
 		System.out.println(GoodsVO);
 		service.goodsInsert(GoodsVO);
 		mav.addObject("GoodsVO", GoodsVO);
+		mav.addObject("send_loccode", sendlist);
+		mav.addObject("receive_loccode", receiverlist);
 		mav.setViewName("match");
 		return mav;
 	}
@@ -62,5 +72,4 @@ public class GoodsController {
 		mav.setViewName("request_qr");
 		return mav;
 	}
-
 }
