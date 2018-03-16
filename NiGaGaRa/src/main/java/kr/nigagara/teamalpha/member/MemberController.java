@@ -2,6 +2,7 @@ package kr.nigagara.teamalpha.member;
 
 import java.util.Date;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -114,11 +115,11 @@ public class MemberController {
 	public String searchpass_result(String id, String email) throws AddressException, MessagingException {
 		System.out.println("searchpass_post");
 		String temppass = MemberController.generateNumber(6) + "";
-		
+
 		if (service.updatePass(id, email, temppass) != 0) {
 			String subject = "[NiGaGaRa] 임시 비밀번호가 발급 되었습니다.";
 			String body = " 안녕하세요 [NiGaGaRa] 입니다. \n발급된 임시 비밀번호는 [" + temppass + "]입니다.\n감사합니다!";
-			
+
 			Mail mail = new Mail(email, subject, body);
 			Mailsender.sendMail(mail);
 		}
@@ -150,11 +151,10 @@ public class MemberController {
 	public @ResponseBody String idCheck(String id) {
 
 		if (!service.idCheck(id)) {
-			return "1";
+			return "T";
 		} else {
-			return "0";
+			return "F";
 		}
-
 	}
 
 	public static int generateNumber(int length) {
@@ -178,6 +178,22 @@ public class MemberController {
 		}
 
 		return result;
+	}
+
+	@RequestMapping(value = "/member/emailchk.do", method = RequestMethod.POST)
+	public @ResponseBody String numberchk(String mem_email, String number) {
+		String subject = "[NiGaGaRa] 이메일을 인증해주세요";
+		String body = "안녕하세요 [NiGaGaRa] 입니다. \n 이메일 인증을 위해 인증번호 [" + number + "]을 입력해 주세요. \n 감사합니다!";
+
+		Mail mail = new Mail(mem_email, subject, body);
+		try {
+			Mailsender.sendMail(mail);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			return "다시받어";
+		}
+		return "인증번호 입력하세요";
+
 	}
 
 }

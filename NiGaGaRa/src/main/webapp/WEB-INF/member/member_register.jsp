@@ -8,8 +8,8 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
+	var idverifyflag = false;
 	$(document).ready(function() {
-
 		$("#birth").datepicker({
 			dateFormat : 'yy/mm/dd',
 			changeMonth : true,
@@ -17,96 +17,161 @@
 			yearRange : '-100y:c+nn',
 			maxDate : '-1d'
 		});
-
+		$("#phone").on("keyup", function() {
+			phone();
+		});
+		$("#mail").on("keyup", function() {
+			mail();
+		});
+		$("#write").on("click", function() {
+			write();
+		})
+		$("#numberchk").on("click", function() {
+			numberchk();
+		})
 		$("#idcheck").on("click", function() {
+			idcheck();
+		});
+		$("#pass").on("keyup", function() {
+			pass();
+		});
+		$("#passchk").on("keyup", function() {
+			passchk();
+		})
+		$("#id").on("keyup", function() {
+			id();
+		})
+		$("#numberchk").on("click", function() {
+			alert("인증번호가 발송되었습니다.")
+		})
+	});
+	function phone() {
+		var pattern = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+		var phone = $("#phone").val();
+		if (!pattern.test(phone)) {
+			$("#phoneresult").text("전화번호 형식이 맞지 않습니다.");
+			return false;
+		}
+		$("#phoneresult").text("전화번호 형식이 맞습니다.");
+		return true;
+	}
+	function mail() {
+		var pattern = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+		var mail = $("#mail").val();
+		if (!pattern.test(mail)) {
+			$("#emailresult").text("이메일 형식이 맞지 않습니다.");
+			return false;
+		}
+		$("#emailresult").text("이메일 형식이 맞습니다.");
+		return true;
+	}
+	function write() {
+		if ($("#mailchk").val() != emailRandNum) {
+			$("#mailchkresult").text("인증번호가 다릅니다")
+			return false;
+		} else {
+			$("#mailchkresult").text("")
+			alert("성공하였습니다.")
+			return true;
+		}
+	}
+
+	function numberchk() {
+		emailRandNum = Math.floor(Math.random() * 1000000);
+		$.ajax({
+			url : "/NiGaGaRa/member/emailchk.do",
+			type : "POST",
+			data : {
+				"number" : emailRandNum,
+				"mem_email" : $("#mail").val()
+			},
+			dataType : "text",
+			success : function(resp) {
+				$("#numberchkresult").text(resp);
+			}
+		})
+	}
+	idcheckRet = false;
+	function idcheck() {
+		if (id()) {
+
 			var querydata = {
 				"id" : $("#id").val()
 			}
+
 			$.ajax({
 				url : "/NiGaGaRa/member/idDuplicateCheck.do", //아이디 인증하는 곳 수정요
 				type : "get",
 				data : querydata,
 				dataType : "text",
-				success : success_run,
-				error : err_run
-
+				success : function(resp) {
+					if (resp == "F") {
+						$("#result").text("사용 불가능한 ID입니다.")
+						idcheckRet = false;
+					} else if (resp == "T") {
+						$("#result").text("사용 가능한 ID입니다.")
+						idcheckRet = true;
+					}
+				}
 			});
-		});
-
-		$("#btnConfirm").on("click", function() {
-			var text1 = $("#confirm").val();
-			var text2 = $("#confirmEmail").val()
-
-			if (text1 == text2) {
-				$("#confirmflag").val("true");
-				alert("이메일 인증이 완료되었습니다.");
-				$("#confirmMsg").text("인증완료");
-
-			} else {
-				$("#confirmflag").val("false");
-				alert("인증번호가 틀립니다.")
-				$("#confirmMsg").text("인증실패(재인증필요)");
-			}
-
-		});
-	});
-
-	function success_run(txt) {
-
-		if (txt == "1") {
-			alert("사용가능한 아이디입니다.");
-			$("#result").text("사용가능한 아이디입니다.");
-			document.getElementById("idDuplicateCheck").setAttribute("value",
-					true);
-			alert(document.getElementById("idDuplicateCheck").value);
-		} else {
-			alert("사용불가한 아이디입니다.");
-			$("#result").text("사용불가한 아이디입니다.");
 		}
 	}
+	function pass() {
+		var id = $("#id").val();
 
-	function err_run(obj, msg, statusMsg) {
-		alert("오류발생 : " + obj + msg + statusMsg);
+		var password = $("#pass").val();
+
+		if (!/^[a-zA-Z0-9]{10,15}$/.test(password)) {
+
+			$("#passresult").html('숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.');
+			return false;
+		}
+		var checkNumber = password.search(/[0-9]/g);
+
+		var checkEnglish = password.search(/[a-z]/ig);
+
+		if (checkNumber < 0 || checkEnglish < 0) {
+
+			$("#passresult").html("숫자와 영문자를 혼용하여야 합니다.");
+			return false;
+		}
+		if (/(\w)\1\1\1/.test(password)) {
+
+			$("#passresult").html('같은 문자를 4번 이상 사용하실 수 없습니다.');
+			return false;
+		}
+		if (password.search(id) > -1) {
+
+			$("#passresult").html("비밀번호에 아이디가 포함되었습니다.");
+			return false;
+
+		}
+		$("#passresult").html("");
+		return true;
 	}
-
-	function success_runCert(certText) {
-
-		$("#sendMsg").text("해당 메일로 인증번호가 발송되었습니다.");
-
-		$("#confirmEmail").val(certText);
-
+	function passchk() {
+		var pass = $("#pass").val();
+		var passchk = $("#passchk").val();
+		if (pass != passchk) {
+			$("#passchkresult").text("비밀번호가 일치하지 않습니다.");
+			return false;
+		}
+		$("#passchkresult").text("비밀번호가 동일합니다.");
+		return true
 	}
-
-	function Check() {
-		var idDuplicateCheck = document.getElementById("id_duplicate_check").value;
-		var pass = document.getElementById("pass").value;
-		var passchk = document.getElementById("passchk").value;
-
-		var emailconfirm = document.getElementById("confirmflag").value;
-		var agree1 = document.getElementById("agree1").checked;
-		var agree2 = document.getElementById("agree2").checked;
-
-		if (idDuplicateCheck == "false") {
-			alert("중복여부를 체크해주세요");
-			return false;
-		} else if (pass != passchk) {
-			alert("비밀번호를 다시입력해주세요");
-			return false;
-		} else if (emailconfirm == "false") {
-			alert("이메일 인증 해주세요");
-			return false;
-		} else if (agree1 == false) {
-			alert("이용약관동의를 해주세요");
-			return false;
-		} else if (agree2 == false) {
-			alert("개인정보 수집 및 이용동의를 해주세요");
+	function id() {
+		var id = $("#id").val();
+		var checkNumber = id.search(/[0-9]/g);
+		var checkEnglish = id.search(/[a-z]/ig);
+		if (id.length<6||id.length>10 && /^[a-zA-Z]{1}[a-zA-Z0-9_]/
+				&& checkNumber < 0 || checkEnglish < 0) {
+			$("#result").text("아이디는 5자이상 10자이하 여야하며 영문과 숫자가 1개이상 들어가야합니다.");
 			return false;
 		} else {
-			alert("회원가입완료")
+			$("#result").text("")
 			return true;
 		}
 	}
-
 	function execDaumPostcode() {
 		new daum.Postcode(
 				{
@@ -151,6 +216,17 @@
 					}
 				}).open();
 	}
+	function inputVerify() {
+		if (phone() && mail() && id() && idcheckRet && write() && passchk()
+				&& pass()) {
+			alert("회원가입 성공")
+			return true;
+		} else {
+			alert("제대로 입력해 주세요.")
+			return false;
+
+		}
+	}
 </script>
 
 
@@ -185,7 +261,7 @@ input {
 </head>
 <body>
 	<form action="/NiGaGaRa/member/register.do" method="post"
-		enctype="multipart/form-data" onsubmit="return Check()">
+		enctype="multipart/form-data" onsubmit="return inputVerify();">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 
@@ -201,11 +277,13 @@ input {
 					<li class="list-group-item">
 						<input id="pass" name="mem_pw" type="password" placeholder="패스워드"
 							class="form-control input-md" required="required">
+						<span id="passresult"></span>
 					</li>
 					<li class="list-group-item">
 						<input id="passchk" name="mem_pw_chk" type="password"
 							placeholder="패스워드 확인" class="form-control input-md"
 							required="required">
+						<span id="passchkresult"></span>
 					</li>
 					<li class="list-group-item">
 						<input id="name" name="mem_name" type="text" placeholder="이름"
@@ -225,12 +303,21 @@ input {
 					<li class="list-group-item">
 						<input id="phone" name="mem_phone" type="text" placeholder="전화번호"
 							class="form-control input-md" required="required">
+						<span id=phoneresult></span>
 					</li>
 
 					<li class="list-group-item">
 						<input id="mail" name="mem_email" type="text" placeholder="이메일"
 							class="form-control input-md" required="required">
+						<span id="emailresult"></span>
+						<input id="mailchk" name="mem_email" type="text"
+							placeholder="인증번호" class="form-control input-md"
+							required="required">
+						<span id="mailchkresult"></span>
+						<input type="button" class="" id="numberchk" value="인증번호받기">
+						<input type="button" class="" id="write" value="입력하기">
 					</li>
+
 
 					<li class="list-group-item">
 						<input id="mem_zipcode" name="mem_zipcode" type="text"

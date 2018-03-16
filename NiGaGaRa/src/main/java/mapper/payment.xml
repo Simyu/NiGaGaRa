@@ -10,7 +10,7 @@
 	
 
 <!-- 
- payment_num     NUMBER          NOT NULL, 
+    payment_num     NUMBER          NOT NULL, 
     delivery_num    NUMBER          NULL, 
     payment_date    VARCHAR2(20)    NULL, 
     payment_type    VARCHAR2(20)    NULL, 
@@ -19,6 +19,7 @@
 );
 CREATE SEQUENCE payment_SEQ
 START WITH 1
+
 INCREMENT BY 1;
 ALTER TABLE payment
     ADD CONSTRAINT FK_payment_delivery_num_delive FOREIGN KEY (delivery_num)

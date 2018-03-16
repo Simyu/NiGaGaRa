@@ -18,7 +18,7 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public List<PaymentVO> paymentlist(int payment_num) {
-		return dao.paymentlist(payment_num);
+	public List<PaymentVO> paymentlist(String mem_id) {
+		return dao.paymentlist(mem_id);
 	}
 }

@@ -1,7 +1,8 @@
 package kr.nigagara.teamalpha.payment;
 
 public class PaymentVO {
-
+	
+	private String mem_id;
 	private int payment_num;
 	private int delivery_num;
 	private String payment_date;
@@ -9,16 +10,25 @@ public class PaymentVO {
 	private int point;
 
 	public PaymentVO() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	public PaymentVO(int payment_num, int delivery_num, String payment_date, String payment_type, int point) {
+	public PaymentVO(String mem_id,int payment_num, int delivery_num, String payment_date, String payment_type, int point) {
 		super();
+		this.mem_id = mem_id;
 		this.payment_num = payment_num;
 		this.delivery_num = delivery_num;
 		this.payment_date = payment_date;
 		this.payment_type = payment_type;
 		this.point = point;
+	}
+    
+	public String getMem_id() {
+		return mem_id;
+	}
+
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
 	}
 
 	public int getPayment_num() {
@@ -63,8 +73,8 @@ public class PaymentVO {
 
 	@Override
 	public String toString() {
-		return "PaymentVO [payment_num=" + payment_num + ", delivery_num=" + delivery_num + ", payment_date="
-				+ payment_date + ", payment_type=" + payment_type + ", point=" + point + "]";
+		return "PaymentVO [mem_id=" + mem_id + ", payment_num=" + payment_num + ", delivery_num=" + delivery_num
+				+ ", payment_date=" + payment_date + ", payment_type=" + payment_type + ", point=" + point + "]";
 	}
 
 }
