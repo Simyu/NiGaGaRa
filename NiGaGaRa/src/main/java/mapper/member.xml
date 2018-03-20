@@ -8,7 +8,6 @@
 		#{mem_addr}, #{mem_addr_detail}, '활성', #{mem_gender}, #{mem_phone},
 		#{mem_email}, 0, '일반회원', #{mem_account}, #{mem_img},0,0)
 	</insert>
-
 	<select id="read" parameterType="java.lang.String" resultType="member">
 		select *
 		from member

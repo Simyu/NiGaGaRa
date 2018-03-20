@@ -20,6 +20,7 @@ import org.springframework.web.util.WebUtils;
 
 @Controller
 @SessionAttributes("loginUser")
+
 public class MemberController {
 	@Autowired
 	MemberService service;

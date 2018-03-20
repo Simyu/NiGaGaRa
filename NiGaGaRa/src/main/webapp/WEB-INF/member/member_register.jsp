@@ -6,8 +6,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="/NiGaGaRa/resources/js/account/ext_util.js"></script>
+<script src="/NiGaGaRa/resources/js/account/constants.js"></script>
+<script src="/NiGaGaRa/resources/js/account/common.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
+	$(function() {
+		/* resizeResultTextArea(70); */
+		/* setDefaultFieldVal(); */
+		setFieldVal();
+
+	})
+	function setFieldVal() {
+
+		$('#tran_dtime').val(new Date().format('yyyyMMddHHmmss')); // 요청일시
+	}
 	var idverifyflag = false;
 	$(document).ready(function() {
 		$("#birth").datepicker({
@@ -17,6 +30,9 @@
 			yearRange : '-100y:c+nn',
 			maxDate : '-1d'
 		});
+		$("#accountchk").on("click", function() {
+			getTokenByClientCredentials();
+		})
 		$("#phone").on("keyup", function() {
 			phone();
 		});
@@ -44,11 +60,24 @@
 		$("#numberchk").on("click", function() {
 			alert("인증번호가 발송되었습니다.")
 		})
-		$("#account").on("click", function() {
-			getTokenByClientCredentials();
-		})
+
+		//계좌번호 정규식
+		/* $("#account").on("keyup",function(){
+			account();
+		}) */
 
 	});
+	//계좌번호 정규식
+	/* function account(){
+		var pattern = /[0-9]{4}-[0-9]{6}-[0-9]{2}-[0-9]/
+		var account = $("#account").val();
+		if(!pattern.test(account)&&account.length<14||account.length>16){
+			$("#accountval").text("계좌번호 형식이 맞지 않습니다.")
+			return false;
+		}
+		$("#accountval").text("계좌번호 형식이 맞습니다.")
+		return true;
+	} */
 	function phone() {
 		var pattern = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 		var phone = $("#phone").val();
@@ -220,34 +249,32 @@
 					}
 				}).open();
 	}
-	function inputVerify() {
-		if (phone() && mail() && id() && idcheckRet && write() && passchk()
-				&& pass()) {
-			return true;
-		} else {
-			alert("제대로 입력해 주세요.");
-			return false;
-		}
-	}
+	//======================계좌번호 api====================
 	function getTokenByClientCredentials() {
-
 		$.ajax({
 			url : getSvrProps('base_api_uri') + '/oauth/2.0/token',
 			type : 'post',
-			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+			contentType : 'application/json; charset=UTF-8',
 			data : {
 				'client_id' : $('#client_id').val(),
 				'client_secret' : $('#client_secret').val(),
 				'grant_type' : 'client_credentials',
 				'scope' : 'oob'
+			},
+			success : function(data, textStatus, jqXHR) {
+				if (isGatewayException(data)) {
+					return;
+				} else {
+					$('#token').val(data.access_token);
+					alert("token")
+					inquiryRealName();
+
+				}
 			}
-		}).done(function(data, textStatus, jqXHR) {
-			if (isGatewayException(data)) {
-				return;
-			}
-			$('#token').val(data.access_token);
-		});
+
+		})
 	}
+
 	function inquiryRealName() {
 
 		if (isEmptyElem('token')) {
@@ -263,15 +290,26 @@
 			},
 			data : js($.extend({}, getFormParamObj('real_nameFrm'), {
 			// additional parameters
-			}))
-		}).done(function(data, textStatus, jqXHR) {
-			if (isGatewayException(data)) {
-				return;
-			} // ajax 응답이 Gateway Exception일 경우 이후 처리를 종료한다.		
-
-			// UI에 결과값 바인딩
-			$('#resultTextArea').val(js(data));
+			})),
+			success : function(data, textStatus, jqXHR) {
+				if (isGatewayException(data)) {
+					return;
+				}else{ // ajax 응답이 Gateway Exception일 경우 이후 처리를 종료한다.		
+				alert("test")
+				// UI에 결과값 바인딩
+				$('#accountval').val(js(data));
+				}
+			}
 		});
+	}
+	function inputVerify() {
+		if (phone() && mail() && id() && idcheckRet && write() && passchk()
+				&& pass()/* &&account() */) {
+			return true;
+		} else {
+			alert("제대로 입력해 주세요.");
+			return false;
+		}
 	}
 </script>
 
@@ -306,6 +344,12 @@ input {
 
 </head>
 <body>
+	<input type="hidden" id="code">
+	<input type="hidden" id="client_id">
+	<input type="hidden" id="client_secret">
+	<input type="hidden" id="redirect_uri">
+	<input type="hidden" id="grant_type">
+
 	<form action="/NiGaGaRa/member/register.do" method="post"
 		enctype="multipart/form-data" onsubmit="return inputVerify();">
 		<div class="col-md-2"></div>
@@ -322,10 +366,10 @@ input {
 					<li class="list-group-item"><input id="pass" name="mem_pw"
 						type="password" placeholder="패스워드" class="form-control input-md"
 						required="required"> <span id="passresult"></span></li>
-					<li class="list-group-item">
-					<input id="passchk"	name="mem_pw_chk" type="password" placeholder="패스워드 확인"
-						class="form-control input-md" required="required"> 
-						<span id="passchkresult"></span></li>
+					<li class="list-group-item"><input id="passchk"
+						name="mem_pw_chk" type="password" placeholder="패스워드 확인"
+						class="form-control input-md" required="required"> <span
+						id="passchkresult"></span></li>
 					<li class="list-group-item"><input id="name" name="mem_name"
 						type="text" placeholder="이름" class="form-control input-md"
 						required="required"></li>
@@ -343,9 +387,9 @@ input {
 						type="text" placeholder="이메일" class="form-control input-md"
 						required="required"> <span id="emailresult"></span> <input
 						id="mailchk" type="text" placeholder="인증번호"
-						class="form-control input-md" required="required"> 
-						<input type="button" class=""id="numberchk" value="인증번호받기"> 
-						<input type="button" class="" id="write" value="입력하기"></li>
+						class="form-control input-md" required="required"> <input
+						type="button" class="" id="numberchk" value="인증번호받기"> <input
+						type="button" class="" id="write" value="입력하기"></li>
 
 
 					<li class="list-group-item"><input id="mem_zipcode"
@@ -360,9 +404,10 @@ input {
 					</li>
 					<li class="list-group-item"><input id="account"
 						name="mem_account" type="text" placeholder="계좌번호"
-						class="form-control input-md" required="required">
-						<input type="button" id="account" value="인증조회">></li>
-					
+						class="form-control input-md" required="required"> <span
+						id="accountval"></span> <input type="button" id="accountchk"
+						value="인증조회"></li>
+
 					<li class="list-group-item"><input type="checkbox" id="agree1">
 						이용약관동의 <span> </span> <input type="button" value="내용보기" /></li>
 					<li class="list-group-item"><input type="checkbox" id="agree2">
@@ -370,7 +415,7 @@ input {
 					</li>
 					<li class="list-group-item"><input type="checkbox" id="agree3">
 						우편번호와 주소 수집 및 이용 동의 <span></span></li>
-					
+
 					<input class="btn btn-lg btn-primary btn-block btn-signin"
 						type="submit" value="Sign in" />
 					<input type="text" id="id_duplicate_check" value="false" hidden="" />

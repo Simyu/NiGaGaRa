@@ -7,12 +7,12 @@ CREATE TABLE member
     mem_name           VARCHAR2(20)     NULL, 
     mem_birth          VARCHAR2(20)     NULL, 
     mem_zipcode        VARCHAR2(5)      NULL, 
-    mem_addr           VARCHAR2(90)     NULL, 
-    mem_addr_detail    VARCHAR2(90)     NULL, 
+    mem_addr           VARCHAR2(200)     NULL, 
+    mem_addr_detail    VARCHAR2(200)     NULL, 
     mem_state          VARCHAR2(20)     NULL, 
     mem_gender         VARCHAR2(20)     NULL, 
     mem_phone          VARCHAR2(20)     NULL, 
-    mem_email          VARCHAR2(20)     NULL, 
+    mem_email          VARCHAR2(100)     NULL, 
     point_total        NUMBER           NULL, 
     mem_type           VARCHAR2(20)     NULL, 
     mem_account        VARCHAR2(20)     NULL, 
@@ -63,6 +63,8 @@ CREATE TABLE goods
     goods_Msg           VARCHAR2(2000)    NULL, 
     Match_State         VARCHAR2(20)    NULL, 
     sender_id           VARCHAR2(20)    NULL, 
+    receiver_addr_detail VARCHAR2(200)    NULL,
+    sender_addr_detail	VARCHAR2(200)    NULL,
     CONSTRAINT GOODS_PK PRIMARY KEY (goods_Num)
 );
 
