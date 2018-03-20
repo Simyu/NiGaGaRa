@@ -2,11 +2,11 @@ package kr.nigagara.teamalpha.member;
 
 import java.util.Date;
 import java.util.Random;
-import java.util.regex.Pattern;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -194,6 +194,13 @@ public class MemberController {
 		}
 		return "인증번호 입력하세요";
 
+	}
+
+	@RequestMapping(value = "/member/logout.do", method = RequestMethod.GET)
+	public String logout(HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		session.invalidate();
+		return "login";
 	}
 
 }
