@@ -40,6 +40,7 @@
 								<th>배송비</th>
 								<th>QR코드</th>
 								<th>매칭유무</th>
+								<th>평가</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -54,6 +55,7 @@
 									<th>${requestlist.estimated_Price}</th>
 									<th><a href="/NiGaGaRa/goods/qrcode.do?goods_Num=${requestlist.goods_Num}">확인</a></th>
 									<th>${requestlist.match_State}</th>
+									<th><a href="/NiGaGaRa/evaluation.do?goods_Num=${requestlist.goods_Num}">평가</a></th>
 								</tr>
 							</c:forEach>
 

@@ -7,8 +7,21 @@
 		from delivery
 		where delivery_Man = #{delivery_Man}
 	</select>
-	
+
 	<select id="select" resultType="delivery" parameterType="Integer">
-		select * from delivery where deliveryNum=#{deliveryNum}
+		select *
+		from delivery where deliveryNum=#{deliveryNum}
+	</select>
+
+	<update id="changeState" parameterType="String">
+		update delivery set
+		delivery_State = delivery_State + 1
+		where goods_Num = #{goods_Num}
+	</update>
+	
+	<select id="stateResult" resultType="delivery" parameterType="String">
+		select *
+		from delivery 
+		where Goods_Num = #{Goods_Num}
 	</select>
 </mapper>

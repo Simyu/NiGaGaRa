@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface GoodsDAO {
 	void goodsInsert(GoodsVO GoodsVO);
-	List<GoodsVO> requestlist ();
+	List<GoodsVO> requestlist (String login_id);
 	List<GoodsVO> requestdetail (String goods_Num);
 	int requestedit (GoodsVO GoodsVO);
 

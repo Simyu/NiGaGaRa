@@ -190,7 +190,8 @@
 															+ '<img src="/NiGaGaRa/resources/img/avatar.png" alt="Picture">'
 															+ '<p>'
 															+ str
-															+ '</p>' + '</div>';
+															+ '</p>' 
+															+ '</div>';
 													$(".chatbox__body").append(
 															msg);
 													$(this).val("");

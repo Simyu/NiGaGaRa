@@ -36,10 +36,25 @@ public class GoodsController {
 
 	// 신청 목록 리스트
 	@RequestMapping("/goods/list.do")
-	public ModelAndView list(){
+	public ModelAndView list(String mem_id){
 		ModelAndView mav = new ModelAndView();
-		List<GoodsVO> requestlist = service.requestlist();
+		List<GoodsVO> requestlist = service.requestlist(mem_id);
 		System.out.println(requestlist);
+		System.out.println("size=>"+requestlist.size());
+		if(requestlist!=null) {
+			System.out.println("requestlist not null");
+			for(int i = 0; i< requestlist.size(); i++) {
+				String res = requestlist.get(i).getMatch_State();
+				System.out.println("getMatch_State=>"+res);
+				if(res.equals(Integer.toString(0))) {
+					requestlist.set(i, requestlist.get(i)).setMatch_State("배송전");
+				}else if(res.equals(Integer.toString(1))) {
+					requestlist.set(i, requestlist.get(i)).setMatch_State("배송중");
+				}else if(res.equals(Integer.toString(2))) {
+					requestlist.set(i, requestlist.get(i)).setMatch_State("배송완료");
+				}
+			}
+		}
 		mav.addObject("requestlist", requestlist);
 		mav.setViewName("request_list");
 		return mav;

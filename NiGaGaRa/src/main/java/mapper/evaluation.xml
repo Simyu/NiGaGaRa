@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nigagara.evaluation">
+
+	<select id="evalDetail" resultType="member" parameterType="String">
+		select * from member where mem_id = (select delivery_Man from delivery where goods_Num =#{goods_Num})
+	</select>
+
+	<update id="evalinsert" parameterType="String">
+		insert into grade values
+		(grade_SEQ.nextval,(select delivery_num from delivery where goods_Num = #{goods_Num}),#{grade},#{grade_content},sysdate)
+	</update>
+</mapper>
