@@ -548,7 +548,7 @@ function delRow($jo){
 /**
  * access_token 획득 ('grant_type': 'authorization_code')
  */
-function getTokenByAuthCode(){
+/*function getTokenByAuthCode(){
 
 	if(isEmptyElem('code')){
 		showMsg('Authorization Code 를 먼저 획득해 주십시오.');
@@ -575,12 +575,12 @@ function getTokenByAuthCode(){
 		$('#refresh_token').val(data.refresh_token);
 		$('#user_seq_no').val(data.user_seq_no);
 	});
-}
+}*/
 
 /**
  * access_token 획득 ('grant_type': 'client_credentials')
  */
-function getTokenByClientCredentials(){
+/*function getTokenByClientCredentials(){
 
 	$.ajax({
 		url: getSvrProps('base_api_uri') + '/oauth/2.0/token',
@@ -595,16 +595,16 @@ function getTokenByClientCredentials(){
 	})
 	.done(function(data, textStatus, jqXHR){
 		if(isGatewayException(data)){ return; } // ajax 응답이 Gateway Exception일 경우 이후 처리를 종료한다.		
-		
+		alert(grant)
 		// UI에 결과값 바인딩
 		$('#token').val(data.access_token);
 	});
-}
+}*/
 
 /**
  * access_token 획득 ('grant_type': 'refresh_token')
  */
-function getTokenByRT(){
+/*function getTokenByRT(){
 
 	$.ajax({
 		url: getSvrProps('base_api_uri') + '/oauth/2.0/token',
@@ -626,49 +626,8 @@ function getTokenByRT(){
 		$('#refresh_token').val(data.refresh_token);
 		$('#user_seq_no').val(data.user_seq_no);
 	});
-}
+}*/
 
-/**
- * 사용자정보조회 / 등록계좌조회
- */
-function getUserInfo(e){
-	
-	if(isEmptyElem('token')){
-		showMsg('Access Token 을 먼저 획득해 주십시오.');
-		return;
-	}
-	
-	var uri = getSvrProps('base_api_uri');
-	var option = {};
-	switch(e.target.id){
-	case 'btnUserMe': uri += '/v1.0/user/me'; 
-		break;
-	case 'btnAccountList': uri += '/v1.0/account/list';
-		option = {
-			'include_cancel_yn': $('#include_cancel_yn').val(),	
-			'sort_order': $('#sort_order').val()	
-		} 
-		break;
-	}
-	$.ajax({
-		url: uri,
-		type: 'get',
-		headers: {
-			'Authorization': ('Bearer ' + $('#token').val())
-		},
-		
-		data: $.extend(true, {
-			'user_seq_no': $('#user_seq_no').val(),
-			'tran_dtime': new Date().format('yyyyMMddHHmmss')
-		}, option)
-		
-	})
-	.done(function(data, textStatus, jqXHR){
-		if(isGatewayException(data)){ return; } // ajax 응답이 Gateway Exception일 경우 이후 처리를 종료한다.
-		
-		$('#resultTextArea').val(js(data));
-	});		
-}
 
 /**
  * 입력폼으로 구성된 테이블에서 데이터를 취합하여 json array 를 생성한 후 리턴한다.

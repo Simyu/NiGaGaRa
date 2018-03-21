@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+   pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +12,6 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function() {
-		/* resizeResultTextArea(70); */
-		/* setDefaultFieldVal(); */
 		setFieldVal();
 
 	})
@@ -65,7 +63,6 @@
 		/* $("#account").on("keyup",function(){
 			account();
 		}) */
-
 	});
 	//계좌번호 정규식
 	/* function account(){
@@ -109,141 +106,140 @@
 		}
 	}
 
-	function numberchk() {
-		emailRandNum = Math.floor(Math.random() * 1000000);
-		$.ajax({
-			url : "/NiGaGaRa/member/emailchk.do",
-			type : "POST",
-			data : {
-				"number" : emailRandNum,
-				"mem_email" : $("#mail").val()
-			},
-			dataType : "text",
-			success : function(resp) {
-				$("#numberchkresult").text(resp);
-			}
-		})
-	}
-	idcheckRet = false;
-	function idcheck() {
-		if (id()) {
+   function numberchk() {
+      emailRandNum = Math.floor(Math.random() * 1000000);
+      $.ajax({
+         url : "/NiGaGaRa/member/emailchk.do",
+         type : "POST",
+         data : {
+            "number" : emailRandNum,
+            "mem_email" : $("#mail").val()
+         },
+         dataType : "text",
+         success : function(resp) {
+            $("#numberchkresult").text(resp);
+         }
+      })
+   }
+   idcheckRet = false;
+   function idcheck() {
+      if (id()) {
 
-			var querydata = {
-				"id" : $("#id").val()
-			}
+         var querydata = {
+            "id" : $("#id").val()
+         }
 
-			$.ajax({
-				url : "/NiGaGaRa/member/idDuplicateCheck.do", //아이디 인증하는 곳 수정요
-				type : "get",
-				data : querydata,
-				dataType : "text",
-				success : function(resp) {
-					if (resp == "F") {
-						$("#result").text("사용 불가능한 ID입니다.")
-						idcheckRet = false;
-					} else if (resp == "T") {
-						$("#result").text("사용 가능한 ID입니다.")
-						idcheckRet = true;
-					}
-				}
-			});
-		}
-	}
-	function pass() {
-		var id = $("#id").val();
+         $.ajax({
+            url : "/NiGaGaRa/member/idDuplicateCheck.do", //아이디 인증하는 곳 수정요
+            type : "get",
+            data : querydata,
+            dataType : "text",
+            success : function(resp) {
+               if (resp == "F") {
+                  $("#result").text("사용 불가능한 ID입니다.")
+                  idcheckRet = false;
+               } else if (resp == "T") {
+                  $("#result").text("사용 가능한 ID입니다.")
+                  idcheckRet = true;
+               }
+            }
+         });
+      }
+   }
+   function pass() {
+      var id = $("#id").val();
 
-		var password = $("#pass").val();
+      var password = $("#pass").val();
 
-		if (!/^[a-zA-Z0-9]{10,15}$/.test(password)) {
+      if (!/^[a-zA-Z0-9]{10,15}$/.test(password)) {
 
-			$("#passresult").html('숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.');
-			return false;
-		}
-		var checkNumber = password.search(/[0-9]/g);
+         $("#passresult").html('숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.');
+         return false;
+      }
+      var checkNumber = password.search(/[0-9]/g);
 
-		var checkEnglish = password.search(/[a-z]/ig);
+      var checkEnglish = password.search(/[a-z]/ig);
 
-		if (checkNumber < 0 || checkEnglish < 0) {
+      if (checkNumber < 0 || checkEnglish < 0) {
 
-			$("#passresult").html("숫자와 영문자를 혼용하여야 합니다.");
-			return false;
-		}
-		if (/(\w)\1\1\1/.test(password)) {
+         $("#passresult").html("숫자와 영문자를 혼용하여야 합니다.");
+         return false;
+      }
+      if (/(\w)\1\1\1/.test(password)) {
 
-			$("#passresult").html('같은 문자를 4번 이상 사용하실 수 없습니다.');
-			return false;
-		}
-		if (password.search(id) > -1) {
+         $("#passresult").html('같은 문자를 4번 이상 사용하실 수 없습니다.');
+         return false;
+      }
+      if (password.search(id) > -1) {
 
-			$("#passresult").html("비밀번호에 아이디가 포함되었습니다.");
-			return false;
+         $("#passresult").html("비밀번호에 아이디가 포함되었습니다.");
+         return false;
 
-		}
-		$("#passresult").html("");
-		return true;
-	}
-	function passchk() {
-		var pass = $("#pass").val();
-		var passchk = $("#passchk").val();
-		if (pass != passchk) {
-			$("#passchkresult").text("비밀번호가 일치하지 않습니다.");
-			return false;
-		}
-		$("#passchkresult").text("비밀번호가 동일합니다.");
-		return true
-	}
-	function id() {
-		var id = $("#id").val();
-		var checkNumber = id.search(/[0-9]/g);
-		var checkEnglish = id.search(/[a-z]/ig);
-		if (id.length<6||id.length>10 && /^[a-zA-Z]{1}[a-zA-Z0-9_]/
-				&& checkNumber < 0 || checkEnglish < 0) {
-			$("#result").text("아이디는 5자이상 10자이하 여야하며 영문과 숫자가 1개이상 들어가야합니다.");
-			return false;
-		} else {
-			$("#result").text("")
-			return true;
-		}
-	}
-	function execDaumPostcode() {
-		new daum.Postcode(
-				{
-					oncomplete : function(data) {
-						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+      }
+      $("#passresult").html("");
+      return true;
+   }
+   function passchk() {
+      var pass = $("#pass").val();
+      var passchk = $("#passchk").val();
+      if (pass != passchk) {
+         $("#passchkresult").text("비밀번호가 일치하지 않습니다.");
+         return false;
+      }
+      $("#passchkresult").text("비밀번호가 동일합니다.");
+      return true
+   }
+   function id() {
+      var id = $("#id").val();
+      var checkNumber = id.search(/[0-9]/g);
+      var checkEnglish = id.search(/[a-z]/ig);
+      if (id.length<6||id.length>10 && /^[a-zA-Z]{1}[a-zA-Z0-9_]/
+            && checkNumber < 0 || checkEnglish < 0) {
+         $("#result").text("아이디는 5자이상 10자이하 여야하며 영문과 숫자가 1개이상 들어가야합니다.");
+         return false;
+      } else {
+         $("#result").text("")
+         return true;
+      }
+   }
+   function execDaumPostcode() {
+      new daum.Postcode(
+            {
+               oncomplete : function(data) {
+                  // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-						var fullAddr = ''; // 최종 주소 변수
-						var extraAddr = ''; // 조합형 주소 변수
+                  // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                  // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                  var fullAddr = ''; // 최종 주소 변수
+                  var extraAddr = ''; // 조합형 주소 변수
 
-						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-							fullAddr = data.roadAddress;
+                  // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                  if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                     fullAddr = data.roadAddress;
 
-						} else { // 사용자가 지번 주소를 선택했을 경우(J)
-							fullAddr = data.jibunAddress;
-						}
+                  } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                     fullAddr = data.jibunAddress;
+                  }
 
-						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-						if (data.userSelectedType === 'R') {
-							//법정동명이 있을 경우 추가한다.
-							if (data.bname !== '') {
-								extraAddr += data.bname;
-							}
-							// 건물명이 있을 경우 추가한다.
-							if (data.buildingName !== '') {
-								extraAddr += (extraAddr !== '' ? ', '
-										+ data.buildingName : data.buildingName);
-							}
-							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-							fullAddr += (extraAddr !== '' ? ' (' + extraAddr
-									+ ')' : '');
-						}
+                  // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                  if (data.userSelectedType === 'R') {
+                     //법정동명이 있을 경우 추가한다.
+                     if (data.bname !== '') {
+                        extraAddr += data.bname;
+                     }
+                     // 건물명이 있을 경우 추가한다.
+                     if (data.buildingName !== '') {
+                        extraAddr += (extraAddr !== '' ? ', '
+                              + data.buildingName : data.buildingName);
+                     }
+                     // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                     fullAddr += (extraAddr !== '' ? ' (' + extraAddr
+                           + ')' : '');
+                  }
 
-						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('mem_zipcode').value = data.zonecode; //5자리 새우편번호 사용
-						document.getElementById('mem_addr').value = fullAddr;
-
+                  // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                  document.getElementById('mem_zipcode').value = data.zonecode; //5자리 새우편번호 사용
+                  document.getElementById('mem_addr').value = fullAddr;
 						// 커서를 상세주소 필드로 이동한다.
 						document.getElementById('mem_addr_detail').focus();
 					}
@@ -251,6 +247,7 @@
 	}
 	//======================계좌번호 api====================
 	function getTokenByClientCredentials() {
+		var grant = $("#client_credentials").val()
 		$.ajax({
 			url : getSvrProps('base_api_uri') + '/oauth/2.0/token',
 			type : 'post',
@@ -263,30 +260,27 @@
 			},
 			success : function(data, textStatus, jqXHR) {
 				if (isGatewayException(data)) {
+					alert(grant)
 					return;
-				} else {
-					$('#token').val(data.access_token);
-					alert("token")
 					inquiryRealName();
-
+				} else {
+					 isGatewayException(data);
+					$('#token').val(data.access_token);
+					
 				}
 			}
-
 		})
 	}
-
-	function inquiryRealName() {
-
-		if (isEmptyElem('token')) {
-			showMsg('Access Token을 먼저 획득해 주십시오.');
-			return;
-		}
-
+   function inquiryRealName() {
+      if (isEmptyElem('token')) {
+         showMsg('Access Token을 먼저 획득해 주십시오.');
+         return;
+      }
 		$.ajax({
 			url : getSvrProps('base_api_uri') + '/inquiry/real_name',
 			type : 'post',
 			headers : {
-				'Authorization' : ('Bearer ' + $('#token').val())
+				'client_credentials' : ('Bearer ' + $('#token').val())
 			},
 			data : js($.extend({}, getFormParamObj('real_nameFrm'), {
 			// additional parameters
@@ -295,7 +289,6 @@
 				if (isGatewayException(data)) {
 					return;
 				}else{ // ajax 응답이 Gateway Exception일 경우 이후 처리를 종료한다.		
-				alert("test")
 				// UI에 결과값 바인딩
 				$('#accountval').val(js(data));
 				}
@@ -316,39 +309,42 @@
 
 <style type="text/css">
 input {
-	margin-bottom: 5px;
+   margin-bottom: 5px;
 }
 
 .btn.btn-signin {
-	/*background-color: #4d90fe; */
-	background-color: rgb(104, 145, 162);
-	/* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
-	padding: 0px;
-	font-weight: 700;
-	font-size: 14px;
-	height: 36px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	border: none;
-	-o-transition: all 0.218s;
-	-moz-transition: all 0.218s;
-	-webkit-transition: all 0.218s;
-	transition: all 0.218s;
+   /*background-color: #4d90fe; */
+   background-color: rgb(104, 145, 162);
+   /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+   padding: 0px;
+   font-weight: 700;
+   font-size: 14px;
+   height: 36px;
+   -moz-border-radius: 3px;
+   -webkit-border-radius: 3px;
+   border-radius: 3px;
+   border: none;
+   -o-transition: all 0.218s;
+   -moz-transition: all 0.218s;
+   -webkit-transition: all 0.218s;
+   transition: all 0.218s;
 }
 
 .btn.btn-signin:hover, .btn.btn-signin:active, .btn.btn-signin:focus {
-	background-color: rgb(12, 97, 33);
+   background-color: rgb(12, 97, 33);
 }
 </style>
 
 </head>
 <body>
+
 	<input type="hidden" id="code">
 	<input type="hidden" id="client_id">
 	<input type="hidden" id="client_secret">
 	<input type="hidden" id="redirect_uri">
 	<input type="hidden" id="grant_type">
+	<input type="hidden" id="tran_dtime">
+	<input type="hidden" id="token">
 
 	<form action="/NiGaGaRa/member/register.do" method="post"
 		enctype="multipart/form-data" onsubmit="return inputVerify();">
@@ -382,7 +378,6 @@ input {
 					<li class="list-group-item"><input id="phone" name="mem_phone"
 						type="text" placeholder="전화번호" class="form-control input-md"
 						required="required"> <span id=phoneresult></span></li>
-
 					<li class="list-group-item"><input id="mail" name="mem_email"
 						type="text" placeholder="이메일" class="form-control input-md"
 						required="required"> <span id="emailresult"></span> <input
@@ -390,7 +385,6 @@ input {
 						class="form-control input-md" required="required"> <input
 						type="button" class="" id="numberchk" value="인증번호받기"> <input
 						type="button" class="" id="write" value="입력하기"></li>
-
 
 					<li class="list-group-item"><input id="mem_zipcode"
 						name="mem_zipcode" type="text" placeholder="우편번호"
@@ -416,17 +410,15 @@ input {
 					<li class="list-group-item"><input type="checkbox" id="agree3">
 						우편번호와 주소 수집 및 이용 동의 <span></span></li>
 
-					<input class="btn btn-lg btn-primary btn-block btn-signin"
-						type="submit" value="Sign in" />
-					<input type="text" id="id_duplicate_check" value="false" hidden="" />
-				</ul>
+               <input class="btn btn-lg btn-primary btn-block btn-signin"
+                  type="submit" value="Sign in" />
+               <input type="text" id="id_duplicate_check" value="false" hidden="" />
+            </ul>
+         </div>
+      </div>
 
-			</div>
-		</div>
-
-	</form>
+   </form>
 </body>
 </html>
-
 
 

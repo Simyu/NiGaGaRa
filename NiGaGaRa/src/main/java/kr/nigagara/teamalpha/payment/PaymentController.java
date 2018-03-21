@@ -12,14 +12,15 @@ import org.springframework.web.servlet.ModelAndView;
 public class PaymentController {
 	@Autowired
 	PaymentService service;
+	
 
 	@RequestMapping(value = "/payment/list.do", method = RequestMethod.GET)
-	public String showList(String mem_id) {
+	public ModelAndView list(String mem_id) {
 		ModelAndView mav = new ModelAndView();
 		List<PaymentVO> paymentlist = service.paymentlist(mem_id);
 		mav.addObject("paymentlist", paymentlist);
 		mav.setViewName("payment/list");
-		return "payment/list";
+		return mav;
 	}
 
 	@RequestMapping(value = "/payment/insert.do", method = RequestMethod.GET)
