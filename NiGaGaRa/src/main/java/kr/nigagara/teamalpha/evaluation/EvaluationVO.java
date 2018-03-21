@@ -10,13 +10,14 @@ public class EvaluationVO {
 	private String grade_content;
 	private Date grade_date;
 	private String goods_Num;
+	private String delivery_man;
 
 	public EvaluationVO() {
 		super();
 	}
 
 	public EvaluationVO(String grade_num, String delivery_Num, String grade, String grade_content, Date grade_date,
-			String goods_Num) {
+			String goods_Num, String delivery_man) {
 		super();
 		this.grade_num = grade_num;
 		this.delivery_Num = delivery_Num;
@@ -24,12 +25,7 @@ public class EvaluationVO {
 		this.grade_content = grade_content;
 		this.grade_date = grade_date;
 		this.goods_Num = goods_Num;
-	}
-
-	@Override
-	public String toString() {
-		return "EvaluationVO [grade_num=" + grade_num + ", delivery_Num=" + delivery_Num + ", grade=" + grade
-				+ ", grade_content=" + grade_content + ", grade_date=" + grade_date + ", goods_Num=" + goods_Num + "]";
+		this.delivery_man = delivery_man;
 	}
 
 	public String getGrade_num() {
@@ -80,5 +76,19 @@ public class EvaluationVO {
 		this.goods_Num = goods_Num;
 	}
 
-	
+	public String getDelivery_man() {
+		return delivery_man;
+	}
+
+	public void setDelivery_man(String delivery_man) {
+		this.delivery_man = delivery_man;
+	}
+
+	@Override
+	public String toString() {
+		return "EvaluationVO [grade_num=" + grade_num + ", delivery_Num=" + delivery_Num + ", grade=" + grade
+				+ ", grade_content=" + grade_content + ", grade_date=" + grade_date + ", goods_Num=" + goods_Num
+				+ ", delivery_man=" + delivery_man + "]";
+	}
+
 }

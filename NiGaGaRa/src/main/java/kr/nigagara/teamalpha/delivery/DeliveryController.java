@@ -55,7 +55,7 @@ public class DeliveryController {
 		}else if (stateResult.getDelivery_State().equals("2")) {
 			msg = "배송 완료되었습니다.";
 		}else {
-			msg = "등록이 안되었거나 이미 처리된 물품입니다.";
+			msg = "등록이 안되었거나 이미 평가까지 처리된 물품입니다.";
 		}
 		mav.addObject("msg", msg);
 		mav.setViewName("delivery_qrresult");

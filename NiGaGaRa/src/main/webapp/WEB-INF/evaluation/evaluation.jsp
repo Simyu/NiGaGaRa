@@ -94,6 +94,7 @@
                     <c:forEach var="evalDetail" items="${evalDetail}">
                         <h4>${evalDetail.mem_name}</h4>
                         <h3>${evalDetail.mem_id }</h3>
+                        <input type="hidden" id="delivery_Man" name = "delivery_Man" value="${evalDetail.mem_id }"/>
                         <small><cite>${evalDetail.mem_addr} <i class="glyphicon glyphicon-map-marker"></i></cite></small>
                         <h4>
                             <i class="glyphicon glyphicon-envelope"></i>${evalDetail.mem_email}
@@ -104,11 +105,11 @@
                             </c:forEach>
                         <!-- Star -->
                           <div class="rating">
-						      <input type="radio" id="star5" name="rating" onclick="myFunction(5)"/><label for="star5" title="평점5개">5 stars</label>
-						      <input type="radio" id="star4" name="rating" onclick="myFunction(4)"/><label for="star4" title="평점4개">4 stars</label>
-						      <input type="radio" id="star3" name="rating" onclick="myFunction(3)"/><label for="star3" title="평점3개">3 stars</label>
-						      <input type="radio" id="star2" name="rating" onclick="myFunction(2)"/><label for="star2" title="평점2개">2 stars</label>
-						      <input type="radio" id="star1" name="rating" onclick="myFunction(1)"/><label for="star1" title="평점1개">1 star</label>
+						      <input type="radio" id="star5" name="rating" onclick="myFunction(5)"/><label for="star5" title="완벽!">5 stars</label>
+						      <input type="radio" id="star4" name="rating" onclick="myFunction(4)"/><label for="star4" title="최고!">4 stars</label>
+						      <input type="radio" id="star3" name="rating" onclick="myFunction(3)"/><label for="star3" title="그럭저럭">3 stars</label>
+						      <input type="radio" id="star2" name="rating" onclick="myFunction(2)"/><label for="star2" title="아 이건쫌..">2 stars</label>
+						      <input type="radio" id="star1" name="rating" onclick="myFunction(1)"/><label for="star1" title="개xx!">1 star</label>
 						</div>
 						<textarea class="form-control" name="grade_content" rows="5" placeholder="평가내용"></textarea>
 						<div class="validation"></div>
@@ -116,7 +117,7 @@
 		            	<button type="submit" class="btn btn-primary">평가하기</button></div>             
 		            </div>
 						<input id="grade" name = "grade"/>
-						<input id="goods_Num" name = "goods_Num" value="${goods_Num}"/>
+						<input id="goods_Num" name = "goods_Num" value="${goods_Num}"/>						
 						</form>
                     </div>
            		 </div>

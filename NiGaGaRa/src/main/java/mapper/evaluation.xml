@@ -4,11 +4,29 @@
 <mapper namespace="nigagara.evaluation">
 
 	<select id="evalDetail" resultType="member" parameterType="String">
-		select * from member where mem_id = (select delivery_Man from delivery where goods_Num =#{goods_Num})
+		select * from member where mem_id = (select delivery_Man from delivery
+		where goods_Num =#{goods_Num})
 	</select>
 
 	<update id="evalinsert" parameterType="String">
 		insert into grade values
-		(grade_SEQ.nextval,(select delivery_num from delivery where goods_Num = #{goods_Num}),#{grade},#{grade_content},sysdate)
+		(grade_SEQ.nextval,(select delivery_num from delivery where goods_Num
+		= #{goods_Num}),#{grade},#{grade_content},sysdate)
+	</update>
+
+	<update id="changeState" parameterType="String">
+	<![CDATA[
+		update delivery set
+		delivery_State = delivery_State + 1
+		where goods_Num = #{goods_Num}
+		]]>
+	</update>
+
+	<update id="avgEval" parameterType="String">
+		update member set mem_eval =
+		(select sum(grade)/count(*) from grade a,
+		delivery b where
+		a.delivery_num = b.delivery_num and
+		b.delivery_man = #{delivery_man})
 	</update>
 </mapper>

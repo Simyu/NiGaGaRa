@@ -19,6 +19,8 @@ public class GoodsVO {
 	private String sender_id;
 	private String receiver_Addr_detail;
 	private String sender_Addr_detail;
+	private String delivery_state;
+
 	public GoodsVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -26,7 +28,7 @@ public class GoodsVO {
 	public GoodsVO(int goods_Num, String goods_Name, String weight, int quantity, int estimated_Price,
 			String receiver_Name, String receiver_zipcode, String receiver_Addr, String receiver_Tel,
 			String sender_zipcode, String sender_Addr, String delivery_Tool, String goods_Msg, String match_State,
-			String sender_id, String receiver_Addr_detail, String sender_Addr_detail) {
+			String sender_id, String receiver_Addr_detail, String sender_Addr_detail, String delivery_state) {
 		super();
 		this.goods_Num = goods_Num;
 		this.goods_Name = goods_Name;
@@ -45,22 +47,7 @@ public class GoodsVO {
 		this.sender_id = sender_id;
 		this.receiver_Addr_detail = receiver_Addr_detail;
 		this.sender_Addr_detail = sender_Addr_detail;
-	}
-
-	public String getReceiver_Addr_detail() {
-		return receiver_Addr_detail;
-	}
-
-	public void setReceiver_Addr_detail(String receiver_Addr_detail) {
-		this.receiver_Addr_detail = receiver_Addr_detail;
-	}
-
-	public String getSender_Addr_detail() {
-		return sender_Addr_detail;
-	}
-
-	public void setSender_Addr_detail(String sender_Addr_detail) {
-		this.sender_Addr_detail = sender_Addr_detail;
+		this.delivery_state = delivery_state;
 	}
 
 	public int getGoods_Num() {
@@ -183,6 +170,30 @@ public class GoodsVO {
 		this.sender_id = sender_id;
 	}
 
+	public String getReceiver_Addr_detail() {
+		return receiver_Addr_detail;
+	}
+
+	public void setReceiver_Addr_detail(String receiver_Addr_detail) {
+		this.receiver_Addr_detail = receiver_Addr_detail;
+	}
+
+	public String getSender_Addr_detail() {
+		return sender_Addr_detail;
+	}
+
+	public void setSender_Addr_detail(String sender_Addr_detail) {
+		this.sender_Addr_detail = sender_Addr_detail;
+	}
+
+	public String getDelivery_state() {
+		return delivery_state;
+	}
+
+	public void setDelivery_state(String delivery_state) {
+		this.delivery_state = delivery_state;
+	}
+
 	@Override
 	public String toString() {
 		return "GoodsVO [goods_Num=" + goods_Num + ", goods_Name=" + goods_Name + ", weight=" + weight + ", quantity="
@@ -191,7 +202,8 @@ public class GoodsVO {
 				+ receiver_Tel + ", sender_zipcode=" + sender_zipcode + ", sender_Addr=" + sender_Addr
 				+ ", delivery_Tool=" + delivery_Tool + ", goods_Msg=" + goods_Msg + ", match_State=" + match_State
 				+ ", sender_id=" + sender_id + ", receiver_Addr_detail=" + receiver_Addr_detail
-				+ ", sender_Addr_detail=" + sender_Addr_detail + "]";
+				+ ", sender_Addr_detail=" + sender_Addr_detail + ", delivery_state=" + delivery_state + "]";
 	}
+
 	
 }

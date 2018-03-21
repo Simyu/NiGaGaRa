@@ -14,9 +14,11 @@
 	</select>
 
 	<update id="changeState" parameterType="String">
+	<![CDATA[
 		update delivery set
 		delivery_State = delivery_State + 1
-		where goods_Num = #{goods_Num}
+		where goods_Num = #{goods_Num} and delivery_State <2
+		]]>
 	</update>
 	
 	<select id="stateResult" resultType="delivery" parameterType="String">

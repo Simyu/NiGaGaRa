@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.nigagara.teamalpha.delivery.DeliveryVO;
 import kr.nigagara.teamalpha.member.MemberVO;
 
 /**
@@ -30,10 +31,14 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "evalInsert.do", method = RequestMethod.POST)
-	public ModelAndView evalInsert(EvaluationVO EvaluationVO) {
-		System.out.println(EvaluationVO);
+	public ModelAndView evalInsert(EvaluationVO EvaluationVO,String delivery_Man) {
+		System.out.println("EvaluationVO=>"+EvaluationVO+"delivery_Man=>"+delivery_Man);
 		ModelAndView mav = new ModelAndView();
 		service.evalInsert(EvaluationVO);
+		System.out.println("getGoods_Num=>"+EvaluationVO.getGoods_Num());
+		DeliveryVO changeState = service.changeState(EvaluationVO.getGoods_Num());
+		service.avgEval(delivery_Man);
+		System.out.println(changeState);
 		mav.addObject("EvaluationVO", EvaluationVO);
 		mav.setViewName("index");
 		return mav;
