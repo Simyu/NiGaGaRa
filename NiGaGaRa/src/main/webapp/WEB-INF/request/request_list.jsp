@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +41,7 @@
 								<th>배송비</th>
 								<th>QR코드</th>
 								<th>매칭유무</th>
+								<th>평가</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -54,6 +56,14 @@
 									<th>${requestlist.estimated_Price}</th>
 									<th><a href="/NiGaGaRa/goods/qrcode.do?goods_Num=${requestlist.goods_Num}">확인</a></th>
 									<th>${requestlist.match_State}</th>
+									<c:choose>
+									<c:when test="${requestlist.delivery_state==2}">
+									<th><a href="/NiGaGaRa/evaluation.do?goods_Num=${requestlist.goods_Num}">평가</a></th>
+									</c:when>
+									<c:otherwise>
+									<th>평가불가</th>
+									</c:otherwise>
+									</c:choose>
 								</tr>
 							</c:forEach>
 

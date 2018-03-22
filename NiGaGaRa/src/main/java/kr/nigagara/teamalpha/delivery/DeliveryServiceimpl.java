@@ -25,4 +25,15 @@ DeliveryDAO dao;
 		return dao.select(deliveryNum);
 	}
 
+	@Override
+	public DeliveryVO changeState(String Goods_Num) {
+		return dao.changeState(Goods_Num);
+	}
+
+	@Override
+	public DeliveryVO stateResult(String Goods_Num) {
+		return dao.stateResult(Goods_Num);
+
+	}
+
 }
