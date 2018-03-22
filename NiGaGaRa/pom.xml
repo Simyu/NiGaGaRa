@@ -167,6 +167,8 @@
 			<artifactId>commons-io</artifactId>
 			<version>1.4</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
@@ -180,8 +182,13 @@
 			<version>1.4.7</version>
 		</dependency>
 
+		<!-- jsoup HTML parser library @ https://jsoup.org/ -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.11.2</version>
+		</dependency>
 	</dependencies>
-	<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
 
 	<build>
 		<plugins>

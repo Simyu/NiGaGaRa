@@ -13,20 +13,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class WebHookController {
 	@RequestMapping(value = "/webhooktest", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public @ResponseBody String test(@RequestBody String req) {
-		//System.out.println(req);
+		// System.out.println(req);
 		JSONParser parser = new JSONParser();
+		JSONObject ret = new JSONObject();
 		String rumNum = "**";
 		try {
 			JSONObject reqobj = (JSONObject) parser.parse(req);
 			JSONObject result = (JSONObject) reqobj.get("result");
 			JSONObject parameter = (JSONObject) result.get("parameters");
-			 rumNum += (String) parameter.get("roomnum");
+			rumNum += (String) parameter.get("roomnum");
+			ret.put("speech", "안녕!! 나는 서버에서 왔어!" + rumNum);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			ret.put("speech", "음...뭔가 잘못된거 같아 ㅠㅁㅠ");
 		}
-		JSONObject ret = new JSONObject();
-		ret.put("speech", "안녕!! 나는 서버에서 왔어!"+rumNum);
 		return ret.toJSONString();
 	}
 
