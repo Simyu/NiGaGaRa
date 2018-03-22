@@ -20,6 +20,7 @@ import org.springframework.web.util.WebUtils;
 
 @Controller
 @SessionAttributes("loginUser")
+
 public class MemberController {
 	@Autowired
 	MemberService service;
@@ -37,7 +38,7 @@ public class MemberController {
 	public String login(String id, String pass, Model model) {
 		System.out.println("login_post");
 		MemberVO vo = service.login(id, pass);
-		if (vo != null && !vo.getMem_state().equals("��Ȱ��")) {
+		if (vo != null /*&& !vo.getMem_state().equals("��Ȱ��")*/) {
 			model.addAttribute("loginUser", vo);
 			return "index";
 		} else {

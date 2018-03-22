@@ -18,7 +18,6 @@
 		in the /WEB-INF/views directory -->
 	<!-- ==============뷰리졸버에 대한 등록================================= -->
 
-
 	<!-- =====================db관련 작업============================== -->
 	<beans:bean id="ds"
 		class="org.springframework.jndi.JndiObjectFactoryBean">
