@@ -52,7 +52,13 @@ public class MemberSecurityVO extends User{
 			Collection<? extends GrantedAuthority> authorities) {
 		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 	}
-	
+	/*public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
+			boolean credentialsNonExpired, boolean accountNonLocked,
+			Collection<? extends GrantedAuthority> authorities,String mem_name) {
+		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+		this.mem_name = mem_name;
+	}
+	*/
 	public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
 			boolean credentialsNonExpired, boolean accountNonLocked,
 			Collection<? extends GrantedAuthority> authorities,
@@ -89,6 +95,8 @@ public class MemberSecurityVO extends User{
 	
 	String bank_code
 	
+	
+	
 	) {
 		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 		this.mem_name =mem_name;
@@ -106,6 +114,7 @@ public class MemberSecurityVO extends User{
 		this.mem_lati =mem_lati;
 		this.mem_longi =mem_longi;
 		this.bank_code =bank_code;
+		
 	}
 	
 	

@@ -6,7 +6,7 @@
 		insert into member values
 		(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_birth}, #{mem_zipcode},
 		#{mem_addr}, #{mem_addr_detail}, '활성', #{mem_gender}, #{mem_phone},
-		#{mem_email}, 0, '일반회원', #{mem_account}, #{mem_img},0,0)
+		#{mem_email}, 0, 'ROLE_USER', #{mem_account}, #{mem_img},0,0)
 	</insert>
 	<select id="read" parameterType="java.lang.String" resultType="member">
 		select *
@@ -66,11 +66,14 @@
 		from member
 		where mem_email=#{mem_email}
 	</select>
-	
+
 	<select id="securityLogin" resultType="map">
-		select mem_id as username,mem_pw as password,mem_name,mem_birth,mem_zipcode,mem_addr,
-				mem_addr_detail,mem_state,mem_gender,mem_phone,mem_email,point_total,mem_type as authority,
-				mem_account,mem_img,mem_lati,mem_longi,back_code from member where mem_id = #{username}
+		select mem_id as
+		username,mem_pw as password,mem_name,mem_birth,mem_zipcode,mem_addr,
+		mem_addr_detail,mem_state,mem_gender,mem_phone,mem_email,point_total,mem_type
+		as authority,
+		mem_account,mem_img,mem_lati,mem_longi,back_code from member where mem_id = #{username}
+
 	</select>
 
 </mapper>

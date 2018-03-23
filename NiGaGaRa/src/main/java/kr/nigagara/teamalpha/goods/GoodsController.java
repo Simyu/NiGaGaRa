@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.nigagara.teamalpha.delivery.DeliveryVO;
+
 @Controller
 public class GoodsController {
 	@Autowired // 자동으로 객체 매핑!
@@ -36,9 +38,9 @@ public class GoodsController {
 
 	// 신청 목록 리스트
 	@RequestMapping("/goods/list.do")
-	public ModelAndView list(){
+	public ModelAndView list(String mem_id){
 		ModelAndView mav = new ModelAndView();
-		List<GoodsVO> requestlist = service.requestlist();
+		List<GoodsVO> requestlist = service.requestlist(mem_id);
 		System.out.println(requestlist);
 		mav.addObject("requestlist", requestlist);
 		mav.setViewName("request_list");

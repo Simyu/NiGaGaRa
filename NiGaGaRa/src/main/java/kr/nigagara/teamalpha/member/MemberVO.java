@@ -47,7 +47,6 @@ public class MemberVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	public String getBank_code() {
 		return bank_code;
 	}
@@ -211,6 +210,33 @@ public class MemberVO {
 				+ ", mem_longi=" + mem_longi + ", bank_code=" + bank_code + "]";
 	}
 
+	public MemberVO(String mem_id, String mem_pw, String mem_name, String mem_birth, String mem_zipcode,
+			String mem_addr, String mem_addr_detail, String mem_state, String mem_gender, String mem_phone,
+			String mem_email, Integer point_total, String mem_type, String mem_account, String mem_img,
+			MultipartFile file, String mem_lati, String mem_longi, String bank_code) {
+		super();
+		this.mem_id = mem_id;
+		this.mem_pw = mem_pw;
+		this.mem_name = mem_name;
+		this.mem_birth = mem_birth;
+		this.mem_zipcode = mem_zipcode;
+		this.mem_addr = mem_addr;
+		this.mem_addr_detail = mem_addr_detail;
+		this.mem_state = mem_state;
+		this.mem_gender = mem_gender;
+		this.mem_phone = mem_phone;
+		this.mem_email = mem_email;
+		this.point_total = point_total;
+		this.mem_type = mem_type;
+		this.mem_account = mem_account;
+		this.mem_img = mem_img;
+		this.file = file;
+		this.mem_lati = mem_lati;
+		this.mem_longi = mem_longi;
+		this.bank_code = bank_code;
+	}
+
+	
 	
 	
 

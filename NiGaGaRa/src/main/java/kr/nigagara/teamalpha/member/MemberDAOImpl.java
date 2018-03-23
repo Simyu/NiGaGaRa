@@ -80,5 +80,4 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlsession.update("nigagara.member.resetpass", map);
 	}
 
-
 }

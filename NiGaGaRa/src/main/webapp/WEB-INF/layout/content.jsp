@@ -11,6 +11,7 @@
 	<c:if test="${!empty loginUser}">
 		<h1>${loginUser.mem_name }님환영합니다</h1>
 	</c:if>
+	<input type="hidden" name ="login_id" value="${loginUser.mem_id }">
 	<div id="wrapper">
 		<section id="featured">
 			<!-- start slider -->

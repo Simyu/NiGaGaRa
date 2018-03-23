@@ -16,7 +16,7 @@
 	</definition>
 	
 	<definition name="delivery/list" extends="mainTemplate">
-		<put-attribute name="content" value="/WEB-INF/member/member_delivery_list.jsp" />
+		<put-attribute name="content" value="/WEB-INF/Delivery/Mypage_Delivery_board.jsp" />
 	</definition>
 	
 	<definition name="delivery" extends="mainTemplate">
@@ -91,7 +91,10 @@
 		<put-attribute name="content" value="/WEB-INF/request/request_qr.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
 	</definition>
-	
+	<definition name="evaluation" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/evaluation/evaluation.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>
 

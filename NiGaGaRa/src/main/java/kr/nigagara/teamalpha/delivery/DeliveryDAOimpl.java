@@ -23,4 +23,14 @@ SqlSession sqlSession;
 		return sqlSession.selectOne("nigagara.delivery.select",deliveryNum);
 	}
 
+	@Override
+	public DeliveryVO changeState(String Goods_Num) {
+		return sqlSession.selectOne("nigagara.delivery.changeState",Goods_Num);
+	}
+
+	@Override
+	public DeliveryVO stateResult(String Goods_Num) {
+		return sqlSession.selectOne("nigagara.delivery.stateResult",Goods_Num);
+	}
+
 }

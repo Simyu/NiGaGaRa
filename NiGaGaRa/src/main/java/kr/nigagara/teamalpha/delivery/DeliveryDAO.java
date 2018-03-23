@@ -8,4 +8,7 @@ import kr.nigagara.teamalpha.member.MemberVO;
 public interface DeliveryDAO {
 	List<DeliveryVO> list(MemberVO memId);
 	DeliveryVO select(Integer deliveryNum);
+	DeliveryVO changeState(String Goods_Num);
+	DeliveryVO stateResult(String Goods_Num);
+
 }
