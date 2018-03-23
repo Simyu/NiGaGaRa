@@ -46,7 +46,6 @@ public class MemberSecurityVO extends User{
 	
 	private String bank_code;
 	
-	private String role;
 
 	public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
 			boolean credentialsNonExpired, boolean accountNonLocked,
@@ -94,9 +93,9 @@ public class MemberSecurityVO extends User{
 
 	String mem_longi,
 	
-	String bank_code,
+	String bank_code
 	
-	String role
+	
 	
 	) {
 		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
@@ -115,17 +114,10 @@ public class MemberSecurityVO extends User{
 		this.mem_lati =mem_lati;
 		this.mem_longi =mem_longi;
 		this.bank_code =bank_code;
-		this.role = role;
+		
 	}
 	
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
+	
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -285,12 +277,10 @@ public class MemberSecurityVO extends User{
 				+ mem_addr_detail + ", mem_state=" + mem_state + ", mem_gender=" + mem_gender + ", mem_phone="
 				+ mem_phone + ", mem_email=" + mem_email + ", point_total=" + point_total + ", mem_type=" + mem_type
 				+ ", mem_account=" + mem_account + ", mem_img=" + mem_img + ", file=" + file + ", mem_lati=" + mem_lati
-				+ ", mem_longi=" + mem_longi + ", bank_code=" + bank_code + ", role=" + role + "]";
+				+ ", mem_longi=" + mem_longi + ", bank_code=" + bank_code + "]";
 	}
 
 
 
-	
-	
 	
 }

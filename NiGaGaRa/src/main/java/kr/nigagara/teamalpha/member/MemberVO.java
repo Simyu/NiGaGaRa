@@ -42,7 +42,7 @@ public class MemberVO {
 	
 	private String bank_code;
 	
-	private String role;
+	
 	public MemberVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -199,6 +199,7 @@ public class MemberVO {
 		this.mem_longi = mem_longi;
 	}
 
+
 	@Override
 	public String toString() {
 		return "MemberVO [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_birth="
@@ -237,7 +238,6 @@ public class MemberVO {
 
 	
 	
-
 	
 
 }

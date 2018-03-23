@@ -255,14 +255,14 @@
 			data : {
 				'client_id' : $('#client_id').val(),
 				'client_secret' : $('#client_secret').val(),
-				'grant_type' : 'client_credentials',
+				'grant_type' : 'oob',
 				'scope' : 'oob'
 			},
 			success : function(data, textStatus, jqXHR) {
 				if (isGatewayException(data)) {
 					alert(grant)
-					return;
 					inquiryRealName();
+					return;
 				} else {
 					 isGatewayException(data);
 					$('#token').val(data.access_token);
