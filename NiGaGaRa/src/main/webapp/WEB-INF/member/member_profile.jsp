@@ -40,6 +40,9 @@ body {
 							<img src="/NiGaGaRa/resources/img/upload/${user.mem_img }"
 								class="img-responsive img-thumbnail " id="img">
 						</div>
+						<div class="row" id="imgholder">
+							<p>별점 ${user.mem_eval }</p>
+						</div>
 						<div id="fileupload" class="row" hidden="hidden">
 							<input type="file" id="fileinput" name="file"
 								accept="image/*">

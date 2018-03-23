@@ -36,4 +36,22 @@ DeliveryDAO dao;
 
 	}
 
+	@Override
+	public String matchState(String Goods_Num) {
+		return dao.matchState(Goods_Num);
+
+	}
+
+	@Override
+	public void matchState1(String Goods_Num) {
+		 dao.matchState1(Goods_Num);
+		
+	}
+
+	@Override
+	public void matchState2(String Goods_Num) {
+		 dao.matchState2(Goods_Num);
+		
+	}
+
 }

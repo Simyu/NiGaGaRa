@@ -57,7 +57,7 @@
 									<th><a href="/NiGaGaRa/goods/qrcode.do?goods_Num=${requestlist.goods_Num}">확인</a></th>
 									<th>${requestlist.match_State}</th>
 									<c:choose>
-									<c:when test="${requestlist.delivery_state==2}">
+									<c:when test="${requestlist.delivery_state==3}">
 									<th><a href="/NiGaGaRa/evaluation.do?goods_Num=${requestlist.goods_Num}">평가</a></th>
 									</c:when>
 									<c:otherwise>

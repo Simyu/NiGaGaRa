@@ -10,5 +10,7 @@ public interface DeliveryService {
 	DeliveryVO select(Integer deliveryNum);
 	DeliveryVO changeState(String Goods_Num);
 	DeliveryVO stateResult(String Goods_Num);
-
+	String matchState(String Goods_Num);
+	void matchState1(String Goods_Num);
+	void matchState2(String Goods_Num);
 }

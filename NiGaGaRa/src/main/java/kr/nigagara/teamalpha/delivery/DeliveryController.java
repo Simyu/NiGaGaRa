@@ -33,7 +33,7 @@ public class DeliveryController {
 		return mav;
 	}
 
-	// qrë¦¬ë”ê¸°
+	// qr¸®´õ±â
 	@RequestMapping(value = "/delivery/qrread.do", method = RequestMethod.GET)
 	public String qrread() {
 
@@ -47,15 +47,22 @@ public class DeliveryController {
 		System.out.println("Goods_Num=>" + Goods_Num);
 		ModelAndView mav = new ModelAndView();
 		DeliveryVO changeState = service.changeState(Goods_Num);
-		DeliveryVO stateResult = service.stateResult(Goods_Num);//delivery_stateê°€ì ¸ì˜¤ê¸°
+		DeliveryVO stateResult = service.stateResult(Goods_Num);//delivery_state°¡Á®¿À±â
+		String match_State = service.matchState(Goods_Num);
+		System.out.println(match_State);
+		if(match_State.equals("¹è¼ÛÀü")) {
+			service.matchState1(Goods_Num);
+		}else if(match_State.equals("¹è¼ÛÁß")){
+			service.matchState2(Goods_Num);
+		}
 		System.out.println(stateResult);
 		String msg = "";
-		if (stateResult.getDelivery_State().equals("1")) {
-			msg = "ë°°ì†¡ ì‹œì‘í•©ë‹ˆë‹¤.";
-		}else if (stateResult.getDelivery_State().equals("2")) {
-			msg = "ë°°ì†¡ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.";
+		if (stateResult.getDelivery_State().equals("2")) {
+			msg = "¹è¼Û ½ÃÀÛÇÕ´Ï´Ù.";
+		}else if (stateResult.getDelivery_State().equals("3")) {
+			msg = "¹è¼Û ¿Ï·áµÇ¾ú½À´Ï´Ù.";
 		}else {
-			msg = "ë“±ë¡ì´ ì•ˆë˜ì—ˆê±°ë‚˜ ì´ë¯¸ í‰ê°€ê¹Œì§€ ì²˜ë¦¬ëœ ë¬¼í’ˆì…ë‹ˆë‹¤.";
+			msg = "µî·ÏÀÌ ¾ÈµÇ¾ú°Å³ª ÀÌ¹Ì Æò°¡±îÁö Ã³¸®µÈ ¹°Ç°ÀÔ´Ï´Ù.";
 		}
 		mav.addObject("msg", msg);
 		mav.setViewName("delivery_qrresult");

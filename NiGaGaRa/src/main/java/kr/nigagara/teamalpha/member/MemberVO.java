@@ -41,9 +41,19 @@ public class MemberVO {
 	private String mem_longi;
 	
 	private String bank_code;
+	
+	private double mem_eval;
 
 	public MemberVO() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public double getMem_eval() {
+		return mem_eval;
+	}
+
+	public void setMem_eval(double mem_eval) {
+		this.mem_eval = mem_eval;
 	}
 
 	public String getBank_code() {

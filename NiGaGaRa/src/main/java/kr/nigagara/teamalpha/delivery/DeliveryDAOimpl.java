@@ -26,6 +26,7 @@ SqlSession sqlSession;
 	@Override
 	public DeliveryVO changeState(String Goods_Num) {
 		return sqlSession.selectOne("nigagara.delivery.changeState",Goods_Num);
+
 	}
 
 	@Override
@@ -33,4 +34,22 @@ SqlSession sqlSession;
 		return sqlSession.selectOne("nigagara.delivery.stateResult",Goods_Num);
 	}
 
+	@Override
+	public String matchState(String Goods_Num) {
+		System.out.println(Goods_Num);
+		return sqlSession.selectOne("nigagara.delivery.matchState",Goods_Num);
+
+	}
+
+	@Override
+	public void matchState1(String Goods_Num) {
+		 sqlSession.selectOne("nigagara.delivery.matchState1",Goods_Num);
+		
+	}
+	@Override
+	public void matchState2(String Goods_Num) {
+
+		 sqlSession.selectOne("nigagara.delivery.matchState2",Goods_Num);
+		
+	}
 }
