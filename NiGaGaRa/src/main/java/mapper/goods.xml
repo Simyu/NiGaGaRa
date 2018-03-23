@@ -9,12 +9,13 @@
 	
 	</insert>
 	<select id="requestlist" resultType="goods" parameterType="String">
-		select a.*, b.delivery_state 
-		from (select * 
-		      from goods 
-		      where sender_id= #{sender_id}) a 
-		left outer join delivery b 
-		on a.goods_num=b.goods_num
+		select a.*, b.delivery_state from (select * from goods where sender_id
+		= #{sender_id})a left outer join delivery b on
+		a.goods_num=b.goods_num
+	</select>
+		<select id="requestlist_all" resultType="goods" parameterType="String">
+		select *
+		from goods
 	</select>
 	<select id="requestdetail" resultType="goods" parameterType="String">
 		select *
@@ -29,12 +30,32 @@
 		estimated_Price = #{estimated_Price},
 		receiver_Name = #{receiver_Name},
 		receiver_zipcode = #{receiver_zipcode},
-		receiver_Addr = #{receiver_Addr},
+		receiver_Addr =
+		#{receiver_Addr},
 		receiver_Tel = #{receiver_Tel},
-		sender_zipcode = #{sender_zipcode},
+		sender_zipcode =
+		#{sender_zipcode},
 		sender_Addr = #{sender_Addr},
-		delivery_Tool =	#{delivery_Tool},
+		delivery_Tool =
+		#{delivery_Tool},
 		goods_Msg = #{goods_Msg}
-		where goods_Num =#{goods_Num}
+		where goods_Num =
+		#{goods_Num}
 	</update>
+	
+		<select id="dynamicSearch" resultType="goods"
+ 										parameterType="Map">
+ 		select * from goods
+ 		<where>
+ 			<if test="tag=='number' and search!=''">
+ 				goods_Num like '%' || #{search} || '%'
+ 			</if>
+ 			<if test="tag=='name' and search!=''">
+ 				goods_Name like '%' || #{search} || '%'
+ 			</if>
+ 			<if test="tag=='vehicle' and search!=''">
+ 				delivery_Tool like '%' || #{search} || '%'
+ 			</if>
+ 		</where>
+ 	</select>    
 </mapper>

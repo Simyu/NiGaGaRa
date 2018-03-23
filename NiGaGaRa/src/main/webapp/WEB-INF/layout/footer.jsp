@@ -14,12 +14,12 @@
 						<div class="widget">
 							<h5 class="widgetheading">Get in touch with us</h5>
 							<address>
-					<strong>Moderna company Inc</strong><br>
-					 Modernbuilding suite V124, AB 01<br>
-					 Someplace 16425 Earth </address>
+					<strong>Nigagara company Inc</strong><br>
+					 2호선 구로디지털단지 2번출구앞<br>
+					 10층 강의장 </address>
 							<p>
-								<i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891 <br>
-								<i class="icon-envelope-alt"></i> email@domainname.com
+								<i class="icon-phone"></i> (010) 5090-3712 - (010) 1234-5678 <br>
+								<i class="icon-envelope-alt"></i> gosu920410@naver.com
 							</p>
 						</div>
 					</div>

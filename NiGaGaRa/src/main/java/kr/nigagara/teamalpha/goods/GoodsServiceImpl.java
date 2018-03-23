@@ -31,4 +31,20 @@ public class GoodsServiceImpl implements GoodsService {
 		return dao.requestedit(GoodsVO);
 
 	}
+
+	@Override
+	public List<GoodsVO> requestlist_all() {
+		return dao.requestlist_all();
+		}
+	
+	@Override
+	public List<GoodsVO> searchList(String search) {
+		return dao.searchList(search);
+	}
+
+	@Override
+	public List<GoodsVO> searchList(String tag, String search) {
+		return dao.searchList(tag, search);
+	}
+
 }

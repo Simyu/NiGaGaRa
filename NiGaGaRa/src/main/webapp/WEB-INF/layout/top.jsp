@@ -56,7 +56,7 @@
 									<a href="/NiGaGaRa/delivery/start.do">시작하기</a>
 								</li>
 								<li>
-									<a href="/NiGaGaRa/delivery.do">조회하기</a>
+									<a href="/NiGaGaRa/goods/list.do">조회하기</a>
 								</li>
 								<li>
 									<a href="/NiGaGaRa/delivery/qrread.do">QR리더기</a>
@@ -118,47 +118,14 @@
 	</header>
 	<!-- end header -->
 	<div id="chatarea"></div>
-	<script src="/NiGaGaRa/resources/js/apiai/ApiAi.js"></script>
 	<script type="text/javascript">
-		var client = new ApiAi.ApiAiClient({
-			accessToken : 'ea14a92beff948b7a6bd92dab6d86653'
-		});
-
-		function sendText(text) {
-			return client.textRequest(text);
-		}
-		
-		function setResponseOnNode(text){
-
-			var msg = '<div class="chatbox__body__message chatbox__body__message--left">'
-					+ '<img src="/NiGaGaRa/resources/img/supportmale-2-512.png" alt="Picture">'
-					+ '<p>'
-					+ (text ? text : "[empty response]")
-					+ '</p>' + '</div>';
-			$(".chatbox__body").append(
-					msg);
-			$('.chatbox__body')
-			.scrollTop(
-					$(
-							'.chatbox__body')
-							.prop(
-									'scrollHeight'));
-		}
-
 		$(document)
 				.ready(
 						function() {
-							var chatarea = "<div class='chatbox chatbox--tray'>"
-									+ "<div class='chatbox__title'>"
-									+ "<h5>"
-									+ "<a href=#'>"
+							var chatarea = "<div class='chatbox chatbox--tray'><div class='chatbox__title'><h5><a href=#'>"
+
 									+ name
-									+ "</a>"
-									+ "</h5>"
-									+ "<button class='chatbox__title__tray'>"
-									+ "<span>"
-									+ "</span>"
-									+ "</button>"
+									+ "</a></h5><button class='chatbox__title__tray'><span></span></button>"
 									+ "<button class='chatbox__title__close'><span>"
 									+ "<svg viewBox='0 0 12 12' width='12px' height='12px'>"
 									+ "<line stroke='#FFFFFF' x1='11.75' y1='0.25' x2='0.25' y2='11.75'></line>"
@@ -192,8 +159,7 @@
 															+ '<img src="/NiGaGaRa/resources/img/avatar.png" alt="Picture">'
 															+ '<p>'
 															+ str
-															+ '</p>' 
-															+ '</div>';
+															+ '</p></div>';
 													$(".chatbox__body").append(
 															msg);
 													$(this).val("");
@@ -203,22 +169,8 @@
 																			'.chatbox__body')
 																			.prop(
 																					'scrollHeight'));
-													sendText(str)
-												      .then(function(response) {
-												        var result;
-												        try {
-												          result = response.result.fulfillment.speech
-												        } catch(error) {
-												          result = "";
-												        }
-												        setResponseOnNode(result);
-												      })
-												      .catch(function(err) {
-												        setResponseOnNode("Something goes wrong");
-												      });
 												}
 											});
-							
 						});
 	</script>
 </body>
