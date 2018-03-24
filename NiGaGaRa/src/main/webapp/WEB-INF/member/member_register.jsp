@@ -268,72 +268,6 @@
 		}
 		return false;
 	}
-
-	function getTokenByClientCredentials() {
-
-		$.ajax({
-			url : 'https://testapi.open-platform.or.kr/oauth/2.0/token',
-			type : 'post',
-			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-			data : {
-				'client_id' : 'l7xx4542423c4fac41b18abd22d39d99c3cf',
-				'client_secret' : '1b3efbffaaa645ad86a0bfc0f01dcd14',
-				'grant_type' : 'client_credentials',
-				'scope' : 'oob'
-			}
-		}).done(function(data, textStatus, jqXHR) {
-			if (isGatewayException(data)) {
-				return;
-			}
-			//$('#token').val(data.access_token);
-				alert(data);
-			
-			$.ajax({
-				url : 'https://testapi.open-platform.or.kr/inquiry/real_name',
-				type : 'post',
-				headers : {
-					'Authorization' : ('Bearer ' + data.access_token)
-				},
-				data : {
-					'account_num' : '1234567890123456',
-					'bank_code_std' : '001',
-					'account_holder_info' : '8801011'
-				}
-			}).done(function(data, textStatus, jqXHR) {
-				if (isGatewayException(data)) {
-					return;
-				} // ajax 응답이 Gateway Exception일 경우 이후 처리를 종료한다.      
-
-				// UI에 결과값 바인딩
-				alert(data);
-			});
-		});
-	}
-/*	function inquiryRealName() {
-
-		if (isEmptyElem('token')) {
-			showMsg('Access Token을 먼저 획득해 주십시오.');
-			return;
-		}
-
-		$.ajax({
-			url : getSvrProps('base_api_uri') + '/inquiry/real_name',
-			type : 'post',
-			headers : {
-				'Authorization' : ('Bearer ' + $('#token').val())
-			},
-			data : js($.extend({}, getFormParamObj('real_nameFrm'), {
-			// additional parameters
-			}))
-		}).done(function(data, textStatus, jqXHR) {
-			if (isGatewayException(data)) {
-				return;
-			} // ajax 응답이 Gateway Exception일 경우 이후 처리를 종료한다.      
-
-			// UI에 결과값 바인딩
-			$('#resultTextArea').val(js(data));
-		});
-	}*/
 </script>
 
 
@@ -473,6 +407,55 @@ input {
 		</div>
 
 	</form>
+	
+<script type="text/javascript">
+function pad2(n) { return n < 10 ? '0' + n : n }
+function getTokenByClientCredentials() {
+
+	$.ajax({
+		url : 'https://testapi.open-platform.or.kr/oauth/2.0/token',
+		type : 'post',
+		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+		data : {
+			'client_id' : 'l7xx4542423c4fac41b18abd22d39d99c3cf',
+			'client_secret' : '1b3efbffaaa645ad86a0bfc0f01dcd14',
+			'grant_type' : 'client_credentials',
+			'scope' : 'oob'
+		}
+	}).done(function(data, textStatus, jqXHR) {
+		if (isGatewayException(data)) {
+			return;
+		}
+		
+		var date = new Date();
+		var date_data = date.getFullYear().toString() + pad2(date.getMonth() + 1) + pad2( date.getDate()) + pad2( date.getHours() ) + pad2( date.getMinutes() ) + pad2( date.getSeconds() );
+		var src = {
+				'account_num' : '1234567890123456',
+				'bank_code_std' : '001',
+				'account_holder_info' : '8801011',
+				'tran_dtime' : date_data
+		};
+		
+		$.ajax({
+			url : 'https://testapi.open-platform.or.kr/inquiry/real_name',
+			type : 'post',
+			headers : {
+				'Authorization' : ('Bearer ' + data.access_token)
+			},
+			data : JSON.stringify(src, null, 4)
+			
+		}).done(function(data, textStatus, jqXHR) {
+			if (isGatewayException(data)) {
+				return;
+			} // ajax 응답이 Gateway Exception일 경우 이후 처리를 종료한다.      
+
+			// UI에 결과값 바인딩
+			alert(data.account_holder_name);
+		});
+	});
+}
+
+</script>
 </body>
 </html>
 
