@@ -26,14 +26,14 @@ public class MemberController {
 	@Autowired
 	FileUploadLogic uploadservice;
 
-	@RequestMapping(value = "/member/login.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/login", method = RequestMethod.GET)
 	public String login_view() {
 		System.out.println("login_get");
 
 		return "login";
 	}
 
-	@RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/login", method = RequestMethod.POST)
 	public String login(String id, String pass, Model model) {
 		System.out.println("login_post");
 		MemberVO vo = service.login(id, pass);

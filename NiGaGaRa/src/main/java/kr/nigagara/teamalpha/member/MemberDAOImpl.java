@@ -1,15 +1,23 @@
 package kr.nigagara.teamalpha.member;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
+import kr.nigagara.teamalpha.member.security.MemberSecurityVO;
+
 @Repository("memdao")
-public class MemberDAOImpl implements MemberDAO {
+public class MemberDAOImpl implements MemberDAO,UserDetailsService {
 	@Autowired
 	SqlSession sqlsession;
 
@@ -70,6 +78,27 @@ public class MemberDAOImpl implements MemberDAO {
 		map.put("email", email);
 		System.out.println("MemberDAOImpl=>"+map);
 		return sqlsession.update("nigagara.member.resetpass", map);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		System.out.println(".....loadUserByUsername"+username);
+		Map<String, Object> user = sqlsession.selectOne("nigagara.member.securityLogin",username);
+		System.out.println(user+"TTTTTTTTTTTT");
+		UserDetails loginUser = null;
+		List<GrantedAuthority> gaslist = new ArrayList<GrantedAuthority>();
+		gaslist.add(new SimpleGrantedAuthority(user.get("AUTHORITY").toString()));
+		
+		
+			loginUser = new MemberSecurityVO(user.get("USERNAME").toString(),user.get("PASSWORD").toString(),true,true,true,true,
+					gaslist,user.get("MEM_NAME").toString(),user.get("MEM_BIRTH").toString(),user.get("MEM_ZIPCODE").toString(),
+					user.get("MEM_ADDR").toString(),user.get("MEM_ADDR_DETAIL").toString(),user.get("MEM_STATE").toString(),
+					user.get("MEM_GENDER").toString(),user.get("MEM_PHONE").toString(),user.get("MEM_EMAIL").toString(),
+					(Integer)user.get("POINT_TOTAL"),user.get("MEM_ACCOUNT").toString(),user.get("MEM_IMG").toString(),
+					user.get("MEM_LATI").toString(),user.get("MEM_LONGI").toString());
+			
+			System.out.println("loginUser==========>"+loginUser);		
+		return loginUser;
 	}
 
 }

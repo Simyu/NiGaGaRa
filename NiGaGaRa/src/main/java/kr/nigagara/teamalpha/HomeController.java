@@ -13,14 +13,13 @@ public class HomeController {
 
 	@RequestMapping(value = "/index.do", method = RequestMethod.GET)
 	public String home() {
-		
 		System.out.println("test");
 		//�׽�Ʈ
 		//test입니다.
 		
 		return "index";
 	}
-	@RequestMapping(value = "/request.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/request", method = RequestMethod.GET)
 	public String request() {
 		
 		System.out.println("request view");

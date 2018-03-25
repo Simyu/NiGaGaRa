@@ -108,7 +108,7 @@
 							<a href="/NiGaGaRa/member/register.do">회원가입</a>
 						</li>
 						<li>
-							<a href="/NiGaGaRa/member/login.do">로그인</a>
+							<a href="/NiGaGaRa/member/login">로그인</a>
 						</li>
 						<%-- <%} %> --%>
 					</ul>
