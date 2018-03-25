@@ -110,6 +110,9 @@
 						<li>
 							<a href="/NiGaGaRa/member/login">로그인</a>
 						</li>
+						<li>
+							<a href="/NiGaGaRa/member/logout.do">로그아웃</a>
+						</li>
 						<%-- <%} %> --%>
 					</ul>
 				</div>
