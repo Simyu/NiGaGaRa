@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.util.WebUtils;
 @Controller
 @SessionAttributes("loginUser")
 public class MemberController {
+	private ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
 	@Autowired
 	MemberService service;
 	@Autowired
@@ -54,6 +56,8 @@ public class MemberController {
 
 	@RequestMapping(value = "/member/register.do", method = RequestMethod.POST)
 	public String register(MemberVO member, HttpServletRequest request) throws Exception {
+		String dbpass = encoder.encodePassword(member.getMem_pw(), null);
+		member.setMem_pw(dbpass);
 		System.out.println("register_post");
 		MultipartFile file = member.getFile();
 		String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/img/upload");

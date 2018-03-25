@@ -9,8 +9,7 @@ CREATE TABLE member
     mem_birth          VARCHAR2(20)     NULL, 
     mem_zipcode        VARCHAR2(5)      NULL, 
     mem_addr           VARCHAR2(90)     NULL, 
-    mem_addr_detail    VARCHAR2(90)     NULL, 
-    mem_state          VARCHAR2(20)     NULL, 
+    mem_addr_detail    VARCHAR2(90)     NULL,  
     mem_gender         VARCHAR2(20)     NULL, 
     mem_phone          VARCHAR2(20)     NULL, 
     mem_email          VARCHAR2(20)     NULL, 
@@ -19,7 +18,9 @@ CREATE TABLE member
     mem_img            VARCHAR2(100)    NULL, 
     mem_lati           VARCHAR2(100)           NULL, 
     mem_longi          VARCHAR2(100)           NULL, 
-    role				VARCHAR2(50) NULL,
+    mem_eval	VARCHAR2(10) NULL,
+    mem_bank_code	VARCHAR2(3) NULL,
+    role				VARCHAR2(10) NULL,
     CONSTRAINT MEMBER_PK PRIMARY KEY (mem_id)
 );
 

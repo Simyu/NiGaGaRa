@@ -5,7 +5,7 @@
 	<insert id="insert" parameterType="member">
 		insert into member values
 		(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_birth}, #{mem_zipcode},
-		#{mem_addr}, #{mem_addr_detail}, '활성', #{mem_gender}, #{mem_phone},
+		#{mem_addr}, #{mem_addr_detail}, #{mem_gender}, #{mem_phone},
 		#{mem_email}, 0, #{mem_account}, #{mem_img},0,0,'ROLE_USER')
 	</insert>
 
