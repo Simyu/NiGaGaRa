@@ -229,45 +229,7 @@
 			return false;
 		}
 	}
-	function isGatewayException(data){
-		
-		if(data 
-			&& data.rsp_code 
-			&& data.rsp_code.indexOf('A') !== 0 // API업무처리 응답코드를 제외한 응답코드
-		){
 
-			var delim = '___';
-			var addMsg = delim;
-			
-			// 오류코드 추출 (메인)
-			var rsp_code = data.rsp_code;
-//			dc('## rsp_code: '+rsp_code);
-			
-			var rsp_code_desc = gwRspCode[rsp_code] ? gwRspCode[rsp_code].rsn : '';
-			dc('## rsp_code_desc: '+rsp_code_desc);
-			addMsg += '<p>' + rsp_code_desc + '</p>';
-
-			// 오류코드 추출 (세부)
-			var rsp_message = data.rsp_message;
-//			dc('## rsp_message: '+rsp_message);
-			
-			var rsp_dtl_code, rsp_dtl_code_desc;
-			var cdStaIdx = rsp_message.indexOf('(['); 
-			var cdEndIdx = rsp_message.indexOf('])'); 
-			if(cdStaIdx >= 0){
-				rsp_dtl_code = rsp_message.substring(cdStaIdx + 2, cdEndIdx);
-				rsp_dtl_code_desc = gwRspDtlCode[rsp_dtl_code] ? gwRspDtlCode[rsp_dtl_code].rsn : '';
-				addMsg += '<p>&nbsp;&nbsp;-&nbsp;' + rsp_dtl_code_desc + '</p>';
-//				dc('## rsp_dtl_code: '+rsp_dtl_code);
-				dc('## rsp_dtl_code_desc: '+rsp_dtl_code_desc);
-			}
-			
-			showMsg(js(data) + ((addMsg == delim) ? '' : addMsg));
-			
-			return true;
-		}
-		return false;
-	}
 </script>
 
 
@@ -350,12 +312,12 @@ input {
 					<li class="list-group-item">
 						<input id="mail" name="mem_email" type="text" placeholder="이메일"
 							class="form-control input-md" required="required">
-						<span id="emailresult"></span>
 						<input id="mailchk" type="text" placeholder="인증번호"
 							class="form-control input-md" required="required">
 						<input type="button" class="btn btn-theme" id="numberchk"
 							value="인증번호받기">
 						<input type="button" class="btn btn-theme" id="write" value="입력하기">
+						<span id="emailresult"></span>
 					</li>
 
 
@@ -373,6 +335,11 @@ input {
 							class="form-control input-md input-file" type="file">
 					</li>
 					<li class="list-group-item">
+						<select class="form-control" name="mem_bank_code" id="bank_code">
+							<option value="001">국민은행</option>
+							<option value="002">우리은행</option>
+							<option value="003">신한은행</option>
+						</select>
 						<input id="account" name="mem_account" type="text"
 							placeholder="계좌번호" class="form-control input-md"
 							required="required">
@@ -407,55 +374,157 @@ input {
 		</div>
 
 	</form>
-	
-<script type="text/javascript">
-function pad2(n) { return n < 10 ? '0' + n : n }
-function getTokenByClientCredentials() {
 
-	$.ajax({
-		url : 'https://testapi.open-platform.or.kr/oauth/2.0/token',
-		type : 'post',
-		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-		data : {
-			'client_id' : 'l7xx4542423c4fac41b18abd22d39d99c3cf',
-			'client_secret' : '1b3efbffaaa645ad86a0bfc0f01dcd14',
-			'grant_type' : 'client_credentials',
-			'scope' : 'oob'
+	<script type="text/javascript">
+		function pad2(n) {
+			return n < 10 ? '0' + n : n
 		}
-	}).done(function(data, textStatus, jqXHR) {
-		if (isGatewayException(data)) {
-			return;
+		function getTokenByClientCredentials() {
+
+			$
+					.ajax(
+							{
+								url : 'https://testapi.open-platform.or.kr/oauth/2.0/token',
+								type : 'post',
+								contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+								data : {
+									'client_id' : 'l7xx4542423c4fac41b18abd22d39d99c3cf',
+									'client_secret' : '1b3efbffaaa645ad86a0bfc0f01dcd14',
+									'grant_type' : 'client_credentials',
+									'scope' : 'oob'
+								}
+							})
+					.done(
+							function(data, textStatus, jqXHR) {
+								if (isGatewayException(data)) {
+									return;
+								}
+								var regex = /[^0-9]/g;
+
+								var account = $("#account").val();
+								account = account.replace(regex, '');
+
+								/*if (account.lengh != 18) {
+									alert("계좌번호는 숫자 18자리 입니다.");
+									return false;
+								}*/
+
+								var birth = $("#birth").val();
+
+								if (birth == "") {
+									alert("생일을 선택하세요.");
+									return false;
+								}
+
+								birth = birth.replace(regex, '');
+								birth = birth.substring(2);
+
+								var chk_radio = document
+										.getElementsByName('mem_gender');
+
+								var gender = null;
+								for (var i = 0; i < chk_radio.length; i++) {
+									if (chk_radio[i].checked == true) {
+										gender = chk_radio[i].value;
+									}
+								}
+
+								if (gender == null) {
+									alert("성별을 선택하세요.");
+									return false;
+								}
+
+								if (gender == '남자') {
+									birth += '1';
+								} else if (gender == '여자') {
+									birth += '2';
+								}
+
+								//alert(birth); 
+
+								var date = new Date();
+								var date_data = date.getFullYear().toString()
+										+ pad2(date.getMonth() + 1)
+										+ pad2(date.getDate())
+										+ pad2(date.getHours())
+										+ pad2(date.getMinutes())
+										+ pad2(date.getSeconds());
+								var src = {
+									//'account_num' : '1234567890123456',
+									'account_num' : account,
+									'bank_code_std' : $("#bank_code").val(),
+									//'account_holder_info' : '8801011',
+									'account_holder_info' : birth,
+									'tran_dtime' : date_data
+								};
+
+								$
+										.ajax(
+												{
+													url : 'https://testapi.open-platform.or.kr/inquiry/real_name',
+													type : 'post',
+													headers : {
+														'Authorization' : ('Bearer ' + data.access_token)
+													},
+													data : JSON.stringify(src,
+															null, 4)
+
+												})
+										.done(
+												function(data, textStatus,
+														jqXHR) {
+													if (isGatewayException(data)) {
+														return;
+													} // ajax 응답이 Gateway Exception일 경우 이후 처리를 종료한다.      
+
+													// UI에 결과값 바인딩
+													alert(data.account_holder_name);
+												});
+							});
 		}
-		
-		var date = new Date();
-		var date_data = date.getFullYear().toString() + pad2(date.getMonth() + 1) + pad2( date.getDate()) + pad2( date.getHours() ) + pad2( date.getMinutes() ) + pad2( date.getSeconds() );
-		var src = {
-				'account_num' : '1234567890123456',
-				'bank_code_std' : '001',
-				'account_holder_info' : '8801011',
-				'tran_dtime' : date_data
-		};
-		
-		$.ajax({
-			url : 'https://testapi.open-platform.or.kr/inquiry/real_name',
-			type : 'post',
-			headers : {
-				'Authorization' : ('Bearer ' + data.access_token)
-			},
-			data : JSON.stringify(src, null, 4)
-			
-		}).done(function(data, textStatus, jqXHR) {
-			if (isGatewayException(data)) {
-				return;
-			} // ajax 응답이 Gateway Exception일 경우 이후 처리를 종료한다.      
 
-			// UI에 결과값 바인딩
-			alert(data.account_holder_name);
-		});
-	});
-}
+		function isGatewayException(data) {
 
-</script>
+			if (data && data.rsp_code && data.rsp_code.indexOf('A') !== 0 // API업무처리 응답코드를 제외한 응답코드
+			) {
+
+				var delim = '___';
+				var addMsg = delim;
+
+				// 오류코드 추출 (메인)
+				var rsp_code = data.rsp_code;
+				//		dc('## rsp_code: '+rsp_code);
+
+				var rsp_code_desc = gwRspCode[rsp_code] ? gwRspCode[rsp_code].rsn
+						: '';
+				dc('## rsp_code_desc: ' + rsp_code_desc);
+				addMsg += '<p>' + rsp_code_desc + '</p>';
+
+				// 오류코드 추출 (세부)
+				var rsp_message = data.rsp_message;
+				//		dc('## rsp_message: '+rsp_message);
+
+				var rsp_dtl_code, rsp_dtl_code_desc;
+				var cdStaIdx = rsp_message.indexOf('([');
+				var cdEndIdx = rsp_message.indexOf('])');
+				if (cdStaIdx >= 0) {
+					rsp_dtl_code = rsp_message
+							.substring(cdStaIdx + 2, cdEndIdx);
+					rsp_dtl_code_desc = gwRspDtlCode[rsp_dtl_code] ? gwRspDtlCode[rsp_dtl_code].rsn
+							: '';
+					addMsg += '<p>&nbsp;&nbsp;-&nbsp;' + rsp_dtl_code_desc
+							+ '</p>';
+					//			dc('## rsp_dtl_code: '+rsp_dtl_code);
+					dc('## rsp_dtl_code_desc: ' + rsp_dtl_code_desc);
+				}
+
+				showMsg(js(data) + ((addMsg == delim) ? '' : addMsg));
+
+				return true;
+			}
+			return false;
+		}
+	</script>
 </body>
 </html>
 
