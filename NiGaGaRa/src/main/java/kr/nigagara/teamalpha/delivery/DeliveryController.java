@@ -40,4 +40,10 @@ public class DeliveryController {
 		
 		return "delivery_qrread";
 	}
+	
+	@RequestMapping("/delivery/start.do")
+	public String match() {
+		
+		return "delivery_start";
+	}
 }

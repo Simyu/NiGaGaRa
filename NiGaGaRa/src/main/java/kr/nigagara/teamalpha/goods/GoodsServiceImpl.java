@@ -12,8 +12,8 @@ public class GoodsServiceImpl implements GoodsService {
 	GoodsDAO dao;
 
 	@Override
-	public void goodsInsert(GoodsVO GoodsVO) {
-		dao.goodsInsert(GoodsVO);
+	public int goodsInsert(GoodsVO GoodsVO) {
+		return dao.goodsInsert(GoodsVO);
 	}
 
 	@Override

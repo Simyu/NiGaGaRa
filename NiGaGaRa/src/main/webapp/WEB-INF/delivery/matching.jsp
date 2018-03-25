@@ -9,35 +9,88 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
+	<%HttpSession sessions = request.getSession();
+			MemberVO user = (MemberVO) session.getAttribute("loginUser");%>
+	var locate = new Map();
+	var basedata;
+	function sendto() {
+		
+		if (navigator.geolocation) { // GPS를 지원하면
+			navigator.geolocation.getCurrentPosition(function(position) {
+				/* alert(position.coords.latitude + ' '
+						+ position.coords.longitude);//위도 경도 */
+				alert(typeof(position.coords.latitude));
+				alert(position.coords.longitude);
+				locate.set("lon", position.coords.longitude);  
+				locate.set("lat", position.coords.latitude);  
+				
+				alert("lon "+locate.get("lon"));
+			
+				var data = {
+						"pro_type" : "deli_man",
+						"id" : "<%=user.getMem_id()%>",
+						"lon_delivery" : position.coords.longitude,
+						"lat_delivery" : position.coords.latitude
+				};
+				websocket.send(JSON.stringify(data));
+			
+				alert("웹소켓 전송");
+				
+			}, function(error) {
+				console.error(error);
+			}, {
+				enableHighAccuracy : false,
+				maximumAge : 0,
+				timeout : Infinity
+			});
+		} else {
+			alert('GPS를 지원하지 않습니다');
+		}
+		/* var watchId = navigator.geolocation.watchPosition(function(position) {
+			console.log(position.coords);
+		}); */
 	
-	var lon = 0;
-	var lat = 0;
-	function test() {
 		
 	}
 	
-	<%-- 	<% MemberVO user = (MemberVO)request.getAttribute("loginUser");%> --%>
-	<%-- "id" : '<%=user.getMem_id()%>', --%>
-	
-	function send() {
-		var data = {
-				"pro_type" : "deli_man",
-				"id" : "this is testid",
-				"lon_delivery" : lon,
-				"lat_delivery" : lat
-		};
-		websocket.send(JSON.stringify(data));
-	
-		alert("웹소켓 전송 "+ lon)
-	}	
+	function sendAccept(){
+		alert("accept")
+		var data = basedata;
+		data.pro_type = "result";
+		data.match_State = "1";
+		data.delivery_man = "<%=user.getMem_id()%>";
 		
+		websocket.send(JSON.stringify(data));
+		
+		/*				 String pro_goods_Num = (String)object.get("goods_Num");
+		 String pro_goods_Name = (String)object.get("goods_Name");
+		 String pro_weight = (String)object.get("weight");
+		 String pro_quantity = (String)object.get("quantity");
+		 String pro_estimated_Price = (String)object.get("estimated_Price");
+		 String pro_receiver_Name = (String)object.get("receiver_Name");
+		 String pro_receiver_zipcode = (String)object.get("receiver_zipcode");
+		 String pro_receiver_Addr = (String)object.get("receiver_Addr");
+		 String pro_receiver_Tel = (String)object.get("receiver_Tel");
+		 String pro_sender_zipcode = (String)object.get("sender_zipcode");
+		 String pro_sender_Addr = (String)object.get("sender_Addr");
+		 String pro_delivery_Tool = (String)object.get("delivery_Tool");
+		 String pro_goods_Msg = (String)object.get("goods_Msg");
+		 String pro_match_State = (String)object.get("match_State");
+		 String pro_sender_id = (String)object.get("sender_id");
+		 String pro_receiver_Addr_detail = (String)object.get("receiver_Addr_detail");
+		 String pro_sender_Addr_detail = (String)object.get("sender_Addr_detail");*/
+	
+		alert("웹소켓 전송");
+	}
+	
+	
+	
 
 	var resCnt = 0;     //서버에서 응답받은 횟수.
 	var resPositionArr = [];     //서버에서 응답받은 좌표값 Array.
 	
 	$(document).ready(function()
 	{
-
 	     //서버와연결합니다. 웹소켓서버 Uri : ex) `://YourDomain/
 	     websocket = new WebSocket("ws://localhost:8088/NiGaGaRa/match");
 	     // 서버와연결되면실행됩니다
@@ -51,34 +104,10 @@
 	});
 	function onOpen(evt)
 	{
-		if (navigator.geolocation) { // GPS를 지원하면
-			navigator.geolocation.getCurrentPosition(function(position) {
-				/* alert(position.coords.latitude + ' '
-						+ position.coords.longitude);//위도 경도 */
-				alert(typeof(position.coords.latitude));
-				alert(position.coords.longitude);
-				lon = position.coords.longitude;  
-				lat = position.coords.latitude;  
-				
-				alert("lon : " +lon);
-				alert("lat : " +lat);
-			}, function(error) {
-				console.error(error);
-			}, {
-				enableHighAccuracy : false,
-				maximumAge : 0,
-				timeout : Infinity
-			});
-		} else {
-			alert('GPS를 지원하지 않습니다');
-		}
-	/* 	var watchId = navigator.geolocation.watchPosition(function(position) {
-			console.log(position.coords);
-		}); */
+		alert("연결성공 :~~~~~"+ locate.get("lon"));
+	<%-- 	<% MemberVO user = (MemberVO)request.getAttribute("loginUser");%> --%>
+	<%-- "id" : '<%=user.getMem_id()%>', --%>
 		
-		alert("연결성공 :~~~~~"+ lon);
-		
-	
 	}
 	function onClose(evt)
 	{
@@ -125,43 +154,62 @@
 	/* 	websocket.close();     // 웹 소켓 연결을 종료합니다.
 	     navigator.geolocation.clearWatch(nav); */
 	}
-
-	function onMessage(evt)
-	{
-	   /*   writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>'); */
-
-	     resCnt++;
-
-	     if(resCnt > 0)
-	     {
-	          if(resCnt % 2 != 0)
-	          {
-	               // 웹소켓은 Text형식으로 데이터를 주고 받습니다.
-	               resPositionArr.push(evt.data.replace("latitude:", ""));
-	               resPositionArr.push(evt.data.replace("longitude:", ""));
-	          }
-	          else
-	          {
 	
-	        	  //신청 메시지로 배송관련된 데이터를 받고 신청 또는 거절을 한다.
-	        	  
-	        	  /* 웹소켓은 Text형식으로 데이터를 주고 받습니다.
-	               resPositionArr.push(evt.data.replace("longitude:", ""));
-	               var resultLat = resPositionArr[resCnt-2];
-	               var resultLng = resPositionArr[resCnt-1];
-	               var latlng = new google.maps.LatLng(resultLat, resultLng);
+	function onMessage(evt)
+	{	
+		 alert(evt.data);
+		 //data = evt.data;
+		 var object = JSON.parse(evt.data);
+		 basedata = object;
+		 if (object.pro_type=="product"){
+			 var product = '<div id = "'+object.goods_Num+'" style="border: solid">'+'<ul style="width:80%">'+
+			    '<li style="width:50%; float:left"><span>배달상품 이름 : <span><input type="text" disabled="disabled" value="'+object.goods_Name+'"/></li>'+
+				'<li style="width:50%; float:left"><span>무게 : <span><input type="text" disabled="disabled" value="'+object.weight+'"/></li>'+
+				'<li style="width:50%; float:left"><span>수량 : <span><input type="text" disabled="disabled" value="'+object.quantity+'"/></li>'+
+				'<li style="width:50%; float:left"><span>의뢰가격 : <span><input type="text" disabled="disabled" value="'+object.estimated_Price+'"/></li>'+		 
+				'<li style="width:50%; float:left"><span>배달주소 : <span><input type="text" disabled="disabled" value="'+object.receiver_Addr+'"/></li>'+
+				'<li style="width:50%; float:left"><span>배달주소 상세 : <span><input type="text" disabled="disabled" value="'+object.receiver_Addr_detail+'"/></li>'+
+				'<li style="width:50%; float:left"><span>보내는 사람 : <span><input type="text" disabled="disabled" value="'+object.sender_id+'"/></li>'+	
+				'<li style="width:50%; float:left"><span>상품위치 : <span><input type="text" disabled="disabled" value="'+object.sender_Addr+'"/></li>'+
+				'<li style="width:50%; float:left"><span>상품위치 상세 : <span><input type="text" disabled="disabled" value="'+object.sender_Addr_detail+'"/></li>'+
+				'<li style="width:50%; float:left"><span>선호 운송수단 : <span><input type="text" disabled="disabled" value="'+object.delivery_Tool+'"/></li>'+
+				'<input type="button" class="accept" value="수락"/><span>  </span><input type="button" class="refuse" value="거절"/></ul>'+'<div>'
+				
+				
+				$("#aaaaa").append(product);	
+		 }
+		 else if(object.pro_type=="result" & object.delivery_man != "<%=user.getMem_id()%>"){
+			
+			
+				$("#aaaaa").find("#"+object.goods_Num).remove();
 
-	               var marker = new google.maps.Marker({position: latlng, map: Map});
-
-	               Map.setCenter(latlng);
-	               Map.setZoom(18); */
-	          }
-	     }
+			 	
+			
+		 }
+		 
+		 else{
+			 
+		 }
+	 
 	}
 	
+	$(document).ready(function(){
+		
+	
+		$(document).on("click",".accept",function(){
+			sendAccept();
+			alert("결과 전송");
+		});
+	
+		$(document).on("click",".refuse",function(){
+			sendresult("refuse");
+		});
+		
+	});
 </script>
 </head>
 <body>
-	<input type="button" value ="배달시작" onclick="send()"  />
+	<input type="button" value="배달하기" onclick="sendto()" />
+	<div id="aaaaa"></div>
 </body>
 </html>

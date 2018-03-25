@@ -2,10 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="nigagara.goods">
-	<insert id="insert" parameterType="goods">
-		insert into goods values
-		(goods_SEQ.nextval,#{goods_Name},#{weight},#{quantity},#{estimated_Price},#{receiver_Name},#{receiver_zipcode},	#{receiver_Addr},#{receiver_Tel},#{sender_zipcode},#{sender_Addr},#{delivery_Tool},#{goods_Msg},'11',#{sender_id},#{receiver_Addr_detail},#{sender_Addr_detail})
+
+	<insert id="insert" parameterType="goods" useGeneratedKeys="true" keyProperty="id">
+		insert into goods(goods_Num,goods_Name,weight,quantity,estimated_Price,receiver_Name,receiver_zipcode,receiver_Addr,receiver_Tel,sender_zipcode,sender_Addr,delivery_Tool,goods_Msg, match_state, sender_id, receiver_Addr_detail, sender_Addr_detail) values
+		(goods_SEQ.nextval,#{goods_Name},#{weight},#{quantity},#{estimated_Price},#{receiver_Name},#{receiver_zipcode},
+		#{receiver_Addr},#{receiver_Tel},#{sender_zipcode},#{sender_Addr},#{delivery_Tool},#{goods_Msg},'0',#{sender_id},#{receiver_Addr_detail},#{sender_Addr_detail})
 		
+		<selectKey keyProperty="goods_Num" resultType="int">
+			select goods_SEQ.currval from dual
+		</selectKey>
 	</insert>
 	<select id="requestlist" resultType="goods" parameterType="String">
 		select *
@@ -25,12 +30,16 @@
 		estimated_Price = #{estimated_Price},
 		receiver_Name = #{receiver_Name},
 		receiver_zipcode = #{receiver_zipcode},
-		receiver_Addr = #{receiver_Addr},
+		receiver_Addr =
+		#{receiver_Addr},
 		receiver_Tel = #{receiver_Tel},
-		sender_zipcode = #{sender_zipcode},
+		sender_zipcode =
+		#{sender_zipcode},
 		sender_Addr = #{sender_Addr},
-		delivery_Tool = #{delivery_Tool},
+		delivery_Tool =
+		#{delivery_Tool},
 		goods_Msg = #{goods_Msg}
-		where goods_Num = #{goods_Num}
+		where goods_Num =
+		#{goods_Num}
 	</update>
 </mapper>

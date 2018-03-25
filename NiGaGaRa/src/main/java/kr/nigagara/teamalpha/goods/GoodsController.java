@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,8 +26,10 @@ public class GoodsController {
 		receiverlist = loc.receivelocation(GoodsVO);
 		System.out.println("보내는사람 위도 경도 = "+sendlist.get(0)+sendlist.get(1));
 		System.out.println("받는사람 위도 경도 = "+receiverlist.get(0)+receiverlist.get(1));
+		int GoodsNum =service.goodsInsert(GoodsVO);
+		System.out.println("selectKey"+GoodsNum);
+		GoodsVO.setGoods_Num(GoodsNum);
 		System.out.println(GoodsVO);
-		service.goodsInsert(GoodsVO);
 		mav.addObject("GoodsVO", GoodsVO);
 		mav.addObject("send_loccode", sendlist);
 		mav.addObject("receive_loccode", receiverlist);
@@ -34,6 +37,19 @@ public class GoodsController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/goods/match.do", method = RequestMethod.POST)
+	public ModelAndView match(GoodsVO GoodsVO) {
+		ModelAndView mav = new ModelAndView();
+		ArrayList<Double> sendlist;
+		System.out.println("match : "+ GoodsVO);
+		sendlist = loc.sendlocation(GoodsVO);
+		
+		mav.addObject("GoodsVO", GoodsVO);
+		mav.addObject("send_loccode", sendlist);
+		mav.setViewName("goods_match");
+		return mav;
+	}
+	
 	// 신청 목록 리스트
 	@RequestMapping("/goods/list.do")
 	public ModelAndView list(){
