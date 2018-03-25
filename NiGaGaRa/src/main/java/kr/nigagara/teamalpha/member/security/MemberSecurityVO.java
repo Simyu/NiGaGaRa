@@ -2,109 +2,91 @@ package kr.nigagara.teamalpha.member.security;
 
 import java.util.Collection;
 
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.web.multipart.MultipartFile;
 
-public class MemberSecurityVO extends User{
-	 String mem_id;
+public class MemberSecurityVO extends User {
+	String mem_id;
 
-	 String mem_pw;
+	String mem_pw;
 
-	 String mem_name;
+	String mem_name;
 
-	 String mem_birth;
+	String mem_birth;
 
-	 String mem_zipcode;
+	String mem_zipcode;
 
-	 String mem_addr;
+	String mem_addr;
 
-	 String mem_addr_detail;
+	String mem_addr_detail;
 
-	 String mem_state;
+	String mem_state;
 
-	 String mem_gender;
+	String mem_gender;
 
-	 String mem_phone;
+	String mem_phone;
 
-	 String mem_email;
+	String mem_email;
 
-	 Integer point_total;
+	String point_total;
 
-	 String mem_account;
+	String mem_account;
 
-	 String mem_img;
+	String mem_img;
 
-	 String mem_lati;
+	String mem_lati;
 
-	 String mem_longi;
-	 
-	 String role;
-	 
-	 public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
-				boolean credentialsNonExpired, boolean accountNonLocked,
-				Collection<? extends GrantedAuthority> authorities) {
-		 super(mem_id,mem_pw,enabled,accountNonExpired,credentialsNonExpired,accountNonLocked,authorities);
-		 
-	 }
-	 
-	 public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
-				boolean credentialsNonExpired, boolean accountNonLocked,
-				Collection<? extends GrantedAuthority> authorities,String mem_name) {
-		 super(mem_id,mem_pw,enabled,accountNonExpired,credentialsNonExpired,accountNonLocked,authorities);
-		 this.mem_name = mem_name;
-	 }
-	 
-	 public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
-				boolean credentialsNonExpired, boolean accountNonLocked,
-				Collection<? extends GrantedAuthority> authorities,
+	String mem_longi;
 
-	 String mem_name,
+	String role;
 
-	 String mem_birth,
+	public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
+			boolean credentialsNonExpired, boolean accountNonLocked,
+			Collection<? extends GrantedAuthority> authorities) {
+		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 
-	 String mem_zipcode,
+	}
 
-	 String mem_addr,
+	public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
+			boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities,
+			String mem_name) {
+		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+		this.mem_name = mem_name;
+	}
 
-	 String mem_addr_detail,
+	public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
+			boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities,
+			String mem_name,
+			String mem_birth,
+			String mem_zipcode,
+			String mem_addr,
+			String mem_addr_detail,
+			String mem_state,
+			String mem_gender,
+			String mem_phone,
+			String mem_email,
+			String point_total,
+			String mem_account,
+			String mem_img,
+			String mem_lati,
+			String mem_longi) {
+		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+		this.mem_name = mem_name;
+		this.mem_birth = mem_birth;
+		this.mem_zipcode = mem_zipcode;
+		this.mem_addr = mem_addr;
+		this.mem_addr_detail = mem_addr_detail;
+		this.mem_state = mem_state;
+		this.mem_gender = mem_gender;
+		this.mem_phone = mem_phone;
+		this.mem_email = mem_email;
+		this.point_total = point_total;
+		this.mem_account = mem_account;
+		this.mem_img = mem_img;
+		this.mem_lati = mem_lati;
+		this.mem_longi = mem_longi;
+	}
 
-	 String mem_state,
-
-	 String mem_gender,
-
-	 String mem_phone,
-
-	 String mem_email,
-
-	 Integer point_total,
-
-	 String mem_account,
-
-	 String mem_img,
-
-	 String mem_lati,
-
-	 String mem_longi
-	 ) {
-		 super(mem_id,mem_pw,enabled,accountNonExpired,credentialsNonExpired,accountNonLocked,authorities);
-		 this.mem_name = mem_name;
-		 this.mem_birth = mem_birth;
-		 this.mem_zipcode = mem_zipcode;
-		 this.mem_addr = mem_addr;
-		 this.mem_addr_detail = mem_addr_detail;
-		 this.mem_state = mem_state;
-		 this.mem_gender = mem_gender;
-		 this.mem_phone = mem_phone;
-		 this.mem_email = mem_email;
-		 this.point_total = point_total;
-		 this.mem_account = mem_account;
-		 this.mem_img = mem_img;
-		 this.mem_lati = mem_lati;
-		 this.mem_longi = mem_longi;
-		 
-	 }
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -193,11 +175,11 @@ public class MemberSecurityVO extends User{
 		this.mem_email = mem_email;
 	}
 
-	public Integer getPoint_total() {
+	public String getPoint_total() {
 		return point_total;
 	}
 
-	public void setPoint_total(Integer point_total) {
+	public void setPoint_total(String point_total) {
 		this.point_total = point_total;
 	}
 
@@ -233,7 +215,6 @@ public class MemberSecurityVO extends User{
 		this.mem_longi = mem_longi;
 	}
 
-
 	public String getRole() {
 		return role;
 	}
@@ -251,8 +232,5 @@ public class MemberSecurityVO extends User{
 				+ mem_account + ", mem_img=" + mem_img + ", mem_lati=" + mem_lati + ", mem_longi=" + mem_longi
 				+ ", role=" + role + "]";
 	}
-
-	
-
 
 }

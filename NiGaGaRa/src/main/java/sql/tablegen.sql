@@ -14,7 +14,7 @@ CREATE TABLE member
     mem_gender         VARCHAR2(20)     NULL, 
     mem_phone          VARCHAR2(20)     NULL, 
     mem_email          VARCHAR2(20)     NULL, 
-    point_total        NUMBER           NULL, 
+    point_total        VARCHAR2(20)           NULL, 
     mem_account        VARCHAR2(20)     NULL, 
     mem_img            VARCHAR2(100)    NULL, 
     mem_lati           VARCHAR2(100)           NULL, 

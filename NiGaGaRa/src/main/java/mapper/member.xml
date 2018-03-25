@@ -72,8 +72,9 @@
 		select mem_id as
 		username,mem_pw as password,mem_name,mem_birth,mem_zipcode,mem_addr,
 		mem_addr_detail,mem_state,mem_gender,mem_phone,mem_email,point_total,mem_account,
-		mem_img,mem_lati,mem_longi,role as authority from member where mem_id
-		= #{username}
+		mem_img,mem_lati,mem_longi,role as authority 
+		from member 
+		where mem_id = #{username}
 	</select>
 
 </mapper>

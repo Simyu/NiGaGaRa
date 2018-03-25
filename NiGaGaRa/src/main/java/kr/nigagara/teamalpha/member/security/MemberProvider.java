@@ -12,28 +12,28 @@ import org.springframework.security.core.userdetails.User;
 import kr.nigagara.teamalpha.member.MemberDAOImpl;
 
 public class MemberProvider implements AuthenticationProvider{
-	private ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
 	@Autowired
 	@Qualifier("memdao")
-	MemberDAOImpl dao;
+	MemberDAOImpl securityService;
+	//private ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
 	
 	
 	@Override
 	public Authentication authenticate(Authentication data) throws AuthenticationException {
 		String username = data.getName();
 		String password = (String) data.getCredentials();
-		Object obj = data.getPrincipal();
-		System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
-		User user = (User) dao.loadUserByUsername(username);
+		/*System.out.println(username+password+obj);*/
+		User user = (User) securityService.loadUserByUsername(username);
 		
-		boolean state = encoder.isPasswordValid(user.getPassword(),password,null);
+		//boolean state = encoder.isPasswordValid(user.getPassword(),password,null);
+		/*System.out.println("================"+state);*/
 		UsernamePasswordAuthenticationToken authUser = null;
-		if(state) {
+//		if(state) {
 			authUser = new UsernamePasswordAuthenticationToken(user, password,user.getAuthorities());
-			System.out.println("로그인성공");
-		}else {
-			System.out.println("로그인실패");
-		}
+//			System.out.println("로그인성공");
+//		}else {
+//			System.out.println("로그인실패");
+//		}
 		return authUser;
 	}
 	@Override

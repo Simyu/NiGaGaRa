@@ -7,6 +7,7 @@ import java.util.Iterator;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,10 +23,17 @@ public class MemberLoginSuccess implements AuthenticationSuccessHandler{
 		String url="/NiGaGaRa/index.do";
 		Collection<GrantedAuthority> authlist =  vo.getAuthorities();
 		Iterator<GrantedAuthority> authlistit = authlist.iterator();
+		
+		vo.setMem_id(authentication.getName());
+		vo.setMem_pw((String)authentication.getCredentials());
+		
+		HttpSession ses = request.getSession();
+		ses.setAttribute("loginUser", vo);
+
 		while(authlistit.hasNext()) {
 			GrantedAuthority authority = authlistit.next();
-			if(authority.getAuthority().equals("ROLE_USER")) {
-				url="/NiGaGaRa/goods/insert.do";
+			if(authority.getAuthority().equals("ROLE_ADMIN")) {
+				url="/NiGaGaRa/member/list.do";
 			}
 		}
 		response.sendRedirect(url);
