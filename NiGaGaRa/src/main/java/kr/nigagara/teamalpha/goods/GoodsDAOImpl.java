@@ -18,8 +18,8 @@ public class GoodsDAOImpl implements GoodsDAO {
 	}
 
 	@Override
-	public List<GoodsVO> requestlist() {
-		List<GoodsVO> requestlist = sqlSession.selectList("nigagara.goods.requestlist");
+	public List<GoodsVO> requestlist(String login_id) {
+		List<GoodsVO> requestlist = sqlSession.selectList("nigagara.goods.requestlist", login_id);
 		return requestlist;
 	}
 

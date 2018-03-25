@@ -1,8 +1,12 @@
 package kr.nigagara.teamalpha.member;
 
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.multipart.MultipartFile;
 
-public class MemberVO {
+public class MemberSecurityVO extends User{
 
 	private String mem_id;
 
@@ -42,19 +46,78 @@ public class MemberVO {
 	
 	private String bank_code;
 	
+
+	public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
+			boolean credentialsNonExpired, boolean accountNonLocked,
+			Collection<? extends GrantedAuthority> authorities) {
+		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+	}
+	/*public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
+			boolean credentialsNonExpired, boolean accountNonLocked,
+			Collection<? extends GrantedAuthority> authorities,String mem_name) {
+		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+		this.mem_name = mem_name;
+	}
+	*/
+	public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
+			boolean credentialsNonExpired, boolean accountNonLocked,
+			Collection<? extends GrantedAuthority> authorities,
+
+	String mem_name,
+
+	String mem_birth,
+
+	String mem_zipcode,
+
+	String mem_addr,
+
+	String mem_addr_detail,
+
+	String mem_state,
+
+	String mem_gender,
+
+	String mem_phone,
+
+	String mem_email,
+
+	Integer point_total,
 	
-	public MemberVO() {
-		// TODO Auto-generated constructor stub
-	}
+	String mem_type,
 
-	public String getBank_code() {
-		return bank_code;
-	}
+	String mem_account,
 
-	public void setBank_code(String bank_code) {
-		this.bank_code = bank_code;
-	}
+	String mem_img,
 
+	String mem_lati,
+
+	String mem_longi,
+	
+	String bank_code
+	
+	
+	
+	) {
+		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+		this.mem_name =mem_name;
+		this.mem_birth =mem_birth;
+		this.mem_zipcode =mem_zipcode;
+		this.mem_addr =mem_addr;
+		this.mem_addr_detail =mem_addr_detail;
+		this.mem_state =mem_state;
+		this.mem_gender =mem_gender;
+		this.mem_phone =mem_phone;
+		this.mem_email =mem_email;
+		this.point_total =point_total;
+		this.mem_account =mem_account;
+		this.mem_img =mem_img;
+		this.mem_lati =mem_lati;
+		this.mem_longi =mem_longi;
+		this.bank_code =bank_code;
+		
+	}
+	
+	
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -199,10 +262,17 @@ public class MemberVO {
 		this.mem_longi = mem_longi;
 	}
 
+	public String getBank_code() {
+		return bank_code;
+	}
+
+	public void setBank_code(String bank_code) {
+		this.bank_code = bank_code;
+	}
 
 	@Override
 	public String toString() {
-		return "MemberVO [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_birth="
+		return "MemberSecurityVO [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_birth="
 				+ mem_birth + ", mem_zipcode=" + mem_zipcode + ", mem_addr=" + mem_addr + ", mem_addr_detail="
 				+ mem_addr_detail + ", mem_state=" + mem_state + ", mem_gender=" + mem_gender + ", mem_phone="
 				+ mem_phone + ", mem_email=" + mem_email + ", point_total=" + point_total + ", mem_type=" + mem_type
@@ -210,34 +280,7 @@ public class MemberVO {
 				+ ", mem_longi=" + mem_longi + ", bank_code=" + bank_code + "]";
 	}
 
-	public MemberVO(String mem_id, String mem_pw, String mem_name, String mem_birth, String mem_zipcode,
-			String mem_addr, String mem_addr_detail, String mem_state, String mem_gender, String mem_phone,
-			String mem_email, Integer point_total, String mem_type, String mem_account, String mem_img,
-			MultipartFile file, String mem_lati, String mem_longi, String bank_code) {
-		super();
-		this.mem_id = mem_id;
-		this.mem_pw = mem_pw;
-		this.mem_name = mem_name;
-		this.mem_birth = mem_birth;
-		this.mem_zipcode = mem_zipcode;
-		this.mem_addr = mem_addr;
-		this.mem_addr_detail = mem_addr_detail;
-		this.mem_state = mem_state;
-		this.mem_gender = mem_gender;
-		this.mem_phone = mem_phone;
-		this.mem_email = mem_email;
-		this.point_total = point_total;
-		this.mem_type = mem_type;
-		this.mem_account = mem_account;
-		this.mem_img = mem_img;
-		this.file = file;
-		this.mem_lati = mem_lati;
-		this.mem_longi = mem_longi;
-		this.bank_code = bank_code;
-	}
+
 
 	
-	
-	
-
 }

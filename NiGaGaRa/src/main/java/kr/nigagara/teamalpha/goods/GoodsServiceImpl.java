@@ -17,8 +17,8 @@ public class GoodsServiceImpl implements GoodsService {
 	}
 
 	@Override
-	public List<GoodsVO> requestlist() {
-		return dao.requestlist();
+	public List<GoodsVO> requestlist(String login_id) {
+		return dao.requestlist(login_id);
 	}
 
 	@Override

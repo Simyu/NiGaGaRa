@@ -42,7 +42,7 @@
 
 			<div class="col-md-6 panel-body container">
 				<img
-					src="http://chart.apis.google.com/chart?cht=qr&chs=400x400&chl=${goods_Num} &choe=UTF-8">
+					src="http://chart.apis.google.com/chart?cht=qr&chs=500x500&chl=${goods_Num} &choe=UTF-8">
 				<!-- 구글chart api 사용 -- cht = qr / chs = 사이즈 /chl = 링크 /choe=잘안쓰지만 utf-8로 바꾸는-->
 
 			</div>

@@ -8,9 +8,9 @@ var svrOpts = {
 		bs_style: 'primary',
 		base_web_uri: 'https://twww.open-platform.or.kr',
 		base_api_uri: 'https://testapi.open-platform.or.kr',
-		redirect_uri: 'http://localhost:8880/html/callback.html',
-		client_id: 'l7xx887c5a617205417f9088c4d4a83a9cc9',
-		client_secret: 'ee1e2ae7a98445a09088c30b9f278e7f',
+		redirect_uri: 'http://localhost:8088/html/callback.html',
+		client_id: 'l7xx4542423c4fac41b18abd22d39d99c3cf',
+		client_secret: '1b3efbffaaa645ad86a0bfc0f01dcd14',
 		client_info: '[test] whatever you want'
 	}
 };
@@ -100,7 +100,7 @@ var apis = {
 	real_name: {
 		defFrmVal: {
 			test: $.extend(true, {}, svrOpts.test, {
-				
+				scope : "oob"
 			})
 		}
 	},
