@@ -117,20 +117,6 @@
 	{
 	    /*  writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data); */
 	}
-/* 	function writeToScreen(message)
-	{
-	     var pre = document.createElement("P");
-	     pre.style.wordWrap = "break-word";
-	     pre.innerHTML = message;
-	     output.appendChild(pre);
-	} */
-
-	// 서버에 Message를 전달 합니다.
- 	/* function doSend(message)
-	{
-	    writeToScreen("ENT: " + message); 
-		websocket.send(message);
-	}  */
 
 	// Geolocation API를 사용해 위치 추적을 시작합니다.
 	function start()

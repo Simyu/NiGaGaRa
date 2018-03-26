@@ -11,4 +11,10 @@
 	<select id="select" resultType="delivery" parameterType="Integer">
 		select * from delivery where deliveryNum=#{deliveryNum}
 	</select>
+	
+	<insert id="insert" parameterType="delivery">
+		insert into delivery (delivery_num,sender,delivery_man,departure_time,arrival_time,delivery_state,goods_num,delivery_qr)
+		values(DELIVERY_SEQ.nextval,#{sender_id},#{delivery_man},'0','0','1',#{goods_num},null)
+	
+	</insert>
 </mapper>

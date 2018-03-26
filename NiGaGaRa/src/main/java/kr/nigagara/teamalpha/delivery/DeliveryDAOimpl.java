@@ -23,4 +23,9 @@ SqlSession sqlSession;
 		return sqlSession.selectOne("nigagara.delivery.select",deliveryNum);
 	}
 
+	@Override
+	public int insert(DeliveryVO vo) {
+		return sqlSession.selectOne("nigagara.delivery.insert",vo);
+	}
+
 }

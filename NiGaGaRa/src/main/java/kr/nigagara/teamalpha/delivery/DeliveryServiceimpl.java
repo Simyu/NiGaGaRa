@@ -25,4 +25,10 @@ DeliveryDAO dao;
 		return dao.select(deliveryNum);
 	}
 
+	@Override
+	public int insert(DeliveryVO vo) {
+		
+		return dao.insert(vo);
+	}
+
 }

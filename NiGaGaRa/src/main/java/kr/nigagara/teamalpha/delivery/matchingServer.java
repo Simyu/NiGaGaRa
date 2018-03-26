@@ -19,14 +19,15 @@ import org.eclipse.jdt.core.BuildJarIndex;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import kr.nigagara.teamalpha.goods.GoodsVO;
 
 @ServerEndpoint("/match")
 public class matchingServer {
-
+	@Autowired
+	DeliveryService service;
 	private static final Set<matchingServer> connections = new CopyOnWriteArraySet<matchingServer>();
-	private static final Set<matchingServer> connections2 = new CopyOnWriteArraySet<matchingServer>();
 
 	//private static final Map<String, GoodsVO> productList = new Map<String, GoodsVO>();
 
@@ -97,7 +98,16 @@ public class matchingServer {
 			}else if(object.get("pro_type").equals("result")) {
 				System.out.println(object.toJSONString());
 				System.out.println("message=>"+message);
-				sendTo(message);
+				
+				DeliveryVO vo = new DeliveryVO();
+				vo.setDelivery_Man((String)object.get("delivery_man"));
+				vo.setDelivery_State("1");
+				vo.setSender((String)object.get("sender_id"));
+				vo.setGoods_Num(Integer.parseInt((String)object.get("goods_Num")));
+				int save = service.insert(vo);               //매칭이 되면 디비에 insert시키는 부분
+				if(save>0) {
+					sendTo(message);
+				}
 			}
 			else {
 				
