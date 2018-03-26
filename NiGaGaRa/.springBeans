@@ -10,6 +10,7 @@
 		<config>src/main/webapp/WEB-INF/config/security-config.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/main/webapp/WEB-INF/config/spring-config.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>
