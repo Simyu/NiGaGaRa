@@ -49,7 +49,7 @@
 	<update id="drop" parameterType="java.lang.String">
 		update member
 		set
-		mem_state='0',
+		mem_state='1',
 		where mem_id=#{memId}
 	</update>
 

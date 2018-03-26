@@ -27,7 +27,9 @@ public class MemberProvider implements AuthenticationProvider{
 		boolean state = encoder.isPasswordValid(user.getPassword(),password,null);
 		UsernamePasswordAuthenticationToken authUser = null;
 		
-		if (!user.getMem_state().equals("1")) {
+		System.out.println("authenticate==>"+user);
+		
+		if (!user.getMem_state().equals("0")) {
 			state = false;
 		}
 		

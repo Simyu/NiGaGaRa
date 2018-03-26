@@ -111,9 +111,10 @@ public class MemberController {
 
 		if (vo != null) {
 			if (encoder.isPasswordValid(vo.getMem_pw(), password, null)) {
-				System.err.println("ppap");
+
+				String dbpass = encoder.encodePassword(newpass, null);
 				
-				service.resetpass(vo.getMem_id(), newpass);
+				service.resetpass(vo.getMem_id(), dbpass);
 				return "redirect:/member/profile.do?mem_id=" + vo.getMem_id();
 			}
 		} 

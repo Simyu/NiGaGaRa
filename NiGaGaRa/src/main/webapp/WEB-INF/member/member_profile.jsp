@@ -46,7 +46,6 @@ body {
 							<input type="button" id="fackfileupbtn" class="btn btn-theme"
 								value="프로필 사진 수정">
 						</div>
-						<a class="btn btn-theme" href="/NiGaGaRa/member/resetpass.do">비밀번호 바꾸기</a>
 					</div>
 					<fieldset class="col-md-10">
 						<!-- Text input-->
@@ -219,6 +218,9 @@ body {
 							style="display: none;" id="cancle">취소하기</a>
 						<input type="submit" class="btn btn-theme" style="display: none;"
 							value="수정완료" id="submit">
+
+						<a class="btn btn-theme" href="/NiGaGaRa/member/resetpass.do">비밀번호
+							바꾸기</a>
 					</div>
 				</form>
 			</div>
