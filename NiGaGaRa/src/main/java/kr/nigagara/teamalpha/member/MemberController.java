@@ -77,18 +77,18 @@ public class MemberController {
 		System.out.println("modify==>" + member);
 		System.out.println("fileflag==>" + fileflag);
 		String fileName = null;
-		
+
 		if (fileflag.equals("T")) {
 			MultipartFile file = member.getFile();
 			String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/img/upload");
 			fileName = file.getOriginalFilename();
 			uploadservice.upload(file, path, fileName);
 		} else {
-			MemberVO vo = (MemberVO) request.getSession().getAttribute("loginUser");
+			MemberVO vo = (MemberVO) request.getSession(false).getAttribute("loginUser");
 			fileName = vo.getMem_img();
 		}
 		member.setMem_img(fileName);
-		
+
 		service.update(member);
 
 		model.addAttribute("loginUser", service.read(member.getMem_id()));
@@ -97,10 +97,29 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/resetpass.do", method = RequestMethod.GET)
-	public String resetpass() {
+	public String resetpassView() {
 		System.out.println("resetpass_get");
 
 		return "resetpass";
+	}
+
+	@RequestMapping(value = "/member/resetpass.do", method = RequestMethod.POST)
+	public String resetpass(String password, String newpass, HttpServletRequest request) {
+		System.out.println("resetpass_post");
+		MemberVO vo = (MemberVO) request.getSession(false).getAttribute("loginUser");
+		System.out.println(vo);
+
+		if (vo != null) {
+			if (encoder.isPasswordValid(vo.getMem_pw(), password, null)) {
+				System.err.println("ppap");
+				
+				service.resetpass(vo.getMem_id(), newpass);
+				return "redirect:/member/profile.do?mem_id=" + vo.getMem_id();
+			}
+		} 
+		logout(request);
+		return "resetpass";
+
 	}
 
 	@RequestMapping(value = "/member/searchid.do", method = RequestMethod.GET)
@@ -122,9 +141,11 @@ public class MemberController {
 	@RequestMapping(value = "/member/searchpass.do", method = RequestMethod.POST)
 	public String searchpass_result(String id, String email) throws AddressException, MessagingException {
 		System.out.println("searchpass_post");
-		String temppass = MemberController.generateNumber(6) + "";
 
-		if (service.updatePass(id, email, temppass) != 0) {
+		String temppass = MemberController.generateNumber(6) + "";
+		String dbpass = encoder.encodePassword(temppass, null);
+
+		if (service.updatePass(id, email, dbpass) != 0) {
 			String subject = "[NiGaGaRa] 임시 비밀번호가 발급 되었습니다.";
 			String body = " 안녕하세요 [NiGaGaRa] 입니다. \n발급된 임시 비밀번호는 [" + temppass + "]입니다.\n감사합니다!";
 

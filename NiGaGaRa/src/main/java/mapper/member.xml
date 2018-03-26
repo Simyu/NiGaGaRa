@@ -60,6 +60,13 @@
 		where mem_id=#{id} and mem_email=#{email}
 	</update>
 
+	<update id="updatepass" parameterType="java.util.Map">
+		update member
+		set
+		mem_pw=#{newpass}
+		where mem_id=#{id}
+	</update>
+
 	<update id="updatepoint" parameterType="java.util.Map">
 		update member
 		set

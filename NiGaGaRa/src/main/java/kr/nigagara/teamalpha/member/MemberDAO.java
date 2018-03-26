@@ -18,4 +18,6 @@ public interface MemberDAO {
 
 	int updatePass(String id, String email, String temppass);
 
+	int resetpass(String mem_id, String newpass);
+
 }

@@ -46,6 +46,7 @@ body {
 							<input type="button" id="fackfileupbtn" class="btn btn-theme"
 								value="프로필 사진 수정">
 						</div>
+						<a class="btn btn-theme" href="/NiGaGaRa/member/resetpass.do">비밀번호 바꾸기</a>
 					</div>
 					<fieldset class="col-md-10">
 						<!-- Text input-->

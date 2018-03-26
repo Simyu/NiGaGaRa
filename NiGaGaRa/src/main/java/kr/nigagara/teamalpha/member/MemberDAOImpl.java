@@ -102,4 +102,13 @@ public class MemberDAOImpl implements MemberDAO, UserDetailsService {
 		return loginUser;
 	}
 
+	@Override
+	public int resetpass(String mem_id, String newpass) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", mem_id);
+		map.put("newpass", newpass);
+		
+		return sqlsession.update("nigagara.member.updatepass", map);
+	}
+
 }
