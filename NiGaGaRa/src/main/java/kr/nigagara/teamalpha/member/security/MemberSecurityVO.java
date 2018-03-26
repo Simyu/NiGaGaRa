@@ -6,41 +6,43 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 public class MemberSecurityVO extends User {
-	String mem_id;
+	private String mem_id;
 
-	String mem_pw;
+	private String mem_pw;
 
-	String mem_name;
+	private String mem_name;
 
-	String mem_birth;
+	private String mem_birth;
 
-	String mem_zipcode;
+	private String mem_zipcode;
 
-	String mem_addr;
+	private String mem_addr;
 
-	String mem_addr_detail;
+	private String mem_addr_detail;
 
-	String mem_gender;
+	private String mem_gender;
 
-	String mem_phone;
+	private String mem_phone;
 
-	String mem_email;
+	private String mem_email;
 
-	String point_total;
+	private String point_total;
 
-	String mem_account;
+	private String mem_account;
 
-	String mem_img;
+	private String mem_img;
 
-	String mem_lati;
+	private String mem_lati;
 
-	String mem_longi;
-	
-	String mem_eval;
-	
-	String mem_bank_code;
+	private String mem_longi;
 
-	String role;
+	private String mem_eval;
+
+	private String mem_bank_code;
+
+	private String mem_state;
+
+	private String role;
 
 	public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
 			boolean credentialsNonExpired, boolean accountNonLocked,
@@ -49,31 +51,14 @@ public class MemberSecurityVO extends User {
 
 	}
 
-	public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
-			boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities,
-			String mem_name) {
-		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
-		this.mem_name = mem_name;
-	}
-
-	public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
-			boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities,
-			String mem_name,
-			String mem_birth,
-			String mem_zipcode,
-			String mem_addr,
-			String mem_addr_detail,
-			String mem_gender,
-			String mem_phone,
-			String mem_email,
-			String point_total,
-			String mem_account,
-			String mem_img,
-			String mem_lati,
-			String mem_longi,
-			String mem_eval,
-			String mem_bank_code) {
-		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+	public MemberSecurityVO(String mem_id, String mem_pw, Collection<? extends GrantedAuthority> authorities,
+			String mem_name, String mem_birth, String mem_zipcode, String mem_addr, String mem_addr_detail,
+			String mem_gender, String mem_phone, String mem_email, String point_total, String mem_account,
+			String mem_img, String mem_lati, String mem_longi, String mem_eval, String mem_bank_code, String mem_state,
+			String role) {
+		super(mem_id, mem_pw, authorities);
+		this.mem_id = mem_id;
+		this.mem_pw = mem_pw;
 		this.mem_name = mem_name;
 		this.mem_birth = mem_birth;
 		this.mem_zipcode = mem_zipcode;
@@ -87,26 +72,10 @@ public class MemberSecurityVO extends User {
 		this.mem_img = mem_img;
 		this.mem_lati = mem_lati;
 		this.mem_longi = mem_longi;
-		this.mem_eval=mem_eval;
-		this.mem_bank_code=mem_bank_code;
-	}
-
-	
-	
-	public String getMem_eval() {
-		return mem_eval;
-	}
-
-	public void setMem_eval(String mem_eval) {
 		this.mem_eval = mem_eval;
-	}
-
-	public String getMem_bank_code() {
-		return mem_bank_code;
-	}
-
-	public void setMem_bank_code(String mem_bank_code) {
 		this.mem_bank_code = mem_bank_code;
+		this.mem_state = mem_state;
+		this.role = role;
 	}
 
 	public String getMem_id() {
@@ -164,8 +133,6 @@ public class MemberSecurityVO extends User {
 	public void setMem_addr_detail(String mem_addr_detail) {
 		this.mem_addr_detail = mem_addr_detail;
 	}
-
-	
 
 	public String getMem_gender() {
 		return mem_gender;
@@ -231,6 +198,30 @@ public class MemberSecurityVO extends User {
 		this.mem_longi = mem_longi;
 	}
 
+	public String getMem_eval() {
+		return mem_eval;
+	}
+
+	public void setMem_eval(String mem_eval) {
+		this.mem_eval = mem_eval;
+	}
+
+	public String getMem_bank_code() {
+		return mem_bank_code;
+	}
+
+	public void setMem_bank_code(String mem_bank_code) {
+		this.mem_bank_code = mem_bank_code;
+	}
+
+	public String getMem_state() {
+		return mem_state;
+	}
+
+	public void setMem_state(String mem_state) {
+		this.mem_state = mem_state;
+	}
+
 	public String getRole() {
 		return role;
 	}
@@ -246,9 +237,9 @@ public class MemberSecurityVO extends User {
 				+ mem_addr_detail + ", mem_gender=" + mem_gender + ", mem_phone=" + mem_phone + ", mem_email="
 				+ mem_email + ", point_total=" + point_total + ", mem_account=" + mem_account + ", mem_img=" + mem_img
 				+ ", mem_lati=" + mem_lati + ", mem_longi=" + mem_longi + ", mem_eval=" + mem_eval + ", mem_bank_code="
-				+ mem_bank_code + ", role=" + role + "]";
+				+ mem_bank_code + ", mem_state=" + mem_state + ", role=" + role + "]";
 	}
-
+	
 	
 
 }

@@ -35,18 +35,6 @@ public class MemberController {
 		return "login";
 	}
 
-	@RequestMapping(value = "/member/login", method = RequestMethod.POST)
-	public String login(String id, String pass, Model model) {
-		System.out.println("login_post");
-		MemberVO vo = service.login(id, pass);
-		if (vo != null && !vo.getMem_state().equals("��Ȱ��")) {
-			model.addAttribute("loginUser", vo);
-			return "index";
-		} else {
-			return "login";
-		}
-	}
-
 	@RequestMapping(value = "/member/register.do", method = RequestMethod.GET)
 	public String register_view() {
 		System.out.println("register_get");
@@ -56,15 +44,16 @@ public class MemberController {
 
 	@RequestMapping(value = "/member/register.do", method = RequestMethod.POST)
 	public String register(MemberVO member, HttpServletRequest request) throws Exception {
-		String dbpass = encoder.encodePassword(member.getMem_pw(), null);
-		member.setMem_pw(dbpass);
-		System.out.println("register_post");
-		MultipartFile file = member.getFile();
-		String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/img/upload");
-
-		uploadservice.upload(file, path, file.getOriginalFilename());
-		member.setMem_img(file.getOriginalFilename());
-		service.insert(member);
+		System.out.println(member);
+//		String dbpass = encoder.encodePassword(member.getMem_pw(), null);
+//		member.setMem_pw(dbpass);
+//		System.out.println("register_post");
+//		MultipartFile file = member.getFile();
+//		String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/img/upload");
+//
+//		uploadservice.upload(file, path, file.getOriginalFilename());
+//		member.setMem_img(file.getOriginalFilename());
+//		service.insert(member);
 
 		return "redirect:/member/login.do";
 	}

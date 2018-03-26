@@ -42,8 +42,7 @@
 	<update id="drop" parameterType="java.lang.String">
 		update member
 		set
-		mem_state='비활성',
-		mem_type='탈퇴회원'
+		mem_state='0',
 		where mem_id=#{memId}
 	</update>
 
