@@ -44,16 +44,22 @@ public class MemberController {
 
 	@RequestMapping(value = "/member/register.do", method = RequestMethod.POST)
 	public String register(MemberVO member, HttpServletRequest request) throws Exception {
+		System.out.println("register_post");
+
+		String dbpass = encoder.encodePassword(member.getMem_pw(), null);
+		member.setMem_pw(dbpass);
+
+		MultipartFile file = member.getFile();
+		String fileName = file.getOriginalFilename();
+		if (!fileName.equals("")) {
+			String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/img/upload");
+			uploadservice.upload(file, path, fileName);
+		} else {
+			fileName = "avatar.png";
+		}
+		member.setMem_img(fileName);
 		System.out.println(member);
-//		String dbpass = encoder.encodePassword(member.getMem_pw(), null);
-//		member.setMem_pw(dbpass);
-//		System.out.println("register_post");
-//		MultipartFile file = member.getFile();
-//		String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/img/upload");
-//
-//		uploadservice.upload(file, path, file.getOriginalFilename());
-//		member.setMem_img(file.getOriginalFilename());
-//		service.insert(member);
+		service.insert(member);
 
 		return "redirect:/member/login.do";
 	}

@@ -1,21 +1,20 @@
 drop table member CASCADE CONSTRAINT;
 
-select * from member;
 CREATE TABLE member
 (
     mem_id             VARCHAR2(20)     NOT NULL, 
-    mem_pw             VARCHAR2(20)     NULL, 
+    mem_pw             VARCHAR2(100)     NULL, 
     mem_name           VARCHAR2(20)     NULL, 
     mem_birth          VARCHAR2(20)     NULL, 
     mem_zipcode        VARCHAR2(5)      NULL, 
-    mem_addr           VARCHAR2(90)     NULL, 
-    mem_addr_detail    VARCHAR2(90)     NULL,  
+    mem_addr           VARCHAR2(200)     NULL, 
+    mem_addr_detail    VARCHAR2(200)     NULL,  
     mem_gender         VARCHAR2(20)     NULL, 
     mem_phone          VARCHAR2(20)     NULL, 
-    mem_email          VARCHAR2(20)     NULL, 
+    mem_email          VARCHAR2(200)     NULL, 
     point_total        VARCHAR2(20)           NULL, 
     mem_account        VARCHAR2(20)     NULL, 
-    mem_img            VARCHAR2(100)    NULL, 
+    mem_img            VARCHAR2(200)    NULL, 
     mem_lati           VARCHAR2(100)           NULL, 
     mem_longi          VARCHAR2(100)           NULL, 
     mem_eval			VARCHAR2(10) 	NULL,
