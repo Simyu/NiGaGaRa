@@ -2,11 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="nigagara.member">
+ <!-- 	private String mem_id;
+	private String mem_pw;
+	private String mem_name;
+	private String mem_birth;
+	private String mem_zipcode;
+	private String mem_addr;
+	private String mem_addr_detail;
+	private String mem_gender;
+	private String mem_phone;
+	private String mem_email;
+	private String point_total;
+	private String mem_account;
+	private String mem_img;
+	private String mem_lati;
+	private String mem_longi;
+	private String mem_eval;
+	private String mem_bank_code;
+	private String mem_state;
+	private String role;
+	private MultipartFile file; -->
 	<insert id="insert" parameterType="member">
 		insert into member values
 		(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_birth}, #{mem_zipcode},
-		#{mem_addr}, #{mem_addr_detail}, '활성', #{mem_gender}, #{mem_phone},
-		#{mem_email}, 0, 'ROLE_USER', #{mem_account}, #{mem_img},0,0)
+		#{mem_addr}, #{mem_addr_detail}, #{mem_gender}, #{mem_phone},
+		#{mem_email}, '0', #{mem_account}, #{mem_img},'0','0','0',#{mem_bank_code},'0','ROLE_USER')
+
 	</insert>
 	<select id="read" parameterType="java.lang.String" resultType="member">
 		select *
@@ -41,8 +62,7 @@
 	<update id="drop" parameterType="java.lang.String">
 		update member
 		set
-		mem_state='비활성',
-		mem_type='탈퇴회원'
+		mem_state='0',
 		where mem_id=#{memId}
 	</update>
 
@@ -68,12 +88,12 @@
 	</select>
 
 	<select id="securityLogin" resultType="map">
-		select mem_id as
-		username,mem_pw as password,mem_name,mem_birth,mem_zipcode,mem_addr,
-		mem_addr_detail,mem_state,mem_gender,mem_phone,mem_email,point_total,mem_type
-		as authority,
-		mem_account,mem_img,mem_lati,mem_longi,back_code from member where mem_id = #{username}
-
+		select 
+		mem_id as username, mem_pw as password, mem_name, mem_birth, mem_zipcode, mem_addr,
+		mem_addr_detail, mem_state, mem_gender, mem_phone, mem_email, point_total, mem_account,
+		mem_img, mem_lati, mem_longi, mem_eval, mem_bank_code, role as authority 
+		from member 
+		where mem_id = #{username}
 	</select>
 
 </mapper>

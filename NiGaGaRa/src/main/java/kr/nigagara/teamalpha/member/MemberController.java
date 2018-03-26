@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,28 +24,17 @@ import org.springframework.web.util.WebUtils;
 @SessionAttributes("loginUser")
 
 public class MemberController {
+	private ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
 	@Autowired
 	MemberService service;
 	@Autowired
 	FileUploadLogic uploadservice;
 
-	@RequestMapping(value = "/member/login.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/login", method = RequestMethod.GET)
 	public String login_view() {
 		System.out.println("login_get");
 
 		return "login";
-	}
-
-	@RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
-	public String login(String id, String pass, Model model) {
-		System.out.println("login_post");
-		MemberVO vo = service.login(id, pass);
-		if (vo != null /*&& !vo.getMem_state().equals("��Ȱ��")*/) {
-			model.addAttribute("loginUser", vo);
-			return "index";
-		} else {
-			return "login";
-		}
 	}
 
 	@RequestMapping(value = "/member/register.do", method = RequestMethod.GET)
@@ -57,11 +47,20 @@ public class MemberController {
 	@RequestMapping(value = "/member/register.do", method = RequestMethod.POST)
 	public String register(MemberVO member, HttpServletRequest request) throws Exception {
 		System.out.println("register_post");
-		MultipartFile file = member.getFile();
-		String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/img/upload");
 
-		uploadservice.upload(file, path, file.getOriginalFilename());
-		member.setMem_img(file.getOriginalFilename());
+		String dbpass = encoder.encodePassword(member.getMem_pw(), null);
+		member.setMem_pw(dbpass);
+
+		MultipartFile file = member.getFile();
+		String fileName = file.getOriginalFilename();
+		if (!fileName.equals("")) {
+			String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/img/upload");
+			uploadservice.upload(file, path, fileName);
+		} else {
+			fileName = "avatar.png";
+		}
+		member.setMem_img(fileName);
+		System.out.println(member);
 		service.insert(member);
 
 		return "redirect:/member/login.do";

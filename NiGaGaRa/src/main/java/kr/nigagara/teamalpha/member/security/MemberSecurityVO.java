@@ -1,9 +1,11 @@
-package kr.nigagara.teamalpha.member;
+package kr.nigagara.teamalpha.member.security;
 
-import org.springframework.web.multipart.MultipartFile;
+import java.util.Collection;
 
-public class MemberVO {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 
+public class MemberSecurityVO extends User {
 	private String mem_id;
 
 	private String mem_pw;
@@ -35,19 +37,46 @@ public class MemberVO {
 	private String mem_longi;
 
 	private String mem_eval;
-	
+
 	private String mem_bank_code;
 
 	private String mem_state;
-	
+
 	private String role;
-	
-	private MultipartFile file;
-	
-	public MemberVO() {
-		// TODO Auto-generated constructor stub
+
+	public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
+			boolean credentialsNonExpired, boolean accountNonLocked,
+			Collection<? extends GrantedAuthority> authorities) {
+		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+
 	}
 
+	public MemberSecurityVO(String mem_id, String mem_pw, Collection<? extends GrantedAuthority> authorities,
+			String mem_name, String mem_birth, String mem_zipcode, String mem_addr, String mem_addr_detail,
+			String mem_gender, String mem_phone, String mem_email, String point_total, String mem_account,
+			String mem_img, String mem_lati, String mem_longi, String mem_eval, String mem_bank_code, String mem_state,
+			String role) {
+		super(mem_id, mem_pw, authorities);
+		this.mem_id = mem_id;
+		this.mem_pw = mem_pw;
+		this.mem_name = mem_name;
+		this.mem_birth = mem_birth;
+		this.mem_zipcode = mem_zipcode;
+		this.mem_addr = mem_addr;
+		this.mem_addr_detail = mem_addr_detail;
+		this.mem_gender = mem_gender;
+		this.mem_phone = mem_phone;
+		this.mem_email = mem_email;
+		this.point_total = point_total;
+		this.mem_account = mem_account;
+		this.mem_img = mem_img;
+		this.mem_lati = mem_lati;
+		this.mem_longi = mem_longi;
+		this.mem_eval = mem_eval;
+		this.mem_bank_code = mem_bank_code;
+		this.mem_state = mem_state;
+		this.role = role;
+	}
 
 	public String getMem_id() {
 		return mem_id;
@@ -169,7 +198,6 @@ public class MemberVO {
 		this.mem_longi = mem_longi;
 	}
 
-
 	public String getMem_eval() {
 		return mem_eval;
 	}
@@ -202,21 +230,16 @@ public class MemberVO {
 		this.role = role;
 	}
 
-	public MultipartFile getFile() {
-		return file;
-	}
-
-	public void setFile(MultipartFile file) {
-		this.file = file;
-	}
-
 	@Override
 	public String toString() {
-		return "MemberVO [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_birth="
+		return "MemberSecurityVO [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_birth="
 				+ mem_birth + ", mem_zipcode=" + mem_zipcode + ", mem_addr=" + mem_addr + ", mem_addr_detail="
 				+ mem_addr_detail + ", mem_gender=" + mem_gender + ", mem_phone=" + mem_phone + ", mem_email="
 				+ mem_email + ", point_total=" + point_total + ", mem_account=" + mem_account + ", mem_img=" + mem_img
 				+ ", mem_lati=" + mem_lati + ", mem_longi=" + mem_longi + ", mem_eval=" + mem_eval + ", mem_bank_code="
-				+ mem_bank_code + ", mem_state=" + mem_state + ", role=" + role + ", file=" + file + "]";
-	}	
+				+ mem_bank_code + ", mem_state=" + mem_state + ", role=" + role + "]";
+	}
+	
+	
+
 }

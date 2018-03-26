@@ -30,3 +30,5 @@ select sum(grade)/count(*) from grade a, delivery b where a.delivery_num = b.del
 
 alter table member add mem_eval varchar(10);
 
+alter table member add mem_bank_code varchar(3);
+

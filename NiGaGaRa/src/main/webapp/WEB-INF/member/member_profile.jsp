@@ -41,8 +41,7 @@ body {
 								class="img-responsive img-thumbnail " id="img">
 						</div>
 						<div id="fileupload" class="row" hidden="hidden">
-							<input type="file" id="fileinput" name="file"
-								accept="image/*">
+							<input type="file" id="fileinput" name="file" accept="image/*">
 							<input type="button" id="fackfileupbtn" class="btn btn-theme"
 								value="프로필 사진 수정">
 						</div>
@@ -183,8 +182,14 @@ body {
 								<div class="input-group">
 									<div class="input-group-addon">
 										<i class="fas fa-university"></i>
-
 									</div>
+
+									<select class="form-control" name="mem_bank_code"
+										id="bank_code">
+										<option value="001">국민은행</option>
+										<option value="002">우리은행</option>
+										<option value="003">신한은행</option>
+									</select>
 									<input name="mem_account" type="text"
 										value="${user.mem_account }" class="form-control input-md"
 										disabled="disabled">
@@ -214,55 +219,59 @@ body {
 
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#modifyview").on("click", function() {
-				$(".form-group input").removeAttr("disabled");
-				$("#fileupload").removeAttr("hidden");
-				$("#modifyview").css("display", "none");
-				$("#gender").css("display", "none");
-				$("#gendergroup").css("display", "block");
-				$("#submit").css("display", "inline");
-				$("#cancle").removeAttr("style");
+		$(document)
+				.ready(
+						function() {
+							$("#modifyview").on("click", function() {
+								$(".form-group input").removeAttr("disabled");
+								$("#fileupload").removeAttr("hidden");
+								$("#modifyview").css("display", "none");
+								$("#gender").css("display", "none");
+								$("#gendergroup").css("display", "block");
+								$("#submit").css("display", "inline");
+								$("#cancle").removeAttr("style");
 
-				if ($("#gender").val() == "남자") {
-					$("#man").attr("checked", "checked");
-				} else {
-					$("#woman").attr("checked", "checked");
-				}
-			});
+								if ($("#gender").val() == "남자") {
+									$("#man").attr("checked", "checked");
+								} else {
+									$("#woman").attr("checked", "checked");
+								}
+							});
 
-			$("#fackfileupbtn").on("click", function() {
-				$("#fileinput").click();
-			});
-			var upload = document.getElementById('fileinput'),
-		    holder = document.getElementById('imgholder');
-			$("#fileinput").on( "change", function(e) {
-				 e.preventDefault();
+							$("#fackfileupbtn").on("click", function() {
+								$("#fileinput").click();
+							});
+							var upload = document.getElementById('fileinput'), holder = document
+									.getElementById('imgholder');
+							$("#fileinput")
+									.on(
+											"change",
+											function(e) {
+												e.preventDefault();
 
-				  var file = upload.files[0],
-				      reader = new FileReader();
-				  reader.onload = function (event) {
-				    var img = new Image();
-				    img.src = event.target.result;
-				    holder.innerHTML = '';
-				    holder.appendChild(img);
-				    holder.firstChild.className ="img-responsive img-thumbnail";
-				  };
-				  reader.readAsDataURL(file);
+												var file = upload.files[0], reader = new FileReader();
+												reader.onload = function(event) {
+													var img = new Image();
+													img.src = event.target.result;
+													holder.innerHTML = '';
+													holder.appendChild(img);
+													holder.firstChild.className = "img-responsive img-thumbnail";
+												};
+												reader.readAsDataURL(file);
 
-				$("#fileflag").val("T");
-				  return false;
-			} );
+												$("#fileflag").val("T");
+												return false;
+											});
 
-			$("#mem_birth").datepicker({
-				dateFormat : 'yy/mm/dd',
-				changeMonth : true,
-				changeYear : true,
-				yearRange : '-100y:c+nn',
-				maxDate : '-1d'
-			});
+							$("#mem_birth").datepicker({
+								dateFormat : 'yy/mm/dd',
+								changeMonth : true,
+								changeYear : true,
+								yearRange : '-100y:c+nn',
+								maxDate : '-1d'
+							});
 
-		});
+						});
 
 		function execDaumPostcode() {
 			new daum.Postcode(
