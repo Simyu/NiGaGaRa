@@ -10,7 +10,7 @@ public interface MemberService {
 
 	MemberVO read(String mem_id);
 
-	int update(String fileflag, MemberVO member);
+	int update(MemberVO member);
 
 	boolean idCheck(String id);
 
@@ -19,5 +19,7 @@ public interface MemberService {
 	List<String> searchid(String email);
 
 	int updatePass(String id, String email, String temppass);
+
+	int resetpass(String mem_id, String newpass);
 
 }

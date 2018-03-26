@@ -1,6 +1,5 @@
-<%-- <%@page import="emp.dto.empDTO"%> --%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,43 +36,40 @@ input {
 }
 </style>
 <script type="text/javascript">
-	function check(){
+	function check() {
 		newpass = document.getElementById("newpass").value;
 		newpasschk = document.getElementById("newpasschk").value;
-		password = document.getElementById("password").value;
-		<%-- <%empDTO login = (empDTO) session.getAttribute("loginUser");%> --%>
-		<%-- sespass =<%=login.getPass()%> --%>
-		if(password!=sespass){
-			alert("±âÁ¸ ºñ¹Ğ¹øÈ£°¡ Æ²¸³´Ï´Ù.");
+		if (newpass != newpasschk) {
+			alert("ìƒˆë¡œìš´ ë¹„ë°€ë²ˆí˜¸ê°€ ë™ì¼í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			return false;
-		}else if(newpass!=newpasschk){
-			alert("»õ·Î¿î ºñ¹Ğ¹øÈ£°¡ µ¿ÀÏÇÏÁö ¾Ê½À´Ï´Ù.");
-			return false;	
-		}else{
-			alert("ºñ¹Ğ¹øÈ£°¡ º¯°æµÇ¾ú½À´Ï´Ù.");
-			return true;
 		}
+		return true;
 	}
 </script>
 <body>
-	<form action="/danim/emp/ResetPass.do" method="POST" onsubmit="return check()">
+	<form action="/NiGaGaRa/member/resetpass.do" method="POST"
+		onsubmit="return check()">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
-			<h3>´Ù´Ô È¸¿ø ÆĞ½º¿öµå º¯°æ</h3>
+			<h3>íŒ¨ìŠ¤ì›Œë“œ ë³€ê²½</h3>
 			<div>
 				<ul class="list-group">
-					<li  class="list-group-item"><input type=password
-						placeholder="ÇöÀç ºñ¹Ğ¹øÈ£" name="password" id="password"
-						class="form-control input-md" required="required"/></li>
-					<li class="list-group-item"><input id="newpass"  type=password
-						placeholder="»õ ºñ¹Ğ¹øÈ£" name="newpass" class="form-control input-md"
-						required="required"/></li>
-					<li class="list-group-item"><input id="newpasschk"
-						type=password placeholder="»õ ºñ¹Ğ¹øÈ£ È®ÀÎ" name="newpasschk"
-						class="form-control input-md" required="required"/></li>
+					<li class="list-group-item">
+						<input type=password placeholder="í˜„ì¬ ë¹„ë°€ë²ˆí˜¸" name="password"
+							id="password" class="form-control input-md" required="required" />
+					</li>
+					<li class="list-group-item">
+						<input id="newpass" type=password placeholder="ìƒˆ ë¹„ë°€ë²ˆí˜¸"
+							name="newpass" class="form-control input-md" required="required" />
+					</li>
+					<li class="list-group-item">
+						<input id="newpasschk" type=password placeholder="ìƒˆ ë¹„ë°€ë²ˆí˜¸ í™•ì¸"
+							name="newpasschk" class="form-control input-md"
+							required="required" />
+					</li>
 				</ul>
 				<input class="btn btn-lg btn-primary btn-block btn-signin"
-					type="submit" value ="ÆĞ½º¿öµåº¯°æÇÏ±â"/>
+					type="submit" value="íŒ¨ìŠ¤ì›Œë“œë³€ê²½í•˜ê¸°" />
 			</div>
 		</div>
 		<div class="col-md-2"></div>

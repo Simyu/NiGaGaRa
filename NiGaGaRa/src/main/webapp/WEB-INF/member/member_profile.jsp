@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -41,8 +42,7 @@ body {
 								class="img-responsive img-thumbnail " id="img">
 						</div>
 						<div id="fileupload" class="row" hidden="hidden">
-							<input type="file" id="fileinput" name="file"
-								accept="image/*">
+							<input type="file" id="fileinput" name="file" accept="image/*">
 							<input type="button" id="fackfileupbtn" class="btn btn-theme"
 								value="프로필 사진 수정">
 						</div>
@@ -116,6 +116,11 @@ body {
 										value="(${user.mem_zipcode }) ${user.mem_addr }"
 										class="form-control input-md" onclick="execDaumPostcode()"
 										disabled="disabled">
+
+									<input name="mem_addr_detail" type="text"
+										value="${user.mem_addr_detail }" class="form-control input-md"
+										disabled="disabled">
+
 									<input type="hidden" id="mem_zipcode" name="mem_zipcode"
 										value="${user.mem_zipcode }">
 									<input type="hidden" id="mem_addr" name="mem_addr"
@@ -124,23 +129,6 @@ body {
 								</div>
 							</div>
 						</div>
-
-						<div class="form-group">
-							<label class="col-md-2 control-label " for="Permanent Address">상세주소</label>
-							<div class="col-md-5">
-								<div class="input-group">
-									<div class="input-group-addon">
-										<i class="fas fa-map-marker"></i>
-
-									</div>
-									<input name="mem_addr_detail" type="text"
-										value="${user.mem_addr_detail }" class="form-control input-md"
-										disabled="disabled">
-
-								</div>
-							</div>
-						</div>
-
 
 						<!-- Text input-->
 						<div class="form-group">
@@ -183,8 +171,35 @@ body {
 								<div class="input-group">
 									<div class="input-group-addon">
 										<i class="fas fa-university"></i>
-
 									</div>
+
+									<select class="form-control" name="mem_bank_code"
+										id="bank_code" style="display: none;">
+										<c:choose>
+											<c:when test="${user.mem_bank_code == '001' }">
+												<c:set var="bank_code" value="국민은행" />
+												<option value="001" selected="selected">국민은행</option>
+												<option value="002">우리은행</option>
+												<option value="003">신한은행</option>
+											</c:when>
+											<c:when test="${user.mem_bank_code == '002' }">
+												<c:set var="bank_code" value="우리은행" />
+												<option value="001">국민은행</option>
+												<option value="002" selected="selected">우리은행</option>
+												<option value="003">신한은행</option>
+											</c:when>
+											<c:when test="${user.mem_bank_code == '003' }">
+												<c:set var="bank_code" value="신한은행" />
+												<option value="001">국민은행</option>
+												<option value="002">우리은행</option>
+												<option value="003" selected="selected">신한은행</option>
+											</c:when>
+										</c:choose>
+									</select>
+
+									<input id="bank_code_show" type="text" value="${bank_code}"
+										class="form-control input-md" disabled="disabled">
+
 									<input name="mem_account" type="text"
 										value="${user.mem_account }" class="form-control input-md"
 										disabled="disabled">
@@ -203,6 +218,9 @@ body {
 							style="display: none;" id="cancle">취소하기</a>
 						<input type="submit" class="btn btn-theme" style="display: none;"
 							value="수정완료" id="submit">
+
+						<a class="btn btn-theme" href="/NiGaGaRa/member/resetpass.do">비밀번호
+							바꾸기</a>
 					</div>
 				</form>
 			</div>
@@ -214,55 +232,62 @@ body {
 
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#modifyview").on("click", function() {
-				$(".form-group input").removeAttr("disabled");
-				$("#fileupload").removeAttr("hidden");
-				$("#modifyview").css("display", "none");
-				$("#gender").css("display", "none");
-				$("#gendergroup").css("display", "block");
-				$("#submit").css("display", "inline");
-				$("#cancle").removeAttr("style");
+		$(document)
+				.ready(
+						function() {
+							$("#modifyview").on("click", function() {
+								$(".form-group input").removeAttr("disabled");
+								$("#fileupload").removeAttr("hidden");
+								$("#modifyview").css("display", "none");
+								$("#gender").css("display", "none");
+								$("#gendergroup").css("display", "block");
+								$("#submit").css("display", "inline");
+								$("#cancle").removeAttr("style");
 
-				if ($("#gender").val() == "남자") {
-					$("#man").attr("checked", "checked");
-				} else {
-					$("#woman").attr("checked", "checked");
-				}
-			});
+								if ($("#gender").val() == "남자") {
+									$("#man").attr("checked", "checked");
+								} else {
+									$("#woman").attr("checked", "checked");
+								}
 
-			$("#fackfileupbtn").on("click", function() {
-				$("#fileinput").click();
-			});
-			var upload = document.getElementById('fileinput'),
-		    holder = document.getElementById('imgholder');
-			$("#fileinput").on( "change", function(e) {
-				 e.preventDefault();
+								$("#bank_code_show").css("display", "none");
+								$("#bank_code").css("display", "inline");
+							});
 
-				  var file = upload.files[0],
-				      reader = new FileReader();
-				  reader.onload = function (event) {
-				    var img = new Image();
-				    img.src = event.target.result;
-				    holder.innerHTML = '';
-				    holder.appendChild(img);
-				    holder.firstChild.className ="img-responsive img-thumbnail";
-				  };
-				  reader.readAsDataURL(file);
+							$("#fackfileupbtn").on("click", function() {
+								$("#fileinput").click();
+							});
+							var upload = document.getElementById('fileinput'), holder = document
+									.getElementById('imgholder');
+							$("#fileinput")
+									.on(
+											"change",
+											function(e) {
+												e.preventDefault();
 
-				$("#fileflag").val("T");
-				  return false;
-			} );
+												var file = upload.files[0], reader = new FileReader();
+												reader.onload = function(event) {
+													var img = new Image();
+													img.src = event.target.result;
+													holder.innerHTML = '';
+													holder.appendChild(img);
+													holder.firstChild.className = "img-responsive img-thumbnail";
+												};
+												reader.readAsDataURL(file);
 
-			$("#mem_birth").datepicker({
-				dateFormat : 'yy/mm/dd',
-				changeMonth : true,
-				changeYear : true,
-				yearRange : '-100y:c+nn',
-				maxDate : '-1d'
-			});
+												$("#fileflag").val("T");
+												return false;
+											});
 
-		});
+							$("#mem_birth").datepicker({
+								dateFormat : 'yy/mm/dd',
+								changeMonth : true,
+								changeYear : true,
+								yearRange : '-100y:c+nn',
+								maxDate : '-1d'
+							});
+
+						});
 
 		function execDaumPostcode() {
 			new daum.Postcode(

@@ -18,41 +18,34 @@ public class MemberVO {
 
 	private String mem_addr_detail;
 
-	private String mem_state;
-
 	private String mem_gender;
 
 	private String mem_phone;
 
 	private String mem_email;
 
-	private Integer point_total;
-
-	private String mem_type;
+	private String point_total;
 
 	private String mem_account;
 
 	private String mem_img;
 
-	private MultipartFile file;
-
 	private String mem_lati;
 
 	private String mem_longi;
 	
-	private String bank_code;
+	private String mem_eval;
 	
+	private String mem_bank_code;
+
+	private String mem_state;
+	
+	private String role;
+	
+	private MultipartFile file;
 	
 	public MemberVO() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public String getBank_code() {
-		return bank_code;
-	}
-
-	public void setBank_code(String bank_code) {
-		this.bank_code = bank_code;
 	}
 
 	public String getMem_id() {
@@ -111,14 +104,6 @@ public class MemberVO {
 		this.mem_addr_detail = mem_addr_detail;
 	}
 
-	public String getMem_state() {
-		return mem_state;
-	}
-
-	public void setMem_state(String mem_state) {
-		this.mem_state = mem_state;
-	}
-
 	public String getMem_gender() {
 		return mem_gender;
 	}
@@ -143,20 +128,12 @@ public class MemberVO {
 		this.mem_email = mem_email;
 	}
 
-	public Integer getPoint_total() {
+	public String getPoint_total() {
 		return point_total;
 	}
 
-	public void setPoint_total(Integer point_total) {
+	public void setPoint_total(String point_total) {
 		this.point_total = point_total;
-	}
-
-	public String getMem_type() {
-		return mem_type;
-	}
-
-	public void setMem_type(String mem_type) {
-		this.mem_type = mem_type;
 	}
 
 	public String getMem_account() {
@@ -175,14 +152,6 @@ public class MemberVO {
 		this.mem_img = mem_img;
 	}
 
-	public MultipartFile getFile() {
-		return file;
-	}
-
-	public void setFile(MultipartFile file) {
-		this.file = file;
-	}
-
 	public String getMem_lati() {
 		return mem_lati;
 	}
@@ -199,45 +168,54 @@ public class MemberVO {
 		this.mem_longi = mem_longi;
 	}
 
+	public String getMem_eval() {
+		return mem_eval;
+	}
+
+	public void setMem_eval(String mem_eval) {
+		this.mem_eval = mem_eval;
+	}
+
+	public String getMem_bank_code() {
+		return mem_bank_code;
+	}
+
+	public void setMem_bank_code(String mem_bank_code) {
+		this.mem_bank_code = mem_bank_code;
+	}
+
+	public String getMem_state() {
+		return mem_state;
+	}
+
+	public void setMem_state(String mem_state) {
+		this.mem_state = mem_state;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
 	@Override
 	public String toString() {
 		return "MemberVO [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_birth="
 				+ mem_birth + ", mem_zipcode=" + mem_zipcode + ", mem_addr=" + mem_addr + ", mem_addr_detail="
-				+ mem_addr_detail + ", mem_state=" + mem_state + ", mem_gender=" + mem_gender + ", mem_phone="
-				+ mem_phone + ", mem_email=" + mem_email + ", point_total=" + point_total + ", mem_type=" + mem_type
-				+ ", mem_account=" + mem_account + ", mem_img=" + mem_img + ", file=" + file + ", mem_lati=" + mem_lati
-				+ ", mem_longi=" + mem_longi + ", bank_code=" + bank_code + "]";
+				+ mem_addr_detail + ", mem_gender=" + mem_gender + ", mem_phone=" + mem_phone + ", mem_email="
+				+ mem_email + ", point_total=" + point_total + ", mem_account=" + mem_account + ", mem_img=" + mem_img
+				+ ", mem_lati=" + mem_lati + ", mem_longi=" + mem_longi + ", mem_eval=" + mem_eval + ", mem_bank_code="
+				+ mem_bank_code + ", mem_state=" + mem_state + ", role=" + role + ", file=" + file + "]";
 	}
-
-	public MemberVO(String mem_id, String mem_pw, String mem_name, String mem_birth, String mem_zipcode,
-			String mem_addr, String mem_addr_detail, String mem_state, String mem_gender, String mem_phone,
-			String mem_email, Integer point_total, String mem_type, String mem_account, String mem_img,
-			MultipartFile file, String mem_lati, String mem_longi, String bank_code) {
-		super();
-		this.mem_id = mem_id;
-		this.mem_pw = mem_pw;
-		this.mem_name = mem_name;
-		this.mem_birth = mem_birth;
-		this.mem_zipcode = mem_zipcode;
-		this.mem_addr = mem_addr;
-		this.mem_addr_detail = mem_addr_detail;
-		this.mem_state = mem_state;
-		this.mem_gender = mem_gender;
-		this.mem_phone = mem_phone;
-		this.mem_email = mem_email;
-		this.point_total = point_total;
-		this.mem_type = mem_type;
-		this.mem_account = mem_account;
-		this.mem_img = mem_img;
-		this.file = file;
-		this.mem_lati = mem_lati;
-		this.mem_longi = mem_longi;
-		this.bank_code = bank_code;
-	}
-
 	
-	
-	
-
 }

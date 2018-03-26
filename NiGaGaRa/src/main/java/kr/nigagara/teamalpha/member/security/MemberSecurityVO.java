@@ -1,13 +1,11 @@
-package kr.nigagara.teamalpha.member;
+package kr.nigagara.teamalpha.member.security;
 
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.web.multipart.MultipartFile;
 
-public class MemberSecurityVO extends User{
-
+public class MemberSecurityVO extends User {
 	private String mem_id;
 
 	private String mem_pw;
@@ -22,102 +20,64 @@ public class MemberSecurityVO extends User{
 
 	private String mem_addr_detail;
 
-	private String mem_state;
-
 	private String mem_gender;
 
 	private String mem_phone;
 
 	private String mem_email;
 
-	private Integer point_total;
-
-	private String mem_type;
+	private String point_total;
 
 	private String mem_account;
 
 	private String mem_img;
 
-	private MultipartFile file;
-
 	private String mem_lati;
 
 	private String mem_longi;
-	
-	private String bank_code;
-	
+
+	private String mem_eval;
+
+	private String mem_bank_code;
+
+	private String mem_state;
+
+	private String role;
 
 	public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
 			boolean credentialsNonExpired, boolean accountNonLocked,
 			Collection<? extends GrantedAuthority> authorities) {
 		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+
 	}
-	/*public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
-			boolean credentialsNonExpired, boolean accountNonLocked,
-			Collection<? extends GrantedAuthority> authorities,String mem_name) {
-		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+
+	public MemberSecurityVO(String mem_id, String mem_pw, Collection<? extends GrantedAuthority> authorities,
+			String mem_name, String mem_birth, String mem_zipcode, String mem_addr, String mem_addr_detail,
+			String mem_gender, String mem_phone, String mem_email, String point_total, String mem_account,
+			String mem_img, String mem_lati, String mem_longi, String mem_eval, String mem_bank_code, String mem_state,
+			String role) {
+		super(mem_id, mem_pw, authorities);
+		this.mem_id = mem_id;
+		this.mem_pw = mem_pw;
 		this.mem_name = mem_name;
+		this.mem_birth = mem_birth;
+		this.mem_zipcode = mem_zipcode;
+		this.mem_addr = mem_addr;
+		this.mem_addr_detail = mem_addr_detail;
+		this.mem_gender = mem_gender;
+		this.mem_phone = mem_phone;
+		this.mem_email = mem_email;
+		this.point_total = point_total;
+		this.mem_account = mem_account;
+		this.mem_img = mem_img;
+		this.mem_lati = mem_lati;
+		this.mem_longi = mem_longi;
+		this.mem_eval = mem_eval;
+		this.mem_bank_code = mem_bank_code;
+		this.mem_state = mem_state;
+		this.role = role;
 	}
-	*/
-	public MemberSecurityVO(String mem_id, String mem_pw, boolean enabled, boolean accountNonExpired,
-			boolean credentialsNonExpired, boolean accountNonLocked,
-			Collection<? extends GrantedAuthority> authorities,
 
-	String mem_name,
-
-	String mem_birth,
-
-	String mem_zipcode,
-
-	String mem_addr,
-
-	String mem_addr_detail,
-
-	String mem_state,
-
-	String mem_gender,
-
-	String mem_phone,
-
-	String mem_email,
-
-	Integer point_total,
-	
-	String mem_type,
-
-	String mem_account,
-
-	String mem_img,
-
-	String mem_lati,
-
-	String mem_longi,
-	
-	String bank_code
-	
-	
-	
-	) {
-		super(mem_id, mem_pw, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
-		this.mem_name =mem_name;
-		this.mem_birth =mem_birth;
-		this.mem_zipcode =mem_zipcode;
-		this.mem_addr =mem_addr;
-		this.mem_addr_detail =mem_addr_detail;
-		this.mem_state =mem_state;
-		this.mem_gender =mem_gender;
-		this.mem_phone =mem_phone;
-		this.mem_email =mem_email;
-		this.point_total =point_total;
-		this.mem_account =mem_account;
-		this.mem_img =mem_img;
-		this.mem_lati =mem_lati;
-		this.mem_longi =mem_longi;
-		this.bank_code =bank_code;
-		
-	}
-	
-	
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -174,14 +134,6 @@ public class MemberSecurityVO extends User{
 		this.mem_addr_detail = mem_addr_detail;
 	}
 
-	public String getMem_state() {
-		return mem_state;
-	}
-
-	public void setMem_state(String mem_state) {
-		this.mem_state = mem_state;
-	}
-
 	public String getMem_gender() {
 		return mem_gender;
 	}
@@ -206,20 +158,12 @@ public class MemberSecurityVO extends User{
 		this.mem_email = mem_email;
 	}
 
-	public Integer getPoint_total() {
+	public String getPoint_total() {
 		return point_total;
 	}
 
-	public void setPoint_total(Integer point_total) {
+	public void setPoint_total(String point_total) {
 		this.point_total = point_total;
-	}
-
-	public String getMem_type() {
-		return mem_type;
-	}
-
-	public void setMem_type(String mem_type) {
-		this.mem_type = mem_type;
 	}
 
 	public String getMem_account() {
@@ -238,14 +182,6 @@ public class MemberSecurityVO extends User{
 		this.mem_img = mem_img;
 	}
 
-	public MultipartFile getFile() {
-		return file;
-	}
-
-	public void setFile(MultipartFile file) {
-		this.file = file;
-	}
-
 	public String getMem_lati() {
 		return mem_lati;
 	}
@@ -262,25 +198,48 @@ public class MemberSecurityVO extends User{
 		this.mem_longi = mem_longi;
 	}
 
-	public String getBank_code() {
-		return bank_code;
+	public String getMem_eval() {
+		return mem_eval;
 	}
 
-	public void setBank_code(String bank_code) {
-		this.bank_code = bank_code;
+	public void setMem_eval(String mem_eval) {
+		this.mem_eval = mem_eval;
+	}
+
+	public String getMem_bank_code() {
+		return mem_bank_code;
+	}
+
+	public void setMem_bank_code(String mem_bank_code) {
+		this.mem_bank_code = mem_bank_code;
+	}
+
+	public String getMem_state() {
+		return mem_state;
+	}
+
+	public void setMem_state(String mem_state) {
+		this.mem_state = mem_state;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	@Override
 	public String toString() {
 		return "MemberSecurityVO [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_birth="
 				+ mem_birth + ", mem_zipcode=" + mem_zipcode + ", mem_addr=" + mem_addr + ", mem_addr_detail="
-				+ mem_addr_detail + ", mem_state=" + mem_state + ", mem_gender=" + mem_gender + ", mem_phone="
-				+ mem_phone + ", mem_email=" + mem_email + ", point_total=" + point_total + ", mem_type=" + mem_type
-				+ ", mem_account=" + mem_account + ", mem_img=" + mem_img + ", file=" + file + ", mem_lati=" + mem_lati
-				+ ", mem_longi=" + mem_longi + ", bank_code=" + bank_code + "]";
+				+ mem_addr_detail + ", mem_gender=" + mem_gender + ", mem_phone=" + mem_phone + ", mem_email="
+				+ mem_email + ", point_total=" + point_total + ", mem_account=" + mem_account + ", mem_img=" + mem_img
+				+ ", mem_lati=" + mem_lati + ", mem_longi=" + mem_longi + ", mem_eval=" + mem_eval + ", mem_bank_code="
+				+ mem_bank_code + ", mem_state=" + mem_state + ", role=" + role + "]";
 	}
-
-
-
 	
+	
+
 }
