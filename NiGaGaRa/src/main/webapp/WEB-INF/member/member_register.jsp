@@ -10,11 +10,7 @@
 <script src="/NiGaGaRa/resources/js/account/constants.js"></script>
 <script src="/NiGaGaRa/resources/js/account/common.js"></script>
 <title>Insert title here</title>
-<<<<<<< HEAD
-<script type="text/javascript">
-	$(function() {
-		setFieldVal();
-=======
+
 <script type="text/javascript">
 	var idverifyflag = false;
 	$(document).ready(function() {
@@ -55,81 +51,12 @@
 		$("#account_btn").on("click", function() {
 			getTokenByClientCredentials();
 		})
->>>>>>> refs/heads/snowflower
 
-<<<<<<< HEAD
-	})
-	function setFieldVal() {
-
-		$('#tran_dtime').val(new Date().format('yyyyMMddHHmmss')); // 요청일시
-	}
-	var idverifyflag = false;
-	$(document).ready(function() {
-		$("#birth").datepicker({
-			dateFormat : 'yy/mm/dd',
-			changeMonth : true,
-			changeYear : true,
-			yearRange : '-100y:c+nn',
-			maxDate : '-1d'
-		});
-		$("#accountchk").on("click", function() {
-			getTokenByClientCredentials();
-		})
-		$("#phone").on("keyup", function() {
-			phone();
-		});
-		$("#mail").on("keyup", function() {
-			mail();
-		});
-		$("#write").on("click", function() {
-			write();
-		})
-		$("#numberchk").on("click", function() {
-			numberchk();
-		})
-		$("#idcheck").on("click", function() {
-			idcheck();
-		});
-		$("#pass").on("keyup", function() {
-			pass();
-		});
-		$("#passchk").on("keyup", function() {
-			passchk();
-		})
-		$("#id").on("keyup", function() {
-			id();
-		})
-		$("#numberchk").on("click", function() {
-			alert("인증번호가 발송되었습니다.")
-		})
-
-		//계좌번호 정규식
-		/* $("#account").on("keyup",function(){
-			account();
-		}) */
-	});
-	//계좌번호 정규식
-	/* function account(){
-		var pattern = /[0-9]{4}-[0-9]{6}-[0-9]{2}-[0-9]/
-		var account = $("#account").val();
-		if(!pattern.test(account)&&account.length<14||account.length>16){
-			$("#accountval").text("계좌번호 형식이 맞지 않습니다.")
-			return false;
-		}
-		$("#accountval").text("계좌번호 형식이 맞습니다.")
-		return true;
-	} */
-	function phone() {
-		var pattern = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
-		var phone = $("#phone").val();
-		if (!pattern.test(phone)) {
-=======
 	});
 	function phone() {
 		var pattern = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 		var phone = $("#phone").val();
 		if (!pattern.test(콜)) {
->>>>>>> refs/heads/snowflower
 			$("#phoneresult").text("전화번호 형식이 맞지 않습니다.");
 			return false;
 		}
@@ -288,75 +215,6 @@
 									+ ')' : '');
 						}
 
-<<<<<<< HEAD
-                  // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                  document.getElementById('mem_zipcode').value = data.zonecode; //5자리 새우편번호 사용
-                  document.getElementById('mem_addr').value = fullAddr;
-						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById('mem_addr_detail').focus();
-					}
-				}).open();
-	}
-	//======================계좌번호 api====================
-	function getTokenByClientCredentials() {
-		var grant = $("#client_credentials").val()
-		$.ajax({
-			url : getSvrProps('base_api_uri') + '/oauth/2.0/token',
-			type : 'post',
-			contentType : 'application/json; charset=UTF-8',
-			data : {
-				'client_id' : $('#client_id').val(),
-				'client_secret' : $('#client_secret').val(),
-				'grant_type' : 'oob',
-				'scope' : 'oob'
-			},
-			success : function(data, textStatus, jqXHR) {
-				if (isGatewayException(data)) {
-					alert(grant)
-					inquiryRealName();
-					return;
-				} else {
-					 isGatewayException(data);
-					$('#token').val(data.access_token);
-					
-				}
-			}
-		})
-	}
-   function inquiryRealName() {
-      if (isEmptyElem('token')) {
-         showMsg('Access Token을 먼저 획득해 주십시오.');
-         return;
-      }
-		$.ajax({
-			url : getSvrProps('base_api_uri') + '/inquiry/real_name',
-			type : 'post',
-			headers : {
-				'client_credentials' : ('Bearer ' + $('#token').val())
-			},
-			data : js($.extend({}, getFormParamObj('real_nameFrm'), {
-			// additional parameters
-			})),
-			success : function(data, textStatus, jqXHR) {
-				if (isGatewayException(data)) {
-					return;
-				}else{ // ajax 응답이 Gateway Exception일 경우 이후 처리를 종료한다.		
-				// UI에 결과값 바인딩
-				$('#accountval').val(js(data));
-				}
-			}
-		});
-	}
-	function inputVerify() {
-		if (phone() && mail() && id() && idcheckRet && write() && passchk()
-				&& pass()/* &&account() */) {
-			return true;
-		} else {
-			alert("제대로 입력해 주세요.");
-			return false;
-		}
-	}
-=======
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
 						document.getElementById('mem_zipcode').value = data.zonecode; //5자리 새우편번호 사용
 						document.getElementById('mem_addr').value = fullAddr;
@@ -375,7 +233,6 @@
 			return false;
 		}
 	}
->>>>>>> refs/heads/snowflower
 </script>
 
 
@@ -409,79 +266,12 @@ input {
 
 </head>
 <body>
-<<<<<<< HEAD
 
-	<input type="hidden" id="code">
-	<input type="hidden" id="client_id">
-	<input type="hidden" id="client_secret">
-	<input type="hidden" id="redirect_uri">
-	<input type="hidden" id="grant_type">
-	<input type="hidden" id="tran_dtime">
-	<input type="hidden" id="token">
-=======
-	<form action="/NiGaGaRa/member/register.do" method="post"
-		enctype="multipart/form-data" onsubmit="return inputVerify();">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
->>>>>>> refs/heads/snowflower
-
-<<<<<<< HEAD
 	<form action="/NiGaGaRa/member/register.do" method="post"
 		enctype="multipart/form-data" onsubmit="return inputVerify();">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 
-			<h4>회원가입</h4>
-			<div>
-				<ul class="list-group">
-					<li class="list-group-item"><input id="id" name="mem_id"
-						type="text" placeholder="아이디" class="form-control input-md"
-						required="required">
-						<button type="button" id="idcheck">중복체크</button> <span id="result"></span>
-					</li>
-					<li class="list-group-item"><input id="pass" name="mem_pw"
-						type="password" placeholder="패스워드" class="form-control input-md"
-						required="required"> <span id="passresult"></span></li>
-					<li class="list-group-item"><input id="passchk"
-						name="mem_pw_chk" type="password" placeholder="패스워드 확인"
-						class="form-control input-md" required="required"> <span
-						id="passchkresult"></span></li>
-					<li class="list-group-item"><input id="name" name="mem_name"
-						type="text" placeholder="이름" class="form-control input-md"
-						required="required"></li>
-					<li class="list-group-item"><input type="radio"
-						name="mem_gender" value="남자" checked="checked"> 남자 <span>
-					</span> <input type="radio" name="mem_gender" value="여자"> 여자</li>
-					<li class="list-group-item"><input id="birth" name="mem_birth"
-						type="text" placeholder="생년월일 " class="form-control input-md"
-						required="required"></li>
-					<li class="list-group-item"><input id="phone" name="mem_phone"
-						type="text" placeholder="전화번호" class="form-control input-md"
-						required="required"> <span id=phoneresult></span></li>
-					<li class="list-group-item"><input id="mail" name="mem_email"
-						type="text" placeholder="이메일" class="form-control input-md"
-						required="required"> <span id="emailresult"></span> <input
-						id="mailchk" type="text" placeholder="인증번호"
-						class="form-control input-md" required="required"> <input
-						type="button" class="" id="numberchk" value="인증번호받기"> <input
-						type="button" class="" id="write" value="입력하기"></li>
-
-					<li class="list-group-item"><input id="mem_zipcode"
-						name="mem_zipcode" type="text" placeholder="우편번호"
-						class="form-control input-md" onclick="execDaumPostcode()">
-						<input id="mem_addr" name="mem_addr" type="text" placeholder="주소"
-						class="form-control input-md"> <input id="mem_addr_detail"
-						name="mem_addr_detail" type="text" placeholder="상세주소"
-						class="form-control input-md"></li>
-					<li class="list-group-item"><input id="Uploadphoto"
-						name="file" class="form-control input-md input-file" type="file">
-					</li>
-					<li class="list-group-item"><input id="account"
-						name="mem_account" type="text" placeholder="계좌번호"
-						class="form-control input-md" required="required"> <span
-						id="accountval"></span> <input type="button" id="accountchk"
-						value="인증조회"></li>
-=======
 			<h4>회원가입</h4>
 			<div>
 				<ul class="list-group">
@@ -522,17 +312,7 @@ input {
 							class="form-control input-md" required="required">
 						<span id=phoneresult></span>
 					</li>
->>>>>>> refs/heads/snowflower
 
-<<<<<<< HEAD
-					<li class="list-group-item"><input type="checkbox" id="agree1">
-						이용약관동의 <span> </span> <input type="button" value="내용보기" /></li>
-					<li class="list-group-item"><input type="checkbox" id="agree2">
-						개인정보 수집 및 이용동의 <span> </span> <input type="button" value="내용보기" />
-					</li>
-					<li class="list-group-item"><input type="checkbox" id="agree3">
-						우편번호와 주소 수집 및 이용 동의 <span></span></li>
-=======
 					<li class="list-group-item">
 						<input id="mail" name="mem_email" type="text" placeholder="이메일"
 							class="form-control input-md" required="required">
@@ -543,16 +323,7 @@ input {
 						<input type="button" class="btn btn-theme" id="write" value="입력하기">
 						<span id="emailresult"></span>
 					</li>
->>>>>>> refs/heads/snowflower
 
-<<<<<<< HEAD
-               <input class="btn btn-lg btn-primary btn-block btn-signin"
-                  type="submit" value="Sign in" />
-               <input type="text" id="id_duplicate_check" value="false" hidden="" />
-            </ul>
-         </div>
-      </div>
-=======
 
 					<li class="list-group-item">
 						<input id="mem_zipcode" name="mem_zipcode" type="text"
@@ -597,7 +368,6 @@ input {
 						우편번호와 주소 수집 및 이용 동의
 						<span></span>
 					</li>
->>>>>>> refs/heads/snowflower
 
 					<input class="btn btn-lg btn-primary btn-block btn-signin"
 						type="submit" value="Sign in" />

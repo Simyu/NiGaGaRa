@@ -2,31 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="nigagara.member">
- <!-- 	private String mem_id;
-	private String mem_pw;
-	private String mem_name;
-	private String mem_birth;
-	private String mem_zipcode;
-	private String mem_addr;
-	private String mem_addr_detail;
-	private String mem_gender;
-	private String mem_phone;
-	private String mem_email;
-	private String point_total;
-	private String mem_account;
-	private String mem_img;
-	private String mem_lati;
-	private String mem_longi;
-	private String mem_eval;
-	private String mem_bank_code;
-	private String mem_state;
-	private String role;
-	private MultipartFile file; -->
+	<!-- private String mem_id; private String mem_pw; private String mem_name; 
+		private String mem_birth; private String mem_zipcode; private String mem_addr; 
+		private String mem_addr_detail; private String mem_gender; private String 
+		mem_phone; private String mem_email; private String point_total; private 
+		String mem_account; private String mem_img; private String mem_lati; private 
+		String mem_longi; private String mem_eval; private String mem_bank_code; 
+		private String mem_state; private String role; private MultipartFile file; -->
 	<insert id="insert" parameterType="member">
 		insert into member values
 		(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_birth}, #{mem_zipcode},
 		#{mem_addr}, #{mem_addr_detail}, #{mem_gender}, #{mem_phone},
-		#{mem_email}, '0', #{mem_account}, #{mem_img},'0','0','0',#{mem_bank_code},'0','ROLE_USER')
+		#{mem_email}, '0', #{mem_account},
+		#{mem_img},'0','0','0',#{mem_bank_code},'0','ROLE_USER')
 
 	</insert>
 	<select id="read" parameterType="java.lang.String" resultType="member">
@@ -52,18 +40,17 @@
 		mem_gender=#{member.mem_gender},
 		mem_phone=#{member.mem_phone},
 		mem_email=#{member.mem_email},
-		<if test="fileflag.equals('T')">
-			mem_img=#{member.mem_img},
-		</if>
-		mem_account=#{member.mem_account}
+		mem_img=#{member.mem_img},
+		mem_account=#{member.mem_account},
+		mem_bank_code=#{member.mem_bank_code}
 		where mem_id=#{member.mem_id}
 	</update>
 
 	<update id="drop" parameterType="java.lang.String">
 		update member
 		set
-		mem_state='0',
-		where mem_id=#{memId}
+		mem_state='1'
+		where mem_id=#{mem_id}
 	</update>
 
 	<update id="resetpass" parameterType="java.util.Map">
@@ -71,6 +58,13 @@
 		set
 		mem_pw=#{temppass}
 		where mem_id=#{id} and mem_email=#{email}
+	</update>
+
+	<update id="updatepass" parameterType="java.util.Map">
+		update member
+		set
+		mem_pw=#{newpass}
+		where mem_id=#{id}
 	</update>
 
 	<update id="updatepoint" parameterType="java.util.Map">
@@ -88,11 +82,14 @@
 	</select>
 
 	<select id="securityLogin" resultType="map">
-		select 
-		mem_id as username, mem_pw as password, mem_name, mem_birth, mem_zipcode, mem_addr,
-		mem_addr_detail, mem_state, mem_gender, mem_phone, mem_email, point_total, mem_account,
-		mem_img, mem_lati, mem_longi, mem_eval, mem_bank_code, role as authority 
-		from member 
+		select
+		mem_id as username, mem_pw as password, mem_name, mem_birth, mem_zipcode,
+		mem_addr,
+		mem_addr_detail, mem_state, mem_gender, mem_phone, mem_email,
+		point_total, mem_account,
+		mem_img, mem_lati, mem_longi, mem_eval,
+		mem_bank_code, role as authority
+		from member
 		where mem_id = #{username}
 	</select>
 

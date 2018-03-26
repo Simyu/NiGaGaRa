@@ -314,7 +314,7 @@ ul.nav li.dropdown a {
 
 #featured{
 	width: 100%;
-	background:#fcfcfc;
+	background:#ffffff;
 	position:relative;
 	margin:0;
 	padding:0;
@@ -328,13 +328,13 @@ ul.nav li.dropdown a {
 #featured .flexslider {
 	padding:0;
 	margin: 50px 0 30px; 
-	background: #fff; 
+	background: #ffffff; 
 	position: relative; 
 	zoom: 1;
 }
 
 .flex-caption {background:none; -ms-filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000); filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000); zoom: 1;}
-.flex-caption { bottom: 35px; background-color: rgba(0, 0, 0, 0.8); color: #fff; margin: 0; padding: 25px 25px 25px 30px; position: absolute; right: 45px; width: 295px;}
+.flex-caption { bottom: 35px; background-color: rgba(80, 80, 80, 0.5); color: #fff; margin: 0; padding: 25px 25px 25px 30px; position: absolute; right: 45px; width: 295px;}
 .flex-caption h3 {color: #fff; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase;}
 .flex-caption p {margin: 0 0 15px;}
 
@@ -346,6 +346,9 @@ ul.nav li.dropdown a {
 section.callaction {
 	background:#f9f9f9;
 	padding:50px 0 0 0;
+	margin-left: 18px;
+	width:1130px;
+	display: block;
 }
 
 

@@ -23,7 +23,7 @@
 							<ul class="slides">
 								<li>
 
-									<img src="/NiGaGaRa/resources/img/slides/1.jpg" style="height: 450px" alt="" />
+									<img src="/NiGaGaRa/resources/img/slides/1.jpg"  alt="" />
 									<div class="flex-caption">									
 										<h3>니가가라</h3>
 										<p>nigagara. 현재 바로 택배를 보내고 싶을때, 보다 저렴한 택배 이용이 필요할때
@@ -32,7 +32,7 @@
 									</div>
 								</li>
 								<li>
-									<img src="/NiGaGaRa/resources/img/slides/2.jpg" style="height: 450px" alt="" />
+									<img src="/NiGaGaRa/resources/img/slides/2.jpg"  alt="" />
 									<div class="flex-caption">
 										<h3>상품등록부터 매칭까지</h3>
 										<p>상품등록을 하면 자동으로 매칭 됩니다. 매칭이 안됬다구요?
@@ -41,7 +41,7 @@
 									</div>
 								</li>
 								<li>
-									<img src="/NiGaGaRa/resources/img/slides/3.jpg" style="height: 450px" alt="" />
+									<img src="/NiGaGaRa/resources/img/slides/12.jpg"  alt="" />
 									<div class="flex-caption">
 										<h3>평가해주세요</h3>
 										<p>배송이 완료 됬다면 평가를 통해 기사님들을 평가하실 수 있어요.

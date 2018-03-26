@@ -32,8 +32,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int update(String fileflag, MemberVO member) {
-		return dao.update(fileflag, member);
+	public int update(MemberVO member) {
+		return dao.update(member);
 	}
 
 	@Override
@@ -57,6 +57,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int updatePass(String id, String email, String temppass) {
 		return dao.updatePass(id,email,temppass);
+	}
+	@Override
+	public int resetpass(String mem_id, String newpass) {
+		return dao.resetpass(mem_id,newpass);
 	}
 
 }

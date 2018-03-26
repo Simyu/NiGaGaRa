@@ -21,7 +21,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html">
+					<a class="navbar-brand" href="/NiGaGaRa/index.do">
 						<span>니</span>
 						가가라(부탁~해요)
 					</a>

@@ -1,5 +1,5 @@
 drop table member CASCADE CONSTRAINT;
-
+select * from member
 CREATE TABLE member
 (
     mem_id             VARCHAR2(20)     NOT NULL, 

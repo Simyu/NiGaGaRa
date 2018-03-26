@@ -7,7 +7,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.User;
 
 import kr.nigagara.teamalpha.member.MemberDAOImpl;
 
@@ -20,13 +19,22 @@ public class MemberProvider implements AuthenticationProvider{
 	
 	@Override
 	public Authentication authenticate(Authentication data) throws AuthenticationException {
+		System.out.println(data.getName());
 		String username = data.getName();
+		System.out.println(username);
 		String password = (String) data.getCredentials();
 		/*System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");*/
-		User user = (User) dao.loadUserByUsername(username);
+		MemberSecurityVO user =  (MemberSecurityVO) dao.loadUserByUsername(username);
 		
 		boolean state = encoder.isPasswordValid(user.getPassword(),password,null);
 		UsernamePasswordAuthenticationToken authUser = null;
+		
+		System.out.println("authenticate==>"+user);
+		
+		if (!user.getMem_state().equals("0")) {
+			state = false;
+		}
+		
 		if(state) {
 			authUser = new UsernamePasswordAuthenticationToken(user, password,user.getAuthorities());
 			System.out.println("로그인성공");

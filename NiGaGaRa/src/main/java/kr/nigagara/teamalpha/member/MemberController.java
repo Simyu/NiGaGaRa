@@ -76,13 +76,22 @@ public class MemberController {
 	@RequestMapping(value = "/member/modify.do", method = RequestMethod.POST)
 	public String modify(String fileflag, MemberVO member, HttpServletRequest request, Model model) throws Exception {
 		System.out.println("modify_post");
-		MultipartFile file = member.getFile();
-		String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/img/upload");
-
-		uploadservice.upload(file, path, file.getOriginalFilename());
-		member.setMem_img(file.getOriginalFilename());
 		System.out.println("modify==>" + member);
-		service.update(fileflag, member);
+		System.out.println("fileflag==>" + fileflag);
+		String fileName = null;
+
+		if (fileflag.equals("T")) {
+			MultipartFile file = member.getFile();
+			String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/img/upload");
+			fileName = file.getOriginalFilename();
+			uploadservice.upload(file, path, fileName);
+		} else {
+			MemberVO vo = (MemberVO) request.getSession(false).getAttribute("loginUser");
+			fileName = vo.getMem_img();
+		}
+		member.setMem_img(fileName);
+
+		service.update(member);
 
 		model.addAttribute("loginUser", service.read(member.getMem_id()));
 
@@ -90,10 +99,30 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/resetpass.do", method = RequestMethod.GET)
-	public String resetpass() {
+	public String resetpassView() {
 		System.out.println("resetpass_get");
 
 		return "resetpass";
+	}
+
+	@RequestMapping(value = "/member/resetpass.do", method = RequestMethod.POST)
+	public String resetpass(String password, String newpass, HttpServletRequest request) {
+		System.out.println("resetpass_post");
+		MemberVO vo = (MemberVO) request.getSession(false).getAttribute("loginUser");
+		System.out.println(vo);
+
+		if (vo != null) {
+			if (encoder.isPasswordValid(vo.getMem_pw(), password, null)) {
+
+				String dbpass = encoder.encodePassword(newpass, null);
+
+				service.resetpass(vo.getMem_id(), dbpass);
+				return "redirect:/member/profile.do?mem_id=" + vo.getMem_id();
+			}
+		}
+		logout(request);
+		return "resetpass";
+
 	}
 
 	@RequestMapping(value = "/member/searchid.do", method = RequestMethod.GET)
@@ -115,9 +144,11 @@ public class MemberController {
 	@RequestMapping(value = "/member/searchpass.do", method = RequestMethod.POST)
 	public String searchpass_result(String id, String email) throws AddressException, MessagingException {
 		System.out.println("searchpass_post");
-		String temppass = MemberController.generateNumber(6) + "";
 
-		if (service.updatePass(id, email, temppass) != 0) {
+		String temppass = MemberController.generateNumber(6) + "";
+		String dbpass = encoder.encodePassword(temppass, null);
+
+		if (service.updatePass(id, email, dbpass) != 0) {
 			String subject = "[NiGaGaRa] 임시 비밀번호가 발급 되었습니다.";
 			String body = " 안녕하세요 [NiGaGaRa] 입니다. \n발급된 임시 비밀번호는 [" + temppass + "]입니다.\n감사합니다!";
 
@@ -143,9 +174,18 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/drop.do", method = RequestMethod.POST)
-	public String drop(String id) {
-		service.drop(id);
-		return "index";
+	public String drop(String pass, HttpServletRequest request) {
+		MemberVO vo = (MemberVO) request.getSession(false).getAttribute("loginUser");
+		if (vo != null) {
+			if (encoder.isPasswordValid(vo.getMem_pw(), pass, null)) {
+
+				service.drop(vo.getMem_id());
+				logout(request);
+
+				return "redirect:/member/login.do";
+			}
+		}
+		return "redirect:/member/drop.do";
 	}
 
 	@RequestMapping(value = "/member/idDuplicateCheck.do", method = RequestMethod.GET)
@@ -158,7 +198,7 @@ public class MemberController {
 		}
 	}
 
-	public static int generateNumber(int length) {
+	private static int generateNumber(int length) {
 
 		String numStr = "1";
 		String plusNumStr = "1";
@@ -201,7 +241,7 @@ public class MemberController {
 	public String logout(HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
 		session.invalidate();
-		return "login";
+		return "redirect:/member/login.do";
 	}
 
 }

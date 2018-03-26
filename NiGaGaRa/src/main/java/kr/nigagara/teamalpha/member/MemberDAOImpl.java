@@ -50,11 +50,10 @@ public class MemberDAOImpl implements MemberDAO, UserDetailsService {
 	}
 
 	@Override
-	public int update(String fileflag, MemberVO member) {
+	public int update(MemberVO member) {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("member", member);
-		map.put("fileflag", fileflag);
 
 		return sqlsession.update("nigagara.member.update", map);
 	}
@@ -103,6 +102,15 @@ public class MemberDAOImpl implements MemberDAO, UserDetailsService {
 
 		System.out.println("loginUser==========>" + loginUser);
 		return loginUser;
+	}
+
+	@Override
+	public int resetpass(String mem_id, String newpass) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", mem_id);
+		map.put("newpass", newpass);
+		
+		return sqlsession.update("nigagara.member.updatepass", map);
 	}
 
 }
