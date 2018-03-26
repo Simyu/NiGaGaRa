@@ -22,21 +22,19 @@
 						<div id="main-slider" class="flexslider">
 							<ul class="slides">
 								<li>
-									<img src="/NiGaGaRa/resources/img/slides/1.jpg" alt="" />
+									<img src="/NiGaGaRa/resources/img/slides/11.jpg" alt="" />
 									<div class="flex-caption">
 										<h3>Modern Design</h3>
 										<p>Duis fermentum auctor ligula ac malesuada. Mauris et
-											metus odio, in pulvinar urna</p>
-										<a href="#" class="btn btn-theme">Learn More</a>
+											metus odio, in pulvinar urna</p>									
 									</div>
 								</li>
 								<li>
-									<img src="/NiGaGaRa/resources/img/slides/2.jpg" alt="" />
+									<img src="/NiGaGaRa/resources/img/slides/12.jpg" alt="" />
 									<div class="flex-caption">
 										<h3>Fully Responsive</h3>
 										<p>Sodales neque vitae justo sollicitudin aliquet sit amet
-											diam curabitur sed fermentum.</p>
-										<a href="#" class="btn btn-theme">Learn More</a>
+											diam curabitur sed fermentum.</p>										
 									</div>
 								</li>
 								<li>
