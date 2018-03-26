@@ -49,8 +49,8 @@
 	<update id="drop" parameterType="java.lang.String">
 		update member
 		set
-		mem_state='1',
-		where mem_id=#{memId}
+		mem_state='1'
+		where mem_id=#{mem_id}
 	</update>
 
 	<update id="resetpass" parameterType="java.util.Map">

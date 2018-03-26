@@ -113,11 +113,11 @@ public class MemberController {
 			if (encoder.isPasswordValid(vo.getMem_pw(), password, null)) {
 
 				String dbpass = encoder.encodePassword(newpass, null);
-				
+
 				service.resetpass(vo.getMem_id(), dbpass);
 				return "redirect:/member/profile.do?mem_id=" + vo.getMem_id();
 			}
-		} 
+		}
 		logout(request);
 		return "resetpass";
 
@@ -172,9 +172,18 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/drop.do", method = RequestMethod.POST)
-	public String drop(String id) {
-		service.drop(id);
-		return "index";
+	public String drop(String pass, HttpServletRequest request) {
+		MemberVO vo = (MemberVO) request.getSession(false).getAttribute("loginUser");
+		if (vo != null) {
+			if (encoder.isPasswordValid(vo.getMem_pw(), pass, null)) {
+
+				service.drop(vo.getMem_id());
+				logout(request);
+
+				return "redirect:/member/login.do";
+			}
+		}
+		return "redirect:/member/drop.do";
 	}
 
 	@RequestMapping(value = "/member/idDuplicateCheck.do", method = RequestMethod.GET)
@@ -187,7 +196,7 @@ public class MemberController {
 		}
 	}
 
-	public static int generateNumber(int length) {
+	private static int generateNumber(int length) {
 
 		String numStr = "1";
 		String plusNumStr = "1";
@@ -230,7 +239,7 @@ public class MemberController {
 	public String logout(HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
 		session.invalidate();
-		return "login";
+		return "redirect:/member/login.do";
 	}
 
 }
