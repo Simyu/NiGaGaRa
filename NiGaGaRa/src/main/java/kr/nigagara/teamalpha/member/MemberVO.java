@@ -39,10 +39,21 @@ public class MemberVO {
 	private String mem_longi;
 	
 	private String role;
+	
+	private String mem_bank_code;
 
 	public MemberVO() {
 		// TODO Auto-generated constructor stub
 	}
+
+	public String getBank_code() {
+		return mem_bank_code;
+	}
+
+	public void setBank_code(String bank_code) {
+		this.mem_bank_code = bank_code;
+	}
+
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -186,6 +197,7 @@ public class MemberVO {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_birth="
@@ -193,10 +205,8 @@ public class MemberVO {
 				+ mem_addr_detail + ", mem_state=" + mem_state + ", mem_gender=" + mem_gender + ", mem_phone="
 				+ mem_phone + ", mem_email=" + mem_email + ", point_total=" + point_total + ", mem_account="
 				+ mem_account + ", mem_img=" + mem_img + ", file=" + file + ", mem_lati=" + mem_lati + ", mem_longi="
-				+ mem_longi + ", role=" + role + "]";
+				+ mem_longi + ", role=" + role + ", mem_bank_code=" + mem_bank_code + "]";
 	}
-
-
 	
 
 }
