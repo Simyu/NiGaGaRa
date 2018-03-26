@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,9 +55,14 @@ public class DeliveryController {
 	}
 
 	@RequestMapping(value = "/delivery/insert.do", method = RequestMethod.POST)
-	public  @ResponseBody void insert(@RequestBody String jsondata) throws Exception {
+	public  @ResponseBody void insert(@RequestBody String jsondata) {
+		
 		JSONParser parser = new JSONParser();
-		JSONObject object = (JSONObject) parser.parse(jsondata);
+		JSONObject object;
+		int result =0;
+		try {
+			object = (JSONObject) parser.parse(jsondata);
+		
 		String delivery_state = (String)object.get("delivery_state");
 		String sender = (String)object.get("sender_id");
 		String delivery_man = (String)object.get("delivery_man");
@@ -67,7 +73,12 @@ public class DeliveryController {
 		vo.setSender(sender);
 		vo.setGoods_Num(goods_num);
 		vo.setDelivery_State(delivery_state);
-		int result = service.insert(vo);
+		result = service.insert(vo);
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		
 		if(result>0) {
 		System.out.println("삽입 성공");
 		

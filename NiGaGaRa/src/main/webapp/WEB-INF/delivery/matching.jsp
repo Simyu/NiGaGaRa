@@ -52,12 +52,7 @@
 	
 		
 	}
-	function sendRefuse(){
-		alert("refuse")
-		$("#aaaaa").find("#"+object.goods_Num).remove();
-		
-		
-	}
+
 	function sendAccept(){
 		alert("accept")
 		var data = basedata;
@@ -145,7 +140,7 @@
 	
 	function onMessage(evt)
 	{	
-		 alert(evt.data);
+		// alert(evt.data);
 		 //data = evt.data;
 		 var object = JSON.parse(evt.data);
 		 basedata = object;
@@ -187,11 +182,14 @@
 	
 		$(document).on("click",".accept",function(){
 			sendAccept();
-			alert("결과 전송");
+			alert("배달요청 수락되었습니다.");
+			$(this).parent('ul').parent('div').remove();
+			
 		});
 	
 		$(document).on("click",".refuse",function(){
-			sendRefuse();
+			
+			$(this).parent('ul').parent('div').remove();
 			alert("거절하기")
 		});
 		
