@@ -220,7 +220,7 @@ body {
 							value="수정완료" id="submit">
 
 						<a class="btn btn-theme" href="/NiGaGaRa/member/resetpass.do">비밀번호
-							바꾸기</a>
+							바꾸기 </a>
 					</div>
 				</form>
 			</div>
