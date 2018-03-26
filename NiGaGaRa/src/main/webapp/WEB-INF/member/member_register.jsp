@@ -44,7 +44,7 @@
 		$("#numberchk").on("click", function() {
 			alert("인증번호가 발송되었습니다.")
 		})
-		$("#account").on("click", function() {
+		$("#account_btn").on("click", function() {
 			getTokenByClientCredentials();
 		})
 
@@ -229,7 +229,6 @@
 			return false;
 		}
 	}
-
 </script>
 
 
@@ -344,7 +343,7 @@ input {
 							placeholder="계좌번호" class="form-control input-md"
 							required="required">
 						<input type="button" class="btn btn-theme" id="account_btn"
-							value="인증조회" onclick="getTokenByClientCredentials()">
+							value="인증조회">
 					</li>
 
 					<li class="list-group-item">
@@ -450,10 +449,8 @@ input {
 										+ pad2(date.getMinutes())
 										+ pad2(date.getSeconds());
 								var src = {
-									//'account_num' : '1234567890123456',
 									'account_num' : account,
 									'bank_code_std' : $("#bank_code").val(),
-									//'account_holder_info' : '8801011',
 									'account_holder_info' : birth,
 									'tran_dtime' : date_data
 								};
