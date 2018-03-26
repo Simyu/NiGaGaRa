@@ -25,7 +25,7 @@ SqlSession sqlSession;
 
 	@Override
 	public int insert(DeliveryVO vo) {
-		return sqlSession.selectOne("nigagara.delivery.insert",vo);
+		return sqlSession.insert("nigagara.delivery.insert",vo);
 	}
 
 }

@@ -13,8 +13,8 @@
 	</select>
 	
 	<insert id="insert" parameterType="delivery">
-		insert into delivery (delivery_num,sender,delivery_man,departure_time,arrival_time,delivery_state,goods_num,delivery_qr)
-		values(DELIVERY_SEQ.nextval,#{sender_id},#{delivery_man},'0','0','1',#{goods_num},null)
+		insert into delivery(delivery_num,sender,delivery_man,departure_time,arrival_time,delivery_state,goods_num,delivery_qr)
+		values(delivery_seq.nextval,#{sender},#{delivery_Man},null,null,'1',#{goods_Num},'0')
 	
 	</insert>
 </mapper>

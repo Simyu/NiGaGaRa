@@ -19,12 +19,12 @@
 			navigator.geolocation.getCurrentPosition(function(position) {
 				/* alert(position.coords.latitude + ' '
 						+ position.coords.longitude);//위도 경도 */
-				alert(typeof(position.coords.latitude));
-				alert(position.coords.longitude);
+				//alert(typeof(position.coords.latitude));
+				//alert(position.coords.longitude);
 				locate.set("lon", position.coords.longitude);  
 				locate.set("lat", position.coords.latitude);  
 				
-				alert("lon "+locate.get("lon"));
+				//alert("lon "+locate.get("lon"));
 			
 				var data = {
 						"pro_type" : "deli_man",
@@ -34,7 +34,7 @@
 				};
 				websocket.send(JSON.stringify(data));
 			
-				alert("웹소켓 전송");
+				alert("배달시작");
 				
 			}, function(error) {
 				console.error(error);
@@ -52,7 +52,12 @@
 	
 		
 	}
-	
+	function sendRefuse(){
+		alert("refuse")
+		$("#aaaaa").find("#"+object.goods_Num).remove();
+		
+		
+	}
 	function sendAccept(){
 		alert("accept")
 		var data = basedata;
@@ -83,9 +88,6 @@
 		alert("웹소켓 전송");
 	}
 	
-	
-	
-
 	var resCnt = 0;     //서버에서 응답받은 횟수.
 	var resPositionArr = [];     //서버에서 응답받은 좌표값 Array.
 	
@@ -148,22 +150,23 @@
 		 var object = JSON.parse(evt.data);
 		 basedata = object;
 		 if (object.pro_type=="product"){
-			 var product = '<div id = "'+object.goods_Num+'" style="border: solid">'+'<ul style="width:80%">'+
-			    '<li style="width:50%; float:left"><span>배달상품 이름 : <span><input type="text" disabled="disabled" value="'+object.goods_Name+'"/></li>'+
-				'<li style="width:50%; float:left"><span>무게 : <span><input type="text" disabled="disabled" value="'+object.weight+'"/></li>'+
-				'<li style="width:50%; float:left"><span>수량 : <span><input type="text" disabled="disabled" value="'+object.quantity+'"/></li>'+
-				'<li style="width:50%; float:left"><span>의뢰가격 : <span><input type="text" disabled="disabled" value="'+object.estimated_Price+'"/></li>'+		 
-				'<li style="width:50%; float:left"><span>배달주소 : <span><input type="text" disabled="disabled" value="'+object.receiver_Addr+'"/></li>'+
-				'<li style="width:50%; float:left"><span>배달주소 상세 : <span><input type="text" disabled="disabled" value="'+object.receiver_Addr_detail+'"/></li>'+
-				'<li style="width:50%; float:left"><span>보내는 사람 : <span><input type="text" disabled="disabled" value="'+object.sender_id+'"/></li>'+	
-				'<li style="width:50%; float:left"><span>상품위치 : <span><input type="text" disabled="disabled" value="'+object.sender_Addr+'"/></li>'+
-				'<li style="width:50%; float:left"><span>상품위치 상세 : <span><input type="text" disabled="disabled" value="'+object.sender_Addr_detail+'"/></li>'+
-				'<li style="width:50%; float:left"><span>선호 운송수단 : <span><input type="text" disabled="disabled" value="'+object.delivery_Tool+'"/></li>'+
+			 var product = '<div id = "'+object.goods_Num+'" class="alert alert-success" style="border: solid">'+'<ul style="width:80%">'+
+			    '<li><span>배달상품 이름 : <strong>'+object.goods_Name+'</strong></li>'+
+				'<li><span>무게 : <strong>'+object.weight+'</strong></li>'+
+				'<li><span>수량 : <strong>'+object.quantity+'</strong></li>'+
+				'<li><span>의뢰가격 : <strong>'+object.estimated_Price+'원</strong></li>'+		 
+				'<li><span>배달주소 : <strong>'+object.receiver_Addr+'</strong></li>'+
+				'<li><span>배달주소 상세 : <strong>'+object.receiver_Addr_detail+'</strong></li>'+
+				'<li><span>보내는 사람 : <strong>'+object.sender_id+'</strong></li>'+	
+				'<li><span>상품위치 : <strong>'+object.sender_Addr+'</strong></li>'+	
+				'<li><span>상품위치 상세 : <strong>'+object.sender_Addr_detail+'</strong></li>'+	
+				'<li><span>선호 운송수단 : <strong>'+object.delivery_Tool+'</strong></li>'+
 				'<input type="button" class="accept" value="수락"/><span>  </span><input type="button" class="refuse" value="거절"/></ul>'+'<div>'
 				
 				
-				$("#aaaaa").append(product);	
+				$("#aaaaa").append(product);									
 		 }
+		 
 		 else if(object.pro_type=="result" & object.delivery_man != "<%=user.getMem_id()%>"){
 			
 			
@@ -188,7 +191,8 @@
 		});
 	
 		$(document).on("click",".refuse",function(){
-			sendresult("refuse");
+			sendRefuse();
+			alert("거절하기")
 		});
 		
 	});

@@ -12,7 +12,9 @@ public class DeliveryServiceimpl implements DeliveryService {
 @Autowired
 @Qualifier("deliverydao")
 DeliveryDAO dao;
-	
+	public DeliveryServiceimpl() {
+		System.out.println("yrdydfgdfgdf");
+	}
 	@Override
 	public List<DeliveryVO> list(MemberVO memId) {
 
@@ -27,7 +29,7 @@ DeliveryDAO dao;
 
 	@Override
 	public int insert(DeliveryVO vo) {
-		
+		System.out.println("여기는 서비스 입니다 : "+vo);
 		return dao.insert(vo);
 	}
 
