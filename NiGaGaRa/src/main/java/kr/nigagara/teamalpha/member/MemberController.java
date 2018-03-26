@@ -74,13 +74,22 @@ public class MemberController {
 	@RequestMapping(value = "/member/modify.do", method = RequestMethod.POST)
 	public String modify(String fileflag, MemberVO member, HttpServletRequest request, Model model) throws Exception {
 		System.out.println("modify_post");
-		MultipartFile file = member.getFile();
-		String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/img/upload");
-
-		uploadservice.upload(file, path, file.getOriginalFilename());
-		member.setMem_img(file.getOriginalFilename());
 		System.out.println("modify==>" + member);
-		service.update(fileflag, member);
+		System.out.println("fileflag==>" + fileflag);
+		String fileName = null;
+		
+		if (fileflag.equals("T")) {
+			MultipartFile file = member.getFile();
+			String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/img/upload");
+			fileName = file.getOriginalFilename();
+			uploadservice.upload(file, path, fileName);
+		} else {
+			MemberVO vo = (MemberVO) request.getSession().getAttribute("loginUser");
+			fileName = vo.getMem_img();
+		}
+		member.setMem_img(fileName);
+		
+		service.update(member);
 
 		model.addAttribute("loginUser", service.read(member.getMem_id()));
 

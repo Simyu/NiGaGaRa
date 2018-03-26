@@ -32,8 +32,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int update(String fileflag, MemberVO member) {
-		return dao.update(fileflag, member);
+	public int update(MemberVO member) {
+		return dao.update(member);
 	}
 
 	@Override

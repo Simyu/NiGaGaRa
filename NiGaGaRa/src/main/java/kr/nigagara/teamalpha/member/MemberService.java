@@ -10,7 +10,7 @@ public interface MemberService {
 
 	MemberVO read(String mem_id);
 
-	int update(String fileflag, MemberVO member);
+	int update(MemberVO member);
 
 	boolean idCheck(String id);
 

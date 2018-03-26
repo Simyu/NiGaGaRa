@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -115,6 +116,11 @@ body {
 										value="(${user.mem_zipcode }) ${user.mem_addr }"
 										class="form-control input-md" onclick="execDaumPostcode()"
 										disabled="disabled">
+
+									<input name="mem_addr_detail" type="text"
+										value="${user.mem_addr_detail }" class="form-control input-md"
+										disabled="disabled">
+
 									<input type="hidden" id="mem_zipcode" name="mem_zipcode"
 										value="${user.mem_zipcode }">
 									<input type="hidden" id="mem_addr" name="mem_addr"
@@ -123,23 +129,6 @@ body {
 								</div>
 							</div>
 						</div>
-
-						<div class="form-group">
-							<label class="col-md-2 control-label " for="Permanent Address">상세주소</label>
-							<div class="col-md-5">
-								<div class="input-group">
-									<div class="input-group-addon">
-										<i class="fas fa-map-marker"></i>
-
-									</div>
-									<input name="mem_addr_detail" type="text"
-										value="${user.mem_addr_detail }" class="form-control input-md"
-										disabled="disabled">
-
-								</div>
-							</div>
-						</div>
-
 
 						<!-- Text input-->
 						<div class="form-group">
@@ -185,11 +174,32 @@ body {
 									</div>
 
 									<select class="form-control" name="mem_bank_code"
-										id="bank_code">
-										<option value="001">국민은행</option>
-										<option value="002">우리은행</option>
-										<option value="003">신한은행</option>
+										id="bank_code" style="display: none;">
+										<c:choose>
+											<c:when test="${user.mem_bank_code == '001' }">
+												<c:set var="bank_code" value="국민은행" />
+												<option value="001" selected="selected">국민은행</option>
+												<option value="002">우리은행</option>
+												<option value="003">신한은행</option>
+											</c:when>
+											<c:when test="${user.mem_bank_code == '002' }">
+												<c:set var="bank_code" value="우리은행" />
+												<option value="001">국민은행</option>
+												<option value="002" selected="selected">우리은행</option>
+												<option value="003">신한은행</option>
+											</c:when>
+											<c:when test="${user.mem_bank_code == '003' }">
+												<c:set var="bank_code" value="신한은행" />
+												<option value="001">국민은행</option>
+												<option value="002">우리은행</option>
+												<option value="003" selected="selected">신한은행</option>
+											</c:when>
+										</c:choose>
 									</select>
+
+									<input id="bank_code_show" type="text" value="${bank_code}"
+										class="form-control input-md" disabled="disabled">
+
 									<input name="mem_account" type="text"
 										value="${user.mem_account }" class="form-control input-md"
 										disabled="disabled">
@@ -236,6 +246,9 @@ body {
 								} else {
 									$("#woman").attr("checked", "checked");
 								}
+
+								$("#bank_code_show").css("display", "none");
+								$("#bank_code").css("display", "inline");
 							});
 
 							$("#fackfileupbtn").on("click", function() {

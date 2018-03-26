@@ -9,11 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import kr.nigagara.teamalpha.member.MemberService;
+
 public class MemberLoginSuccess implements AuthenticationSuccessHandler{
+	@Autowired
+	MemberService service;
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -24,11 +29,11 @@ public class MemberLoginSuccess implements AuthenticationSuccessHandler{
 		Collection<GrantedAuthority> authlist =  vo.getAuthorities();
 		Iterator<GrantedAuthority> authlistit = authlist.iterator();
 		
-		vo.setMem_id(authentication.getName());
-		vo.setMem_pw((String)authentication.getCredentials());
+//		vo.setMem_id(authentication.getName());
+//		vo.setMem_pw((String)authentication.getCredentials());
 		
 		HttpSession ses = request.getSession();
-		ses.setAttribute("loginUser", vo);
+		ses.setAttribute("loginUser", service.read(authentication.getName()));
 
 		while(authlistit.hasNext()) {
 			GrantedAuthority authority = authlistit.next();
