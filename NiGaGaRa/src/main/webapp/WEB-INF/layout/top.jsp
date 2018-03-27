@@ -104,11 +104,11 @@
 								</li>
 							</ul>
 						</li>
-						<%-- <se:authorize access="hasRole('ROLE_ADMIN')"> --%>
+						<se:authorize access="hasRole('ROLE_ADMIN')">
 						<li>
 							<a href="/NiGaGaRa/member/list.do">회원관리</a>
 						</li>
-						<%-- </se:authorize> --%>
+						</se:authorize>
 						<se:authorize access="isAnonymous()">
 							<li>
 								<a href="/NiGaGaRa/member/register.do">회원가입</a>

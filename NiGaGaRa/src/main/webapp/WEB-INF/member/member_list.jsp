@@ -41,7 +41,7 @@
 					<c:forEach var="list" items="${memberlist }">
 						<tr>
 							<td>
-								<a href="">${list.mem_id }</a>
+								<a href="/NiGaGaRa/member/profile.do?mem_id=${list.mem_id }">${list.mem_id }</a>
 							</td>
 							<td>${list.mem_name }</td>
 							<td>${list.mem_gender}</td>
