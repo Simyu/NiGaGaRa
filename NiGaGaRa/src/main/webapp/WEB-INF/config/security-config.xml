@@ -14,15 +14,16 @@
 			access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 		<security:intercept-url pattern="/member/drop.do"
 			access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
-			<security:intercept-url pattern="/member/list.do"
+		<security:intercept-url pattern="/member/list.do"
 			access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/member/**"
 			access="permitAll" />
 		<security:intercept-url pattern="/**"
 			access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 
-		<!-- <security:port-mappings> <security:port-mapping http="8088" https="8443" 
-			/> </security:port-mappings> -->
+		<security:port-mappings>
+			<security:port-mapping http="8088" https="8443" />
+		</security:port-mappings>
 
 		<security:form-login username-parameter="id"
 			password-parameter="pass" login-page="/member/login.do"
