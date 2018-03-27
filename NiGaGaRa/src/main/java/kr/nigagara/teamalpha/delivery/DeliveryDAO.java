@@ -5,7 +5,7 @@ import java.util.List;
 import kr.nigagara.teamalpha.member.MemberVO;
 
 public interface DeliveryDAO {
-	List<DeliveryVO> list(MemberVO memId);
+	List<DeliveryVO> list();
 
 	DeliveryVO select(Integer deliveryNum);
 
@@ -24,4 +24,5 @@ public interface DeliveryDAO {
 	int paymentInsert1(DeliveryVO stateResult);
 
 	int paymentInsert2(DeliveryVO stateResult);
+	
 }

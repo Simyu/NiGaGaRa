@@ -20,12 +20,12 @@ public class DeliveryController {
 	@Autowired
 	DeliveryService service;
 
-	@RequestMapping("/delivery/list.do")
-	public ModelAndView list(MemberVO memId) {
+	@RequestMapping("/delivery/deliverylist.do")
+	public ModelAndView list() {
 		ModelAndView mav = new ModelAndView();
-		List<DeliveryVO> list = service.list(memId);
-		mav.addObject("dellist", list);
-		mav.setViewName("delivery/list");
+		List<DeliveryVO> deliverylist = service.list();
+		mav.addObject("deliverylist", deliverylist);
+		mav.setViewName("deliverylist");
 		return mav;
 	}
 
@@ -109,5 +109,6 @@ public class DeliveryController {
 
 		}
 	}
+	
 
 }
