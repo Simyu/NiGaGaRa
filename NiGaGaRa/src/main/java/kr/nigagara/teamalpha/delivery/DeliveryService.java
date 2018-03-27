@@ -5,7 +5,7 @@ import java.util.List;
 import kr.nigagara.teamalpha.member.MemberVO;
 
 public interface DeliveryService {
-	List<DeliveryVO> list(MemberVO memId);
+	List<DeliveryVO> list();
 
 	DeliveryVO select(Integer deliveryNum);
 

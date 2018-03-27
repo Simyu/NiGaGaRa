@@ -14,9 +14,9 @@ public class DeliveryDAOimpl implements DeliveryDAO {
 	SqlSession sqlSession;
 
 	@Override
-	public List<DeliveryVO> list(MemberVO memId) {
+	public List<DeliveryVO> list() {
 
-		return sqlSession.selectList("nigagara.delivery.list", memId);
+		return sqlSession.selectList("nigagara.delivery.deliverylist");
 	}
 
 	@Override
