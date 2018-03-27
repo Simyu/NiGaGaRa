@@ -6,6 +6,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+.btn {
+    border-radius: 0;
+    border: 0;
+    border-bottom: 4px solid #CCCCCC;
+    margin:0;
+    -webkit-box-shadow: 0 5px 5px -6px rgba(0,0,0,.3);
+       -moz-box-shadow: 0 5px 5px -6px rgba(0,0,0,.3);
+            box-shadow: 0 5px 5px -6px rgba(0,0,0,.3);
+}
+.btn .btn-block:active, .btn .btn-lg:active {
+    -webkit-box-shadow: inset 0 3px 3px -5px rgba(0,0,0,.3);
+       -moz-box-shadow: inset 0 3px 3px -5px rgba(0,0,0,.3);
+            box-shadow: inset 0 3px 3px -5px rgba(0,0,0,.3);
+}
+.btn-magick {
+    color: #fff;
+    background-color: #bb39d7;
+    border-color: #9a00cd;
+    text-shadow: 1px 1px 0 #9823d5;
+}
+.btn-magick:hover, .btn-magick:focus {
+    color: #fff;
+    background-color: #b13acd;
+    border-color: #8600b9;
+}
+
+</style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
@@ -59,6 +87,7 @@
 		data.pro_type = "result";
 		data.match_State = "1";
 		data.delivery_man = "<%=user.getMem_id()%>";
+		alert(JSON.stringify(data));
 		
 		websocket.send(JSON.stringify(data));
 		
@@ -121,21 +150,14 @@
 	     //watchPosition을 사용하여 지속적으로 위치값을 가져옵니다.
 	     nav = navigator.geolocation.watchPosition(success, error);
 	}
-	function success(position)
-	{
-	   /*   // 성공적으로 위치값을 얻어오면 다시 위치값을 서버로 전송 합니다.
-	     // 웹 소켓은 Text형식으로 데이터를 주고 받습니다.
-	     doSend("latitude:" + position.coords.latitude);
-	     doSend("longitude:" + position.coords.longitude); */
-	}
+	
 	function error(error)
 	{
 	     alert("Error : " + error.code);
 	}
 	function end()
 	{
-	/* 	websocket.close();     // 웹 소켓 연결을 종료합니다.
-	     navigator.geolocation.clearWatch(nav); */
+	
 	}
 	
 	function onMessage(evt)
@@ -158,17 +180,36 @@
 				'<li><span>선호 운송수단 : <strong>'+object.delivery_Tool+'</strong></li>'+
 				'<input type="button" class="accept" value="수락"/><span>  </span><input type="button" class="refuse" value="거절"/></ul>'+'<div>'
 				
-				
-				$("#aaaaa").append(product);									
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		var product2 ='<div class="panel panel-default" id ="'+object.goods_Num+'">'+
+          '<div class="panel-heading">'+
+           '<h3 class="panel-title" itemprop="name">'+object.goods_Name+'</h3>'+
+          '</div>'+
+          '<div class="panel-body" itemprop="reviewBody">'+
+          		'<ul>'+
+          	   	    '<li><span>배달상품 이름 : <strong>'+object.goods_Name+'</strong></li>'+
+					'<li><span>무게 : <strong>'+object.weight+'</strong></li>'+
+					'<li><span>수량 : <strong>'+object.quantity+'</strong></li>'+
+					'<li><span>의뢰가격 : <strong>'+object.estimated_Price+'원</strong></li>'+		 
+					'<li><span>배달주소 : <strong>'+object.receiver_Addr+' '+object.receiver_Addr_detail+'</strong></li>'+
+					'<li><span>보내는 사람 : <strong>'+object.sender_id+'</strong></li>'+	
+					'<li><span>상품위치 : <strong>'+object.sender_Addr+' '+object.sender_Addr_detail+'</strong></li>'+	
+					'<li><span>선호 운송수단 : <strong>'+object.delivery_Tool+'</strong></li>'+
+					'<li><span>전달사항 : <strong>'+object.goods_Msg+'</strong></li>'+
+				'</ul>'+
+				'<div style="float:right;"><input type="button" class="accept btn btn-magick" value="수락"><input type="button" class="refuse btn btn-magick" value="거절"></div>'+
+          '</div>'+
+          '</div>'
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				$("#aaaaa").append(product2);									
 		 }
 		 
-		 else if(object.pro_type=="result" & object.delivery_man != "<%=user.getMem_id()%>"){
+		 else if(object.pro_type=="result" & object.delivery_man != "<%=user.getMem_id()%>" ){
 			
 			
 				$("#aaaaa").find("#"+object.goods_Num).remove();
 
-			 	
-			
 		 }
 		 
 		 else{
@@ -183,21 +224,25 @@
 		$(document).on("click",".accept",function(){
 			sendAccept();
 			alert("배달요청 수락되었습니다.");
-			$(this).parent('ul').parent('div').remove();
+			$(this).parent('div').parent('div').parent('div').remove();
 			
 		});
 	
 		$(document).on("click",".refuse",function(){
 			
-			$(this).parent('ul').parent('div').remove();
-			alert("거절하기")
+			$(this).parent('div').parent('div').parent('div').remove();
+			alert("거절하기");
 		});
 		
+		$("#startdeli").click(function(){
+			$(this).hide();
+		});
 	});
+	
 </script>
 </head>
 <body>
-	<input type="button" value="배달하기" onclick="sendto()" />
+	<input type="button" id ="startdeli" class="btn btn-magick" value="배달하기" onclick="sendto()"/>
 	<div id="aaaaa"></div>
 </body>
 </html>
