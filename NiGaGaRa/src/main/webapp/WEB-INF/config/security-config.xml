@@ -8,8 +8,21 @@
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/resources/**"
 			access="permitAll" />
+		<security:intercept-url pattern="/index.do"
+			access="permitAll" />
+		<security:intercept-url pattern="/member/profile.do"
+			access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/member/drop.do"
+			access="hasRole('ROLE_USER')" />
+			<security:intercept-url pattern="/member/list.do"
+			access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/member/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/**"
+			access="hasRole('ROLE_USER')" />
 
-		<security:intercept-url pattern="/**" access="permitAll" />
+		<!-- <security:port-mappings> <security:port-mapping http="8088" https="8443" 
+			/> </security:port-mappings> -->
 
 		<security:form-login username-parameter="id"
 			password-parameter="pass" login-page="/member/login.do"
@@ -19,7 +32,6 @@
 			logout-url="/member/logout.do" logout-success-url="/index.do"
 			delete-cookies="ture" />
 	</security:http>
-
 	<security:authentication-manager>
 		<security:authentication-provider
 			ref="logincustom">

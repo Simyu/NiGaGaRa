@@ -62,5 +62,9 @@ public class MemberServiceImpl implements MemberService {
 	public int resetpass(String mem_id, String newpass) {
 		return dao.resetpass(mem_id,newpass);
 	}
+	@Override
+	public List<MemberVO> list() {
+		return dao.list();
+	}
 
 }

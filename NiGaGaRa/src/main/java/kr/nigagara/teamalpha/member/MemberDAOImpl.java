@@ -113,4 +113,10 @@ public class MemberDAOImpl implements MemberDAO, UserDetailsService {
 		return sqlsession.update("nigagara.member.updatepass", map);
 	}
 
+	@Override
+	public List<MemberVO> list() {
+		List<MemberVO> list = sqlsession.selectList("nigagara.member.memberlist");		
+		return list;
+	}
+
 }

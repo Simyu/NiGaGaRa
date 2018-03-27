@@ -1,6 +1,7 @@
 package kr.nigagara.teamalpha.member;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -14,10 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
 @Controller
@@ -242,6 +243,15 @@ public class MemberController {
 		HttpSession session = req.getSession(false);
 		session.invalidate();
 		return "redirect:/member/login.do";
+	}
+	@RequestMapping(value="/member/list.do",method = RequestMethod.GET)
+	public ModelAndView list() {
+		ModelAndView mav = new ModelAndView();
+		List<MemberVO> memberlist = service.list();
+		mav.addObject("memberlist",memberlist);
+		mav.setViewName("memberlist");
+		return mav;
+		
 	}
 
 }

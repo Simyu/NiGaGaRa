@@ -92,5 +92,8 @@
 		from member
 		where mem_id = #{username}
 	</select>
+	<select id="memberlist" resultType="member">
+		select * from member
+	</select>
 
 </mapper>
