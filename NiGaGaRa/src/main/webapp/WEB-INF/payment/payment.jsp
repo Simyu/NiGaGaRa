@@ -215,47 +215,35 @@ article, aside, footer, header, hgroup, main, nav, section {
 }
 /* ]]> */
 </style>
-<div id="wrapper">
-	<section id="inner-headline">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<ul class="breadcrumb">
-						<li><a href="#"><i class="fa fa-home"></i></a><i
-							class="icon-angle-right"></i></li>
-						<li class="active">포인트 결제 및 전환</li>
-					</ul>
-				</div>
+
+<div id="kakaoIndex">
+	<a href="#kakaoBody"> 본문 바로가기 </a>
+</div>
+<div id="kakaoWrap" class="wrap_demo">
+	<header id="kakaoHead">
+		<h1 class="tit_kakaopay">카카오페이</h1>
+		<hr class="hide" />
+		<main id="kakaoContent">
+		<article id="mArticle">
+			<h2 id="kakaoBody" class="tit_demo">포인트 전환</h2>
+			<p class="txt_demo">
+				포인트를 결제하여 배송비로 사용하세요
+				<br />
+				(결제는 1000원 이상만 가능합니다)
+			</p>
+			<div class="pay_btn">
+				<form action="/NiGaGaRa/payment_forth.do" method="post" role="form"
+					class="contactForm">
+					<input type="hidden" name="mem_id" value="${loginUser.mem_id }">
+					<input type="text" class="btn_pay btn_pay_hover"
+						placeholder="전환할 금액입력" name="cash" />
+					<button type="submit" class="btn_pay btn_pay_hover">결제</button>
+				</form>
 			</div>
-		</div>
-	</section>
-	<div id="kakaoIndex">
-		<a href="#kakaoBody"> 본문 바로가기 </a>
-	</div>
-	<div id="kakaoWrap" class="wrap_demo">
-		<header id="kakaoHead">
-			<h1 class="tit_kakaopay">카카오페이</h1>
-			<hr class="hide" />
-			<main id="kakaoContent">
-			<article id="mArticle">
-				<h2 id="kakaoBody" class="tit_demo">포인트 전환</h2>
-				<p class="txt_demo">
-					포인트를 결제하여 배송비로 사용하세요 <br /> (결제는 신중하게 해주세요)
-				</p>
-				<div class="pay_btn">
-					<form action="/NiGaGaRa/payment_forth.do" method="post" role="form"
-						class="contactForm">
-						<input type="hidden" name="mem_id" value="${loginUser.mem_id }">
-						<input type="text" class="btn_pay btn_pay_hover"
-							placeholder="전환할 금액입력" name="cash" />
-						<button type="submit" class="btn_pay btn_pay_hover">결제</button>
-					</form>
-				</div>
-				<p class="txt_append">배송을 위한 포인트를 결제하세요.</p>
-			</article>
-			</main>
-		</header>
-	</div>
+			<p class="txt_append">배송을 위한 포인트를 결제하세요.</p>
+		</article>
+		</main>
+	</header>
 </div>
 <script type='text/javascript'>
 	//<![CDATA[

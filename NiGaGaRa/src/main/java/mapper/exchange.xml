@@ -2,5 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="nigagara.exchange">
+<insert id="insert" parameterType="Map">
+		insert into cash_exchange
+		values
+		(cash_exchange_SEQ.nextval,#{id},#{type},sysdate,#{point},#{point})
+</insert>
 	
 </mapper>
