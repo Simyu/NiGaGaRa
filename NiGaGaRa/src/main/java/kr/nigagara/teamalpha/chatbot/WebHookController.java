@@ -24,7 +24,6 @@ import org.w3c.dom.NodeList;
 public class WebHookController {
 	@RequestMapping(value = "/webhooktest", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public @ResponseBody String test(@RequestBody String req) {
-		// System.out.println(req);
 		JSONObject ret = new JSONObject();
 		JSONParser parser = new JSONParser();
 		String speech = "";
@@ -41,17 +40,17 @@ public class WebHookController {
 							"#mArticle > div.cmain_tmp > div.section_media > div.hotissue_builtin.hide > div.realtime_part > ol > li > div > div:nth-child(2) > span.txt_issue > a");
 
 					if (elements != null) {
-						speech = "ÇöÀç ½Ç½Ã°£ °Ë»ö¾î ¼øÀ§´Â ÀÌ°Å¿¡¿ä!! <br>";
+						speech = "í˜„ì¬ ì‹¤ì‹œê°„ ê²€ìƒ‰ì–´ ìˆœìœ„ëŠ” ì´ê±°ì—ìš”!! <br>";
 						int count = 1;
 						for (Element element : elements) {
-							speech += count + "À§ : " + element.text() + "<br>";
+							speech += count + "ìœ„ : " + element.text() + "<br>";
 							count++;
 						}
 					} else {
-						speech = "½Ç½Ã°£ °Ë»ö¾î¸¦ Á¶È¸ÇÒ ¼ö ¾ø¾î¿ä ¤Ğ¤±¤Ğ";
+						speech = "ì‹¤ì‹œê°„ ê²€ìƒ‰ì–´ë¥¼ ì¡°íšŒí•  ìˆ˜ ì—†ì–´ìš” ã… ã…ã… ";
 					}
 				} else {
-					speech = "¹º°¡ Àß¸ø‰ç¾î¿ä!";
+					speech = "ë­”ê°€ ì˜ëª» ëì–´ìš”!";
 				}
 
 			} else if (action.equals("cost")) {
@@ -59,8 +58,8 @@ public class WebHookController {
 				JSONObject weight = (JSONObject) parameter.get("weight");
 				long num = (Long) weight.get("number");
 
-				speech = "ÃÖ¼Ò¿ä±İÀº " + ((100 * (double) num) + 4000) + "¿ø ÀÔ´Ï´Ù.";
-				
+				speech = "ìµœì†Œìš”ê¸ˆì€ " + ((100 * (double) num) + 4000) + "ì› ì…ë‹ˆë‹¤.";
+
 			} else if (action.equals("weather")) {
 				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder documentBuilder = factory.newDocumentBuilder();
@@ -72,14 +71,14 @@ public class WebHookController {
 				org.w3c.dom.Element root = document.getDocumentElement();
 				NodeList items = root.getElementsByTagName("wf");
 				Node node = items.item(0);
-				
+
 				speech = node.getTextContent();
 
 			} else {
-				speech = "Å×½ºÆ®Áß";
+				speech = "í…ŒìŠ¤íŠ¸ì¤‘";
 			}
 		} catch (Exception e) {
-			speech = "¹º°¡ Àß¸ø‰ç¾î¿ä!";
+			speech = "ë­”ê°€ ì˜ëª» ëì–´ìš”!";
 
 		}
 		ret.put("speech", speech);

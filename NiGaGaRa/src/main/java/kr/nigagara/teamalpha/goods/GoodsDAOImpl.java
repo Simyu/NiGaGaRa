@@ -1,6 +1,8 @@
 package kr.nigagara.teamalpha.goods;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,9 @@ public class GoodsDAOImpl implements GoodsDAO {
 	SqlSession sqlSession;
 
 	@Override
-	public void goodsInsert(GoodsVO GoodsVO) {
+	public int goodsInsert(GoodsVO GoodsVO) {
 		sqlSession.insert("nigagara.goods.insert", GoodsVO);
+		return GoodsVO.getGoods_Num();
 	}
 
 	@Override
@@ -34,4 +37,24 @@ public class GoodsDAOImpl implements GoodsDAO {
 		return requestedit;
 	}
 
+	@Override
+	public List<GoodsVO> requestlist_all() {
+		List<GoodsVO> requestlist = sqlSession.selectList("nigagara.goods.requestlist_all");
+		return requestlist;
+	}
+
+	@Override
+	public List<GoodsVO> searchList(String search) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<GoodsVO> searchList(String tag, String search) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("tag", tag);
+		map.put("search", search);
+		List<GoodsVO> searchList = sqlSession.selectList("nigagara.goods.dynamicSearch", map);
+		return searchList;
+	}
 }

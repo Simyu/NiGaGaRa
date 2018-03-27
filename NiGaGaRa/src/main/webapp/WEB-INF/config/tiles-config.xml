@@ -79,8 +79,21 @@
 		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
 	</definition>
 	<definition name="payment" extends="mainTemplate">
-		<put-attribute name="content" value="/WEB-INF/request/payment.jsp"></put-attribute>
-		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/payment/payment.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
+	<definition name="payment_second" extends="mainTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/payment/payment_second.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
+	<definition name="payment_third" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/payment/payment_third.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
+	<definition name="payment_forth" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/payment/payment_forth.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
 	</definition>
 	<definition name="request_list" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/request/request_list.jsp"></put-attribute>
@@ -92,13 +105,16 @@
 	</definition>
 	<definition name="request_qr" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/request/request_qr.jsp"></put-attribute>
-		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
 	</definition>
 	<definition name="evaluation" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/evaluation/evaluation.jsp"></put-attribute>
-		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
 	</definition>
-
+	<definition name="payment_list" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/payment/payment_list.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>
 
 

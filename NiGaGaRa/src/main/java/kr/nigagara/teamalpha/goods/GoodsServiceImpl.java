@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
 @Service
 public class GoodsServiceImpl implements GoodsService {
 	@Autowired
@@ -12,8 +13,8 @@ public class GoodsServiceImpl implements GoodsService {
 	GoodsDAO dao;
 
 	@Override
-	public void goodsInsert(GoodsVO GoodsVO) {
-		dao.goodsInsert(GoodsVO);
+	public int goodsInsert(GoodsVO GoodsVO) {
+		return dao.goodsInsert(GoodsVO);
 	}
 
 	@Override
@@ -31,4 +32,20 @@ public class GoodsServiceImpl implements GoodsService {
 		return dao.requestedit(GoodsVO);
 
 	}
+
+	@Override
+	public List<GoodsVO> requestlist_all() {
+		return dao.requestlist_all();
+	}
+
+	@Override
+	public List<GoodsVO> searchList(String search) {
+		return dao.searchList(search);
+	}
+
+	@Override
+	public List<GoodsVO> searchList(String tag, String search) {
+		return dao.searchList(tag, search);
+	}
+
 }

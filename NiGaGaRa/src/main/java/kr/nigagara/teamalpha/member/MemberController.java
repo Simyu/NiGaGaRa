@@ -1,5 +1,6 @@
 package kr.nigagara.teamalpha.member;
 
+import java.net.URLDecoder;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -221,6 +223,7 @@ public class MemberController {
 
 		return result;
 	}
+
 	@ResponseBody
 	@RequestMapping(value = "/member/emailchk.do", method = RequestMethod.POST)
 	public String numberchk(String mem_email, String number) {

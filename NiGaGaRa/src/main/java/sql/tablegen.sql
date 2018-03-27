@@ -1,5 +1,5 @@
 drop table member CASCADE CONSTRAINT;
-select * from member
+
 CREATE TABLE member
 (
     mem_id             VARCHAR2(20)     NOT NULL, 
@@ -143,12 +143,12 @@ drop table payment CASCADE CONSTRAINT;
 
 CREATE TABLE payment
 (
-    mem_id			VARCHAR2(20)    NULL,
     payment_num     NUMBER          NOT NULL, 
     delivery_num    NUMBER          NULL, 
     payment_date    VARCHAR2(20)    NULL, 
     payment_type    VARCHAR2(20)    NULL, 
     point           NUMBER          NULL, 
+    mem_id			VARCHAR2(20)    NULL,
     CONSTRAINT PAYMENT_PK PRIMARY KEY (payment_num)
 );
 ALTER TABLE payment

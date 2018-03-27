@@ -47,19 +47,19 @@ public class StartLoc {
 			/*
 			 * while (bis.available() > 0) { sb.append((char) bis.read()); }
 			 */
-//			System.out.println("sb : " + sb.toString());
+			// System.out.println("sb : " + sb.toString());
 			JSONObject obj = (JSONObject) parser.parse(sb.toString());
 			JSONArray results = (JSONArray) obj.get("results");
-			System.out.println("results"+results);
-			
+			System.out.println("results" + results);
+
 			JSONObject result0 = (JSONObject) results.get(0);
-			System.out.println("result0"+result0);
-		
+			System.out.println("result0" + result0);
+
 			JSONObject geometry = (JSONObject) result0.get("geometry");
 			JSONObject location = (JSONObject) geometry.get("location");
-			Double lat =(Double) location.get("lat");
+			Double lat = (Double) location.get("lat");
 			Double lng = (Double) location.get("lng");
-		
+
 			result.add(lat);
 			result.add(lng);
 			System.out.println(lat + "   " + lng);
@@ -76,6 +76,7 @@ public class StartLoc {
 		return result;
 
 	}
+
 	public ArrayList<Double> receivelocation(GoodsVO vo) {
 		ArrayList<Double> result = new ArrayList<Double>();
 		try {
@@ -101,19 +102,19 @@ public class StartLoc {
 			/*
 			 * while (bis.available() > 0) { sb.append((char) bis.read()); }
 			 */
-//			System.out.println("sb : " + sb.toString());
+			// System.out.println("sb : " + sb.toString());
 			JSONObject obj = (JSONObject) parser.parse(sb.toString());
 			JSONArray results = (JSONArray) obj.get("results");
-			System.out.println("results"+results);
-			
+			System.out.println("results" + results);
+
 			JSONObject result0 = (JSONObject) results.get(0);
-			System.out.println("result0"+result0);
-		
+			System.out.println("result0" + result0);
+
 			JSONObject geometry = (JSONObject) result0.get("geometry");
 			JSONObject location = (JSONObject) geometry.get("location");
-			Double lat =(Double) location.get("lat");
+			Double lat = (Double) location.get("lat");
 			Double lng = (Double) location.get("lng");
-		
+
 			result.add(lat);
 			result.add(lng);
 			System.out.println(lat + "   " + lng);
