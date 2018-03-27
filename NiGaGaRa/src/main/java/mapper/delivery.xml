@@ -58,18 +58,22 @@
 	<insert id="paymentInsert1" parameterType="delivery">
 		insert into payment
 		values
-		(payment_SEQ.nextval,#{delivery_num},#{departure_Time},'부탁',(select estimated_Price from goods where goods_Num
+		(payment_SEQ.nextval,#{delivery_num},#{departure_Time},'부탁',(select
+		estimated_Price from goods where goods_Num
 		= #{goods_Num}),#{sender})
 	</insert>
 	<insert id="paymentInsert2" parameterType="delivery">
 		insert into payment
 		values
-		(payment_SEQ.nextval,#{delivery_num},#{departure_Time},'배달',(select estimated_Price from goods where goods_Num
-		= #{goods_Num}),#{delivery_Man})
+		(payment_SEQ.nextval,#{delivery_num},#{departure_Time},'배달',(select
+		estimated_Price from goods where goods_Num
+		=
+		#{goods_Num}),#{delivery_Man})
 	</insert>
 	<insert id="insert" parameterType="delivery">
-		insert into delivery(delivery_num,sender,delivery_man,departure_time,arrival_time,delivery_state,goods_num,delivery_qr)
+		insert into
+		delivery(delivery_num,sender,delivery_man,departure_time,arrival_time,delivery_state,goods_num,delivery_qr)
 		values(delivery_seq.nextval,#{sender},#{delivery_Man},null,null,'1',#{goods_Num},'0')
-		</insert>
+	</insert>
 
 </mapper>
