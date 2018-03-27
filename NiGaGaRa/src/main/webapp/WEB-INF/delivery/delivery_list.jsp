@@ -53,7 +53,7 @@
 						<tbody>
 							<c:forEach var="deliverylist" items="${deliverylist}">
 								<tr>
-									<th><a href="/NiGaGaRa/goods/edit.do?goods_Num=${deliverylist.goods_Num}">${deliverylist.delivery_num }</a></th>
+									<th>${deliverylist.delivery_num }</th>
 									<th>${deliverylist.sender}</th>
 									<th>${deliverylist.delivery_Man}</th>
 									<th>${deliverylist.departure_Time}</th>
