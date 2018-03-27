@@ -140,19 +140,34 @@
 
 </head>
 <body>
-	<div class="container">
-		<div class="card card-container">
-			<form class="form-signin"
-				action="/NiGaGaRa/member/drop.do" method="POST">
-				<h3>È¸¿ø Å»Åð</h3>
-				<input type="password" name="pass" class="form-control"
-					placeholder="ÆÐ½º¿öµå" required autofocus>
+	<div id="wrapper">
+		<section id="inner-headline">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<ul class="breadcrumb">
+							<li><a href="#"><i class="fa fa-home"></i></a><i
+								class="icon-angle-right"></i></li>
+							<li class="active">Æ÷ÀÎÆ® °áÁ¦ ¹× ÀüÈ¯</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="container">
+			<div class="card card-container">
+				<form class="form-signin" action="/NiGaGaRa/member/drop.do"
+					method="POST">
+					<h3>È¸¿ø Å»Åð</h3>
+					<input type="password" name="pass" class="form-control"
+						placeholder="ÆÐ½º¿öµå" required autofocus>
 
-				<button class="btn btn-lg btn-primary btn-block btn-signin"
-					type="submit">Å»Åð</button>
-			</form>
+					<button class="btn btn-lg btn-primary btn-block btn-signin"
+						type="submit">Å»Åð</button>
+				</form>
+			</div>
+			<!-- /card-container -->
 		</div>
-		<!-- /card-container -->
 	</div>
 	<!-- /container -->
 </body>

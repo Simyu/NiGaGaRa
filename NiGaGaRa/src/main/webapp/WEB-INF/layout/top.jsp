@@ -41,10 +41,7 @@
 							<ul class="dropdown-menu">
 								<li>
 									<a href="/NiGaGaRa/request.do">시작하기</a>
-								</li>
-								<li>
-									<a href="#">조회하기</a>
-								</li>
+								</li>								
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -56,19 +53,10 @@
 							<ul class="dropdown-menu">
 								<li>
 									<a href="/NiGaGaRa/delivery/start.do">시작하기</a>
-								</li>
-								<li>
-									<a href="/NiGaGaRa/delivery.do">조회하기</a>
-								</li>
+								</li>							
 								<li>
 									<a href="/NiGaGaRa/delivery/qrread.do">QR리더기</a>
-								</li>
-								<li>
-									<a href="#">이용방법</a>
-								</li>
-								<li>
-									<a href="#">예상요금계산</a>
-								</li>
+								</li>								
 							</ul>
 						</li>
 

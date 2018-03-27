@@ -62,7 +62,6 @@
 									<th>${deliverylist.goods_Num }</th>
 								</tr>
 							</c:forEach>
-
 						</tbody>
 					</table>
 				</div>
