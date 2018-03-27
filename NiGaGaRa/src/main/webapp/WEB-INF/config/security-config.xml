@@ -19,7 +19,7 @@
 		<security:intercept-url pattern="/member/**"
 			access="permitAll" />
 		<security:intercept-url pattern="/**"
-			access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+			access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" requires-channel="https"/>
 
 		<security:port-mappings>
 			<security:port-mapping http="8088" https="8443" />
