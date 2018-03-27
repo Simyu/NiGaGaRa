@@ -17,10 +17,10 @@ CREATE TABLE member
     mem_img            VARCHAR2(200)    NULL, 
     mem_lati           VARCHAR2(100)           NULL, 
     mem_longi          VARCHAR2(100)           NULL, 
-    mem_eval			VARCHAR2(10) 	NULL,
-    mem_bank_code		VARCHAR2(3)		NULL,
-    mem_state		VARCHAR2(1)		NULL,
-    role				VARCHAR2(10) 	NULL,
+    mem_eval	       VARCHAR2(10)     NULL,
+    mem_bank_code      VARCHAR2(3)      NULL,
+    mem_state          VARCHAR2(1)      NULL,
+    role               VARCHAR2(10)     NULL,
     CONSTRAINT MEMBER_PK PRIMARY KEY (mem_id)
 );
 

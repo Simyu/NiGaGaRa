@@ -23,8 +23,8 @@ select *
 select * from member where mem_id = 'qwe';
 update member set	mem_eval = 0	where mem_id = 'qwe';
 
-update goods set match_State = '¹è¼ÛÀü'	where goods_Num = '138';
-update delivery set	delivery_State = 1	where goods_Num = '138';
+update goods set match_State = 'ë°°ì†¡ì „'	where goods_Num = '247';
+update delivery set	delivery_State = 1	where goods_Num = '247';
 
 select * from delivery where goods_Num = '138';
 
@@ -38,7 +38,7 @@ select match_state from goods where Goods_Num = '140';
 alter table member add mem_eval varchar(10);
 
 select * from cash_exchange;
-insert into cash_exchange values (cash_exchange_SEQ.nextval,'qwe','°áÁ¦',sysdate,12,12)
+insert into cash_exchange values (cash_exchange_SEQ.nextval,'qwe','ï¿½ï¿½ï¿½ï¿½',sysdate,12,12)
 
 alter table payment add mem_id varchar(20);
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.nigagara.teamalpha.member.MemberVO;
+import kr.nigagara.teamalpha.sms.SMSSendMethod;
 
 @Controller
 public class DeliveryController {
@@ -80,34 +81,40 @@ public class DeliveryController {
 	}
 
 	@RequestMapping(value = "/delivery/insert.do", method = RequestMethod.POST)
-	public @ResponseBody void insert(@RequestBody String jsondata) {
-
+	public @ResponseBody String insert(@RequestBody String jsondata) {
+		//System.err.println("jsondata : " + jsondata);
 		JSONParser parser = new JSONParser();
 		JSONObject object;
 		int result = 0;
 		try {
-			object = (JSONObject) parser.parse(jsondata);
+			object = (JSONObject)parser.parse(jsondata);
 
 			String delivery_state = (String) object.get("delivery_state");
 			String sender = (String) object.get("sender_id");
 			String delivery_man = (String) object.get("delivery_man");
 			int goods_num = Integer.parseInt((String) object.get("goods_Num"));
-
+			String receiver_Tel = (String) object.get("receiver_Tel");
+			
 			DeliveryVO vo = new DeliveryVO();
 			vo.setDelivery_Man(delivery_man);
 			vo.setSender(sender);
 			vo.setGoods_Num(goods_num);
 			vo.setDelivery_State(delivery_state);
 			result = service.insert(vo);
-		} catch (ParseException e) {
-
+			
+			SMSSendMethod smsSend = new SMSSendMethod();
+			smsSend.SMSSend(receiver_Tel, "http://chart.apis.google.com/chart?cht=qr&chs=500x500&chl="+goods_num+"&choe=UTF-8");
+			
+		} catch (ParseException e) 
+		{
 			e.printStackTrace();
 		}
 
 		if (result > 0) {
 			System.out.println("삽입 성공");
-
+			return "tt";
 		}
+		return "삽입실패";
 	}
 	
 

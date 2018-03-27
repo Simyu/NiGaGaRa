@@ -10,6 +10,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+.btn {
+    border-radius: 0;
+    border: 0;
+    border-bottom: 4px solid #CCCCCC;
+    margin:0;
+    -webkit-box-shadow: 0 5px 5px -6px rgba(0,0,0,.3);
+       -moz-box-shadow: 0 5px 5px -6px rgba(0,0,0,.3);
+            box-shadow: 0 5px 5px -6px rgba(0,0,0,.3);
+}
+.btn .btn-block:active, .btn .btn-lg:active {
+    -webkit-box-shadow: inset 0 3px 3px -5px rgba(0,0,0,.3);
+       -moz-box-shadow: inset 0 3px 3px -5px rgba(0,0,0,.3);
+            box-shadow: inset 0 3px 3px -5px rgba(0,0,0,.3);
+}
+.btn-magick {
+    color: #fff;
+    background-color: #bb39d7;
+    border-color: #9a00cd;
+    text-shadow: 1px 1px 0 #9823d5;
+}
+.btn-magick:hover, .btn-magick:focus {
+    color: #fff;
+    background-color: #b13acd;
+    border-color: #8600b9;
+}
+
+</style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
@@ -54,7 +82,7 @@
 	
 	$(document).ready(function()
 	{
-	     //서버와연결합니다. 웹소켓서버 Uri : ex) `://YourDomain/
+	     //서버와연결합니다. 웹소켓서버 Uri : ex) ://YourDomain/
 	     websocket = new WebSocket("ws://localhost:8088/NiGaGaRa/match");
 	     // 서버와연결되면실행됩니다
 	     websocket.onopen = function(evt) { onOpen(evt) };
@@ -126,15 +154,32 @@
 				'<li>배달자 id : <strong>'+object.delivery_man+'</strong></li>'+
 				'</ul>'+
 				+'<div>'
-				
-				document.getElementById("aaaaa").innerHTML=product;
+		   
+			var product2 ='<div class="panel panel-default" id ="'+object.goods_Num+'">'+
+		          '<div class="panel-heading">'+
+		           '<h3 class="panel-title" itemprop="name">'+object.goods_Name+'</h3>'+
+		          '</div>'+
+		          '<div class="panel-body" itemprop="reviewBody">'+
+		          		'<ul>'+
+		          	   	    '<li><span>배달상품 이름 : <strong>'+object.goods_Name+'</strong></li>'+
+		          	   		'<li>배달자 id : <strong>'+object.delivery_man+'</strong></li>'+
+							'<li><span>무게 : <strong>'+object.weight+'</strong></li>'+
+							'<li><span>수량 : <strong>'+object.quantity+'</strong></li>'+
+							'<li><span>의뢰가격 : <strong>'+object.estimated_Price+'원</strong></li>'+		 
+							'<li><span>배달주소 : <strong>'+object.receiver_Addr+' '+object.receiver_Addr_detail+'</strong></li>'+
+							'<li><span>보내는 사람 : <strong>'+object.sender_id+'</strong></li>'+	
+							'<li><span>상품위치 : <strong>'+object.sender_Addr+' '+object.sender_Addr_detail+'</strong></li>'+	
+							'<li><span>선호 운송수단 : <strong>'+object.delivery_Tool+'</strong></li>'+
+						'</ul>'+
+		          '</div>'+
+		          '</div>'				
+				document.getElementById("aaaaa").innerHTML=product2;
 				
 				$.ajax({
 						url: "/NiGaGaRa/delivery/insert.do",
 						type:"post",
 						data: evt.data,
-						dataType: "json",
-						contentType :"application/json;charset=UTF-8",
+						contentType : 'application/json; charset=UTF-8',
 						success: success_run,
 						error: err_run
 				});
@@ -155,9 +200,9 @@
 </script>
 </head>
 <body>
-	<input type="button" value="의뢰시작" onclick="sendto()" />
+	<input type="button" class="btn btn-magick" value="의뢰시작" onclick="sendto()" />
 	<div id=aaaaa></div>
->>>>>>> refs/heads/matching
+
 
 </body>
 </html>

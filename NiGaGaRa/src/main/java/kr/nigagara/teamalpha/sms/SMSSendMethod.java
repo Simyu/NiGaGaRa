@@ -14,8 +14,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class SMSSendMethod {
-	public void SMSSend(String rphone, String msg) {
+	public void SMSSend(String rphone0, String msg) {
+		System.out.println("smssend : "+rphone0);
 		String action = "go";
+		String rphone = transformTel(rphone0);
 		// System.out.println(rphone);
 		if (action.equals("go")) {
 
@@ -213,6 +215,25 @@ public class SMSSendMethod {
 			}
 
 		}
+	}
+	
+	public String transformTel(String rphone1) {
+		String rphone2 = rphone1.replaceAll("[^0-9]", "");
+		System.out.println("transformTel"+rphone2);
+		String rphone;
+		if(rphone2.length()==10) {
+			String sub1 = rphone2.substring(0,3);
+			String sub2 = rphone2.substring(3,6);
+			String sub3 = rphone2.substring(6);
+			rphone = sub1 +"-"+ sub2 +"-"+ sub3;
+		}
+		else {
+			String sub1 = rphone2.substring(0,3);
+			String sub2 = rphone2.substring(3,7);
+			String sub3 = rphone2.substring(7);
+			rphone = sub1 +"-"+ sub2 +"-"+ sub3;
+		}
+		return rphone;
 	}
 
 }
