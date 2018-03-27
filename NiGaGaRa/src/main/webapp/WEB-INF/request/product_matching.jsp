@@ -13,8 +13,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
-	<% HttpSession sessions=request.getSession();
-	MemberVO user=(MemberVO)session.getAttribute("loginUser");%>
+	<%HttpSession sessions = request.getSession();
+			MemberVO user = (MemberVO) session.getAttribute("loginUser");%>
 	
 	function sendto() {
 		
@@ -43,7 +43,7 @@
 				
 		websocket.send(JSON.stringify(data));
 			
-				alert("웹소켓 전송");
+				alert("의뢰시작");
 	
 				
 				
@@ -54,7 +54,6 @@
 	
 	$(document).ready(function()
 	{
-
 	     //서버와연결합니다. 웹소켓서버 Uri : ex) `://YourDomain/
 	     websocket = new WebSocket("ws://localhost:8088/NiGaGaRa/match");
 	     // 서버와연결되면실행됩니다
@@ -81,20 +80,7 @@
 	{
 	    /*  writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data); */
 	}
-/* 	function writeToScreen(message)
-	{
-	     var pre = document.createElement("P");
-	     pre.style.wordWrap = "break-word";
-	     pre.innerHTML = message;
-	     output.appendChild(pre);
-	} */
 
-	// 서버에 Message를 전달 합니다.
- 	/* function doSend(message)
-	{
-	    writeToScreen("ENT: " + message); 
-		websocket.send(message);
-	}  */
 
 	// Geolocation API를 사용해 위치 추적을 시작합니다.
 	function start()
@@ -121,35 +107,57 @@
 
 	function onMessage(evt)
 	{
-		 alert("상품매칭"+evt.data);
+		// alert("상품매칭"+evt.data);
 		 //data = evt.data;
 		 var object = JSON.parse(evt.data);
 		
-		 if (object.pro_type=="result"){
-			 var product = '<div style="border: solid">'+'<ul style="width:80%">'+
-			    '<li><span>배달상품 이름 : <span><input type="text" disabled="disabled" value="'+object.goods_Name+'"/></li>'+
-				'<li><span>무게 : <span><input type="text" disabled="disabled" value="'+object.weight+'"/></li>'+
-				'<li><span>수량 : <span><input type="text" disabled="disabled" value="'+object.quantity+'"/></li>'+
-				'<li><span>의뢰가격 : <span><input type="text" disabled="disabled" value="'+object.estimated_Price+'"/></li>'+		 
-				'<li><span>배달주소 : <span><input type="text" disabled="disabled" value="'+object.receiver_Addr+'"/></li>'+
-				'<li><span>배달주소 상세 : <span><input type="text" disabled="disabled" value="'+object.receiver_Addr_detail+'"/></li>'+
-				'<li><span>보내는 사람 : <span><input type="text" disabled="disabled" value="'+object.sender_id+'"/></li>'+	
-				'<li><span>상품위치 : <span><input type="text" disabled="disabled" value="'+object.sender_Addr+'"/></li>'+
-				'<li><span>상품위치 상세 : <span><input type="text" disabled="disabled" value="'+object.sender_Addr_detail+'"/></li>'+
-				'<li><span>선호 운송수단 : <span><input type="text" disabled="disabled" value="'+object.delivery_Tool+'"/></li>'+
-				'<li><span>배달자 id : <span><input type="text" disabled="disabled" value="'+object.delivery_man+'"/></li>'+
+		 if (object.pro_type=="result" & object.sender_id == "<%=user.getMem_id()%>"){
+			 var product = '<div class="alert alert-success" style="border: solid">'+'<ul style="width:80%">'+
+			    '<li>배달상품 이름 <strong>'+object.goods_Name+'</strong></li>'+
+				'<li>무게 : <strong>'+object.weight+'</strong></li>'+
+				'<li>수량 : <strong>'+object.quantity+'</strong></li>'+
+				'<li>의뢰가격 : <strong>'+object.estimated_Price+'원</strong></li>'+ 
+				'<li>배달주소 : <strong>'+object.receiver_Addr+'</strong></li>'+
+				'<li>배달주소 상세 : <strong>'+object.receiver_Addr_detail+'</strong></li>'+
+				'<li>보내는 사람 : <strong>'+object.sender_id+'</strong></li>'+
+				'<li>상품위치 : <strong>'+object.sender_Addr+'</strong></li>'+
+				'<li>상품위치 상세 : <strong>'+object.sender_Addr_detail+'</strong></li>'+
+				'<li>선호 운송수단 : <strong>'+object.delivery_Tool+'</strong></li>'+
+				'<li>배달자 id : <strong>'+object.delivery_man+'</strong></li>'+
 				'</ul>'+
 				+'<div>'
 				
 				document.getElementById("aaaaa").innerHTML=product;
+				
+				$.ajax({
+						url: "/NiGaGaRa/delivery/insert.do",
+						type:"post",
+						data: evt.data,
+						dataType: "json",
+						contentType :"application/json;charset=UTF-8",
+						success: success_run,
+						error: err_run
+				});
+				
+						
+				}
 		 }
+	function success_run(txt){
+		alert("db입력완료 : "+txt);
 	}
+	
+	function err_run(obj,msg,statusMsg){
+		alert("오류발생 : "+obj+msg+statusMsg);
+	}
+	
+	
 	
 </script>
 </head>
 <body>
-	<input type="button" value="의뢰시작" onclick="sendto()"/>
-	<div id= aaaaa></div>
+	<input type="button" value="의뢰시작" onclick="sendto()" />
+	<div id=aaaaa></div>
+>>>>>>> refs/heads/matching
 
 </body>
 </html>
