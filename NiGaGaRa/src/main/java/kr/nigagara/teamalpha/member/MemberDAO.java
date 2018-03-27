@@ -10,12 +10,14 @@ public interface MemberDAO {
 
 	MemberVO read(String mem_id);
 
-	int update(String fileflag, MemberVO member);
+	int update(MemberVO member);
 
 	int drop(String mem_id);
 
 	List<String> searchid(String email);
 
 	int updatePass(String id, String email, String temppass);
+
+	int resetpass(String mem_id, String newpass);
 
 }

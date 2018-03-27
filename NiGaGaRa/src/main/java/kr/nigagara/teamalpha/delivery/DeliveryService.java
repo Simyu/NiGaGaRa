@@ -11,4 +11,5 @@ public interface DeliveryService {
 	DeliveryVO changeState(String Goods_Num);
 	DeliveryVO stateResult(String Goods_Num);
 
+	int insert(DeliveryVO vo);
 }
