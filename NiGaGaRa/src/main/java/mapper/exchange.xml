@@ -7,5 +7,10 @@
 		values
 		(cash_exchange_SEQ.nextval,#{id},#{type},sysdate,#{point},#{point})
 </insert>
+<update id="pointMinus" parameterType="String">
+		update member set
+		point_total = point_total - #{cash}
+		where mem_id = #{mem_id}
+	</update>
 	
 </mapper>
