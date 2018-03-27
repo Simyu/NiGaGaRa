@@ -1,5 +1,6 @@
 package kr.nigagara.teamalpha.member;
 
+import java.net.URLDecoder;
 import java.util.Date;
 import java.util.Random;
 
@@ -12,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -222,7 +223,7 @@ public class MemberController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/member/emailchk.do", method = RequestMethod.POST)
-	public String numberchk(String mem_email, String number) {
+	public String numberchk(@RequestBody String mem_email, @RequestBody String number) {
 		String subject = "[NiGaGaRa] 이메일을 인증해주세요";
 		String body = "안녕하세요 [NiGaGaRa] 입니다. \n 이메일 인증을 위해 인증번호 [" + number + "]을 입력해 주세요. \n 감사합니다!";
 

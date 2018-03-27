@@ -29,14 +29,14 @@ public class EvaluationDAOImpl implements EvaluationDAO {
 
 	@Override
 	public DeliveryVO changeState(String Goods_Num) {
-		return sqlSession.selectOne("nigagara.evaluation.changeState",Goods_Num);
+		return sqlSession.selectOne("nigagara.evaluation.changeState", Goods_Num);
 	}
 
 	@Override
 	public void avgEval(String delivery_Man) {
-		System.out.println("service=>"+delivery_Man);
-		sqlSession.update("nigagara.evaluation.avgEval",delivery_Man);
-		
+		System.out.println("service=>" + delivery_Man);
+		sqlSession.update("nigagara.evaluation.avgEval", delivery_Man);
+
 	}
 
 }

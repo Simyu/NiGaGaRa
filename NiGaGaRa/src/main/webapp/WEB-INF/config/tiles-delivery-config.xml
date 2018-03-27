@@ -21,8 +21,12 @@
 		<put-attribute name="content" value="/WEB-INF/delivery/delivery_qrresult.jsp"></put-attribute>
 	</definition>
 	
-	
-	
+	<definition name="delivery_list" extends="deliveryTemplate">
+		<put-attribute name="content" value="/WEB-INF/delivery/delivery_list.jsp"></put-attribute>
+	</definition>
+	<definition name="delivery_list_detail" extends="deliveryTemplate">
+		<put-attribute name="content" value="/WEB-INF/delivery/delivery_list_detail.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>
 
 

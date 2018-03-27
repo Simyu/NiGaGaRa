@@ -17,19 +17,59 @@
 	<![CDATA[
 		update delivery set
 		delivery_State = delivery_State + 1
-		where goods_Num = #{goods_Num} and delivery_State <2
+		where goods_Num = #{goods_Num} and delivery_State <3
 		]]>
 	</update>
-	
+
 	<select id="stateResult" resultType="delivery" parameterType="String">
 		select *
-		from delivery 
+		from delivery
 		where Goods_Num = #{Goods_Num}
 	</select>
-	
+
+	<select id="matchState" resultType="String" parameterType="String">
+		select match_state
+		from goods
+		where Goods_Num = #{Goods_Num}
+	</select>
+
+	<update id="matchState1" parameterType="String">
+
+		update goods set
+		Match_State = '배송중'
+		where goods_Num = #{goods_Num}
+
+	</update>
+	<update id="matchState2" parameterType="String">
+		update goods set
+		Match_State = '배송완료'
+		where goods_Num = #{goods_Num}
+	</update>
+	<update id="departure" parameterType="String">
+		update delivery set
+		departure_Time = sysdate
+		where goods_Num = #{goods_Num}
+	</update>
+	<update id="arrival" parameterType="String">
+		update delivery set
+		arrival_Time = sysdate
+		where goods_Num = #{goods_Num}
+	</update>
+	<insert id="paymentInsert1" parameterType="delivery">
+		insert into payment
+		values
+		(payment_SEQ.nextval,#{delivery_num},#{departure_Time},'부탁',(select estimated_Price from goods where goods_Num
+		= #{goods_Num}),#{sender})
+	</insert>
+	<insert id="paymentInsert2" parameterType="delivery">
+		insert into payment
+		values
+		(payment_SEQ.nextval,#{delivery_num},#{departure_Time},'배달',(select estimated_Price from goods where goods_Num
+		= #{goods_Num}),#{delivery_Man})
+	</insert>
 	<insert id="insert" parameterType="delivery">
 		insert into delivery(delivery_num,sender,delivery_man,departure_time,arrival_time,delivery_state,goods_num,delivery_qr)
 		values(delivery_seq.nextval,#{sender},#{delivery_Man},null,null,'1',#{goods_Num},'0')
-	
-	</insert>
+		</insert>
+
 </mapper>

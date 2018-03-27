@@ -17,7 +17,7 @@ public class HomeController {
 		
 		return "index";
 	}
-	@RequestMapping(value = "/request", method = RequestMethod.GET)
+	@RequestMapping(value = "/request.do", method = RequestMethod.GET)
 	public String request() {
 		
 		System.out.println("request view");
@@ -30,13 +30,6 @@ public class HomeController {
 		System.out.println("match view");
 		
 		return "match";
-	}
-	@RequestMapping(value = "/payment.do", method = RequestMethod.POST)
-	public String payment() {
-		
-		System.out.println("payment view");
-		
-		return "payment";
 	}
 	@RequestMapping(value = "/delivery.do", method = RequestMethod.GET)
 	public String delivery() {

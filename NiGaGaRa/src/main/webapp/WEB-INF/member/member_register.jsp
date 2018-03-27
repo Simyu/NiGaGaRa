@@ -51,12 +51,11 @@
 		$("#account_btn").on("click", function() {
 			getTokenByClientCredentials();
 		})
-
 	});
 	function phone() {
 		var pattern = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 		var phone = $("#phone").val();
-		if (!pattern.test(콜)) {
+		if (!pattern.test(phone)) {
 			$("#phoneresult").text("전화번호 형식이 맞지 않습니다.");
 			return false;
 		}
@@ -83,7 +82,6 @@
 			return true;
 		}
 	}
-
 	function numberchk() {
 		emailRandNum = Math.floor(Math.random() * 1000000);
 		$.ajax({
@@ -102,11 +100,9 @@
 	idcheckRet = false;
 	function idcheck() {
 		if (id()) {
-
 			var querydata = {
 				"id" : $("#id").val()
 			}
-
 			$.ajax({
 				url : "/NiGaGaRa/member/idDuplicateCheck.do", //아이디 인증하는 곳 수정요
 				type : "get",
@@ -126,33 +122,24 @@
 	}
 	function pass() {
 		var id = $("#id").val();
-
 		var password = $("#pass").val();
-
 		if (!/^[a-zA-Z0-9]{10,15}$/.test(password)) {
-
 			$("#passresult").html('숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.');
 			return false;
 		}
 		var checkNumber = password.search(/[0-9]/g);
-
 		var checkEnglish = password.search(/[a-z]/ig);
-
 		if (checkNumber < 0 || checkEnglish < 0) {
-
 			$("#passresult").html("숫자와 영문자를 혼용하여야 합니다.");
 			return false;
 		}
 		if (/(\w)\1\1\1/.test(password)) {
-
 			$("#passresult").html('같은 문자를 4번 이상 사용하실 수 없습니다.');
 			return false;
 		}
 		if (password.search(id) > -1) {
-
 			$("#passresult").html("비밀번호에 아이디가 포함되었습니다.");
 			return false;
-
 		}
 		$("#passresult").html("");
 		return true;
@@ -185,20 +172,16 @@
 				{
 					oncomplete : function(data) {
 						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
 						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
 						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 						var fullAddr = ''; // 최종 주소 변수
 						var extraAddr = ''; // 조합형 주소 변수
-
 						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
 							fullAddr = data.roadAddress;
-
 						} else { // 사용자가 지번 주소를 선택했을 경우(J)
 							fullAddr = data.jibunAddress;
 						}
-
 						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
 						if (data.userSelectedType === 'R') {
 							//법정동명이 있을 경우 추가한다.
@@ -214,11 +197,9 @@
 							fullAddr += (extraAddr !== '' ? ' (' + extraAddr
 									+ ')' : '');
 						}
-
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
 						document.getElementById('mem_zipcode').value = data.zonecode; //5자리 새우편번호 사용
 						document.getElementById('mem_addr').value = fullAddr;
-
 						// 커서를 상세주소 필드로 이동한다.
 						document.getElementById('mem_addr_detail').focus();
 					}
@@ -240,7 +221,6 @@
 input {
 	margin-bottom: 5px;
 }
-
 .btn.btn-signin {
 	/*background-color: #4d90fe; */
 	background-color: rgb(104, 145, 162);
@@ -258,7 +238,6 @@ input {
 	-webkit-transition: all 0.218s;
 	transition: all 0.218s;
 }
-
 .btn.btn-signin:hover, .btn.btn-signin:active, .btn.btn-signin:focus {
 	background-color: rgb(12, 97, 33);
 }
@@ -384,7 +363,6 @@ input {
 			return n < 10 ? '0' + n : n
 		}
 		function getTokenByClientCredentials() {
-
 			$
 					.ajax(
 							{
@@ -404,48 +382,37 @@ input {
 									return;
 								}
 								var regex = /[^0-9]/g;
-
 								var account = $("#account").val();
 								account = account.replace(regex, '');
-
 								/*if (account.lengh != 18) {
 									alert("계좌번호는 숫자 18자리 입니다.");
 									return false;
 								}*/
-
 								var birth = $("#birth").val();
-
 								if (birth == "") {
 									alert("생일을 선택하세요.");
 									return false;
 								}
-
 								birth = birth.replace(regex, '');
 								birth = birth.substring(2);
-
 								var chk_radio = document
 										.getElementsByName('mem_gender');
-
 								var gender = null;
 								for (var i = 0; i < chk_radio.length; i++) {
 									if (chk_radio[i].checked == true) {
 										gender = chk_radio[i].value;
 									}
 								}
-
 								if (gender == null) {
 									alert("성별을 선택하세요.");
 									return false;
 								}
-
 								if (gender == '남자') {
 									birth += '1';
 								} else if (gender == '여자') {
 									birth += '2';
 								}
-
 								//alert(birth); 
-
 								var date = new Date();
 								var date_data = date.getFullYear().toString()
 										+ pad2(date.getMonth() + 1)
@@ -459,7 +426,6 @@ input {
 									'account_holder_info' : birth,
 									'tran_dtime' : date_data
 								};
-
 								$
 										.ajax(
 												{
@@ -470,7 +436,6 @@ input {
 													},
 													data : JSON.stringify(src,
 															null, 4)
-
 												})
 										.done(
 												function(data, textStatus,
@@ -478,34 +443,26 @@ input {
 													if (isGatewayException(data)) {
 														return;
 													} // ajax 응답이 Gateway Exception일 경우 이후 처리를 종료한다.      
-
 													// UI에 결과값 바인딩
 													alert(data.account_holder_name);
 												});
 							});
 		}
-
 		function isGatewayException(data) {
-
 			if (data && data.rsp_code && data.rsp_code.indexOf('A') !== 0 // API업무처리 응답코드를 제외한 응답코드
 			) {
-
 				var delim = '___';
 				var addMsg = delim;
-
 				// 오류코드 추출 (메인)
 				var rsp_code = data.rsp_code;
 				//		dc('## rsp_code: '+rsp_code);
-
 				var rsp_code_desc = gwRspCode[rsp_code] ? gwRspCode[rsp_code].rsn
 						: '';
 				dc('## rsp_code_desc: ' + rsp_code_desc);
 				addMsg += '<p>' + rsp_code_desc + '</p>';
-
 				// 오류코드 추출 (세부)
 				var rsp_message = data.rsp_message;
 				//		dc('## rsp_message: '+rsp_message);
-
 				var rsp_dtl_code, rsp_dtl_code_desc;
 				var cdStaIdx = rsp_message.indexOf('([');
 				var cdEndIdx = rsp_message.indexOf('])');
@@ -519,9 +476,7 @@ input {
 					//			dc('## rsp_dtl_code: '+rsp_dtl_code);
 					dc('## rsp_dtl_code_desc: ' + rsp_dtl_code_desc);
 				}
-
 				showMsg(js(data) + ((addMsg == delim) ? '' : addMsg));
-
 				return true;
 			}
 			return false;
@@ -529,5 +484,3 @@ input {
 	</script>
 </body>
 </html>
-
-

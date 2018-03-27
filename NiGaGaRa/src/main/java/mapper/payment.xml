@@ -2,25 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="nigagara.payment">
-	<insert id = "insert" parameterType="payment">
-	insert into payment values
-	(payment_SEQ.nextval,sysdate,#{payment_type},#{point})
+	<insert id="insert" parameterType="Map">
+		insert into cash_exchange
+		values
+		(cash_exchange_SEQ.nextval,#{mem_id},'결제',sysdate,#{cash},#{cash})
 	</insert>
+
+	<select id="user" resultType="member" parameterType="String">
+		select *
+		from member
+		where mem_id = #{mem_id}
+	</select>
+	<update id="totalPoint" parameterType="String">
+		update member set
+		point_total = point_total + #{cash}
+		where mem_id = #{mem_id}
+	</update>
+	<select id="cash_exchangelist" resultType="exchange" parameterType="String">
+		select *
+		from cash_exchange
+		where mem_id = #{mem_id}
+	</select>
+	<select id="paymentlist" resultType="payment" parameterType="String">
+		select *
+		from payment
+		where mem_id = #{mem_id}
+	</select>
 </mapper>
-	
 
-<!-- 
-    payment_num     NUMBER          NOT NULL, 
-    delivery_num    NUMBER          NULL, 
-    payment_date    VARCHAR2(20)    NULL, 
-    payment_type    VARCHAR2(20)    NULL, 
-    point           NUMBER          NULL, 
-    CONSTRAINT PAYMENT_PK PRIMARY KEY (payment_num)
-);
-CREATE SEQUENCE payment_SEQ
-START WITH 1
 
-INCREMENT BY 1;
-ALTER TABLE payment
-    ADD CONSTRAINT FK_payment_delivery_num_delive FOREIGN KEY (delivery_num)
-        REFERENCES delivery (delivery_num); -->
+<!-- payment_num NUMBER NOT NULL, delivery_num NUMBER NULL, payment_date 
+	VARCHAR2(20) NULL, payment_type VARCHAR2(20) NULL, point NUMBER NULL, CONSTRAINT 
+	PAYMENT_PK PRIMARY KEY (payment_num) ); CREATE SEQUENCE payment_SEQ START 
+	WITH 1 INCREMENT BY 1; ALTER TABLE payment ADD CONSTRAINT FK_payment_delivery_num_delive 
+	FOREIGN KEY (delivery_num) REFERENCES delivery (delivery_num); -->

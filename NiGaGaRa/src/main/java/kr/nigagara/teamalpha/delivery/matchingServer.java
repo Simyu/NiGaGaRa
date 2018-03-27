@@ -14,7 +14,6 @@ import javax.websocket.server.ServerEndpoint;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @ServerEndpoint("/match")
 public class matchingServer {
@@ -92,7 +91,6 @@ public class matchingServer {
 			} else if (object.get("pro_type").equals("result")) {
 				System.out.println(object.toJSONString());
 				System.out.println("message=>" + message);
-
 
 				sendTo(message);
 			} else {

@@ -7,14 +7,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import kr.nigagara.teamalpha.member.MemberVO;
+
 @Service
 public class DeliveryServiceimpl implements DeliveryService {
-@Autowired
-@Qualifier("deliverydao")
-DeliveryDAO dao;
-	public DeliveryServiceimpl() {
-		System.out.println("yrdydfgdfgdf");
-	}
+	@Autowired
+	@Qualifier("deliverydao")
+	DeliveryDAO dao;
+
 	@Override
 	public List<DeliveryVO> list(MemberVO memId) {
 
@@ -35,10 +34,41 @@ DeliveryDAO dao;
 	@Override
 	public DeliveryVO stateResult(String Goods_Num) {
 		return dao.stateResult(Goods_Num);
-	}
-	public int insert(DeliveryVO vo) {
-		System.out.println("여기는 서비스 입니다 : "+vo);
-		return dao.insert(vo);
+
 	}
 
+	@Override
+	public String matchState(String Goods_Num) {
+		return dao.matchState(Goods_Num);
+
+	}
+
+	@Override
+	public void matchState1(String Goods_Num) {
+		dao.matchState1(Goods_Num);
+
+	}
+
+	@Override
+	public void matchState2(String Goods_Num) {
+		dao.matchState2(Goods_Num);
+
+	}
+
+	@Override
+	public int paymentInsert1(DeliveryVO stateResult) {
+		return dao.paymentInsert1(stateResult);
+
+	}
+
+	@Override
+	public int paymentInsert2(DeliveryVO stateResult) {
+		return dao.paymentInsert2(stateResult);
+
+	}
+
+	public int insert(DeliveryVO vo) {
+		System.out.println("여기는 서비스 입니다 : " + vo);
+		return dao.insert(vo);
+	}
 }
