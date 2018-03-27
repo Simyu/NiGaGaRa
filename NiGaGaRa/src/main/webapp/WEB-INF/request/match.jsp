@@ -149,7 +149,7 @@
 			</div>
 		</div>
 	</section>
-	<form action="/NiGaGaRa/payment.do" method="post" role="form"
+	<form action="/NiGaGaRa/goods/match.do" method="post" role="form"
 		class="contactForm">
 		<div class="form-group">
 			<h4>출발지 :</h4>
@@ -170,6 +170,23 @@
 		<div class="text-center">
 			<button type="submit" class="btn btn-theme">매칭시작</button>
 		</div>
+		<input type="text" name = "goods_Num" value="${GoodsVO.goods_Num}"/>	
+		<input type="text" name = "goods_Name"  value="${GoodsVO.goods_Name}"/>
+		<input type="text" name = "weight"  value="${GoodsVO.weight}"/>
+		<input type="text" name = "quantity"  value="${GoodsVO.quantity}"/>
+		<input type="text" name = "estimated_Price"  value="${GoodsVO.estimated_Price}"/>
+		<input type="text" name = "receiver_Name"  value="${GoodsVO.receiver_Name}"/>
+		<input type="text" name = "receiver_zipcode"  value="${GoodsVO.receiver_zipcode}"/>
+		<input type="text" name = "receiver_Addr"  value="${GoodsVO.receiver_Addr}"/>
+		<input type="text" name = "receiver_Tel"  value="${GoodsVO.receiver_Tel}"/>
+		<input type="text" name = "sender_zipcode"  value="${GoodsVO.sender_zipcode}"/>
+		<input type="text" name = "sender_Addr"  value="${GoodsVO.sender_Addr}"/>
+		<input type="text" name = "delivery_Tool"  value="${GoodsVO.delivery_Tool}"/>
+		<input type="text" name = "goods_Msg"  value="${GoodsVO.goods_Msg}"/>
+		<input type="text" name = "match_State"  value="${GoodsVO.match_State}"/>
+		<input type="text" name = "mem_id"  value="${loginUser.mem_id}"/>
+		<input type="text" name = "receiver_Addr_detail"  value="${GoodsVO.receiver_Addr_detail}"/>
+		<input type="text" name = "sender_Addr_detail"  value="${GoodsVO.sender_Addr_detail}"/>
 	</form>
 </body>
 </html>

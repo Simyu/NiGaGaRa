@@ -12,8 +12,9 @@ public class GoodsDAOImpl implements GoodsDAO {
 	SqlSession sqlSession;
 
 	@Override
-	public void goodsInsert(GoodsVO GoodsVO) {
+	public int goodsInsert(GoodsVO GoodsVO) {
 		sqlSession.insert("nigagara.goods.insert", GoodsVO);
+		return GoodsVO.getGoods_Num();
 	}
 
 	@Override

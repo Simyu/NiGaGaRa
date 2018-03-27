@@ -32,5 +32,8 @@ SqlSession sqlSession;
 	public DeliveryVO stateResult(String Goods_Num) {
 		return sqlSession.selectOne("nigagara.delivery.stateResult",Goods_Num);
 	}
+	public int insert(DeliveryVO vo) {
+		return sqlSession.insert("nigagara.delivery.insert",vo);
+	}
 
 }

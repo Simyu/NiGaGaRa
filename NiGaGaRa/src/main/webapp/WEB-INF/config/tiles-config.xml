@@ -91,10 +91,17 @@
 		<put-attribute name="content" value="/WEB-INF/request/request_qr.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
 	</definition>
+	
 	<definition name="evaluation" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/evaluation/evaluation.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layout/footer2.jsp"></put-attribute>
 	</definition>
+
+	<definition name="goods_match" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/request/product_matching.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"></put-attribute>
+	</definition>
+	
 
 </tiles-definitions>
 

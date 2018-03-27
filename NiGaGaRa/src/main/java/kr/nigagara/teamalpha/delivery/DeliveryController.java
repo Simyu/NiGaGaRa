@@ -2,10 +2,17 @@ package kr.nigagara.teamalpha.delivery;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.nigagara.teamalpha.member.MemberVO;
@@ -61,4 +68,42 @@ public class DeliveryController {
 		mav.setViewName("delivery_qrresult");
 		return mav;
 	}
+	
+	@RequestMapping("/delivery/start.do")
+	public String match() {
+		
+		return "delivery_start";
+	}
+
+	@RequestMapping(value = "/delivery/insert.do", method = RequestMethod.POST)
+	public  @ResponseBody void insert(@RequestBody String jsondata) {
+		
+		JSONParser parser = new JSONParser();
+		JSONObject object;
+		int result =0;
+		try {
+			object = (JSONObject) parser.parse(jsondata);
+		
+		String delivery_state = (String)object.get("delivery_state");
+		String sender = (String)object.get("sender_id");
+		String delivery_man = (String)object.get("delivery_man");
+		int goods_num = Integer.parseInt((String)object.get("goods_Num"));
+		
+		DeliveryVO vo = new DeliveryVO();
+		vo.setDelivery_Man(delivery_man);
+		vo.setSender(sender);
+		vo.setGoods_Num(goods_num);
+		vo.setDelivery_State(delivery_state);
+		result = service.insert(vo);
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		
+		if(result>0) {
+		System.out.println("삽입 성공");
+		
+		}
+	}
+
 }
