@@ -55,7 +55,6 @@ public class GoodsDAOImpl implements GoodsDAO {
 		map.put("tag", tag);
 		map.put("search", search);
 		List<GoodsVO> searchList = sqlSession.selectList("nigagara.goods.dynamicSearch", map);
-		System.out.println(searchList);
 		return searchList;
 	}
 }

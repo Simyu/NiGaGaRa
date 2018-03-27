@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="se"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,26 +96,27 @@
 									<a href="/NiGaGaRa/member/drop.do">탈퇴</a>
 								</li>
 								<li>
-									<a href="#">포인트 환전</a>
+									<a href="/NiGaGaRa/payment.do?mem_id=${loginUser.mem_id }">포인트
+										결제</a>
 								</li>
 								<li>
-									<a href="/NiGaGaRa/payment/list.do?mem_id=${loginUser.mem_id }">거래내역</a>
+									<a href="/NiGaGaRa/payment_list.do?mem_id=${loginUser.mem_id }">거래내역</a>
 								</li>
 							</ul>
 						</li>
 
 						<se:authorize access="isAnonymous()">
-						<li>
-							<a href="/NiGaGaRa/member/register.do">회원가입</a>
-						</li>
-						<li>
-							<a href="/NiGaGaRa/member/login">로그인</a>
-						</li>
+							<li>
+								<a href="/NiGaGaRa/member/register.do">회원가입</a>
+							</li>
+							<li>
+								<a href="/NiGaGaRa/member/login">로그인</a>
+							</li>
 						</se:authorize>
 						<se:authorize access="isAuthenticated()">
-						<li>
-							<a href="/NiGaGaRa/member/logout.do">로그아웃</a>
-						</li>
+							<li>
+								<a href="/NiGaGaRa/member/logout.do">로그아웃</a>
+							</li>
 						</se:authorize>
 					</ul>
 				</div>

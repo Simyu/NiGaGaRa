@@ -24,7 +24,6 @@ import org.w3c.dom.NodeList;
 public class WebHookController {
 	@RequestMapping(value = "/webhooktest", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public @ResponseBody String test(@RequestBody String req) {
-		// System.out.println(req);
 		JSONObject ret = new JSONObject();
 		JSONParser parser = new JSONParser();
 		String speech = "";

@@ -32,7 +32,6 @@ public class EvaluationServiceImpl implements EvaluationService {
 
 	@Override
 	public void avgEval(String delivery_Man) {
-		System.out.println("service=>" + delivery_Man);
 		dao.avgEval(delivery_Man);
 
 	}

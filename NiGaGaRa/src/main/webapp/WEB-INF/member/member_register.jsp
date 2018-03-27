@@ -87,6 +87,7 @@
 		$.ajax({
 			url : "/NiGaGaRa/member/emailchk.do",
 			type : "POST",
+			contentType: "application/x-www-form-urlencoded",
 			data : {
 				"number" : emailRandNum,
 				"mem_email" : $("#mail").val()

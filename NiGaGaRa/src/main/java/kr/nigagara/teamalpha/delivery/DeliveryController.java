@@ -42,25 +42,22 @@ public class DeliveryController {
 	@RequestMapping(value = "/delivery/qrread.do", method = RequestMethod.GET)
 	public String qrread() {
 
-		System.out.println("qrread view");
-
 		return "delivery_qrread";
 	}
 
 	@RequestMapping(value = "/delivery/qrscan.do", method = RequestMethod.POST)
 	public ModelAndView qrread(String Goods_Num) {
-		System.out.println("Goods_Num=>" + Goods_Num);
 		ModelAndView mav = new ModelAndView();
 		DeliveryVO changeState = service.changeState(Goods_Num);
 		DeliveryVO stateResult = service.stateResult(Goods_Num);// delivery_state가져오기
 		String match_State = service.matchState(Goods_Num);
-		System.out.println(match_State);
+
 		if (match_State.equals("배송전")) {
 			service.matchState1(Goods_Num);
 		} else if (match_State.equals("배송중")) {
 			service.matchState2(Goods_Num);
 		}
-		System.out.println(stateResult);
+
 		String msg = "";
 		if (stateResult.getDelivery_State().equals("2")) {
 			msg = "배송 시작합니다.";

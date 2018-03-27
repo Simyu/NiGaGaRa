@@ -68,7 +68,6 @@ public class DeliveryServiceimpl implements DeliveryService {
 	}
 
 	public int insert(DeliveryVO vo) {
-		System.out.println("여기는 서비스 입니다 : " + vo);
 		return dao.insert(vo);
 	}
 }

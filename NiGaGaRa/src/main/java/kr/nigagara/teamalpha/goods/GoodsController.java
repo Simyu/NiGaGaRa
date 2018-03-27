@@ -24,12 +24,8 @@ public class GoodsController {
 		ArrayList<Double> receiverlist;
 		sendlist = loc.sendlocation(GoodsVO);
 		receiverlist = loc.receivelocation(GoodsVO);
-		System.out.println("보내는사람 위도 경도 = " + sendlist.get(0) + sendlist.get(1));
-		System.out.println("받는사람 위도 경도 = " + receiverlist.get(0) + receiverlist.get(1));
 		int GoodsNum = service.goodsInsert(GoodsVO);
-		System.out.println("selectKey" + GoodsNum);
 		GoodsVO.setGoods_Num(GoodsNum);
-		System.out.println(GoodsVO);
 		mav.addObject("GoodsVO", GoodsVO);
 		mav.addObject("send_loccode", sendlist);
 		mav.addObject("receive_loccode", receiverlist);
@@ -41,7 +37,6 @@ public class GoodsController {
 	public ModelAndView match(GoodsVO GoodsVO) {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<Double> sendlist;
-		System.out.println("match : " + GoodsVO);
 		sendlist = loc.sendlocation(GoodsVO);
 
 		mav.addObject("GoodsVO", GoodsVO);
@@ -55,7 +50,6 @@ public class GoodsController {
 	public ModelAndView list(String mem_id) {
 		ModelAndView mav = new ModelAndView();
 		List<GoodsVO> requestlist;
-		System.out.println(mem_id);
 		if (mem_id != null) {
 			requestlist = service.requestlist(mem_id);
 			mav.setViewName("request_list");
@@ -63,7 +57,6 @@ public class GoodsController {
 			requestlist = service.requestlist_all();
 			mav.setViewName("delivery_list");
 		}
-		System.out.println(requestlist);
 		mav.addObject("requestlist", requestlist);
 		return mav;
 	}
@@ -73,7 +66,6 @@ public class GoodsController {
 	public ModelAndView detail(String goods_Num) {
 		ModelAndView mav = new ModelAndView();
 		List<GoodsVO> requestdetail = service.requestdetail(goods_Num);
-		System.out.println(requestdetail);
 		mav.addObject("requestdetail", requestdetail);
 		mav.setViewName("request_detail");
 		return mav;
@@ -84,7 +76,6 @@ public class GoodsController {
 	public ModelAndView detail_all(String goods_Num) {
 		ModelAndView mav = new ModelAndView();
 		List<GoodsVO> requestdetail = service.requestdetail(goods_Num);
-		System.out.println(requestdetail);
 		mav.addObject("requestdetail", requestdetail);
 		mav.setViewName("delivery_list_detail");
 		return mav;
@@ -105,7 +96,6 @@ public class GoodsController {
 	public ModelAndView edit(GoodsVO GoodsVO) {
 		ModelAndView mav = new ModelAndView();
 		int requestedit = service.requestedit(GoodsVO);
-		System.out.println(requestedit);
 		mav.setViewName("index");
 		return mav;
 	}
@@ -114,7 +104,6 @@ public class GoodsController {
 	@RequestMapping(value = "/goods/qrcode.do", method = RequestMethod.GET)
 	public ModelAndView qrcode(String goods_Num) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("qrcode view");
 		mav.addObject("goods_Num", goods_Num);
 		mav.setViewName("request_qr");
 		return mav;

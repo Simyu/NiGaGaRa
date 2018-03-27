@@ -16,7 +16,6 @@ public class EvaluationDAOImpl implements EvaluationDAO {
 
 	@Override
 	public List<MemberVO> evalDetail(String goods_Num) {
-		System.out.println(goods_Num);
 		List<MemberVO> evalDetail = sqlSession.selectList("nigagara.evaluation.evalDetail", goods_Num);
 		return evalDetail;
 	}
@@ -34,7 +33,6 @@ public class EvaluationDAOImpl implements EvaluationDAO {
 
 	@Override
 	public void avgEval(String delivery_Man) {
-		System.out.println("service=>" + delivery_Man);
 		sqlSession.update("nigagara.evaluation.avgEval", delivery_Man);
 
 	}

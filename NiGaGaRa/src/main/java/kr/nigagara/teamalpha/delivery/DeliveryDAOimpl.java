@@ -37,7 +37,6 @@ public class DeliveryDAOimpl implements DeliveryDAO {
 
 	@Override
 	public String matchState(String Goods_Num) {
-		System.out.println(Goods_Num);
 		return sqlSession.selectOne("nigagara.delivery.matchState", Goods_Num);
 	}
 
