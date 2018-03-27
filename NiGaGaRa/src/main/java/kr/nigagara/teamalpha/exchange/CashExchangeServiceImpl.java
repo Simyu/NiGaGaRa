@@ -14,4 +14,9 @@ public class CashExchangeServiceImpl implements CashExchangeService {
 		return dao.insert(id,point, type);
 	}
 
+	@Override
+	public void pay(String mem_id, String cash) {
+		dao.pay(mem_id, cash);
+	}
+
 }

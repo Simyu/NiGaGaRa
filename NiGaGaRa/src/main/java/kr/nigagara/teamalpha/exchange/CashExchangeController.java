@@ -12,8 +12,8 @@ public class CashExchangeController {
 
 	@RequestMapping(value = "/exchange/deposit.do", method = RequestMethod.POST)
 	public String deposit(String point, String id) {
-
 		service.insert(id, point, "환전");
+		service.pay(id, point);
 		return "redirect:/payment_list.do?mem_id=" + id;
 	}
 

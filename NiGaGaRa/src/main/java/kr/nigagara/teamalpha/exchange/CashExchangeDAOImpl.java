@@ -23,4 +23,12 @@ public class CashExchangeDAOImpl implements CashExchangeDAO {
 		return sqlsession.insert("nigagara.exchange.insert", map);
 	}
 
+	@Override
+	public void pay(String mem_id, String cash) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("mem_id", mem_id);
+		map.put("cash", cash);
+		sqlsession.update("nigagara.exchange.pointMinus", map);
+	}
+
 }
