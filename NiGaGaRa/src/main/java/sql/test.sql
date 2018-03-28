@@ -45,3 +45,8 @@ alter table payment add mem_id varchar(20);
 select *
 		from payment
 		where mem_id = 'qwe'
+		
+	select
+		a.receiver_Addr,a.sender_Addr from
+		delivery b,goods a where
+		b.goods_Num = a.goods_Num and b.goods_Num = 21

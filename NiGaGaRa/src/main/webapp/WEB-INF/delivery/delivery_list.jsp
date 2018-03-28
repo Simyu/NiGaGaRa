@@ -11,7 +11,7 @@
 <meta name="keyword"
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-<title>DASHGUM - Bootstrap Admin Template</title>
+<title>Moderna - Bootstrap 3 flat corporate template</title>
 </head>
 
 <body>
@@ -42,12 +42,14 @@
 						<thead>
 							<tr>
 								<th>NO</th>
-								<th>보내는분</th>
-								<th>배달기사</th>
-								<th>물건수령시간</th>
-								<th>물건전달시간</th>
-								<th>이동수단</th>
-								<th>상품번호</th>
+								<th>보내는 분</th>
+								<th>배달 기사</th>
+								<th>물건 수령 시간</th>
+								<th>물건 전달 시간</th>
+								<th>이동 수단</th>
+								<th>출발지</th>
+								<th>도착지</th>
+								<th>상품 번호</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -58,7 +60,9 @@
 									<th>${deliverylist.delivery_Man}</th>
 									<th>${deliverylist.departure_Time}</th>
 									<th>${deliverylist.arrival_Time}</th>
-									<th>${deliverylist.delivery_State}</th>
+									<th>${deliverylist.delivery_Tool}</th>
+									<th>${deliverylist.receiver_Addr },${deliverylist.receiver_Addr_detail }</th>
+									<th>${deliverylist.sender_Addr },${deliverylist.sender_Addr_detail }</th>
 									<th>${deliverylist.goods_Num }</th>
 								</tr>
 							</c:forEach>

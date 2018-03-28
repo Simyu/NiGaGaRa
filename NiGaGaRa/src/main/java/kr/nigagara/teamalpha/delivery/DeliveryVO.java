@@ -11,7 +11,12 @@ public class DeliveryVO {
 	private String delivery_State;
 	private int goods_Num;
 	private String delivery_qr;
-
+	private String receiver_Addr;
+	private String receiver_Addr_detail;
+	private String sender_Addr;
+	private String sender_Addr_detail;
+	
+	
 	public DeliveryVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -27,6 +32,38 @@ public class DeliveryVO {
 		this.delivery_State = delivery_State;
 		this.goods_Num = goods_Num;
 		this.delivery_qr = delivery_qr;
+	}
+
+	public String getReceiver_Addr() {
+		return receiver_Addr;
+	}
+
+	public void setReceiver_Addr(String receiver_Addr) {
+		this.receiver_Addr = receiver_Addr;
+	}
+
+	public String getReceiver_Addr_detail() {
+		return receiver_Addr_detail;
+	}
+
+	public void setReceiver_Addr_detail(String receiver_Addr_detail) {
+		this.receiver_Addr_detail = receiver_Addr_detail;
+	}
+
+	public String getSender_Addr() {
+		return sender_Addr;
+	}
+
+	public void setSender_Addr(String sender_Addr) {
+		this.sender_Addr = sender_Addr;
+	}
+
+	public String getSender_Addr_detail() {
+		return sender_Addr_detail;
+	}
+
+	public void setSender_Addr_detail(String sender_Addr_detail) {
+		this.sender_Addr_detail = sender_Addr_detail;
 	}
 
 	public int getDelivery_num() {
