@@ -137,7 +137,8 @@
 <body>
 	<div class="container">
 		<div class="card card-container">
-			<form class="form-signin" method="post" action="/NiGaGaRa/member/searchpass.do")>
+			<form class="form-signin" method="post"
+				action="/NiGaGaRa/member/searchpass.do")>
 				<h3>패스워드 찾기</h3>
 				<span id="reauth-email" class="reauth-email"></span>
 				<input type="text" id="id" name="id" class="form-control"
