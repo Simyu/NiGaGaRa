@@ -40,7 +40,8 @@ input {
 		newpass = document.getElementById("newpass").value;
 		newpasschk = document.getElementById("newpasschk").value;
 		if (newpass != newpasschk) {
-			alert("��濡��� 鍮�諛�踰��멸� ���쇳��吏� ���듬����.");
+
+			alert("새로운 비밀번호가 동일하지 않습니다.");
 			return false;
 		}
 		return true;
@@ -51,25 +52,21 @@ input {
 		onsubmit="return check()">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
-			<h3>�⑥�ㅼ���� 蹂�寃�</h3>
+			<h3>패스워드변경</h3>
 			<div>
 				<ul class="list-group">
-					<li class="list-group-item">
-						<input type=password placeholder="���� 鍮�諛�踰���" name="password"
-							id="password" class="form-control input-md" required="required" />
-					</li>
-					<li class="list-group-item">
-						<input id="newpass" type=password placeholder="�� 鍮�諛�踰���"
-							name="newpass" class="form-control input-md" required="required" />
-					</li>
-					<li class="list-group-item">
-						<input id="newpasschk" type=password placeholder="�� 鍮�諛�踰��� ����"
-							name="newpasschk" class="form-control input-md"
-							required="required" />
-					</li>
+					<li  class="list-group-item"><input type=password
+						placeholder="현재 비밀번호" name="password" id="password"
+						class="form-control input-md" required="required"/></li>
+					<li class="list-group-item"><input id="newpass"  type=password
+						placeholder="새 비밀번호" name="newpass" class="form-control input-md"
+						required="required"/></li>
+					<li class="list-group-item"><input id="newpasschk"
+						type=password placeholder="새 비밀번호 확인" name="newpasschk"
+						class="form-control input-md" required="required"/></li>
 				</ul>
 				<input class="btn btn-lg btn-primary btn-block btn-signin"
-					type="submit" value="�⑥�ㅼ����蹂�寃쏀��湲�" />
+					type="submit" value ="패스워드변경하기"/>
 			</div>
 		</div>
 		<div class="col-md-2"></div>
