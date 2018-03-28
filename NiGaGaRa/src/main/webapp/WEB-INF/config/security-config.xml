@@ -11,7 +11,7 @@
 		<security:intercept-url pattern="/index.do"
 			access="permitAll" />
 		<security:intercept-url pattern="/webhooktest"
-			access="permitAll" />
+			access="permitAll" requires-channel="http"/>
 		<security:intercept-url pattern="/member/profile.do"
 			access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 		<security:intercept-url pattern="/member/drop.do"
@@ -21,10 +21,11 @@
 		<security:intercept-url pattern="/member/**"
 			access="permitAll" />
 		<security:intercept-url pattern="/**"
-			access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+			access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" requires-channel="https"/>
 
-		<security:port-mappings> <security:port-mapping http="8088" https="8443" 
-			/> </security:port-mappings>
+		<security:port-mappings>
+			<security:port-mapping http="8088" https="8443" />
+		</security:port-mappings>
 
 		<security:form-login username-parameter="id"
 			password-parameter="pass" login-page="/member/login.do"
