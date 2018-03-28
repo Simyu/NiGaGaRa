@@ -4,7 +4,7 @@
 <mapper namespace="nigagara.delivery">
 	<select id="deliverylist" resultType="delivery" parameterType="String">
 		select
-		a.*,b.receiver_Addr,b.receiver_Addr_detail,b.sender_Addr,b.sender_Addr_detail
+		a.*,b.receiver_Addr,b.receiver_Addr_detail,b.sender_Addr,b.sender_Addr_detail,b.delivery_Tool
 		from (select * from delivery where delivery_Man = #{delivery_Man})a
 		left outer join goods b on a.goods_num = b.goods_num
 	</select>
