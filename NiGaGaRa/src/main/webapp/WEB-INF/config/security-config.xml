@@ -23,8 +23,8 @@
 		<security:intercept-url pattern="/**"
 			access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 
-		<!-- <security:port-mappings> <security:port-mapping http="8088" https="8443" 
-			/> </security:port-mappings> -->
+		<security:port-mappings> <security:port-mapping http="8088" https="8443" 
+			/> </security:port-mappings>
 
 		<security:form-login username-parameter="id"
 			password-parameter="pass" login-page="/member/login.do"

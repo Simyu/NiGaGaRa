@@ -15,7 +15,7 @@ public class DeliveryVO {
 	private String receiver_Addr_detail;
 	private String sender_Addr;
 	private String sender_Addr_detail;
-	
+	private String delivery_Tool;
 	
 	public DeliveryVO() {
 		// TODO Auto-generated constructor stub
@@ -32,6 +32,14 @@ public class DeliveryVO {
 		this.delivery_State = delivery_State;
 		this.goods_Num = goods_Num;
 		this.delivery_qr = delivery_qr;
+	}
+
+	public String getDelivery_Tool() {
+		return delivery_Tool;
+	}
+
+	public void setDelivery_Tool(String delivery_Tool) {
+		this.delivery_Tool = delivery_Tool;
 	}
 
 	public String getReceiver_Addr() {
