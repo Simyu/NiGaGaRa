@@ -24,4 +24,6 @@ public interface MemberService {
 	
 	List<MemberVO> list();
 
+	int updateRole(String id, String role);
+
 }

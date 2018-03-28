@@ -92,8 +92,17 @@
 		from member
 		where mem_id = #{username}
 	</select>
+	
 	<select id="memberlist" resultType="member">
 		select * from member
 	</select>
+	
+
+	<update id="updaterole" parameterType="java.util.Map">
+		update member
+		set
+		role=#{role}
+		where mem_id=#{id}
+	</update>
 
 </mapper>

@@ -247,14 +247,20 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/member/login.do";
 	}
-	@RequestMapping(value="/member/list.do",method = RequestMethod.GET)
+
+	@RequestMapping(value = "/member/list.do", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView mav = new ModelAndView();
 		List<MemberVO> memberlist = service.list();
-		mav.addObject("memberlist",memberlist);
+		mav.addObject("memberlist", memberlist);
 		mav.setViewName("memberlist");
 		return mav;
-		
+
+	}
+	@RequestMapping(value = "/member/updaterole.do", method = RequestMethod.GET)
+	public String roleupdate(String id, String role) {
+		service.updateRole(id,role);
+		return "redirect:/member/list.do";		
 	}
 
 }

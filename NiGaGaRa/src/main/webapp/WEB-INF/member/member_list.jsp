@@ -59,11 +59,15 @@
 									<td>${list.mem_gender}</td>
 									<td>${list.mem_phone }</td>
 									<td>
-										<button class="btn btn-danger btn-xs" onclick="">차단</button>
-										<button class="btn btn-primary btn-xs" onclick="">관리자</button>
-										<button class="btn btn-danger btn-xs" onclick="">해제</button>
+									<c:choose>
+									<c:when test="${list.role == 'ROLE_USER' }">
+										<a class="btn btn-primary btn-xs" href="/NiGaGaRa/member/updaterole.do?id=${list.mem_id }&role=ROLE_ADMIN">관리자</a>
+										</c:when>
 
-										<button class="btn btn-primary btn-xs" onclick="">일반회원</button>
+									<c:when test="${list.role == 'ROLE_ADMIN' }">
+										<a class="btn btn-primary btn-xs" href="/NiGaGaRa/member/updaterole.do?id=${list.mem_id }&role=ROLE_USER">일반회원</a>
+										</c:when>
+										</c:choose>
 									</td>
 								</tr>
 							</c:forEach>
