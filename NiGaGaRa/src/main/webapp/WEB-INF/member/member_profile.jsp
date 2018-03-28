@@ -26,7 +26,7 @@ body {
 
 span.star-prototype, span.star-prototype > * {
     height: 16px; 
-    background: url(http://i.imgur.com/YsyS5y8.png) 0 -16px repeat-x;
+    background: url(/NiGaGaRa/resources/img/YsyS5y8.png) 0 -16px repeat-x;
     width: 80px;
     display: inline-block;
 }
@@ -65,8 +65,8 @@ span.star-prototype > * {
 						action="/NiGaGaRa/member/modify.do" method="post">
 						<!-- Form Name -->
 						<br /> 
-						<div class="col-md-2 hidden-xs text-center">
 							<p> 평점 <span class="star-prototype">${user.mem_eval }</span> (${user.mem_eval })</p>
+						<div class="col-md-2 hidden-xs text-center">
 							<div class="row" id="imgholder">
 								<img src="/NiGaGaRa/resources/img/upload/${user.mem_img }"
 									class="img-responsive img-thumbnail " id="img">

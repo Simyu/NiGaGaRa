@@ -83,7 +83,7 @@
 	$(document).ready(function()
 	{
 	     //서버와연결합니다. 웹소켓서버 Uri : ex) ://YourDomain/
-	     websocket = new WebSocket("wss://localhost:8443/NiGaGaRa/match");
+	     websocket = new WebSocket("wss://211.42.204.107:8443/NiGaGaRa/match");
 	     // 서버와연결되면실행됩니다
 	     websocket.onopen = function(evt) { onOpen(evt) };
 	     // 서버와연결이종료되면실행됩니다
@@ -188,7 +188,7 @@
 				}
 		 }
 	function success_run(txt){
-		alert("db입력완료 : "+txt);
+		//alert("db입력완료 : "+txt);
 	}
 	
 	function err_run(obj,msg,statusMsg){

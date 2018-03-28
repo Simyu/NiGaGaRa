@@ -75,14 +75,14 @@ dden; width:1px; height:1px; opacity:0}
 				msg += '카드 승인번호 : ' + rsp.apply_num;
 				var d = new Date();
 				var time = d.getFullYear()+"."+(d.getMonth() + 1)+"."+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-				 location.href = "http://localhost:8088/NiGaGaRa/payment_third.do?mem_id=${loginUser.mem_id}&cash=${cash}&time="+time;
+				 location.href = "http://211.42.204.107:8088/NiGaGaRa/payment_third.do?mem_id=${loginUser.mem_id}&cash=${cash}&time="+time;
 
 			} else { // 실패시
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
 				var d = new Date();
 				var time = d.getFullYear()+"."+(d.getMonth() + 1)+"."+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-				 location.href = "http://localhost:8088/NiGaGaRa/payment_second.do?mem_id=${loginUser.mem_id}&cash=${cash}&time="+time;
+				 location.href = "http://211.42.204.107:8088/NiGaGaRa/payment_second.do?mem_id=${loginUser.mem_id}&cash=${cash}&time="+time;
 
 			}
 		});

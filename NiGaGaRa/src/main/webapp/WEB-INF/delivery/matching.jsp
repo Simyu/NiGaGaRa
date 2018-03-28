@@ -88,7 +88,7 @@
 		data.pro_type = "result";
 		data.match_State = "1";
 		data.delivery_man = "<%=user.getMem_id()%>";
-		alert(JSON.stringify(data));
+		//alert(JSON.stringify(data));
 		
 		websocket.send(JSON.stringify(data));
 		
@@ -110,7 +110,7 @@
 		 String pro_receiver_Addr_detail = (String)object.get("receiver_Addr_detail");
 		 String pro_sender_Addr_detail = (String)object.get("sender_Addr_detail");*/
 	
-		alert("웹소켓 전송");
+		//alert("웹소켓 전송");
 	}
 	
 	var resCnt = 0;     //서버에서 응답받은 횟수.
@@ -119,7 +119,7 @@
 	$(document).ready(function()
 	{
 	     //서버와연결합니다. 웹소켓서버 Uri : ex) `://YourDomain/
-	     websocket = new WebSocket("wss://localhost:8443/NiGaGaRa/match");
+	     websocket = new WebSocket("wss://211.42.204.107:8443/NiGaGaRa/match");
 	     // 서버와연결되면실행됩니다
 	     websocket.onopen = function(evt) { onOpen(evt) };
 	     // 서버와연결이종료되면실행됩니다

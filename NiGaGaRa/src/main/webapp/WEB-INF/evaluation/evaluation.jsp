@@ -116,8 +116,8 @@
 						<div class="btn-group" style="margin-top: 15px;">
 		            	<button type="submit" class="btn btn-primary">평가하기</button></div>             
 		            </div>
-						<input id="grade" name = "grade"/>
-						<input id="goods_Num" name = "goods_Num" value="${goods_Num}"/>						
+						<input type="hidden" id="grade" name = "grade"/>
+						<input type="hidden" id="goods_Num" name = "goods_Num" value="${goods_Num}"/>						
 						</form>
                     </div>
            		 </div>

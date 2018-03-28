@@ -2,6 +2,8 @@ package kr.nigagara.teamalpha.delivery;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.nigagara.teamalpha.exchange.CashExchangeService;
+import kr.nigagara.teamalpha.goods.GoodsService;
+import kr.nigagara.teamalpha.goods.GoodsVO;
 import kr.nigagara.teamalpha.member.MemberVO;
 import kr.nigagara.teamalpha.sms.SMSSendMethod;
 
@@ -20,6 +25,10 @@ import kr.nigagara.teamalpha.sms.SMSSendMethod;
 public class DeliveryController {
 	@Autowired
 	DeliveryService service;
+	@Autowired
+	CashExchangeService chservice;
+	@Autowired
+	GoodsService gdservice;
 
 	@RequestMapping("/delivery/deliverylist.do")
 	public ModelAndView list(String mem_id) {				
@@ -47,11 +56,15 @@ public class DeliveryController {
 	}
 
 	@RequestMapping(value = "/delivery/qrscan.do", method = RequestMethod.POST)
-	public ModelAndView qrread(String Goods_Num) {
+	public ModelAndView qrread(String Goods_Num ,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		DeliveryVO changeState = service.changeState(Goods_Num);
 		DeliveryVO stateResult = service.stateResult(Goods_Num);// delivery_state가져오기
 		String match_State = service.matchState(Goods_Num);
+		
+		String mem_id = ((MemberVO)request.getSession(false).getAttribute("loginUser")).getMem_id();
+		
+		GoodsVO goodsVO = gdservice.requestdetail(Goods_Num).get(0);
 
 		if (match_State.equals("배송전")) {
 			service.matchState1(Goods_Num);
@@ -66,6 +79,7 @@ public class DeliveryController {
 			msg = "배송 완료되었습니다.";
 			int res = service.paymentInsert1(stateResult);
 			res = service.paymentInsert2(stateResult);
+			chservice.pay(mem_id, goodsVO.getEstimated_Price()+"");
 		} else {
 			msg = "등록이 안되었거나 이미 평가까지 처리된 물품입니다.";
 		}

@@ -23,8 +23,8 @@ select *
 select * from member where mem_id = 'qwe';
 update member set	mem_eval = 0	where mem_id = 'qwe';
 
-update goods set match_State = '배송전'	where goods_Num = '247';
-update delivery set	delivery_State = 1	where goods_Num = '247';
+update goods set match_State = '배송전'	where goods_Num = '90';
+update delivery set	delivery_State = 1	where goods_Num = '90';
 
 select * from delivery where goods_Num = '138';
 
