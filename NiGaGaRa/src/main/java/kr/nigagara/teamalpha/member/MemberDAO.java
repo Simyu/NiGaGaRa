@@ -22,4 +22,6 @@ public interface MemberDAO {
 	
 	List<MemberVO> list();
 
+	int updateRole(String id, String role);
+
 }

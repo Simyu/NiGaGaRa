@@ -66,5 +66,10 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> list() {
 		return dao.list();
 	}
+	@Override
+	public int updateRole(String id, String role) {
+		
+		return dao.updateRole(id, role);
+	}
 
 }

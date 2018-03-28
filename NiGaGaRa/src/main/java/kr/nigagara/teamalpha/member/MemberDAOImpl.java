@@ -119,4 +119,12 @@ public class MemberDAOImpl implements MemberDAO, UserDetailsService {
 		return list;
 	}
 
+	@Override
+	public int updateRole(String id, String role) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("role", role);
+		return sqlsession.update("nigagara.member.updaterole", map);
+	}
+
 }
