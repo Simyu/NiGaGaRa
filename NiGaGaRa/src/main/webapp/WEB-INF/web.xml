@@ -45,7 +45,25 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<filter>
+		<filter-name>multipartFilter</filter-name>
+		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
 	
+	</filter>
+	<filter-mapping>
+		<filter-name>multipartFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+        <filter-name>xssEscapeServletFilter</filter-name>
+        <filter-class>com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>xssEscapeServletFilter</filter-name>
+        <url-pattern>/member/register.do</url-pattern>
+        <url-pattern>/request.do</url-pattern>
+        <url-pattern>/member/modify.do</url-pattern>
+    </filter-mapping>
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
