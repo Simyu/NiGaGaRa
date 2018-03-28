@@ -229,6 +229,10 @@ article, aside, footer, header, hgroup, main, nav, section {
 			</div>
 		</div>
 	</section>
+	<br>
+	<h3>
+			<i class="fa fa-angle-right"></i> 포인트 결제
+		</h3>
 	<div id="kakaoIndex">
 		<a href="#kakaoBody"> 본문 바로가기 </a>
 	</div>

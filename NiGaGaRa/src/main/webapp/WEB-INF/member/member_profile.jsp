@@ -34,28 +34,24 @@ body {
 				<div class="row">
 					<div class="col-lg-12">
 						<ul class="breadcrumb">
-							<li>
-								<a href="#">
-									<i class="fa fa-home"></i>
-								</a>
-								<i class="icon-angle-right"></i>
-							</li>
+							<li><a href="#"> <i class="fa fa-home"></i>
+							</a> <i class="icon-angle-right"></i></li>
 							<li class="active">마이페이지</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</section>
-
+		<h3>
+			<i class="fa fa-angle-right"></i> 프로필
+		</h3>
 		<div class="container">
 			<div class="row">
 				<div>
 					<form class="form-horizontal" enctype="multipart/form-data"
 						action="/NiGaGaRa/member/modify.do" method="post">
 						<!-- Form Name -->
-						<br />
-						<br />
-						<br />
+						<br /> 
 						<div class="col-md-2 hidden-xs text-center">
 							<div class="row" id="imgholder">
 								<img src="/NiGaGaRa/resources/img/upload/${user.mem_img }"
@@ -115,9 +111,8 @@ body {
 										<div id="gendergroup" style="display: none;"
 											class="form-control input-md">
 											<input id="man" type="radio" name="mem_gender" value="남자">
-											남자
-											<input id="woman" type="radio" name="mem_gender" value="여자">
-											여자
+											남자 <input id="woman" type="radio" name="mem_gender"
+												value="여자"> 여자
 										</div>
 									</div>
 								</div>
@@ -135,11 +130,10 @@ body {
 										<input id="mem_addr_show" type="text"
 											value="(${user.mem_zipcode }) ${user.mem_addr }"
 											class="form-control input-md" onclick="execDaumPostcode()"
-											disabled="disabled">
-										<input type="hidden" id="mem_zipcode" name="mem_zipcode"
-											value="${user.mem_zipcode }">
-										<input type="hidden" id="mem_addr" name="mem_addr"
-											value="${user.mem_addr }">
+											disabled="disabled"> <input type="hidden"
+											id="mem_zipcode" name="mem_zipcode"
+											value="${user.mem_zipcode }"> <input type="hidden"
+											id="mem_addr" name="mem_addr" value="${user.mem_addr }">
 
 										<input name="mem_addr_detail" type="text"
 											value="${user.mem_addr_detail }"
@@ -215,14 +209,10 @@ body {
 													<option value="003" selected="selected">신한은행</option>
 												</c:when>
 											</c:choose>
-										</select>
-
-										<input id="bank_code_show" type="text" value="${bank_code}"
+										</select> <input id="bank_code_show" type="text" value="${bank_code}"
+											class="form-control input-md" disabled="disabled"> <input
+											name="mem_account" type="text" value="${user.mem_account }"
 											class="form-control input-md" disabled="disabled">
-
-										<input name="mem_account" type="text"
-											value="${user.mem_account }" class="form-control input-md"
-											disabled="disabled">
 
 									</div>
 
@@ -232,15 +222,12 @@ body {
 						</fieldset>
 						<div class="text-center">
 							<input type="button" class="btn btn-theme" value="프로필 수정"
-								id="modifyview" />
-							<a class="btn btn-theme"
+								id="modifyview" /> <a class="btn btn-theme"
 								href="/NiGaGaRa/member/profile.do?mem_id=${user.mem_id }"
-								style="display: none;" id="cancle">취소하기</a>
-							<input type="submit" class="btn btn-theme" style="display: none;"
-								value="수정완료" id="submit">
-
-							<a class="btn btn-theme" href="/NiGaGaRa/member/resetpass.do">비밀번호
-								바꾸기 </a>
+								style="display: none;" id="cancle">취소하기</a> <input type="submit"
+								class="btn btn-theme" style="display: none;" value="수정완료"
+								id="submit"> <a class="btn btn-theme"
+								href="/NiGaGaRa/member/resetpass.do">비밀번호 바꾸기 </a>
 						</div>
 					</form>
 				</div>

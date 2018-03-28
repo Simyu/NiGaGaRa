@@ -29,7 +29,9 @@
 		<section id="content">
 			<div class="col-md-12 panel-body container">
 				<div class="row">
-					<h4>신청이력</h4>
+					<h3>
+						<i class="fa fa-angle-right"></i> 신청이력
+					</h3>
 					<table class="table">
 						<thead>
 							<tr>
@@ -54,15 +56,17 @@
 									<th>${requestlist.quantity}</th>
 									<th>${requestlist.delivery_Tool}</th>
 									<th>${requestlist.estimated_Price}</th>
-									<th><a href="/NiGaGaRa/goods/qrcode.do?goods_Num=${requestlist.goods_Num}">확인</a></th>
+									<th><a
+										href="/NiGaGaRa/goods/qrcode.do?goods_Num=${requestlist.goods_Num}">확인</a></th>
 									<th>${requestlist.match_State}</th>
 									<c:choose>
-									<c:when test="${requestlist.delivery_state==3}">
-									<th><a href="/NiGaGaRa/evaluation.do?goods_Num=${requestlist.goods_Num}">평가</a></th>
-									</c:when>
-									<c:otherwise>
-									<th>평가불가</th>
-									</c:otherwise>
+										<c:when test="${requestlist.delivery_state==3}">
+											<th><a
+												href="/NiGaGaRa/evaluation.do?goods_Num=${requestlist.goods_Num}">평가</a></th>
+										</c:when>
+										<c:otherwise>
+											<th>평가불가</th>
+										</c:otherwise>
 									</c:choose>
 								</tr>
 							</c:forEach>

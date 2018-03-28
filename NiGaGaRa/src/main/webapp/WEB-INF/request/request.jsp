@@ -35,6 +35,9 @@
 				</div>
 			</div>
 		</section>
+		<h3>
+			<i class="fa fa-angle-right"></i> 배송등록
+		</h3>
 		<section id="content">
 			<div class="col-md-3"></div>
 			<div class="col-md-6 panel-body container">

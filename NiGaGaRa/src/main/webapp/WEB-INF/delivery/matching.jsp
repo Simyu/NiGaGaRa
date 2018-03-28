@@ -25,9 +25,8 @@
 
 .btn-magick {
 	color: #fff;
-	background-color: #bb39d7;
-	border-color: #9a00cd;
-	text-shadow: 1px 1px 0 #9823d5;
+	background-color: #DDA0DD;
+	border-color: #DDA0DD;
 }
 
 .btn-magick:hover, .btn-magick:focus {
@@ -253,13 +252,15 @@
 						<ul class="breadcrumb">
 							<li><a href="#"> <i class="fa fa-home"></i>
 							</a> <i class="icon-angle-right"></i></li>
-							<li class="active">배달이력</li>
+							<li class="active">배달하기</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</section>
-		<br>
+		<h3>
+			<i class="fa fa-angle-right"></i> 배달하기
+		</h3>
 		<br>
 		<br> <input type="button" id="startdeli" class="btn btn-magick"
 			value="배달하기" onclick="sendto()" />

@@ -31,6 +31,9 @@
 				</div>
 			</div>
 		</section>
+		<h3>
+			<i class="fa fa-angle-right"></i> 거래내역
+		</h3>
 		<section id="content">
 
 			<div class="col-md-12 text-center container">

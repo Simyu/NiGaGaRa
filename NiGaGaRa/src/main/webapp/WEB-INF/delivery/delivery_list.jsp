@@ -28,9 +28,10 @@
 					</div>
 				</div>
 			</div>
-		</section>
-		<h3>
-			<i class="fa fa-angle-right"></i>배달 이력
+		</section>	
+		<br>
+			<h3>
+			<i class="fa fa-angle-right"></i> 배달이력
 		</h3>
 		<div class="row mt">
 

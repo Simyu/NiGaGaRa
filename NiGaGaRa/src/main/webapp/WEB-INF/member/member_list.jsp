@@ -31,7 +31,7 @@
 		</section>
 
 		<h3>
-			<i class="fa fa-angle-right"></i> 회원 조회
+			<i class="fa fa-angle-right"></i> 회원관리
 		</h3>
 		<div class="row mt">
 
