@@ -2,8 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="nigagara.delivery">
-	<select id="deliverylist" resultType="delivery">
-		select * from delivery
+	<select id="deliverylist" resultType="delivery" parameterType="String">
+		select
+		a.*,b.receiver_Addr,b.receiver_Addr_detail,b.sender_Addr,b.sender_Addr_detail
+		from (select * from delivery where delivery_Man = #{delivery_Man})a
+		left outer join goods b on a.goods_num = b.goods_num
 	</select>
 
 	<select id="select" resultType="delivery" parameterType="Integer">

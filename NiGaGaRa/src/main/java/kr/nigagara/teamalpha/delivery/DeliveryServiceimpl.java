@@ -15,9 +15,8 @@ public class DeliveryServiceimpl implements DeliveryService {
 	DeliveryDAO dao;
 
 	@Override
-	public List<DeliveryVO> list() {
-
-		return dao.list();
+	public List<DeliveryVO> list(String mem_id) {
+		return dao.list(mem_id);
 	}
 
 	@Override

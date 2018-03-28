@@ -22,9 +22,9 @@ public class DeliveryController {
 	DeliveryService service;
 
 	@RequestMapping("/delivery/deliverylist.do")
-	public ModelAndView list() {
+	public ModelAndView list(String mem_id) {				
 		ModelAndView mav = new ModelAndView();
-		List<DeliveryVO> deliverylist = service.list();
+		List<DeliveryVO> deliverylist = service.list(mem_id);
 		mav.addObject("deliverylist", deliverylist);
 		mav.setViewName("deliverylist");
 		return mav;

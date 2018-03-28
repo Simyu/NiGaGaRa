@@ -70,7 +70,7 @@
 								<li>
 									<a href="/NiGaGaRa/goods/list.do?mem_id=${loginUser.mem_id }">신청이력</a>
 								</li>
-								<li>
+								<li>								
 									<a
 										href="/NiGaGaRa/delivery/deliverylist.do?mem_id=${loginUser.mem_id }">배달이력</a>
 								</li>
