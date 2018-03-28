@@ -23,6 +23,19 @@ body {
 #fileinput {
 	display: none;
 }
+
+span.star-prototype, span.star-prototype > * {
+    height: 16px; 
+    background: url(http://i.imgur.com/YsyS5y8.png) 0 -16px repeat-x;
+    width: 80px;
+    display: inline-block;
+}
+ 
+span.star-prototype > * {
+    background-position: 0 0;
+    max-width:80px; 
+}
+
 </style>
 
 </head>
@@ -57,6 +70,7 @@ body {
 						<br />
 						<br />
 						<div class="col-md-2 hidden-xs text-center">
+							<p> 평점 <span class="star-prototype">${user.mem_eval }</span> (${user.mem_eval })</p>
 							<div class="row" id="imgholder">
 								<img src="/NiGaGaRa/resources/img/upload/${user.mem_img }"
 									class="img-responsive img-thumbnail " id="img">
@@ -182,7 +196,23 @@ body {
 
 								</div>
 							</div>
+							<!-- Text input-->
+							<div class="form-group" id="point">
+								<label class="col-md-2 control-label" for="Email Address">포인트</label>
+								<div class="col-md-5">
+									<div class="input-group">
+										<div class="input-group-addon">
 
+											<i class="fa fa-usd"></i>
+
+										</div>
+										<input type="text" value="${user.point_total }"
+											class="form-control input-md" disabled="disabled">
+
+									</div>
+
+								</div>
+							</div>
 
 							<!-- Text input-->
 							<div class="form-group">
@@ -247,7 +277,7 @@ body {
 
 			</div>
 		</div>
-		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+		<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 		<script type="text/javascript">
 			$(document)
 					.ready(
@@ -259,6 +289,8 @@ body {
 													$(".form-group input")
 															.removeAttr(
 																	"disabled");
+													$("#point").css("display",
+															"none");
 													$("#fileupload")
 															.removeAttr(
 																	"hidden");
@@ -375,6 +407,13 @@ body {
 							}
 						}).open();
 			}
+			
+			$.fn.generateStars = function() {
+			    return this.each(function(i,e){$(e).html($('<span/>').width($(e).text()*16));});
+			};
+
+			// 숫자 평점을 별로 변환하도록 호출하는 함수
+			$('.star-prototype').generateStars();
 		</script>
 </body>
 

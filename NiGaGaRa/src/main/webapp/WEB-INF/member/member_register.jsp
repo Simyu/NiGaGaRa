@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <script src="/NiGaGaRa/resources/js/account/ext_util.js"></script>
 <script src="/NiGaGaRa/resources/js/account/constants.js"></script>
 <script src="/NiGaGaRa/resources/js/account/common.js"></script>
